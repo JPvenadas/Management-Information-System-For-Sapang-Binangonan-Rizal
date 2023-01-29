@@ -13,6 +13,17 @@
         <input placeholder="Last Name" id="lastName" class="input" type="text">
          <!-- Name Extension input -->
          <label class="label" for="extension">Name Extension</label>
-        <input placeholder="Extension" id="extension" class="input" type="text">
+        <input placeholder="Extension (Ex: Ma, Jr. 3rd)" id="extension" class="input" type="text">
+         <!-- Name Extension input -->
+         <label class="label" for="Birthdate">Birth Date</label>
+        <input placeholder="Birth Date" onfocus="(this.type = 'date')" id="BirthDate" class="input" type="text">
+    </div>
+    <div class="button-group">
+        <div class="action-button">
+            <p>Previous</p>
+        </div>
+        <div class="action-button">
+            <p>Next</p>
+        </div>
     </div>
 </div>

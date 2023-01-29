@@ -54,7 +54,7 @@ ion-icon{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 30px;
 }
 .system-vector{
     width: 420px;
@@ -92,19 +92,25 @@ ion-icon{
     justify-content: center;
     align-items: center;
 }
-.Proceed p{
+.Proceed p, .action-button p{
     color: white;
     font-size: 15px;
     font-weight: 700;
 }
 .limit-width{
     width: 330px;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
 }
 .instructions, .text{
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
     color: #595555;
+}
+.text{
+    margin-bottom: 15px;
 }
 .label{
     font-style: normal;
@@ -126,4 +132,19 @@ input{
     padding: 0 20px; 
     transition: ease .4s;
 }
+.button-group{
+    display: flex;
+    width: 350px;
+    justify-content: space-between;
+}
+.action-button{
+    width: 170px;
+    height: 40px;
+    background: #195FA0;
+    border-radius: 7.69401px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
