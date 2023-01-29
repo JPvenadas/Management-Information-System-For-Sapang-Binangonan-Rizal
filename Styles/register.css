@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.register-navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #195FA0;
+    padding: 0 60px;
+}
+.navbar-left, .navbar-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.logo{
+    width: 30px;
+    height: 30px;
+}
+ion-icon{
+    color: white;
+    font-size: 25px;
+}
+.system-title, .contacts{
+    font-weight: 700;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.registration-container{
+    width: 100%;
+    min-height: calc(100vh - 65px);
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+.form{
+    width: 600px;
+    padding: 40px 0;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 50px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20.4553px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.system-vector{
+    width: 420px;
+    height: 250px;
+}
+.form-title{
+    font-weight: 700;
+    font-size: 28px;
+    color: #002C4B;
+}
+.instructions{
+    width: 470px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.check{
+    color: #195FA0;
+    font-size: 25px;
+}
+.instructions-2{
+    display: flex;
+    gap: 20px;
+}
+.instructions-3{
+    font-style:italic;
+}
+.Proceed{
+    margin-top: 20px;
+    width: 330px;
+    height: 40px;
+    background: #195FA0;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Proceed p{
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+}
+.limit-width{
+    width: 330px;
+}
+.instructions, .text{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: #595555;
+}
+.label{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12.3104px;
+    color: #195FA0;
+}
+input{
+    border-style: none;
+    outline: none;
+}
+.input{
+    width: 100%;
+    max-width: 330px;
+    height: 52px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 7.69401px;
+    padding: 0 20px; 
+    transition: ease .4s;
+}
+
