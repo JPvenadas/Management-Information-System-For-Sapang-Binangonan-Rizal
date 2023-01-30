@@ -103,7 +103,7 @@ ion-icon{
     gap: 8px;
     flex-direction: column;
 }
-.instructions, .text{
+.instructions, .text, .list-item{
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
