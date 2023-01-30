@@ -22,8 +22,14 @@
         <div class="action-button">
             <p>Previous</p>
         </div>
-        <div class="action-button">
+        <div id="next1" class="action-button">
             <p>Next</p>
         </div>
     </div>
 </div>
+<script>
+    let next1 = document.querySelector("#next1");
+    next1.addEventListener('click', ()=>{
+        console.log("hello")
+    })
+</script>

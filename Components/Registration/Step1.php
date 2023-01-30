@@ -1,4 +1,4 @@
-<div class="form">
+<form action="?step=2" method="POST" class="form">
     <img class="system-vector" src="../../Images/system-vector.png" alt="">
     <h2 class="form-title">Create an Account</h2>
     <div class="instructions">
@@ -10,7 +10,7 @@
         <div class="instructions-3">(Note: You’re account will only be activated, after being validated by the Barangay Administrators)</div>
         <div>Please be informed that all your data disclosed herein (e.g. contact number) will be protected in compliance with the Data Privacy Act of 2012. By logging in to the system, you confirm that you fully and voluntarily give consent to the collection of such data.</div>
     </div>
-    <div class="Proceed">
+    <button type="submit" class="Proceed">
         <p>Proceed</p>
-    </div>
-</div>
+    </button>
+</form>

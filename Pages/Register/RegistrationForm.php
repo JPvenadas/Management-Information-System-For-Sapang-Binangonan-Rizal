@@ -8,7 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../Styles/register.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Register.css">
 </head>
 
 <body>
@@ -17,11 +17,15 @@
         
          include "../../Components/Registration/Navbar.php";
         ?>
-        <form class="registration-container" action="">
+        <div class="registration-container">
             <?php
+           if($_GET['step'] = "1"){
+            include "../../Components/Registration/Step1.php";
+           }elseif($_GET['step'] = "2"){
             include "../../Components/Registration/Step2.php";
+           }
             ?>
-        </form>
+        </div>
         <!-- Script for Ionic Icons -->
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
