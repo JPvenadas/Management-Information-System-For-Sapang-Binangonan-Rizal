@@ -40,7 +40,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
                 <p class="label">Password</p>
                 <input class="text-1" required type="password" name="password" placeholder="Password">
                 <button class="login-button" type="submit">Login</button>
-                <a class="login-button button-white" href="Pages/Register/RegistrationForm.php">
+                <a class="login-button button-white" href="Pages/Register/RegistrationForm.php?step=1">
                 <div>
                 Create an Account
                 </div>

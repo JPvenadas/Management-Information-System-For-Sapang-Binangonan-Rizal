@@ -1,4 +1,4 @@
-<div class="form">
+<form action="?step=4" method="POST" class="form">
     <div class="limit-width">
         <h2 class="form-title">Other information</h2>
         <p class="text">Please fill the necessary information below</p>
@@ -41,14 +41,14 @@
         <input placeholder="Number of Family Members" id="familyMembers" class="input" type="number">
     </div>
     <div class="button-group">
-            <div class="action-button">
+            <a href="?step=2" class="action-button">
                 <p>Previous</p>
-            </div>
-            <div class="action-button">
+            </a>
+            <button type="submit" class="action-button">
                 <p>Next</p>
-            </div>
+            </button>
     </div>
-</div>
+</form>
 <script>
     let FamilyMembersInput = document.querySelector('#familyMembers');
     let labelMembers = document.querySelector('#labelMembers');

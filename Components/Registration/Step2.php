@@ -1,4 +1,4 @@
-<div class="form">
+<form action="?step=3" method="POST" class="form">
     <div class="limit-width">
         <h2 class="form-title">Create an Account</h2>
         <p class="text">Please fill the necessary information below</p>
@@ -19,17 +19,11 @@
         <input placeholder="Birth Date" onfocus="(this.type = 'date')" id="BirthDate" class="input" type="text">
     </div>
     <div class="button-group">
-        <div class="action-button">
+        <a href="?step=1" class="action-button">
             <p>Previous</p>
-        </div>
-        <div id="next1" class="action-button">
+        </a>
+        <button type="submit" class="action-button">
             <p>Next</p>
-        </div>
+        </button>
     </div>
-</div>
-<script>
-    let next1 = document.querySelector("#next1");
-    next1.addEventListener('click', ()=>{
-        console.log("hello")
-    })
-</script>
+</form>

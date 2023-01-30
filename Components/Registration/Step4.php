@@ -1,4 +1,4 @@
-<div class="form">
+<form action="?step=5" method="POST" class="form">
     <div class="limit-width">
         <h2 class="form-title">Profile and Contacts</h2>
         <p class="text">Please fill the necessary information and files below</p>
@@ -39,14 +39,14 @@
         </div>
     </div>
     <div class="button-group">
-            <div class="action-button">
+            <a href="?step=3" class="action-button">
                 <p>Previous</p>
-            </div>
-            <div class="action-button">
+            </a>
+            <button type="submit" class="action-button">
                 <p>Next</p>
-            </div>
+            </button>
     </div>
-</div>
+</form>
 <script>
     let profile = document.querySelector('#profilePicture');
     let proof = document.querySelector('#residenceProof')

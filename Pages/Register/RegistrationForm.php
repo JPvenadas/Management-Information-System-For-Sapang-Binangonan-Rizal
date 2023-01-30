@@ -19,10 +19,16 @@
         ?>
         <div class="registration-container">
             <?php
-           if($_GET['step'] = "1"){
+           if($_GET['step'] == "1"){
             include "../../Components/Registration/Step1.php";
-           }elseif($_GET['step'] = "2"){
+           }elseif($_GET['step'] == "2"){
             include "../../Components/Registration/Step2.php";
+           }elseif($_GET['step'] == "3"){
+            include "../../Components/Registration/Step3.php";
+           }elseif($_GET['step'] == "4"){
+            include "../../Components/Registration/Step4.php";
+           }else{
+            include "../../Components/Registration/Step5.php";
            }
             ?>
         </div>
