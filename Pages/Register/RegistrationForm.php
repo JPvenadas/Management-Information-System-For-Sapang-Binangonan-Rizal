@@ -29,8 +29,8 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 <body>
 
         <?php
-        
          include "../../Components/Registration/Navbar.php";
+         include "../../Components/Registration/Datalists.php"
         ?>
         <div class="registration-container">
             <?php
