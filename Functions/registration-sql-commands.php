@@ -46,4 +46,16 @@ if(isset($_POST['next3'])){
     $_SESSION['registration-familyHead'] = $_POST['familyHead'];
     $_SESSION['registration-familyMembers'] = $_POST['familyMembers'];
 }
+if(isset($_POST['next4'])){
+    setFileContent('profilePicture');
+    $_SESSION['registration-profilePictureTitle'] = $_POST['profilePictureTitle'];
+    setFileContent('residenceProof');
+    $_SESSION['registration-residenceProofTitle'] = $_POST['residenceProofTitle'];
+    $_SESSION['registration-mobileNumber'] = $_POST['mobileNumber'];
+}
+function setFileContent($content){
+    if("" != trim($_POST["$content"])){
+        $_SESSION["registration-$content"] = $_POST["$content"];
+    }
+}
 ?>
