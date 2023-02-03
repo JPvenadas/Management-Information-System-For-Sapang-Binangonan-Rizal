@@ -42,8 +42,10 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
             include "../../Components/Registration/Step3.php";
            }elseif($_GET['step'] == "4"){
             include "../../Components/Registration/Step4.php";
-           }else{
+           }elseif($_GET['step'] == "5"){
             include "../../Components/Registration/Step5.php";
+           }elseif($_GET['step'] == "done"){
+            include "../../Components/Registration/Done.php";
            }
             ?>
         </div>

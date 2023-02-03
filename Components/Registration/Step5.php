@@ -1,4 +1,4 @@
-<form class="form" action="../../index.php">
+<form class="form" method="POST" action="?step=done">
     <div class="limit-width">
         <h2 class="form-title">Create Password</h2>
         <p class="text">Your password must be have at least:</p>
@@ -7,7 +7,7 @@
             <li class="list-item">1 uppercase & 1 lowercase character</li>
             <li class="list-item">1 number</li>
         </ul>
-        <input required onkeyup="checkPassword(this.value)" id="password-input" type="password" class="input" placeholder="Input your Password">
+        <input required onkeyup="checkPassword(this.value)" name="password" id="password-input" type="password" class="input" placeholder="Input your Password">
         <input required onkeyup="checkPassword(this.value)" id="confirm-password" type="password" class="input" placeholder="Confirm Password">
         <p class="text-error"></p>
     </div>
@@ -15,7 +15,7 @@
             <a href="?step=4" class="action-button">
                 <p>Previous</p>
             </a>
-            <button id="signup-button" type="submit" class="action-button">
+            <button name="signup" id="signup-button" type="submit" class="action-button">
                 <p>Signup</p>
             </button>
     </div>
@@ -49,7 +49,6 @@
     else if(passwordInput.value != confirmPassword.value){
         passViolations.push("Password does not match")
         signupButton.disabled = true;
-
     }else{
         signupButton.disabled = false;
         errorText.innerHTML = ""

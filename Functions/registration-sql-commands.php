@@ -8,6 +8,13 @@ function inputContent($content){
         echo $_SESSION["registration-$content"];
     }
 }
+function validate($data){
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+ }
+
 function checkradio($content){
     if(isset($_SESSION['registration-familyHead'])){
         if($_SESSION['registration-familyHead'] == $content){
@@ -22,7 +29,7 @@ function getPuroks(){
     $result = mysqli_query($conn, $command);
     $puroks = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);
-     mysqli_close($conn);
+    mysqli_close($conn);
      return $puroks;
 }
 
@@ -55,7 +62,49 @@ if(isset($_POST['next4'])){
 }
 function setFileContent($content){
     if("" != trim($_POST["$content"])){
-        $_SESSION["registration-$content"] = $_POST["$content"];
+        $file = $_FILES["$content"]["tmp_name"];
+        $_SESSION["registration-$content"] = addslashes(file_get_contents($file));
     }
 }
+if(isset($_POST['signup'])){
+    $conn = openCon();
+    $firstName = validate($_SESSION['registration-firstName']);
+    $lastName = validate($_SESSION['registration-lastName']);
+    $middleName = validate($_SESSION['registration-middleName']);
+    $extension = validate($_SESSION['registration-extension']);
+    $birthDate = validate($_SESSION['registration-birthDate']);
+    $address = validate($_SESSION['registration-address']);
+    $profilePicture = $_SESSION['registration-profilePicture'];
+    $sex = validate($_SESSION['registration-sex']);
+    $purok = validate($_SESSION['registration-purok']);
+    $voterStatus = validate($_SESSION['registration-voterStatus']);
+    $maritalStatus = validate($_SESSION['registration-maritalStatus']);
+    $residentCategory = validate($_SESSION['registration-residentCategory']);
+    $occupation = validate($_SESSION['registration-occupation']);
+    $familyHead = validate($_SESSION['registration-familyHead']);
+    $familyMembers = $_SESSION['registration-familyMembers'];
+    $archive = "false";
+    $mobileNumber = validate($_SESSION['registration-mobileNumber']);
+    $residenceProof = $_SESSION['registration-residenceProof'];
+    $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `residenceProof`) 
+                                    VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$profilePicture','$purok','$address','$voterStatus','$sex','$maritalStatus','$residentCategory','$occupation','$familyHead','$familyMembers','$archive','$mobileNumber','$residenceProof')";
+    mysqli_query($conn, $command);
+    $residentID =  $addedResidentID = mysqli_insert_id($conn);
+    
+    //user account registration
+    $firstName = validate($_SESSION['registration-firstName']);
+    $middleName = validate($_SESSION['registration-middleName']);
+    $lastName = validate($_SESSION['registration-lastName']);
+    $extension = validate($_SESSION['registration-extension']);
+    $userName = "$firstName.$middleName.$lastName.$extension";
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $userType = "Resident";
+    $accountStatus = "Inactive";
+    $command = "INSERT INTO `tbl_userAccounts`(`userName`, `residentID`, `password`, `userType`, `accountStatus`) 
+                                        VALUES ('$userName','$residentID','$password','$userType','$accountStatus')" ;
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+    
+
 ?>
