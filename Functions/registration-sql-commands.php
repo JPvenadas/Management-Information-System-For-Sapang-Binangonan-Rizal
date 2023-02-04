@@ -104,7 +104,7 @@ if(isset($_POST['signup'])){
                                         VALUES ('$userName','$residentID','$password','$userType','$accountStatus')" ;
     mysqli_query($conn, $command);
     mysqli_close($conn);
-
+    session_unset();
     header("Location: ?step=done&username=$userName");
 	exit();
 }

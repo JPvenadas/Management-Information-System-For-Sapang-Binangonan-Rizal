@@ -94,13 +94,16 @@ input, button{
 }
 .button-white{
     color: #195FA0 !important;
-    background: white !important;
+    background: #F2F2F2;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .login-button:hover{
     background:  #114b82;
+}
+.button-white:hover{
+    background: #e6e5e5;
 }
 .login-right{
     position: relative;
@@ -140,7 +143,7 @@ input, button{
     left: -100px;
 }
 .forgot-password{
-    width: 370px;
+    width: 350px;
     text-align: center;
     color: #69A5DD;
     font-size: 12px;
