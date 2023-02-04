@@ -5,6 +5,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 	header("Location: Pages/Dashboard/dashboard.php");
 	exit();
 }else{
+    session_unset();
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +23,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 </head>
 
 <body>
+    
     <div class="error-container">
         <?php if (isset($_GET['error'])) { ?>
         <p class="error"><?php echo $_GET['error']; ?></p>

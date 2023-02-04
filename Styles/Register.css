@@ -109,7 +109,7 @@ ion-icon{
     line-height: 19px;
     color: #595555;
 }
-.text-small, .text-error{
+.text-small, .text-error, .text-highlight{
     font-size: 12px;
     font-weight: 500;
     color: #595555;
@@ -119,6 +119,9 @@ ion-icon{
 }
 .text-error{
     color: red;
+}
+.text-highlight{
+    color: #002C4B;
 }
 .label{
     font-style: normal;

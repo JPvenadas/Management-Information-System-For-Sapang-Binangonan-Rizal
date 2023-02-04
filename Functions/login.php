@@ -22,22 +22,25 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
         header("Location: ../index.php?error=Password is required");
 	    exit();
 	}else{
-		$sql = "SELECT u.userName, u.password, u.userType, p.positionName, r.residentID, r.firstName,r.middleName, r.lastName, r.extension, r.image 
+		$sql = "SELECT u.userName, u.password, u.userType, u.accountStatus, r.residentID, r.firstName,r.middleName, r.lastName, r.extension, r.image 
 		from tbl_userAccounts as u INNER JOIN tbl_residents as r on u.residentID = r.residentID
-        inner JOIN tbl_employees as e on r.residentID = e.residentID
-        INNER JOIN tbl_positions as p on e.position = p.positionID
-        WHERE u.userName = '$uname';";
+        WHERE u.userName = '$uname'";
 	
 		$result = mysqli_query($conn, $sql);
 		
 		if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
 			mysqli_close($conn);
+
+
+			if($row['accountStatus'] !== "Active"){
+				header("Location: ../index.php?error=Your Account is Either Inactive or yet to be verified");
+				exit();
+			}
 			
             if ($row['userName'] === $uname && password_verify($pass, $row['password'])) {
             	$_SESSION['username'] = $row['userName'];
 				$_SESSION['userType'] = $row['userType'];
-				$_SESSION['position'] = $row['positionName'];
 				$_SESSION['image'] = $row['image'];
 				$_SESSION['firstName'] = $row['firstName'];
 				$_SESSION['middleName'] = $row['middleName'];
@@ -47,11 +50,11 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             	header("Location: ../Pages/Dashboard/Dashboard.php");
 		        exit();
             }else{
-				header("Location: ../index.php?error=Incorect User name or password");
+				header("Location: ../index.php?error=Incorect password");
 		        exit();
 			}
 		}else{
-			header("Location: ../index.php?error=Incorect User name or password");
+			header("Location: ../index.php?error=Incorect User name");
 	        exit();
 		}
 	}

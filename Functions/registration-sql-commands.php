@@ -61,7 +61,7 @@ if(isset($_POST['next4'])){
     $_SESSION['registration-mobileNumber'] = $_POST['mobileNumber'];
 }
 function setFileContent($content){
-    if("" != trim($_POST["$content"])){
+    if("" != trim($_FILES["$content"]["tmp_name"])){
         $file = $_FILES["$content"]["tmp_name"];
         $_SESSION["registration-$content"] = addslashes(file_get_contents($file));
     }
@@ -96,7 +96,7 @@ if(isset($_POST['signup'])){
     $middleName = validate($_SESSION['registration-middleName']);
     $lastName = validate($_SESSION['registration-lastName']);
     $extension = validate($_SESSION['registration-extension']);
-    $userName = "$firstName.$middleName.$lastName.$extension";
+    $userName = "@$firstName$middleName$lastName$extension";
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $userType = "Resident";
     $accountStatus = "Inactive";
@@ -104,6 +104,9 @@ if(isset($_POST['signup'])){
                                         VALUES ('$userName','$residentID','$password','$userType','$accountStatus')" ;
     mysqli_query($conn, $command);
     mysqli_close($conn);
+
+    header("Location: ?step=done&username=$userName");
+	exit();
 }
     
 

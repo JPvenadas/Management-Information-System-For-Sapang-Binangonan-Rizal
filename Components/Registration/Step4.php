@@ -1,4 +1,4 @@
-<form action="?step=5" method="POST" class="form">
+<form action="?step=5" enctype="multipart/form-data" method="POST" class="form">
     <div class="limit-width">
         <h2 class="form-title">Profile and Contacts</h2>
         <p class="text">Please fill the necessary information and files below</p>
