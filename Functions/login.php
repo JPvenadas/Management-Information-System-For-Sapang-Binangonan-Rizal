@@ -5,13 +5,6 @@ $conn = openCon();
 
 if (isset($_POST['uname']) && isset($_POST['password'])) {
 
-	function validate($data){
-       $data = trim($data);
-	   $data = stripslashes($data);
-	   $data = htmlspecialchars($data);
-	   return $data;
-	}
-
 	$uname = validate($_POST['uname']);
 	$pass = validate($_POST['password']);
 
@@ -50,11 +43,11 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             	header("Location: ../Pages/Dashboard/Dashboard.php");
 		        exit();
             }else{
-				header("Location: ../index.php?error=Incorect password");
+				header("Location: ../index.php?error=Incorect Username or password");
 		        exit();
 			}
 		}else{
-			header("Location: ../index.php?error=Incorect User name");
+			header("Location: ../index.php?error=Incorect Username or Password");
 	        exit();
 		}
 	}

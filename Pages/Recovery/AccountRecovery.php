@@ -2,6 +2,7 @@
 session_start();
 
 //require the Functions and sql commands
+require "../../Functions/recovery-sql-commands.php";
 
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
@@ -39,14 +40,15 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         ?>
         <div class="registration-container">
             <?php
-                if($_GET['page'] === "provide otp"){
+                if(!isset($_GET['page'])){
+                   include "../../Components/Recovery/InputUsername.php" ;
+                }
+                elseif($_GET['page'] === "provide otp"){
                     include "../../Components/Recovery/ProvideOTP.php";
                 }elseif($_GET['page'] === "no contacts"){
                     include "../../Components/Recovery/NoNumber.php";
                 }elseif($_GET['page'] === "change password"){
                     include "../../Components/Recovery/ChangePassword.php";
-                }else{
-                    include "../../Components/Recovery/InputUsername.php"
                 }
             ?>
         </div>

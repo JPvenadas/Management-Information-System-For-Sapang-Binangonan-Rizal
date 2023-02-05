@@ -8,12 +8,6 @@ function inputContent($content){
         echo $_SESSION["registration-$content"];
     }
 }
-function validate($data){
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
- }
 
 function checkradio($content){
     if(isset($_SESSION['registration-familyHead'])){

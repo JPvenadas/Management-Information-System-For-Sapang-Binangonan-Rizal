@@ -1,4 +1,4 @@
-<form action="" method="POST" class="form">
+<form action="?page=change password" method="POST" class="form">
     <div class="limit-width">
         <h2 class="form-title">Provide OTP</h2>
         <p class="text">Please input the 6-digit code that was sent to your phone number ending in *0466 </p>
@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="button-group">
-            <a href="" class="action-button">
+            <a href="?" class="action-button">
                 <p>Go back</p>
             </a>
             <button name="next3" type="submit" class="action-button">

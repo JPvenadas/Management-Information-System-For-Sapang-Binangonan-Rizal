@@ -5,6 +5,9 @@
     box-sizing: border-box;
     text-decoration: none;
 }
+body{
+    background: white;
+}
 .register-navbar{
     position: fixed;
     top: 0;
@@ -162,6 +165,7 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .multiple-choice-container{
     display: flex;
@@ -222,7 +226,7 @@ button{
     font-size: 14px;
     text-decoration-line: underline;
     color: #195FA0;
-    background: white;
+    cursor: pointer;
 }
 @media (max-width: 700px){
     .register-navbar{

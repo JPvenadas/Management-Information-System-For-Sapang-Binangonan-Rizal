@@ -14,4 +14,13 @@ if (!$conn) {
 }
 return $conn;
 }
+
+
+// function to validate user input
+function validate($data){
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>
