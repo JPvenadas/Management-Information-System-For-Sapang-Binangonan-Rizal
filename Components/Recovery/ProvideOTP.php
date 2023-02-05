@@ -1,4 +1,4 @@
-<form action="?page=change password" method="POST" class="form">
+<form action="" method="POST" class="form">
     <div class="limit-width">
         <h2 class="form-title">Provide OTP</h2>
         <p class="text">Please input the 6-digit code that was sent to your phone number ending in *<?php echo substr($_SESSION['recovery-contactNo'], -4);?> </p>
@@ -13,7 +13,7 @@
         this.value = this.value.slice(0, 6)">
         
         <div class="flex-between">
-            <button class="text-link">Request Another Code</button>
+            <button onclick="unrequire()" type="submit" name="anotherCode" id="anotherCode" class="text-link">Request Another Code</button>
             <a class="text-link" href="">Try another way</a>
         </div>
     </div>
@@ -30,7 +30,7 @@
 <script>
     
     <?php
-    if(isset($_POST['submitUserName'])){
+    if(isset($_POST['submitUserName']) || isset($_POST['anotherCode'])){
     ?>
        async function sendOTP(){
         const response = await fetch("https://sms.teamssprogram.com/api/send?key=92b8161a217f4472b9ef796d988c0ec81d712859&phone=+639<?php echo $_SESSION['recovery-contactNo'] ?>&message=<?php echo $_SESSION['OTP']?> is your One-Time code for Barangay Sapang MIS&device=138&sim=2")
@@ -40,5 +40,10 @@
        sendOTP();
     <?php }?>
     
-    
+    function unrequire(){
+        let otp = document.querySelector('#OTP');
+        let button = document.querySelector('#anotherCode');
+        otp.removeAttribute('required');
+        button.click()
+    }
 </script>

@@ -40,4 +40,8 @@ if(isset($_POST['submitUserName'])){
 function generateRandomNumber() {
     return mt_rand(100000, 999999);
 }
+
+if(isset($_POST['anotherCode'])){
+    $_SESSION['OTP'] = generateRandomNumber();
+}
 ?>
