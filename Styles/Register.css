@@ -212,6 +212,18 @@ button{
 .upload-button p{
     font-size: 12px;
 }
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.text-link{
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration-line: underline;
+    color: #195FA0;
+    background: white;
+}
 @media (max-width: 700px){
     .register-navbar{
         padding: 0 8px; 
