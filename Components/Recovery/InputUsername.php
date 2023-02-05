@@ -3,14 +3,12 @@
         <h2 class="form-title">Forgot your Password?</h2>
         <p class="text">Please enter your username so we can help you recover your account.</p>
         <input required placeholder="Input your Username here" id="userName" name="userName" class="input" type="text">
-        
         <!-- Write the error if there is -->
         <p class="text-error">
         <?php if(isset($_GET['error'])){
             echo $_GET['error'];
         }?>
         </p>
-        
     </div>
     <div class="button-group">
             <a href="../../index.php" class="action-button">
