@@ -23,7 +23,8 @@ if(isset($_POST['submitUserName'])){
             header("Location: ../../Pages/Recovery/AccountRecovery.php?page=no contacts&hd=$ss");
 	        exit();
         }else{
-            $_SESSION['recovery-contactNo'] = $userName[0]['contactNo'];
+            $_SESSION['recovery-userName'] = $userName[0]['userName'];
+            $_SESSION['recovery-contactNo'] = substr($userName[0]['contactNo'], -9);
             $_SESSION['OTP'] = generateRandomNumber();
         }
 

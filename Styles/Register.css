@@ -227,6 +227,7 @@ button{
     text-decoration-line: underline;
     color: #195FA0;
     cursor: pointer;
+    background: white;
 }
 @media (max-width: 700px){
     .register-navbar{
