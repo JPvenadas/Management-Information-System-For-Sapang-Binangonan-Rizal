@@ -40,8 +40,20 @@ if(isset($_POST['submitUserName'])){
 function generateRandomNumber() {
     return mt_rand(100000, 999999);
 }
-
+//if the resend code button is clicked.
 if(isset($_POST['anotherCode'])){
     $_SESSION['OTP'] = generateRandomNumber();
 }
+
+if(isset($_POST['checkOTP'])){
+    if($_POST['OTP'] == $_SESSION['OTP']){
+        $_SESSION['OTP-approved'] = "Success";
+        header("Location: ../../Pages/Recovery/AccountRecovery.php?page=change password");
+	    exit();
+    }else{
+        header("Location: ../../Pages/Recovery/AccountRecovery.php?page=provide otp&error=Incorrect One time pin");
+	    exit();
+    }
+}
+
 ?>

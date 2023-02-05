@@ -3,7 +3,9 @@
         <h2 class="form-title">Provide OTP</h2>
         <p class="text">Please input the 6-digit code that was sent to your phone number ending in *<?php echo substr($_SESSION['recovery-contactNo'], -4);?> </p>
         <p class="text-small">Wait for at least 3 minutes to receive the text message. If not received, you can request for another code.</p>
-        
+        <p><?php echo $_SESSION['OTP']?></p>
+
+
         <input required placeholder="input the 6 digit code here" id="OTP" name="OTP" class="input" type="text"
         onkeypress="
         //function that will prevent non-numeric char
@@ -11,6 +13,13 @@
         oninput="
         //function that will prevent user from typing more than 6 digit
         this.value = this.value.slice(0, 6)">
+        
+         <!-- Write the error if there is -->
+         <p class="text-error">
+        <?php if(isset($_GET['error'])){
+            echo $_GET['error'];
+        }?>
+        </p>
         
         <div class="flex-between">
             <button onclick="unrequire()" type="submit" name="anotherCode" id="anotherCode" class="text-link">Request Another Code</button>

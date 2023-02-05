@@ -12,11 +12,11 @@
         <p class="text-error"></p>
     </div>
     <div class="button-group">
-            <a href="?step=4" class="action-button">
-                <p>Previous</p>
+            <a href="../../index.php" class="action-button">
+                <p>Cancel</p>
             </a>
             <button name="signup" id="signup-button" type="submit" class="action-button">
-                <p>Confirm</p>
+                <p>Change</p>
             </button>
     </div>
 </form>
