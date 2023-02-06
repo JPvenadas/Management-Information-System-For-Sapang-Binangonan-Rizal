@@ -19,7 +19,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="Styles/login.css">
+    <link rel="stylesheet" type="text/css" href="Styles/Login.css">
 </head>
 
 <body>
@@ -27,6 +27,9 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
     <div class="error-container">
         <?php if (isset($_GET['error'])) { ?>
         <p class="error"><?php echo $_GET['error']; ?></p>
+        <?php } ?>
+        <?php if (isset($_GET['notif'])) { ?>
+        <p class="notif"><?php echo $_GET['notif']; ?></p>
         <?php } ?>
     </div>
     <div class="login-container">

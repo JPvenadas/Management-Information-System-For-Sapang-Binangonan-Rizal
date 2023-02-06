@@ -45,6 +45,7 @@ if(isset($_POST['anotherCode'])){
     $_SESSION['OTP'] = generateRandomNumber();
 }
 
+//verify if the OTP is correct
 if(isset($_POST['checkOTP'])){
     if($_POST['OTP'] == $_SESSION['OTP']){
         $_SESSION['OTP-approved'] = "Success";
@@ -56,4 +57,25 @@ if(isset($_POST['checkOTP'])){
     }
 }
 
+if(isset($_POST['changePassword'])){
+    $conn = openCon();
+    $userName = validate($_SESSION['recovery-userName']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $command = "UPDATE `tbl_userAccounts` SET `password`='$password' WHERE `userName` = '$userName'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+    session_unset();
+    header("Location: ../../index.php?notif=Successfully changed Your Password");
+	exit();
+}
+
+//function to get all the contacts in the database
+function getContacts(){
+    $conn = openCon();
+    $command = "SELECT* FROM `tbl_contacts`";
+    $result = mysqli_query($conn, $command);
+    $contacts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $contacts;
+
+}
 ?>

@@ -23,7 +23,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../Styles/Register.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Reegister.css">
 
     <!-- a script to prevent the "confirm resubmission" alert -->
     <script>
@@ -43,13 +43,17 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
                 if(!isset($_GET['page'])){
                    include "../../Components/Recovery/InputUsername.php" ;
                 }
-                elseif($_GET['page'] === "provide otp"){
+                elseif($_GET['page'] === "provide otp" && isset($_SESSION['recovery-userName'] )){
                     include "../../Components/Recovery/ProvideOTP.php";
                 }elseif($_GET['page'] === "no contacts"){
                     include "../../Components/Recovery/NoNumber.php";
                 }elseif($_GET['page'] === "change password"){
                     include "../../Components/Recovery/ChangePassword.php";
-                }
+                }elseif($_GET['page'] === "contact us"){
+                    include "../../Components/Recovery/ContactUs.php";
+                }else{
+                    include "../../Components/Recovery/InputUsername.php" ;
+                }          
             ?>
         </div>
         <!-- Script for Ionic Icons -->

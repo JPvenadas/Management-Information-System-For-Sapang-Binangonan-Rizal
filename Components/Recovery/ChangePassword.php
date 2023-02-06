@@ -15,7 +15,7 @@
             <a href="../../index.php" class="action-button">
                 <p>Cancel</p>
             </a>
-            <button name="signup" id="signup-button" type="submit" class="action-button">
+            <button name="changePassword" id="change-button" type="submit" class="action-button">
                 <p>Change</p>
             </button>
     </div>
@@ -23,7 +23,7 @@
 <script>
     let passwordInput = document.getElementById('password-input');
     let confirmPassword = document.getElementById('confirm-password');
-    let signupButton = document.getElementById('signup-button');
+    let signupButton = document.getElementById('change-button');
     let errorText = document.querySelector('.text-error');
 
     let passViolations = []

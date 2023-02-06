@@ -20,10 +20,10 @@
             echo $_GET['error'];
         }?>
         </p>
-        
+
         <div class="flex-between">
             <button onclick="unrequire()" type="submit" name="anotherCode" id="anotherCode" class="text-link">Request Another Code</button>
-            <a class="text-link" href="">Try another way</a>
+            <a class="text-link" href="?page=contact us">Try another way</a>
         </div>
     </div>
     <div class="button-group">
@@ -44,7 +44,6 @@
        async function sendOTP(){
         const response = await fetch("https://sms.teamssprogram.com/api/send?key=92b8161a217f4472b9ef796d988c0ec81d712859&phone=+639<?php echo $_SESSION['recovery-contactNo'] ?>&message=<?php echo $_SESSION['OTP']?> is your One-Time code for Barangay Sapang MIS&device=138&sim=2")
         const data = await response.json();
-        console.log(data);
        }
        sendOTP();
     <?php }?>

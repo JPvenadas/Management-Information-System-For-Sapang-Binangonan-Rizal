@@ -120,7 +120,7 @@ input, button{
     left: 0;
     height: 80px;
 }
-.error{
+.error, .notif{
     position: absolute;
     top: 30px;
     transform: translateX(50%,-50%);
@@ -131,6 +131,10 @@ input, button{
     color: red;
     border-radius: 5px;
     animation: fade forwards 3s;
+}
+.notif{
+    background: rgba(32, 105, 240, 0.654);
+    color: white;
 }
 .login-figure{
     width: 100vw;
