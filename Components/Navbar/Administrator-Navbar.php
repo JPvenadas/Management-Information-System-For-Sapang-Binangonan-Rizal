@@ -74,7 +74,7 @@ function attachNavbar($page){
         ?>
         <!-- Logout -->
         <li class="sidebar-item logout">
-            <a href="" class="sidebar-item-container">
+            <a href="../../Functions/logout.php" class="sidebar-item-container">
                 <ion-icon name="power"></ion-icon>
                 <span class="sidebar-item-text">Logout</span>
             </a>
