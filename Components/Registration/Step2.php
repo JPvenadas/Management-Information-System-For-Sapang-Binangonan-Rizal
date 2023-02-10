@@ -20,7 +20,7 @@
 
          <!-- Name Extension input -->
          <label class="label" for="extension">Name Extension (Optional)</label>
-        <input placeholder="Extension (Ex: Ma, Jr. 3rd)" id="extension" name="extension" class="input" type="text"
+        <input placeholder="Extension (Ex: Ma, Jr. III)" id="extension" name="extension" class="input" type="text"
         value="<?php inputContent('extension'); ?>">
 
          <!-- Name Extension input -->

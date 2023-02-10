@@ -44,6 +44,7 @@
        async function sendOTP(){
         const response = await fetch("https://sms.teamssprogram.com/api/send?key=92b8161a217f4472b9ef796d988c0ec81d712859&phone=+639<?php echo $_SESSION['recovery-contactNo'] ?>&message=<?php echo $_SESSION['OTP']?> is your One-Time code for Barangay Sapang MIS&device=138&sim=2")
         const data = await response.json();
+        console.log(data);
        }
        sendOTP();
     <?php }?>

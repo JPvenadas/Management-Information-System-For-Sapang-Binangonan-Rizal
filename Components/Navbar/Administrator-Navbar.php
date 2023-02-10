@@ -2,7 +2,7 @@
 function attachNavbar($page){
 
     // this will just determine which tab bar should be highlighted
-    $dashboard=""; $residents=""; $personnels=""; $user=""; $transactions="";$incidents="";$reports="";$settings="";
+    $dashboard=""; $residents="";$announcements="";$inventory="";$attendance="";$events=""; $employees=""; $user=""; $services="";$incidents="";$reports="";$settings="";
     switch ($page) {
         case "dashboard":
          $dashboard="highlight";
@@ -10,14 +10,29 @@ function attachNavbar($page){
         case "residents":
          $residents="highlight";
           break;
-        case "personnels":
-         $personnels="highlight";
+        case "employees":
+         $employees="highlight";
           break;
+        case "events":
+        $events="highlight";
+        break;
+        case "inventory":
+        $inventory="highlight";
+        break;
         case "user":
          $user="highlight";
         break;
-        case "transactions":
-          $transactions="highlight";
+        case "announcements":
+        $announcements="highlight";
+        break;
+        case "services":
+          $services="highlight";
+        break;
+        case "attendance":
+         $attendance="highlight";
+        break;
+        case "incidents":
+         $incidents="highlight";
         break;
         case "reports":
           $reports="highlight";
@@ -27,67 +42,41 @@ function attachNavbar($page){
       }
 
 ?>
-<div class="sidebar">
-    <div class="sidebar-content-container">
-        <div class="sidebar-profile-section">
-            <img class="sidebar-profile-picture" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($_SESSION['image']); ?>" alt="">
-            <div class ="sidebar-profile-text">
-                <h3 class="sidebar-fullname"><?php print_r($_SESSION['firstName']); echo " "; print_r($_SESSION['lastName'])?></h3>
-                <h4 class="sidebar-Usertypes"><?php print_r($_SESSION['userType'])?><h4>
-            </div>
+<nav class="sidebar">
+    <div class="profile">
+        <div class="profile-picture">
+            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($_SESSION['image']); ?>"
+                alt="Profile Picture">
         </div>
-        <div class="sidebar-divider"></div>
-        <nav class="sidebar-nav">
-            <ul class="sidebar-nav-container">
-                <li class="sidebar-item">
-                    <a href="../../Modules/Dashboard/dashboard.php" class=" <?php echo $dashboard?> sidebar-item-container">
-                        <ion-icon name="home-sharp"></ion-icon>
-                        <span class="sidebar-item-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../../Modules/Residents/residents.php" class=" <?php echo $residents?> sidebar-item-container">
-                        <ion-icon name="people"></ion-icon>
-                        <span class="sidebar-item-text">Residents</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../../Modules/Personnels/Personnels.php" class="<?php echo $personnels?> sidebar-item-container">
-                        <ion-icon name="person"></ion-icon>
-                        <span class="sidebar-item-text">Personnels</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../../Modules/Users/users.php" class="<?php echo $user?> sidebar-item-container">
-                        <ion-icon name="person-circle"></ion-icon>
-                        <span class="sidebar-item-text">Users</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../../Modules/Transactions/transactions.php" class="<?php echo $transactions?> sidebar-item-container">
-                        <ion-icon name="document"></ion-icon>
-                        <span class="sidebar-item-text">Transactions</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../../Modules/Reports/reports.php" class="<?php echo $reports?> sidebar-item-container">
-                        <ion-icon name="stats-chart"></ion-icon>
-                        <span class="sidebar-item-text">Reports</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="../../Modules/Settings/settings.php?page=services" class=" <?php echo $settings?> sidebar-item-container">
-                        <ion-icon name="settings"></ion-icon>
-                        <span class="sidebar-item-text">Settings</span>
-                    </a>
-                </li>
-            </ul>
-           <a class="logout" href="../../Functions/logout.php">
-           <ion-icon name="power"></ion-icon>
-           <span>Logout</span>
-           </a>
-           <div class="sidebar-circle"></div>
-        </nav>
+        <div class="profile-info">
+            <p class="username"><?php print_r($_SESSION['firstName']); echo " "; print_r($_SESSION['lastName'])?></p>
+            <p class="usertype">Resident</p>
+        </div>
     </div>
-</div>
+    <ul class="navigation-container">
+        <?php
+         include "../../Components/Navbar/Navbar-Item.php";
+         generateNavItem($dashboard, "Dashboard", "home-sharp", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($residents, "Residents", "people", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($employees, "Employees", "person", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($attendance, "Attendance", "checkmark-circle", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($user, "Users", "person-circle", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($services, "Services", "document", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($events, "Events", "calendar", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($inventory, "Inventory", "albums", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($incidents, "Incidents", "alert-circle", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($reports, "Reports", "stats-chart", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($settings, "Settings", "settings", "../../Pages/Dashboard/Dashboard.php");
+        ?>
+        <!-- Logout -->
+        <li class="sidebar-item logout">
+            <a href="" class="sidebar-item-container">
+                <ion-icon name="power"></ion-icon>
+                <span class="sidebar-item-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+    <div class="sidebar-circle"></div>
+</nav>
 <?php }?>
