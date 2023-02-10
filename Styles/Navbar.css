@@ -11,9 +11,12 @@
     width: 300px;
     height: 100vh;
     position: fixed;
+    top: 0;
+    left: 0;
     background: #195FA0;
     overflow-y: scroll;
     overflow-x: hidden;
+    transition: 0.5s ease;
 }
 .profile{
     display: flex;
@@ -74,10 +77,39 @@
     border-radius: 100%;
     position: absolute;
     z-index: 1;
-    bottom: -50px;
+    bottom: 0px;
     right: -130px
 }
 .logout{
     background: #16538B;
 }
+.ham-menu{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background: #195FA0;
+    transition: 0.65s ease;
+}
+@media (max-width: 1000px){
+    .sidebar{
+        width: 250px;
+    }
+    .profile, .sidebar-item a{
+        padding: 0 20px;
+    }
+    .sidebar{
+        left: -300px;
+   }
+   .ham-menu{
+        display: flex;
+   }
+}
+
 

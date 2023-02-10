@@ -42,6 +42,9 @@ function attachNavbar($page){
       }
 
 ?>
+ <div class="ham-menu">
+      <ion-icon name="menu"></ion-icon>
+</div>
 <nav class="sidebar">
     <div class="profile">
         <div class="profile-picture">
@@ -79,4 +82,38 @@ function attachNavbar($page){
     </ul>
     <div class="sidebar-circle"></div>
 </nav>
+<script>
+    let sidebar = document.querySelector('.sidebar');
+    let menu = document.querySelector('.ham-menu');
+    let navStatus = false;
+
+    menu.addEventListener('click', ()=>{
+      navStatus = !navStatus;
+      shownavbar();
+      console.log(navStatus)
+     
+    })
+    
+    window.addEventListener("resize", ()=>{
+      if (window.innerWidth >= 1000) {
+        sidebar.style.left = "0";
+        menu.style.left = "270px";
+        menu.style.display = "none";
+      }else{
+        sidebar.style.left = "-300px";
+        menu.style.left = "10px";
+        menu.style.display = "flex";
+      }
+    })
+
+    function shownavbar(){
+      if(navStatus === false){
+        sidebar.style.left = "-300px";
+        menu.style.left = "10px";
+      }else{
+        sidebar.style.left = "0";
+        menu.style.left = "270px";
+      }
+    }
+</script>
 <?php }?>
