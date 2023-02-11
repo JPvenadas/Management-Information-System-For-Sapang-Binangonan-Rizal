@@ -53,14 +53,14 @@ function attachNavbar($page){
         </div>
         <div class="profile-info">
             <p class="username"><?php print_r($_SESSION['firstName']); echo " "; print_r($_SESSION['lastName'])?></p>
-            <p class="usertype">Resident</p>
+            <p class="usertype"><?php print_r($_SESSION['userType'])?></p>
         </div>
     </div>
     <ul class="navigation-container">
         <?php
          include "../../Components/Navbar/Navbar-Item.php";
          generateNavItem($dashboard, "Dashboard", "home-sharp", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($residents, "Residents", "people", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($residents, "Residents", "people", "../../Pages/Residents/Residents.php");
          generateNavItem($employees, "Employees", "person", "../../Pages/Dashboard/Dashboard.php");
          generateNavItem($attendance, "Attendance", "checkmark-circle", "../../Pages/Dashboard/Dashboard.php");
          generateNavItem($user, "Users", "person-circle", "../../Pages/Dashboard/Dashboard.php");

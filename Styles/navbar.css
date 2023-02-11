@@ -60,11 +60,15 @@
 .sidebar-item a ion-icon{
     font-size: 20px;
 }
+.sidebar-item a:hover{
+    background: #2B6CA8;
+    transition: 0.3s ease;
+}
 .sidebar-item-text{
     font-size: 15px;
 }
 .highlight{
-    background: #548DC2;
+    background: #548DC2 !important;
 }
 .navigation-container{
     position: relative;
