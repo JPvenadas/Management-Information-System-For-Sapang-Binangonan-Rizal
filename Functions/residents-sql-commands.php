@@ -41,5 +41,14 @@ function getResidents(){
      mysqli_close($conn);
      return $residents;
 }
-
+// get the list of puroks
+function getPuroks(){
+    $conn = openCon();
+    $command = "SELECT * FROM `tbl_purok` where `archive` = 'false'";
+    $result = mysqli_query($conn, $command);
+    $puroks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+     return $puroks;
+}
 ?>

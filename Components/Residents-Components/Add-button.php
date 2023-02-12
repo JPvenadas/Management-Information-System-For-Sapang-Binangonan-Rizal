@@ -1,6 +1,6 @@
 <div class="add-button-container">
     <div class="add-buttons">
-        <button>Add a Resident</button>
+        <button onclick="openAddResidentModal()">Add a Resident</button>
         <button>Add Residents via CSV</button>
         <button>Export CSV Format</button>
     </div>

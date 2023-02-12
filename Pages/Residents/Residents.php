@@ -46,6 +46,8 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
             include "../../Components/Residents-Components/Residents-list.php";
 
             include "../../Components/Residents-Components/Add-button.php";
+
+            require "../../Components/Residents-Components/Add-modal.php";
             ?>
 
         </div>
