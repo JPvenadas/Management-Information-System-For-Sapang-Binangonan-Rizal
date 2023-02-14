@@ -7,7 +7,7 @@ function solveAge($birthDate){
 function generateResidentItem($residentID ,$firstName, $middleName, $lastName, $image, $birthDate, $purok){
 
 ?>
-<form action="../../Functions/sql-command-residents.php" method="post">
+<form action="../../Functions/residents-sql-commands.php" method="post">
 <input name="residentID" type="hidden" value="<?php echo $residentID?>">
 <button type="submit" name="view_resident_button" class="resident-item-record">
     <div class="resident-info-container">

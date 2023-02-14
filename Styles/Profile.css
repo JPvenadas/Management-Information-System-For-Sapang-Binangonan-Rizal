@@ -1,0 +1,314 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border-style: none;
+    outline-style: none;
+}
+body{
+    display: flex;
+    overflow-x: hidden;
+}
+.residents-section-content{
+    padding: 50px;
+    width: 100%;
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px
+}
+.resident-profile-header{
+    flex: 1;
+    height: 170px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    gap: 45px;
+    z-index: 1;
+}
+.resident-profile-image{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.resident-profile-image-preview{
+    width: 140px;
+    height: 140px;
+    border-radius: 100%;
+    background: gray;
+}
+.resident-upload-button{
+    position: absolute;
+    height: 44px;
+    width: 44px;
+    background: white;
+    right: -10px;
+    bottom: 30px;
+    border-radius: 100%;
+}
+.resident-upload-button ion-icon{
+    font-size: 48px;
+    color: hsl(0, 5%, 43%);
+}
+.resident-profile-information{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+.resident-profile-name-ID-Container{
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+.resident-profile-fullname{
+    font-weight: 700;
+    font-size: 24px;
+    color: hsl(205, 100%, 15%);
+}
+.resident-profile-ID{
+    font-weight: 700;
+    font-size: 12px;
+    color: #B6A9A9;
+}
+.resident-profile-age, .resident-profile-location{
+    font-weight: 700;
+    font-size: 12px;
+    color: #696767;
+}
+.resident-profile-actions{
+    display: flex;
+    gap: 20px;
+}
+
+/* *******************************************buttons */
+.archive-resident-button, .cancel-editing{
+    display: flex;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #2d2d2d;
+    width: 160px;
+    height: 43px;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.print-documents-dropdown{
+    display: flex !important;
+}
+.print-documents-dropdown, .save-editing{
+    width: 246px;
+    height: 43px;
+    background: #195FA0;
+    border-radius: 5px;
+    display: flex ;
+    flex-direction: row ;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+}
+.save-editing{
+    width: 160px;
+    height: 43px;
+}
+.cancel-editing, .save-editing{
+    display: none;
+}
+.dropdown-menu{
+    width: 246px !important;
+    padding: 10px 0;
+}
+
+/* ******************************************* */
+.divider{
+    width: 100%;
+    height: 4px;
+    background: #D9D9D9;
+}
+.modal-background-blur{
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.52);
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spawn .4s ease forwards;
+    transform: scale(.98);
+}
+.modal-content-container{
+    padding: 50px 120px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 40px;
+}.modal-content-container-2{
+    padding: 50px 50px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 40px;
+}
+
+.modal-title{
+    font-weight: 700;
+    font-size: 20px;
+    color: #002C4B;
+}
+.change-image-input{
+    display: none;
+}
+.modal-close-button{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    background: white;
+}
+.modal-instruction{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.modal-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    gap: 10px;
+    background: #195FA0;
+    border-radius: 5px;
+}
+.modal-button p, .modal-button ion-icon {
+    font-weight: 700;
+    font-size: 14px;
+    color: white
+}
+.modal-button ion-icon{
+    font-size: 24px;
+}
+
+.image-preview{
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    transition: .4s ease;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.449);
+}
+@keyframes spawn{
+    from{opacity: 0; transform: scale(.98);}
+    to{opacity: 1; transform: scale(1);}
+}
+.instruction{
+    max-width: 400px;
+    font-weight: 700;
+    font-size: 12px;
+    color: #696767;
+    
+}
+.modal-instruction-archive{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+ }
+
+.archive-button-container-modal{
+    width: 100%;
+    display:flex;
+    justify-content: flex-end;
+}
+.exclamation-instructions{
+    display: flex;
+    gap: 20px;
+}
+.exclamation{
+    font-size: 64px;
+    color:#A01919;
+}
+/* ******************************personal info section */
+.section-title{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #002C4B;
+}
+.personal-information-container{
+    width: 100%;
+    padding: 10px 5px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.personal-information-item{
+    display: flex;
+    justify-content: space-between;
+    height: 61px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E4E4E4;
+    border-radius: 5px;
+    padding: 0 80px 0 45px;
+    align-items: center;
+}
+.personal-information-field{
+    font-weight: 700;
+    font-size: 14px;
+    color: #2E2E2E;
+}
+.personal-information-value{
+    text-align: end;
+    padding: 5px 5px 0 5px;
+    width: 200px;
+    border-radius: 4px;
+    border: 1px solid #c5c5c5;
+}
+.personal-information-value:disabled{
+    background: white;
+    border-style: none;
+}
+.edit-button{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: underline;
+    color: #195FA0; 
+    background: white;
+}
+.edit-button-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.action-button-editing{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+.edit-form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+@media (max-width: 1000px){
+    .residents-section-content{
+        margin-left: 0;
+    }
+}

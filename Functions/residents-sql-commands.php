@@ -1,16 +1,18 @@
 <?php
 require "db_conn.php";
 
+// add condition to filter verified to non-verified residents
 function addFilters(){
     $additionalCommands = " and ";
     if(isset($_GET['filter']) && $_GET['filter'] == "unverified"){
-        $additionalCommands = $additionalCommands . "u.accountStatus = 'Inactive'" . addsearchFilter();
+        $additionalCommands = $additionalCommands . "r.registrationStatus = 'Unverified'" . addsearchFilter();
         return $additionalCommands;
     }else{
-        $additionalCommands = $additionalCommands . "u.accountStatus = 'Active'" . addsearchFilter();
+        $additionalCommands = $additionalCommands . "r.registrationStatus = 'Verified'" . addsearchFilter();
         return $additionalCommands;
     }
 }
+// filter residents to what the user searches
 function addsearchFilter(){
     if(isset($_GET['search'])){
         $search = $_GET['search'];
@@ -20,14 +22,14 @@ function addsearchFilter(){
         return "";
     }
 }
-
-
+// this will run if the search button is clicked
 if(isset($_POST['search_button_residents'])){
     $search = $_POST['search_input_residents'];
     $filter = $_POST['search_filter'];
     header("Location: ../Pages/Residents/Residents.php?filter=$filter&search=$search");
 	exit();
 }
+// get the lists of the residents
 function getResidents(){
     $conn = openCon();
     $command = "SELECT r.residentID,`firstName`,`middleName`,`lastName`,`birthDate`,`image`, p.purokName
@@ -51,4 +53,25 @@ function getPuroks(){
     mysqli_close($conn);
      return $puroks;
 }
+// navigate to the profile page of the resident
+if(isset($_POST["view_resident_button"])){
+    $residentID = $_POST["residentID"];
+    header("Location: ../Pages/Residents/Profile.php?id=$residentID");
+    exit();
+}
+// get the information of a single resident.
+function getSingleResident($residentID){
+    $conn = openCon();
+    $archive = 'false';
+    $command = "SELECT r.residentID, `firstName`, `middleName`, `lastName`, `extension`, p.purokName, `purok`, `birthDate`, `image`,`exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `contactNo`, `residenceProof`, u.accountStatus
+                from tbl_residents as r INNER JOIN tbl_purok as p on r.purok = p.purokID
+                INNER JOIN tbl_userAccounts as u on r.residentID = u.residentID
+                where r.residentID = '$residentID' and r.archive = '$archive'";
+    $result = mysqli_query($conn, $command);
+    $resident = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $resident[0];
+}
+
 ?>

@@ -78,10 +78,11 @@ if(isset($_POST['signup'])){
     $familyHead = validate($_SESSION['registration-familyHead']);
     $familyMembers = $_SESSION['registration-familyMembers'];
     $archive = "false";
+    $registrationStatus = 'Unverified';
     $mobileNumber = validate($_SESSION['registration-mobileNumber']);
     $residenceProof = $_SESSION['registration-residenceProof'];
-    $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `residenceProof`) 
-                                    VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$profilePicture','$purok','$address','$voterStatus','$sex','$maritalStatus','$residentCategory','$occupation','$familyHead','$familyMembers','$archive','$mobileNumber','$residenceProof')";
+    $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `residenceProof`, `registrationStatus`) 
+                                    VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$profilePicture','$purok','$address','$voterStatus','$sex','$maritalStatus','$residentCategory','$occupation','$familyHead','$familyMembers','$archive','$mobileNumber','$residenceProof', '$registrationStatus')";
     mysqli_query($conn, $command);
     $residentID =  $addedResidentID = mysqli_insert_id($conn);
     
