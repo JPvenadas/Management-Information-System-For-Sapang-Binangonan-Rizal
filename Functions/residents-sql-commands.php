@@ -73,16 +73,63 @@ function getSingleResident($residentID){
     mysqli_close($conn);
     return $resident[0];
 }
+//function to reject a residents verification
 if(isset($_POST['reject'])){
     changeStatus('Rejected');
 }
+//function to confirm a residents verification
 if(isset($_POST['confirm'])){
     changeStatus('Verified');
 }
+//function to change the registration Status of a resident. either confirmed or rejected
 function changeStatus($status){
     $conn = openCon();
     $residentID = $_POST['residentID'];
     $command = "UPDATE `tbl_residents` SET `registrationStatus` = '$status' WHERE `residentID` = '$residentID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+//updating of a residents profile
+if(isset($_POST['save-edit-profile'])){
+    $conn = openCon();
+    $residentID = $_GET['id'];
+    $firstName = $_POST['personal-information-firstName'];
+    $middleName = $_POST['personal-information-middleName'];
+    $lastName = $_POST['personal-information-lastName'];
+    $extension = $_POST['personal-information-extension'];
+    $birthDate = $_POST['personal-information-birthDate'];
+    $sex = $_POST['personal-information-sex'];
+    $purok = $_POST['personal-information-purok'];
+    $address = $_POST['personal-information-address'];
+    $voterStatus = $_POST['personal-information-voterStatus'];
+    $maritalStatus = $_POST['personal-information-maritalStatus'];
+    $occupation = $_POST['personal-information-occupation'];
+    $residentCategory = $_POST['personal-information-residentCategory'];
+    if(isset($_POST['personal-information-familyMembers'])){
+        $familyMembers = $_POST['personal-information-familyMembers'];
+    }else{
+        $familyMembers = "";
+    }
+    $familyHead = $_POST['personal-information-familyHead'];
+    $contactNo = $_POST['personal-information-contactNo'];
+
+    $command = "UPDATE `tbl_residents` 
+    SET `firstName`='$firstName',
+        `middleName`='$middleName',
+        `lastName`='$lastName',
+        `extension`='$extension',
+        `birthDate`='$birthDate', 
+        `purok`='$purok',
+        `exactAddress`='$address',
+        `voterStatus`='$voterStatus',
+        `sex`='$sex',
+        `maritalStatus`='$maritalStatus',
+        `residentCategory`='$residentCategory',
+        `occupation`='$occupation',
+        `familyHead`='$familyHead',
+        `familyMembers`='$familyMembers',
+        `contactNo`='$contactNo' 
+        WHERE `residentID` = '$residentID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }

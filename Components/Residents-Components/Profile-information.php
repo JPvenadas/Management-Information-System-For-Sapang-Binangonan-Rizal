@@ -5,7 +5,7 @@ function AttachPersonalInfo($resident){
     generateInfoItem("middleName","Middle Name", $resident['middleName'], "text");
     generateInfoItem("lastName","Last Name", $resident['lastName'], "text");
     generateInfoItem("extension","Name Extension", $resident['extension'], "text");
-    generateInfoItem("birtDate","Birth Date", $resident['birthDate'], "date");
+    generateInfoItem("birthDate","Birth Date", $resident['birthDate'], "date");
     generateInfoItem("sex","Sex", $resident['sex'], "text");
     generateInfoItem("purok","Purok", $resident['purok'], "text");
     generateInfoItem("address","Address", $resident['exactAddress'], "text");

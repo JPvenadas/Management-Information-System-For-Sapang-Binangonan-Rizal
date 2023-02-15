@@ -53,7 +53,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
             }?>
             
         </div>
-        <form method="post" action="viewResident.php?id=<?php echo $_GET['id']?>" class="edit-form" mehod="post" action="">
+        <form method="post" action="?id=<?php echo $_GET['id']?>" class="edit-form" mehod="post" action="">
             <div class="personal-information-container">
             <input  type="hidden" name="personal-information-residentsID" value="<?php echo $resident['residentID']?>">
             <?php require '../../Components/Residents-Components/Profile-information.php';

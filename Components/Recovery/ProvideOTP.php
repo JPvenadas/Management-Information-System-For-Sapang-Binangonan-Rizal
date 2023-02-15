@@ -3,7 +3,6 @@
         <h2 class="form-title">Provide OTP</h2>
         <p class="text">Please input the 6-digit code that was sent to your phone number ending in *<?php echo substr($_SESSION['recovery-contactNo'], -4);?> </p>
         <p class="text-small">Wait for at least 3 minutes to receive the text message. If not received, you can request for another code.</p>
-        <p><?php echo $_SESSION['OTP']?></p>
 
 
         <input required placeholder="input the 6 digit code here" id="OTP" name="OTP" class="input" type="text"
@@ -42,7 +41,7 @@
     if(isset($_POST['submitUserName']) || isset($_POST['anotherCode'])){
     ?>
        async function sendOTP(){
-        const response = await fetch("https://sms.teamssprogram.com/api/send?key=92b8161a217f4472b9ef796d988c0ec81d712859&phone=+639<?php echo $_SESSION['recovery-contactNo'] ?>&message=<?php echo $_SESSION['OTP']?> is your One-Time code for Barangay Sapang MIS&device=138&sim=2")
+        const response = await fetch("https://sms.teamssprogram.com/api/send?key=e171e8bfec664d8bc70118cb2d5c1085415d24bc&phone=+639<?php echo $_SESSION['recovery-contactNo'] ?>&message=<?php echo $_SESSION['OTP']?> is your One-Time code for Barangay Sapang MIS&device=280&sim=2")
         const data = await response.json();
         console.log(data);
        }
