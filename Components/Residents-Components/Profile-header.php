@@ -35,12 +35,35 @@ function solveAge($birthDate){
         <div class="resident-profile-age"><?php echo $age?></div>
         <div class="resident-profile-location"><?php echo "Living in $address, $purok Sapang, Binangonan, Rizal";?></div>
         <div class="resident-profile-actions">
-            <div class="resident-profile-archive-button">
+            
+            <?php if($resident['registrationStatus'] == "Unverified"){
+            ?>
+            <form method="post" action="../../Pages/Residents/Residents.php" class="resident-profile-archive-button">
+                <input type="hidden" name="residentID" value="<?php echo $resident['residentID']?>">
+                <button type="submit" name="reject" class="archive-resident-button">
+                    <ion-icon name="person-remove"></ion-icon>
+                    <p>Reject</p>
+                </button>
+            </form>
+            <form class="resident-profile-archive-button">
+                <input type="hidden" name="residentID" value="<?php echo $resident['residentID']?>">
+                <button type="submit" name="confirm" class="blue-button">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <p>Confirm Registration</p>
+                </button>
+            </form>
+            <?php
+            }elseif($resident['registrationStatus'] == "Verified"){
+            ?>
+                <div class="resident-profile-archive-button">
                 <button onclick="openArchiveModal()" class="archive-resident-button">
                     <ion-icon name="archive"></ion-icon>
                     <p>Archive</p>
                 </button>
-            </div>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>

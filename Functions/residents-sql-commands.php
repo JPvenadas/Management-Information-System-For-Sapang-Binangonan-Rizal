@@ -63,7 +63,7 @@ if(isset($_POST["view_resident_button"])){
 function getSingleResident($residentID){
     $conn = openCon();
     $archive = 'false';
-    $command = "SELECT r.residentID, `firstName`, `middleName`, `lastName`, `extension`, p.purokName, `purok`, `birthDate`, `image`,`exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `contactNo`, `residenceProof`, u.accountStatus
+    $command = "SELECT r.residentID, `firstName`, `middleName`, `lastName`, `extension`, p.purokName, `purok`, `birthDate`, `image`,`exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `contactNo`, `residenceProof`, u.accountStatus, `registrationStatus`
                 from tbl_residents as r INNER JOIN tbl_purok as p on r.purok = p.purokID
                 INNER JOIN tbl_userAccounts as u on r.residentID = u.residentID
                 where r.residentID = '$residentID' and r.archive = '$archive'";
@@ -73,5 +73,17 @@ function getSingleResident($residentID){
     mysqli_close($conn);
     return $resident[0];
 }
-
+if(isset($_POST['reject'])){
+    changeStatus('Rejected');
+}
+if(isset($_POST['confirm'])){
+    changeStatus('Verified');
+}
+function changeStatus($status){
+    $conn = openCon();
+    $residentID = $_POST['residentID'];
+    $command = "UPDATE `tbl_residents` SET `registrationStatus` = '$status' WHERE `residentID` = '$residentID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
 ?>
