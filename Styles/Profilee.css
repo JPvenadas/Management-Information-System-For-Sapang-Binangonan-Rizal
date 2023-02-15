@@ -305,6 +305,19 @@ body{
     flex-direction: column;
     gap: 30px;
 }
+.proof-image{
+    width: 70%;
+}
+.modal-close-button-2{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    background: none;
+}
+.modal-close-button-2 ion-icon{
+    font-size: 40px;
+    color: white;
+}
 @media (max-width: 1000px){
     .residents-section-content{
         margin-left: 0;
@@ -349,5 +362,23 @@ body{
     }
     .personal-information-value{
         text-align: start;
+    }
+    .modal-content-container{
+        padding: 30px 50px;
+        max-width: 300px;
+    }
+    .image-preview{
+        width: 200px;
+        height: 200px;
+    }
+    .modal-title{
+        font-size: 18px !important;
+    }
+    .modal-instruction p{
+        font-size: 12px;
+    }
+    .modal-content-container-2{
+        width: 90%;
+        padding: 30px;
     }
 }

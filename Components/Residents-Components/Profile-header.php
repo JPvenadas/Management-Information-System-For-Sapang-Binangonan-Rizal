@@ -45,7 +45,7 @@ function solveAge($birthDate){
                     <p>Reject</p>
                 </button>
             </form>
-            <form class="resident-profile-archive-button">
+            <form method="post" action="../../Pages/Residents/Residents.php" class="resident-profile-archive-button">
                 <input type="hidden" name="residentID" value="<?php echo $resident['residentID']?>">
                 <button type="submit" name="confirm" class="blue-button">
                     <ion-icon name="checkmark-circle"></ion-icon>
