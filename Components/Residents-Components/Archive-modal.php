@@ -13,7 +13,7 @@
             <p class="instruction">Caution!! Archiving will totally deactivate the profile of the resident. Continue anyways?</p>
             </div>
         </div>
-            <input type="hidden" name="residentsID" value="<?php echo $_GET['id']?>">
+            <input type="hidden" name="residentID" value="<?php echo $_GET['id']?>">
         <div class="archive-button-container-modal">
             <button onclick="openArchiveModal()" type="submit" name="archive_resident" class="archive-resident-button">
                 <ion-icon name="archive"></ion-icon>

@@ -133,4 +133,42 @@ if(isset($_POST['save-edit-profile'])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }
+//registration of new users/residents
+if(isset($_POST['add_resident_button'])){
+    $conn = openCon();
+    $firstName = $_POST['firstName'];
+    $middleName = $_POST['middleName'];
+    $lastName =  $_POST['lastName'];
+    $extension =  $_POST['extension'];
+    $address =  $_POST['address'];
+    $birthDate =  $_POST['birthDate'];
+    $image = $_FILES["image"]["tmp_name"];
+    $imageContent = addslashes(file_get_contents($image));
+    $purok =  $_POST['purok'];
+    $voterStatus =  $_POST['voterStatus'];
+    $sex =  $_POST['sex'];
+    $occupation =  $_POST['occupation'];
+    $maritalStatus =  $_POST['maritalStatus'];
+    $residentCategory =  $_POST['residentCategory'];
+    $familyHead =  $_POST['familyHead'];
+    $familyMembers =  $_POST['familyMembers'];
+    $contactNo =  $_POST['contactNo'];
+    $archive = "false";
+    $registrationStatus = "Verified";
+
+    $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `registrationStatus`) 
+                                VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$imageContent','$purok','$address','$voterStatus','$sex','$maritalStatus','$residentCategory','$occupation','$familyHead','$familyMembers','$archive','$contactNo','$registrationStatus')";
+    mysqli_query($conn, $command);
+    $residentID = mysqli_insert_id($conn);
+    
+    // registration of user Accounts
+    $userName = "$firstName$middleName$lastName$extension";
+    $password = password_hash($userName, PASSWORD_DEFAULT);
+    $userType = "Resident";
+    $accountStatus = "Active";
+    $command = "INSERT INTO `tbl_userAccounts`(`userName`, `residentID`, `password`, `userType`, `accountStatus`) 
+                                        VALUES ('@$userName','$residentID','$password','$userType','$accountStatus')" ;
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
 ?>

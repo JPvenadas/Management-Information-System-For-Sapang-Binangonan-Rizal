@@ -84,7 +84,7 @@ if(isset($_POST['signup'])){
     $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `residenceProof`, `registrationStatus`) 
                                     VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$profilePicture','$purok','$address','$voterStatus','$sex','$maritalStatus','$residentCategory','$occupation','$familyHead','$familyMembers','$archive','$mobileNumber','$residenceProof', '$registrationStatus')";
     mysqli_query($conn, $command);
-    $residentID =  $addedResidentID = mysqli_insert_id($conn);
+    $residentID =  mysqli_insert_id($conn);
     
     //user account registration
     $firstName = validate($_SESSION['registration-firstName']);

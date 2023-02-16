@@ -1,6 +1,6 @@
 <div class="modal-background-blur">
     <div class="scroll">
-        <form enctype="multipart/form-data" method="post" action="../../Modules/Residents/residents.php"
+        <form enctype="multipart/form-data" method="post" action="../../Pages/Residents/Residents.php"
             class="modal-content-container">
             <!-- close button -->
             <div onclick="closeAddResidentModal()" class="modal-close-button">
@@ -42,17 +42,17 @@
                 <input required autocomplete="off" placeholder="Birth Date" onfocus="(this.type = 'date')"
                     class="resident-input" name="birthDate" type="text">
                 <input required list="purok" placeholder="Purok" class="resident-input" name="purok" type="text">
-                <input required autocomplete="off" placeholder="Exact Address" class="resident-input" name="Address"
+                <input required autocomplete="off" placeholder="Exact Address" class="resident-input" name="address"
                     type="text">
-                <input required list="gender" placeholder="Sex" class="resident-input" name="Sex" type="text">
+                <input required list="sex" placeholder="Sex" class="resident-input" name="sex" type="text">
                 <input required list="voterStatus" placeholder="Voter Status" class="resident-input" name="voterStatus"
                     type="text">
                 <input required list="maritalStatus" placeholder="Marital Status" class="resident-input"
                     name="maritalStatus" type="text">
                 <input required autocomplete="off" placeholder="Occupation" class="resident-input" name="occupation"
                     type="text">
-                <input required autocomplete="off" list="religion" placeholder="Resident" class="resident-input"
-                    name="religion" type="text">
+                <input autocomplete="off" list="residentCategory" placeholder="Resident Category" class="resident-input"
+                    name="residentCategory" type="text">
             </div>
             <!-- Head of the family field -->
             <div class="multiple-choice-container">
@@ -76,7 +76,7 @@
             <p class="label">Contact Information</p>
             <div class="resident-info-inputs">
                 <input autocomplete="off" placeholder="Contact Number (Optional)" class="resident-input"
-                    name="contactNumber" type="tet">
+                    name="contactNo" type="tet">
             </div>
             <div class="submit-button-container">
                 <button class="add-resident-button" name="add_resident_button" type="submit">

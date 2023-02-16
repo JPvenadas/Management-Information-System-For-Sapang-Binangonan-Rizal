@@ -5,7 +5,7 @@ session_start();
 //if the user wants to go to the registration page(which is here) they must log out first 
 if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 	?>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -18,6 +18,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
     <!-- a script to prevent the "confirm resubmission" alert -->
     <script>
     if (window.history.replaceState) {
@@ -27,13 +28,41 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 </head>
 
 <body>
-        <?php require "../../Components/Navbar/Administrator-Navbar.php";
+    <?php require "../../Components/Navbar/Administrator-Navbar.php";
         attachNavbar("dashboard")?>
-      
-       <!-- Script for Ionic Icons -->
-       <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <div class="dashboard-content">
+        <!-- Attach the Tab title/header -->
+        <?php require "../../Components/Tab-title.php";
+        $firstname = $_SESSION['firstName'];
+        attachTabTitle("Hello $firstname! Welcome to your Dashboard")?>
+
+        <div class="upper-corner-dashboard">
+            <?php 
+           require "../../Components/Dashboard-components/ResidentSection.php";
+           require "../../Components/Dashboard-components/OtherDatas.php";
+           require "../../Components/Dashboard-components/VoterGraph.php"
+           ?>
+
+        </div>
+        <?php if($_SESSION['userType'] == "Administrator"){?>
+        <div class="middle-part-dashboard">
+            <?php 
+            require "../../Components/Dashboard-components/AnnualRevenue.php";
+            require "../../Components/Dashboard-components/Services.php";
+            ?>
+        </div>
+        <?php } ?>
+        <div class="lower-part-dashboard">
+            <?php require "../../Components/Dashboard-components/OfficialsList.php"?>
+        </div>
+    </div>
+
+    <!-- Script for Ionic Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
 <?php
 }else{
