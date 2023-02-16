@@ -81,6 +81,14 @@ if(isset($_POST['reject'])){
 if(isset($_POST['confirm'])){
     changeStatus('Verified');
 }
+//function to archive a resident
+if(isset($_POST['archive_resident'])){
+    $conn = openCon();
+    $residentID = $_POST['residentID'];
+    $command = "UPDATE `tbl_residents` SET `archive` = 'true' WHERE `residentID` = '$residentID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
 //function to change the registration Status of a resident. either confirmed or rejected
 function changeStatus($status){
     $conn = openCon();
