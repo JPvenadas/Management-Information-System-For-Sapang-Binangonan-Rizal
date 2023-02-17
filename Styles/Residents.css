@@ -10,6 +10,7 @@ body{
     display: flex;
     color: #2E2E2E;
     overflow-x: hidden;
+    background: white;
 }
 .residents-section-content{
    padding: 0 50px 0 40px;

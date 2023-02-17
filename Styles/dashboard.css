@@ -7,6 +7,7 @@
 body{
   display: flex;
   color: #2E2E2E;
+  background: white;
 }
 button{
   border-style: none;

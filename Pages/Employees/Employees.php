@@ -1,6 +1,10 @@
 <?php 
 session_start();
 
+//require the sql functions
+require "../../Functions/employees-sql-commands.php";
+$employees = getEmployees();
+
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
 if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
@@ -17,7 +21,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Employees.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
     <!-- a script to prevent the "confirm resubmission" alert -->
     <script>
@@ -28,36 +32,30 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 </head>
 
 <body>
+    <div class="error-container">
+        <?php if (isset($_GET['error'])) { ?>
+        <p class="error"><?php echo $_GET['error']; ?></p>
+        <?php } ?>
+    </div>
+    <!-- attach the navbar -->
     <?php require "../../Components/Navbar/Administrator-Navbar.php";
-        attachNavbar("dashboard")?>
+        attachNavbar("employee")?>
 
-    <div class="dashboard-content">
+    <div class="employee-section-content">
+
         <!-- Attach the Tab title/header -->
         <?php require "../../Components/Tab-title.php";
-        $firstname = $_SESSION['firstName'];
-        attachTabTitle("Hello $firstname! Welcome to your Dashboard")?>
+        attachTabTitle("Employee Profiling")?>
 
-        <div class="upper-corner-dashboard">
-            <?php 
-           require "../../Components/Dashboard-components/ResidentSection.php";
-           require "../../Components/Dashboard-components/OtherDatas.php";
-           require "../../Components/Dashboard-components/VoterGraph.php"
-           ?>
+        <!-- Add Button and search bar -->
+        <?php require "../../Components/Employees-Components/Searchbar-add.php"?>
 
-        </div>
-        <?php if($_SESSION['userType'] == "Administrator"){?>
-        <div class="middle-part-dashboard">
-            <?php 
-            require "../../Components/Dashboard-components/AnnualRevenue.php";
-            require "../../Components/Dashboard-components/Services.php";
-            ?>
-        </div>
-        <?php } ?>
-        <div class="lower-part-dashboard">
-            <?php require "../../Components/Dashboard-components/OfficialsList.php"?>
-        </div>
+        <!-- employee's list -->
+        <?php require "../../Components/Employees-Components/Employees-list.php"?>
     </div>
 
+    <?php include "../../Components/Employees-Components/AddModal.php";
+          include "../../Components/Employees-Components/EditModal.php";?>
     <!-- Script for Ionic Icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
