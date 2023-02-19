@@ -33,7 +33,7 @@
                     type="text">
                 <input required autocomplete="off" placeholder="Last Name" class="resident-input" name="lastName"
                     type="text">
-                <input required autocomplete="off" placeholder="Name Extension" class="resident-input" name="extension"
+                <input autocomplete="off" placeholder="Name Extension" class="resident-input" name="extension"
                     type="text">
             </div>
             <!-- Other Informtion Inputs -->
@@ -41,7 +41,7 @@
             <div class="resident-info-inputs">
                 <input required autocomplete="off" placeholder="Birth Date" onfocus="(this.type = 'date')"
                     class="resident-input" name="birthDate" type="text">
-                <input required list="purok" placeholder="Purok" class="resident-input" name="purok" type="text">
+                <input  autocomplete="off"required list="purok" placeholder="Purok" class="resident-input" name="purok" type="text">
                 <input required autocomplete="off" placeholder="Exact Address" class="resident-input" name="address"
                     type="text">
                 <input required list="sex" placeholder="Sex" class="resident-input" name="sex" type="text">

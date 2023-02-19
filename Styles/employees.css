@@ -154,11 +154,11 @@ body{
 }
 .modal-content-container{
     width: 720px;
-    padding: 60px 0;
+    padding: 40px 0;
     background: white;
     border-radius: 10px;
     display: flex;
-    gap: 15px;
+    gap: 10px;
     flex-direction: column;
     justify-content: center;
     align-items: center;

@@ -32,9 +32,8 @@ if(isset($_POST['search_button_residents'])){
 // get the lists of the residents
 function getResidents(){
     $conn = openCon();
-    $command = "SELECT r.residentID,`firstName`,`middleName`,`lastName`,`birthDate`,`image`, p.purokName
-                FROM tbl_residents as r INNER JOIN tbl_purok as p on p.purokID = r.purok
-                INNER JOIN tbl_userAccounts as u on u.residentID = r.residentID
+    $command = "SELECT r.residentID,`firstName`,`middleName`,`lastName`,`birthDate`,`image`, `purok`
+                FROM tbl_residents as r INNER JOIN tbl_userAccounts as u on u.residentID = r.residentID
                 WHERE r.archive = 'false'";
     $command = $command . addFilters(); 
      $result = mysqli_query($conn, $command);
@@ -51,7 +50,7 @@ function getPuroks(){
     $puroks = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);
     mysqli_close($conn);
-     return $puroks;
+    return $puroks;
 }
 // navigate to the profile page of the resident
 if(isset($_POST["view_resident_button"])){
@@ -63,15 +62,22 @@ if(isset($_POST["view_resident_button"])){
 function getSingleResident($residentID){
     $conn = openCon();
     $archive = 'false';
-    $command = "SELECT r.residentID, `firstName`, `middleName`, `lastName`, `extension`, p.purokName, `purok`, `birthDate`, `image`,`exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `contactNo`, `residenceProof`, u.accountStatus, `registrationStatus`
-                from tbl_residents as r INNER JOIN tbl_purok as p on r.purok = p.purokID
-                INNER JOIN tbl_userAccounts as u on r.residentID = u.residentID
+    $command = "SELECT r.residentID, `firstName`, `middleName`, `lastName`, `extension`, `purok`, `purok`, `birthDate`, `image`,`exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `contactNo`, `residenceProof`, u.accountStatus, `registrationStatus`
+                from tbl_residents as r INNER JOIN tbl_userAccounts as u on r.residentID = u.residentID
                 where r.residentID = '$residentID' and r.archive = '$archive'";
     $result = mysqli_query($conn, $command);
     $resident = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);
     mysqli_close($conn);
     return $resident[0];
+}
+//change to inactive users to active
+function activate(){
+    $conn = openCon();
+    $residentID = $_POST['residentID'];
+    $command = "UPDATE `tbl_userAccounts` SET `accountStatus`='Active' WHERE residentID = '$residentID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
 }
 //function to reject a residents verification
 if(isset($_POST['reject'])){
@@ -80,6 +86,7 @@ if(isset($_POST['reject'])){
 //function to confirm a residents verification
 if(isset($_POST['confirm'])){
     changeStatus('Verified');
+    activate();
 }
 //function to archive a resident
 if(isset($_POST['archive_resident'])){

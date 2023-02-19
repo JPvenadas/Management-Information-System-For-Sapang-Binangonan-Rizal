@@ -5,7 +5,7 @@
             <p>Add employee</p>
         </button>
     </div>
-    <form action="../../Functions/sql-command-employees.php" method="post" class="search-button-container">
+    <form action="../../Functions/employees-sql-commands.php" method="post" class="search-button-container">
         <input value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>" autocomplete="off"
             name="search_input_employees" placeholder="Enter the employee's Name here" class="searchbar-employees"
             type="text">

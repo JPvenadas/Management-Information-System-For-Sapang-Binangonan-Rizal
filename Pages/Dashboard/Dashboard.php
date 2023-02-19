@@ -1,6 +1,8 @@
 <?php 
 session_start();
 
+require "../../Functions/dashboard-sql-commands.php";
+
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
 if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
@@ -45,14 +47,12 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
            ?>
 
         </div>
-        <?php if($_SESSION['userType'] == "Administrator"){?>
         <div class="middle-part-dashboard">
             <?php 
             require "../../Components/Dashboard-components/AnnualRevenue.php";
             require "../../Components/Dashboard-components/Services.php";
             ?>
         </div>
-        <?php } ?>
         <div class="lower-part-dashboard">
             <?php require "../../Components/Dashboard-components/OfficialsList.php"?>
         </div>

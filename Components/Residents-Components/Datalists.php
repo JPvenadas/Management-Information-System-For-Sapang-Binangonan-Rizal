@@ -5,7 +5,7 @@
     <?php
         $puroks = getPuroks();
         foreach ($puroks as $purok) {?>
-            <option value="<?php echo $purok['purokID']?>"><?php echo $purok['purokName']?></option>
+            <option value="<?php echo $purok['purok']?>"></option>
     <?php }?>
     ?>
 </datalist>

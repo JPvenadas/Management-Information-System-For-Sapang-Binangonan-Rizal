@@ -7,6 +7,7 @@ function generateEmployeeItem($employee){
 <div class="employee-item-record" onclick="openEditModal('<?php echo $employee['employeeID']?>',
                                                          '<?php echo $employee['residentID']?>',
                                                          '<?php echo $employee['position']?>',
+                                                         '<?php echo $employee['committee']?>',
                                                          '<?php echo $employee['termStart']?>',
                                                          '<?php echo $employee['termEnd']?>')">
             <div class="employee-info-container">
@@ -16,12 +17,16 @@ function generateEmployeeItem($employee){
                 </div>
                 <div class="employee-info">
                     <p class="employee-fullname"><?php echo $employee['fullName']?></p>
-                    <p class="employee-position"><?php echo $employee['positionName']?></p>
-                    <p class="employee-status"><?php echo $employee['termStatus']?></p>
+                    <p class="employee-position"><?php echo $employee['position']?></p>
+                    <p class="employee-status"><?php if($employee['committee'] == "N/A"){
+                        echo "Not part of any Committee";
+                    }else{
+                        echo $employee['committee'];
+                    }?></p>
                 </div>
             </div>
             <div class="action-text">
-                <p>Click to see Profile</p>
+                <p><?php echo $employee['termStatus']?> Term</p>
             </div>
         </div>
 <?php }?>

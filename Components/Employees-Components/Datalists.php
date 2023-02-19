@@ -3,7 +3,15 @@
         $positions = getPositions();
         foreach($positions as $position){
     ?>
-    <option value="<?php echo $position['positionID']?>"><?php echo $position['positionName']?></option>
+    <option value="<?php echo $position['position']?>"></option>
+    <?php } ?>
+</datalist>
+<datalist id="committee">
+    <?php 
+        $committees = getCommittees();
+        foreach($committees as $committee){
+    ?>
+    <option value="<?php echo $committee['committee']?>"></option>
     <?php } ?>
 </datalist>
 <datalist id="residents">

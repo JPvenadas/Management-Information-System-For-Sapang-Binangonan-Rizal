@@ -10,7 +10,7 @@
 
         <!-- Purok -->
         <label class="label" for="purok">Purok</label>
-        <input list="purok" required placeholder="Purok" id="purok" name="purok" class="input" type="text"
+        <input autocomplete="off" list="purok" required placeholder="Purok" id="purok" name="purok" class="input" type="text"
         value="<?php inputContent('purok'); ?>">
 
         <!-- Street -->

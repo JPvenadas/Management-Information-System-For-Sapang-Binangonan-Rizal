@@ -1,10 +1,15 @@
+<?php
+    $totalEmployees = getNumberofEmployees();
+    $totalItems = getNumberofItems();
+    $totalPending = getPendingRequests();
+?>
 <div class="second-division">
     <div class="top">
         <div class="transactions-container">
             <div class="transactions-top">
                 <div class="transactions-info">
-                    <h3 class="section-title">Transactions Today</h3>
-                    <p class="data-text">2 Transactions</p>
+                    <h3 class="section-title">Pending Transactions</h3>
+                    <p class="data-text"><?php echo $totalPending['number']?> Requests</p>
                 </div>
                 <div class="transactions-image">
                     <img src="../../Images/documents.png" alt="">
@@ -20,7 +25,7 @@
             <div>
                 <ion-icon name="people"></ion-icon>
                 <h3 class="section-title">Employees</h3>
-                <p class="data-text">68 Persons</p>
+                <p class="data-text"><?php echo $totalEmployees['number']?> Persons</p>
 
             </div>
         </div>
@@ -28,7 +33,7 @@
             <div>
                 <ion-icon name="albums"></ion-icon>
                 <h3 class="section-title">Inventory</h3>
-                <p class="data-text">8 Items</p>
+                <p class="data-text"><?php echo $totalItems['number']?> Items</p>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ function solveAge($birthDate){
     $extension = $resident['extension'];
     $residentID = $resident['residentID'];
     $age = solveAge($resident['birthDate']);
-    $purok = $resident['purokName'];
+    $purok = $resident['purok'];
     $image = $resident['image']
 
 ?>

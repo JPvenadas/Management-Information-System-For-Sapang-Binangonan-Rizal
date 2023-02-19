@@ -10,7 +10,7 @@
         </div>
         <div class="container">
             <p>Resident's profile</p>
-            <input autocomplete="off" type="text" name="residentsID" list="residents" required placeholder="choose the resident's profile here" class="input">
+            <input autocomplete="off" type="text" name="residentID" list="residents" required placeholder="choose the resident's profile here" class="input">
 
             <div class="signiture-container">
                 <input placeholder="Upload a signiture" id="image-title" class="input" class="signiture-image-name" readonly
@@ -23,15 +23,16 @@
         </div>
         <div class="container">
             <p>Assigned Role</p>
-            <input class="input" name="position" type="text" list="positions" placeholder="Personnel's position">
-            <!-- include the datalists -->
+            <input autocomplete="off" class="input" name="position" type="text" list="positions" placeholder="Employee's position">
+            <input autocomplete="off" class="input" name="committee" type="text" list="committee" placeholder="Committee"> 
+           
             <div class="term-container">
                 <input name="termstart" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Start of Term">
                 <input name="termend" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Expected end of Term">
             </div>
         </div>
         <div class="button-container">
-            <button type="submit" name="add_personnel">
+            <button type="submit" name="add_employee">
                 <ion-icon name="settings"></ion-icon>
                 <p>Register</p>
             </button>

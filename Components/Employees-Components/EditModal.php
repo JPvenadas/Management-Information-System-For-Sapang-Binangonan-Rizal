@@ -1,5 +1,5 @@
 <div id="edit-modal" class="modal-background-blur">
-    <form action="../../Modules/employees/employees.php" method="post" class="modal-content-container">
+    <form action="../../Pages/Employees/Employees.php" method="post" class="modal-content-container">
         <div onclick="closeEditModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>
         </div>
@@ -8,7 +8,7 @@
         </div>
         <div class="container">
             <p>Resident's profile</p>
-            <input list="residents" id="residentsID" name="residentsID" autocomplete="off" type="text" required placeholder="choose the resident's profile here"
+            <input list="residents" id="residentID" name="residentID" autocomplete="off" type="text" required placeholder="choose the resident's profile here"
                 class="input">
             <input required type="hidden" id="employeeID" name="employeeID">
             <datalist id="employees">
@@ -24,7 +24,8 @@
         </div>
         <div class="container">
             <p>Assigned Role</p>
-            <input list="positions" name="position" id="position" class="input" type="text" placeholder="employee's position">
+            <input list="positions" name="position" id="position" class="input" type="text" placeholder="Employee's position">
+            <input list="committee" name="committee" id="committeeField" class="input" type="text" placeholder="Committee">
             <div class="term-container">
                 <input id="termstart" name="termstart" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Start of Term">
                 <input id="termend" name="termend" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Expected end of Term">
@@ -60,19 +61,22 @@ function closeEditModal() {
     body.style.overflowY = "auto"
 }
 
-function openEditModal(employeeID, residentsID, positionID, termstart, termend){
+function openEditModal(employeeID, residentsID, positionID, committee, termstart, termend){
     editModal.style.display = "flex"
     body.style.overflowY = "hidden"
 
-    let residentsIDField = document.querySelector("#residentsID")
+    let residentIDField = document.querySelector("#residentID")
     let employeeIDField = document.querySelector("#employeeID")
     let positionField = document.querySelector("#position")
+    let committeeField = document.querySelector("#committeeField")
     let termstartField = document.querySelector("#termstart")
     let termendField = document.querySelector("#termend")
 
-    residentsIDField.value = residentsID;
+    
+    residentIDField.value = residentsID
     employeeIDField.value = employeeID
     positionField.value = positionID
+    committeeField.value = committee
     termstartField.value = termstart
     termendField.value = termend
 }

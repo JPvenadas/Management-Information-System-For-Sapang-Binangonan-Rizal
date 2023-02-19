@@ -5,11 +5,11 @@
     text-decoration: none;
     border-style: none;
     outline-style: none;
-    background: white;
 }
 body{
     display: flex;
     overflow-x: hidden;
+    background: white;
 }
 .residents-section-content{
     padding: 50px;

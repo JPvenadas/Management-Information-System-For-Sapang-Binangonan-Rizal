@@ -4,22 +4,24 @@
     <?php 
     require "OfficialsItem.php";
 
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
-   generateItem();
+    //display the barangay captain
+    $captain = getEmployees('Barangay Captain');
+    generateItem($captain);
 
+    //display the barangay secretary
+    $secretary = getEmployees('Barangay Secretary');
+    generateItem($secretary);
+
+    $treasurer = getEmployees('Barangay Treasurer');
+    generateItem($treasurer);
+
+    //display the sangguniang barangay member (kagawad)
+    $committees = getCommittee();
+
+    foreach($committees as $committee){
+        $kagawad = getKagawad($committee['committee']);
+        generateItem($kagawad);
+    }
     ?>
     </div>
 </div>

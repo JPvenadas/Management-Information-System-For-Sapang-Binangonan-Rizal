@@ -7,7 +7,7 @@
                                     ,$resident['lastName']
                                     ,$resident['image']
                                     ,$resident['birthDate']
-                                    ,$resident['purokName']);
+                                    ,$resident['purok']);
               }
     ?>
 </div>

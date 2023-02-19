@@ -1,4 +1,7 @@
-
+<?php
+  $voters = getTotalVoters('Registered');
+  $nonVoters = getTotalVoters('Non-voter');
+?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -8,8 +11,8 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Voter Status', 'Value', ],
-          ['Registered', 503],
-          ['Non-voter', 200],
+          ['Registered', <?php echo $voters['number']?>],
+          ['Non-voter', <?php echo $nonVoters['number']?>],
         ]);
 
         var options = {
