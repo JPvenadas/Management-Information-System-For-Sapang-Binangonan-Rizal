@@ -2,7 +2,7 @@
 function attachNavbar($page){
 
     // this will just determine which tab bar should be highlighted
-    $dashboard=""; $residents="";$announcements="";$inventory="";$attendance="";$events=""; $employees=""; $user=""; $services="";$incidents="";$reports="";$settings="";
+    $dashboard=""; $residents="";$announcements="";$inventory="";$attendance="";$events=""; $employees=""; $users=""; $services="";$incidents="";$reports="";$settings="";
     switch ($page) {
         case "dashboard":
          $dashboard="highlight";
@@ -19,8 +19,8 @@ function attachNavbar($page){
         case "inventory":
         $inventory="highlight";
         break;
-        case "user":
-         $user="highlight";
+        case "users":
+         $users="highlight";
         break;
         case "announcements":
         $announcements="highlight";
@@ -63,8 +63,8 @@ function attachNavbar($page){
          generateNavItem($residents, "Residents", "people", "../../Pages/Residents/Residents.php");
          generateNavItem($employees, "Employees", "person", "../../Pages/Employees/Employees.php");
          generateNavItem($attendance, "Attendance", "checkmark-circle", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($user, "Users", "person-circle", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($services, "Services", "document", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($users, "Users", "person-circle", "../../Pages/Users/Users.php");
+         generateNavItem($services, "Services", "document", "../../Pages/Users/Users.php");
          generateNavItem($events, "Events", "calendar", "../../Pages/Dashboard/Dashboard.php");
          generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Dashboard/Dashboard.php");
          generateNavItem($inventory, "Inventory", "albums", "../../Pages/Dashboard/Dashboard.php");
