@@ -80,7 +80,7 @@ function getEmployees($position){
 }
 function getCommittee(){
     $conn = openCon();
-    $command = "Select * from tbl_committee where committee != 'N/A'";
+    $command = "Select * from tbl_committee where `archive` = 'false' and committee != 'N/A'";
     $result = mysqli_query($conn, $command);
     $committees = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_close($conn);

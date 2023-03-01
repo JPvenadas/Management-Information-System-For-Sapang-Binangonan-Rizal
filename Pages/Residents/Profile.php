@@ -32,11 +32,15 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 
 <body>
     
-    <!-- attach the navbar -->
-    <?php require "../../Components/Navbar/Administrator-Navbar.php";
-        attachNavbar("residents");
-        include "../../Components/Residents-Components/ResidenceProofView.php"
-        ?>
+   <!-- Attach the navbar -->
+   <?php 
+    if($_SESSION['userType'] == "Administrator"){
+        require "../../Components/Navbar/Administrator-Navbar.php";
+        attachNavbar("dashboard");
+    }elseif($_SESSION['userType'] == "Staff"){
+        require "../../Components/Navbar/Staff-Navbar.php";
+        attachNavbar("dashboard");
+    }?>
 
     <div class="residents-section-content">
         <?php require '../../Components/Residents-Components/Profile-header.php';

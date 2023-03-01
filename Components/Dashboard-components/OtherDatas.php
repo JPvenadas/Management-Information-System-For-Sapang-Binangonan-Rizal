@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="transactions-bottom">
-                <a href="../../Modules/Transactions/transactions.php"><button>View Transactions</button></a>
+                <a href="../../Pages/Services/Services.php"><button>View Transactions</button></a>
             </div>
         </div>
     </div>

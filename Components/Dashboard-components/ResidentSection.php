@@ -11,7 +11,7 @@
             <p class="data-text"><?php echo $totalResidents['number']?> Residents</p>
         </div>
         <div class="residents-view-button">
-            <a href="../../Modules/Residents/residents.php">
+            <a href="../../Pages/Residents/Residents.php">
                 <button>View</button>
             </a>
         </div>

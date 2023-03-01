@@ -37,9 +37,15 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         <p class="error"><?php echo $_GET['error']; ?></p>
         <?php } ?>
     </div>
-    <!-- attach the navbar -->
-    <?php require "../../Components/Navbar/Administrator-Navbar.php";
-        attachNavbar("employees")?>
+    <!-- Attach the navbar -->
+    <?php 
+    if($_SESSION['userType'] == "Administrator"){
+        require "../../Components/Navbar/Administrator-Navbar.php";
+        attachNavbar("dashboard");
+    }elseif($_SESSION['userType'] == "Staff"){
+        require "../../Components/Navbar/Staff-Navbar.php";
+        attachNavbar("dashboard");
+    }?>
 
     <div class="employee-section-content">
 

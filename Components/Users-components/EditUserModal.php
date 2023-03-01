@@ -16,12 +16,6 @@
                 </a>
             </div>
         </div>
-        <div class="container">
-           <div>
-            <p>Customized User access</p>
-            <button>Change access</button>
-           </div>
-        </div>
         <form action="../../Pages/Users/Users.php?<?php 
             if(isset($_GET['filter'])){
                 echo "filter=" . $_GET['filter'];

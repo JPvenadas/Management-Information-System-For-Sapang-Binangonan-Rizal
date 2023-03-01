@@ -75,7 +75,7 @@ function getContacts(){
     $command = "SELECT* FROM `tbl_contacts`";
     $result = mysqli_query($conn, $command);
     $contacts = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    return $contacts;
+    return $contacts[0];
 
 }
 ?>

@@ -1,0 +1,300 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border-style: none;
+    outline-style: none;
+}
+body{
+    display: flex;
+    color: #2E2E2E;
+    overflow-x: hidden;
+    background: white;
+}
+a{
+    color: black
+}
+.main-content{
+   padding: 0 50px 0 50px;
+   width: 100%;
+   margin-left: 300px;
+}
+.transactions-container{
+    display: flex;
+    flex-direction: column;
+}
+/* *******************************************filters */
+.filters-container{
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px 0 30px 0;
+ }
+ 
+ .searchbar-transactions{
+     padding: 12px 30px;
+     font-size: 14px;
+     color: #002C4B;
+     width: 380px;
+     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+     border-radius: 10px;
+     transition: .4s ease;
+ }
+ .searchbar-transactions:hover, .searchbar-transactions:focus{
+     background: rgb(245, 245, 245)
+ }
+ ::placeholder{
+     color: #A0AAB1;
+ }
+ .search-button-container{
+     display: flex;
+     gap: 10px
+ }
+ .search-button-transactions{
+     width: 60px;
+     background: rgb(239,239,239);
+     height: 40px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-shrink: 0;
+     border-radius: 10px;
+     transition: .4s ease;
+     
+ }
+ .search-button-transactions:hover{
+     background: #c4d9ee;
+     transition: .4s ease;
+ }
+/* *******************************************Transactions container */
+.transaction-record{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 75px;
+    border: 1px solid #EAE9E9;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 0 20px;
+    align-items: center;
+    transition: .3s ease;
+}
+.transaction-record:hover{
+    background: rgb(240, 240, 240);
+}
+.left{
+    display: flex;
+    height: 100%;
+    gap: 22px;
+}
+.certificate{
+    font-weight: 700;
+    font-size: 14px;
+    color: #2E2E2E;
+}
+.issuer{
+    font-weight: 400;
+    font-size: 10px;
+    color: #2E2E2E
+}
+.record-info{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+.date-issued{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.date-issued p{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 19px;
+    color: #2E2E2E;
+}
+
+.modal-background-blur{
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.52);
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spawn .4s ease forwards;
+    transform: scale(.98);
+}
+.modal-content-container{
+    width: 720px;
+    height: 510px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.modal-close-button{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    background: white;
+}
+.modal-title{
+    width: 560px;
+}
+.modal-title p{
+    font-weight: 700;
+    font-size: 24px;
+    color: #002C4B;
+}
+.record-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.record{
+    display: flex;
+    justify-content: space-between;
+    width: 560px;
+}
+.record .field p{
+    font-weight: 400;
+    font-size: 15px;
+    color: #696767;
+}
+.record .value p{
+    font-weight: 700;
+    font-size: 15px;
+    color: #696767;
+}
+.purpose-container{
+    width: 560px;
+    height: 128px;
+    background: #E9F2F9;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+}
+.purpose-input{
+    width: 499px;
+    height: 43px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    padding: 0 20px;
+}
+.purpose-container p{
+    width: 499px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #002C4B;
+}
+::placeholder{
+    color: #A0AAB1;
+}
+.button-container{
+    width: 560px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+.button-container button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    gap: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 7px rgb(0 0 0 / 10%);
+}
+.update-button{
+    background: #195FA0 !important;
+}
+.update-button *{
+    color: white !important;
+}
+.button-container button p, .button-container button ion-icon {
+    font-weight: 700;
+    font-size: 12px;
+    color: rgb(49, 48, 48)
+}
+.button-container button ion-icon{
+    font-size: 24px !important;
+}
+@keyframes spawn{
+    from{opacity: 0; transform: scale(.98);}
+    to{opacity: 1; transform: scale(1);}
+}
+
+.nav-list{
+    display: flex;
+    gap: 20px;
+}
+.nav-list li a{
+    display: inline-block;
+    flex-shrink: 0;
+    height: 37px;
+    line-height: 37px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #002C4B;
+    padding: 0 15px;
+}
+.underline{
+    border-bottom: 3px solid #195FA0;
+}
+.action-controls-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 30px 0;
+ }
+ .searchbar-transactions{
+     padding: 12px 30px;
+     font-size: 14px;
+     color: #002C4B;
+     max-width: 380px;
+     width: calc(50vw - 300px);
+     min-width: 280px;
+     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+     border-radius: 10px;
+     transition: .4s ease;
+ }
+ .searchbar-transactions:hover, .searchbar-transactions:focus{
+     background: rgb(245, 245, 245)
+ }
+ ::placeholder{
+     color: #767677;
+ }
+ .search-button-container{
+     display: flex;
+     gap: 10px
+ }
+ .search-button-transactions{
+     width: 60px;
+     height: 45px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-shrink: 0;
+     border-radius: 10px;
+     transition: .4s ease;
+     
+ }
+ .search-button-transactions:hover{
+     background: #c4d9ee;
+     transition: .4s ease;
+ }

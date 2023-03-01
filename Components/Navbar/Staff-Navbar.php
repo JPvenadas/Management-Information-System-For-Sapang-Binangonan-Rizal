@@ -58,19 +58,38 @@ function attachNavbar($page){
     </div>
     <ul class="navigation-container">
         <?php
+        include "../../Functions/getAccess.php";
+        $access = getAccess();
          include "../../Components/Navbar/Navbar-Item.php";
          generateNavItem($dashboard, "Dashboard", "home-sharp", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($residents, "Residents", "people", "../../Pages/Residents/Residents.php");
-         generateNavItem($employees, "Employees", "person", "../../Pages/Employees/Employees.php");
-         generateNavItem($attendance, "Attendance", "checkmark-circle", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($users, "Users", "person-circle", "../../Pages/Users/Users.php");
-         generateNavItem($services, "Services", "document", "../../Pages/Services/Services.php");
-         generateNavItem($events, "Events", "calendar", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($inventory, "Inventory", "albums", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($incidents, "Incidents", "alert-circle", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($reports, "Reports", "stats-chart", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($settings, "Settings", "settings", "../../Pages/Settings/Settings.php");
+        if($access['residents']){
+            generateNavItem($residents, "Residents", "people", "../../Pages/Residents/Residents.php");
+        }
+        if($access['employees']){
+            generateNavItem($employees, "Employees", "person", "../../Pages/Employees/Employees.php");
+        }
+        if($access['attendance']){
+            generateNavItem($attendance, "Attendance", "checkmark-circle", "../../Pages/Dashboard/Dashboard.php");
+        }
+        if($access['services']){
+            generateNavItem($services, "Services", "document", "../../Pages/Services/Services.php");
+        }
+        if($access['events']){
+            generateNavItem($events, "Events", "calendar", "../../Pages/Dashboard/Dashboard.php");
+        }
+        if($access['announcements']){
+            generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Dashboard/Dashboard.php");
+        }
+        if($access['inventory']){
+            generateNavItem($inventory, "Inventory", "albums", "../../Pages/Dashboard/Dashboard.php");
+        }
+        if($access['incidents']){
+            generateNavItem($incidents, "Incidents", "alert-circle", "../../Pages/Dashboard/Dashboard.php");
+        }
+        if($access['reports']){
+            generateNavItem($reports, "Reports", "stats-chart", "../../Pages/Dashboard/Dashboard.php");
+        }
+        
         ?>
         <!-- Logout -->
         <li class="sidebar-item logout">
