@@ -12,7 +12,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
 <head>
     <title>Settings</title>
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/settings.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Settings.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

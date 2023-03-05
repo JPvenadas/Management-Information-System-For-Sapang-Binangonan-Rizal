@@ -47,8 +47,23 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
             attachTabTitle("Services");
             
             include "../../Components/Services-components/ServicesNav.php";
+            if(isset($_GET['page'])){
+                if($_GET['page'] == 'Processed' or $_GET['page'] == 'Finished'){
+                    include "../../Components/Services-components/transactionsList.php";
+                }else{
+                    include "../../Components/Services-components/newTransactionPage.php";
+                }
+            }else{
+                include "../../Components/Services-components/newTransactionPage.php";
+            }
+
+
+            //include the modals
+            include "../../Components/Services-components/residentsModal.php";
+            include "../../Components/Services-components/AddTransactionModal.php";
             ?>
 
+            
         </main>
       
        <!-- Script for Ionic Icons -->

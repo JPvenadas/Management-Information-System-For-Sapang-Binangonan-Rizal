@@ -23,12 +23,12 @@
         </div>
         <div class="container">
             <p>Assigned Role</p>
-            <input autocomplete="off" class="input" name="position" type="text" list="positions" placeholder="Employee's position">
-            <input autocomplete="off" class="input" name="committee" type="text" list="committee" placeholder="Committee"> 
+            <input required autocomplete="off" class="input" name="position" type="text" list="positions" placeholder="Employee's position">
+            <input required autocomplete="off" class="input" name="committee" type="text" list="committee" placeholder="Committee"> 
            
             <div class="term-container">
-                <input name="termstart" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Start of Term">
-                <input name="termend" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Expected end of Term">
+                <input required name="termstart" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Start of Term">
+                <input required name="termend" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Expected end of Term">
             </div>
         </div>
         <div class="button-container">

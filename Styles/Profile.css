@@ -298,7 +298,8 @@ body{
 }
 .action-button-editing{
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
     gap: 20px;
 }
 .edit-form{
@@ -307,7 +308,7 @@ body{
     gap: 30px;
 }
 .proof-image{
-    width: 70%;
+    width: 50%;
 }
 .modal-close-button-2{
     position: absolute;

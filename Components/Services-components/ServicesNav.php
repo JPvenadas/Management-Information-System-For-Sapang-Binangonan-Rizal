@@ -2,9 +2,9 @@
 // create a sub navbar that highlights when you click
 $new=""; $processed=""; $finished="";
     if(isset($_GET['page'])){
-        if($_GET['page'] == "processed"){
+        if($_GET['page'] == "Processed"){
             $processed = "underline";
-        }elseif($_GET['page'] == "finished"){
+        }elseif($_GET['page'] == "Finished"){
             $finished = "underline";
         }else{
             $new = "underline";
@@ -19,14 +19,23 @@ $new=""; $processed=""; $finished="";
     <div class="settings-nav">
         <ul class="nav-list">
             <li><a class="<?php echo $new?>" href="?">New Transaction</a></li>
-            <li><a class="<?php echo $processed?>" href="?page=processed">Processed Transaction</a></li>
-            <li><a class="<?php echo $finished?>" href="?page=finished">History</a></li>
+            <li><a class="<?php echo $processed?>" href="?page=Processed">Processed Transaction</a></li>
+            <li><a class="<?php echo $finished?>" href="?page=Finished">History</a></li>
         </ul>
     </div>
+    <?php
+    if(isset($_GET['page'])){
+        if($_GET['page'] == "Processed" or $_GET['page'] == "Finished"){
+    ?>
     <form method="post" class="search-button-container">
-        <input autocomplete="off" name="search_input_transactions" placeholder="Enter the UserName or Resident Name here" class="searchbar-transactions" type="text">
+        <input autocomplete="off" name="search_input_transactions"
+            placeholder="Enter the UserName or Resident Name here" class="searchbar-transactions" type="text">
         <button name="search_button_transactions" type="submit" class="search-button-transactions">
             <ion-icon name="search-outline"></ion-icon>
         </button>
     </form>
+    <?php
+    }
+    }
+    ?>
 </div>

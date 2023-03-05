@@ -24,9 +24,9 @@
 <script>
 let cancelButton = document.querySelector(".cancel-editing")
 let saveButton = document.querySelector(".save-editing")
-
 cancelButton.style.display = "none"
 saveButton.style.display = "none"
+
 
 //function to execute when "edit personal info is clicked"
 function enableEditing() {
@@ -37,7 +37,8 @@ function enableEditing() {
     let enableEditButton = document.querySelector(".edit-button")
     //save and cancel button 
    
-
+    cancelButton.style.display = "flex"
+    saveButton.style.display = "flex"
     //show save and cancel button
 
     //loop to select all inputs

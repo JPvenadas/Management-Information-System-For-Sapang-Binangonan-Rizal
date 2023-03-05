@@ -3,7 +3,8 @@
         <ion-icon name="close"></ion-icon>
     </button>
     <img class="proof-image" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($resident['residenceProof']); ?>" alt="">
-</div> <script>
+</div>
+ <script>
     let proofModal = document.querySelector('.proof-modal')
     proofModal.style.display = 'none'
 

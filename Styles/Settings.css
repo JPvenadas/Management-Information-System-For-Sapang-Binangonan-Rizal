@@ -11,7 +11,7 @@ body{
     overflow-x: hidden;
 }
 .main-content{
-   padding: 0 50px 0 50px;
+   padding: 0 50px 30px 50px;
    width: 100%;
    margin-left: 300px;
    display: flex;
@@ -287,7 +287,8 @@ body{
 }
 .action-button-editing{
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
     gap: 20px;
 }
 .edit-form{
@@ -295,4 +296,39 @@ body{
     flex-direction: column;
     gap: 30px;
 }
+.cancel-editing{
+    display: flex;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #2d2d2d;
+    width: 160px;
+    height: 43px;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
 
+.blue-button, .save-editing{
+    width: 246px;
+    height: 43px;
+    background: #195FA0;
+    border-radius: 5px;
+    display: flex ;
+    flex-direction: row ;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+}
+.save-editing{
+    width: 160px;
+    height: 43px;
+}
+.cancel-editing, .save-editing{
+    display: none;
+}
