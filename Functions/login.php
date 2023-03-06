@@ -39,7 +39,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 				$_SESSION['middleName'] = $row['middleName'];
 				$_SESSION['lastName'] = $row['lastName'];
 				$_SESSION['extension'] = $row['extension'];
-				$_SESSION['residentsID'] = $row['residentID'];
+				$_SESSION['residentID'] = $row['residentID'];
             	header("Location: ../Pages/Dashboard/Dashboard.php");
 		        exit();
             }else{

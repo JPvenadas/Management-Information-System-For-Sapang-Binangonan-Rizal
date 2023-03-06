@@ -7,9 +7,8 @@ function solveAge($birthDate){
 function generateResidentItem($resident){
 
 ?>
-<button onclick="openTransactionModal( '<?php echo $resident['residentID']?>',
-                                       '<?php echo $resident['fullName']?>'
-
+<button onclick="openTransactionModal('<?php echo $resident['residentID']?>',
+                                      '<?php echo $resident['fullName']?>',
 )" type="submit" name="view_resident_button" class="resident-item-record">
     <div class="resident-info-container">
         <div class="resident-image-container">

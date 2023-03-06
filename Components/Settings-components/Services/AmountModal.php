@@ -10,6 +10,7 @@
                 <input id="serviceID" type="hidden" name="serviceID">
                 <input id="serviceFee" name="serviceFee" type="number" required placeholder="Service Fee" class="input">
                 <button class="save" name="change_amount">Save</button>
+                <button class="save" name="archive_service">Archive</button>
             </div>
         </form>
     </div>

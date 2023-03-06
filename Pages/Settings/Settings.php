@@ -12,7 +12,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
 <head>
     <title>Settings</title>
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/Settings.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/settings.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,6 +61,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
     include "../../Components/Settings-components/Positions/EditPositionModal.php";
     include "../../Components/Settings-components/Committees/AddComModal.php";
     include "../../Components/Settings-components/Committees/EditComModal.php";
+    include "../../Components/Settings-components/Services/AddServiceModal.php";
     ?>
     <!-- Package for ionic icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -1,6 +1,6 @@
 <div id="add-transaction-modal" class="modal-background-blur">
     <form
-        action="../../Modules/Transactions/transactions.php"
+        action="../../Pages/Services/Services.php";
         method="post" class="modal-content-container">
         <div onclick="closeTransactionModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>

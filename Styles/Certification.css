@@ -1,0 +1,341 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border-style: none;
+    outline-style: none;
+}
+:root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+body{
+    flex-shrink: 0;
+    display: flex;
+    width: 100vw;
+    overflow-x: hidden;
+}
+.print-container{
+    width: 778px;
+    height: 1101px;
+    padding: 80px 0 0 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.main-content{
+    position: relative;
+    width: 100%;
+    margin-left: 315px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px
+ }
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    height: 60px;
+    background: #FFFFFF;
+    border: 1px solid #b9b9b9;
+    padding: 0 40px;
+}
+.header-left p{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    color: #696767;
+}
+.print-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 20px;
+    gap: 10px;
+    background: #195FA0;
+    border-radius: 5px;
+}
+.print-button p, .print-button ion-icon {
+    font-weight: 700;
+    font-size: 10px;
+    color: white
+}
+.print-button ion-icon{
+    font-size: 24px !important;
+}
+.certificate-container{
+    width: 100%;
+    display: flex;
+    padding: 20px 0;
+    justify-content: center;
+    align-items: center;
+}
+.certificate-paper{
+    width: 778px;
+    height: 1101px;
+    padding: 80px 0px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 3.68403px 11.4885px rgba(0, 0, 0, 0.25);
+}
+.certificate-header{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.certificate-header div{
+    text-align: center;
+}
+.country{
+    font-family: 'Tinos';
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+}
+.province, .municipal{
+    font-family: 'PT Serif', serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+}
+.barangay{
+    font-family: 'Noto Serif';
+    font-weight: 700;
+    font-size: 28px;
+    color: #E01711;
+}
+.office{
+    font-family: 'Noto Serif';
+    font-weight: 700;
+    font-size: 24px;
+    color: BLACK;
+}
+.dividers{
+    flex-shrink: 0;
+}
+.dividers .line-1{
+    height: 1px;
+    background: black;
+    width: 580px;
+    margin-bottom: 1px;
+}
+.dividers .line-2{
+    height: 3px;
+    background: black;
+    width: 580px;
+}
+.logo{
+    position: absolute;
+    width: 116px;
+    height: 116px;
+    top: -10px;
+    left: 20px;
+}
+.certificate-title{
+    font-family: 'Noto Serif';
+    font-weight: 700;
+    font-size: 22px;
+    color: #E01711;
+    text-transform: uppercase;
+}
+.back-logo{
+    position: absolute;
+    top: 340px;
+    left: 140px;
+    width: 522px;
+    height: 486px;
+    opacity: 0.2;
+}
+.certificate-body{
+    margin-top: 30px;
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    width: 590px;
+}
+.certificate-body *{
+    font-size: 18px;
+    font-family: 'PT Serif';
+}
+.certificate-body p{
+    text-indent: 60px;
+}
+.certificate-body p span{
+    text-indent: 60px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.certificate-date{
+    text-transform: none !important;
+}
+.certificate-date sup{
+    font-weight: normal !important;
+    font-size: 12px;
+}
+.certificate-footer{
+    width: 590px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 150px;
+}
+.footer-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.signiture{
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    top: -50px;
+    right: -20px;
+}
+.captain{
+    text-transform: uppercase;
+    font-family: 'Domine';
+}
+.footer-container p{
+    font-family: 'PT Serif';
+}
+
+.certificate-footer2{
+    width: 590px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.attest{
+    margin: 80px 0;
+    width: 519px;
+}
+
+.modal-background-blur{
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.52);
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spawn .4s ease forwards;
+    transform: scale(.98);
+}
+.modal-content-container{
+    width: 720px;
+    height: 510px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.modal-close-button{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    background: white;
+}
+.modal-title{
+    width: 560px;
+}
+.modal-title p{
+    font-weight: 700;
+    font-size: 24px;
+    color: #002C4B;
+}
+.record-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.record{
+    display: flex;
+    justify-content: space-between;
+    width: 560px;
+}
+.record .field p{
+    font-weight: 400;
+    font-size: 15px;
+    color: #696767;
+}
+.record .value p{
+    font-weight: 700;
+    font-size: 15px;
+    color: #696767;
+}
+.purpose-container{
+    width: 560px;
+    height: 128px;
+    background: #E9F2F9;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+}
+.purpose-input{
+    width: 499px;
+    height: 43px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    padding: 0 20px;
+}
+.purpose-container p{
+    width: 499px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #002C4B;
+}
+::placeholder{
+    color: #A0AAB1;
+}
+.button-container{
+    width: 560px;
+    display: flex;
+    justify-content: flex-end;
+}
+.button-container button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    gap: 10px;
+    background: #195FA0;
+    border-radius: 5px;
+}
+.button-container button p, .button-container button ion-icon {
+    font-weight: 700;
+    font-size: 12px;
+    color: white
+}
+.button-container button ion-icon{
+    font-size: 24px !important;
+}
+@keyframes spawn{
+    from{opacity: 0; transform: scale(.98);}
+    to{opacity: 1; transform: scale(1);}
+}

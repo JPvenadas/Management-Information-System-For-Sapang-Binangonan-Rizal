@@ -5,7 +5,7 @@ require "db_conn.php";
 // get services offered in the database
 function getServices(){
     $conn = openCon();
-    $command = "SELECT * FROM `tbl_services`";
+    $command = "SELECT * FROM `tbl_services` where archive = 'false'";
     $result = mysqli_query($conn, $command);
     $services = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);
@@ -216,6 +216,23 @@ if(isset($_POST['save-contacts'])){
     $address = $_POST['contact-address'];
     $gcash = $_POST['contact-gcash'];
     $command = "UPDATE `tbl_contacts` SET `webLink`='$webLink',`phone`='$phone',`facebook`='$facebook',`email`='$email',`telegram`='$telegram',`address`='$address',`gcash`='$gcash' WHERE 1";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+if(isset($_POST['add_service'])){
+    $conn = openCon();
+    $serviceName = $_POST['serviceName'];
+    $serviceFee = $_POST['serviceFee'];
+    $command = "INSERT INTO `tbl_services`(`serviceName`, `serviceFee`, `archive`, `serviceType`)  
+                                  VALUES ('$serviceName','$serviceFee','false','Non-document')";
+    mysqli_query($conn, $command);
+    $addedService = mysqli_insert_id($conn);
+    mysqli_close($conn);
+}
+if(isset($_POST['archive_service'])){
+    $conn = openCon();
+    $serviceID = $_POST['serviceID'];
+    $command = "UPDATE `tbl_services` SET `archive`='true' WHERE `serviceName` = '$serviceID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }

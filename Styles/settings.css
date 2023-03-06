@@ -213,7 +213,7 @@ body{
 .item:hover{
     background: rgb(240, 240, 240);
 }
-.purok-container, .position-container{
+.purok-container, .services-container, .position-container{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -331,4 +331,7 @@ body{
 }
 .cancel-editing, .save-editing{
     display: none;
+}
+.width-499{
+    width: 499px;
 }

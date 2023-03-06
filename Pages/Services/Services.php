@@ -61,6 +61,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
             //include the modals
             include "../../Components/Services-components/residentsModal.php";
             include "../../Components/Services-components/AddTransactionModal.php";
+            include "../../Components/Services-components/EditTransactionModal.php";
             ?>
 
             

@@ -28,8 +28,9 @@ $new=""; $processed=""; $finished="";
         if($_GET['page'] == "Processed" or $_GET['page'] == "Finished"){
     ?>
     <form method="post" class="search-button-container">
+        <input type="hidden" name="page" value="<?php echo $_GET['page']?>">
         <input autocomplete="off" name="search_input_transactions"
-            placeholder="Enter the UserName or Resident Name here" class="searchbar-transactions" type="text">
+            placeholder="Enter the Name of the Issuer here" class="searchbar-transactions" type="text">
         <button name="search_button_transactions" type="submit" class="search-button-transactions">
             <ion-icon name="search-outline"></ion-icon>
         </button>
