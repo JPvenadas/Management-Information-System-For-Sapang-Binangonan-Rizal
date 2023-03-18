@@ -66,7 +66,7 @@ function attachNavbar($page){
          generateNavItem($users, "Users", "person-circle", "../../Pages/Users/Users.php");
          generateNavItem($services, "Services", "document", "../../Pages/Services/Services.php");
          generateNavItem($events, "Events", "calendar", "../../Pages/Dashboard/Dashboard.php");
-         generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Announcements/Announcements.php");
          generateNavItem($inventory, "Inventory", "albums", "../../Pages/Dashboard/Dashboard.php");
          generateNavItem($incidents, "Incidents", "alert-circle", "../../Pages/Dashboard/Dashboard.php");
          generateNavItem($reports, "Reports", "stats-chart", "../../Pages/Dashboard/Dashboard.php");

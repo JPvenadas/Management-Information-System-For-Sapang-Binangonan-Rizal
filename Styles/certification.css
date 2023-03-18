@@ -30,7 +30,7 @@ body{
 .main-content{
     position: relative;
     width: 100%;
-    margin-left: 315px;
+    margin-left: 300px;
     display: flex;
     flex-direction: column;
     gap: 25px

@@ -16,7 +16,7 @@ a{
     color: black
 }
 .main-content{
-   padding: 0 50px 0 50px;
+   padding: 0 50px 30px 50px;
    width: 100%;
    margin-left: 300px;
 }
@@ -126,7 +126,7 @@ a{
     background: rgba(0, 0, 0, 0.52);
     left: 0;
     top: 0;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     animation: spawn .4s ease forwards;

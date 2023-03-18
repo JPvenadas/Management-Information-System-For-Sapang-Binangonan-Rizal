@@ -1,6 +1,8 @@
 <div id="edit-transaction-modal" class="modal-background-blur">
     <form
-        action="../../Pages/Services/Services.php";
+        action="../../Pages/Services/Services.php?page=<?php if(isset($_GET['page'])){
+            echo $_GET['page'];
+        }?>";
         method="post" class="modal-content-container">
         <div onclick="closeEditTransactionModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>
@@ -13,7 +15,7 @@
         <div class="record-container">
             <div class="record">
                 <div class="field">
-                    <p>Document:</p>
+                    <p>Service:</p>
                 </div>
                 <div class="value">
                     <input readonly type="text" id="serviceName-edit" name="serviceName">
@@ -46,7 +48,7 @@
             </div>
             <div class="record">
                 <div class="field">
-                    <p>Printed by:</p>
+                    <p>Assisted by:</p>
                 </div>
                 <div class="value">
                     <input readonly type="text" id="user" name="assistedBy-edit" value="<?php echo $_SESSION['firstName'] . ' ' . $_SESSION['middleName'][0] . '.' . ' ' . $_SESSION['lastName']?>"> 
@@ -54,7 +56,7 @@
             </div>
         </div>
         <div class="purpose-container">
-            <p>Document purposes</p>
+            <p>Purposes</p>
             <input id="purpose-edit" type="text" required name="purpose" placeholder="Purpose of issued document" class="purpose-input">
         </div>
         <div class="button-container">
@@ -63,11 +65,11 @@
                 <p>Confirm Payment</p>
             </button>
             <button id="claim-button" class="blue-button" type="submit" name="claim_transaction">
-                <ion-icon name="card"></ion-icon>
+                <ion-icon name="document-text-sharp"></ion-icon>
                 <p>Claim</p>
             </button>
             <button id="archive-button" type="submit" name="archive_transaction">
-                <ion-icon name="card"></ion-icon>
+                <ion-icon name="archive-sharp"></ion-icon>
                 <p>Archive</p>
             </button>
         </div>

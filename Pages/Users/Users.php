@@ -38,10 +38,10 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         <?php 
         if($_SESSION['userType'] == "Administrator"){
             require "../../Components/Navbar/Administrator-Navbar.php";
-            attachNavbar("dashboard");
+            attachNavbar("users");
         }elseif($_SESSION['userType'] == "Staff"){
             require "../../Components/Navbar/Staff-Navbar.php";
-            attachNavbar("dashboard");
+            attachNavbar("users");
         }?>
 
         <!-- main content of the page -->

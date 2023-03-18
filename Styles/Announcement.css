@@ -1,0 +1,136 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border-style: none;
+    outline-style: none;
+}
+body{
+    display: flex;
+    color: #2E2E2E;
+    overflow-x: hidden;
+    background: white;
+}
+.main-content{
+   padding: 0 50px 0 40px;
+   width: 100%;
+   margin-left: 300px;
+}
+.messages-container{
+    width: 100%;
+    max-height: 380px;
+    height: 80%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: #e3e3e3;
+    border-radius: 10px;
+    margin: 30px 0;
+    overflow-y: scroll;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.new-message-container{
+    width: 100%;
+    display: flex;
+    gap: 13px;
+    align-items: center;
+}
+.message{
+    background: white;
+    width: 90%;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.text{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #2E2E2E;
+}
+.bold-text{
+    font-weight: 700;
+    font-size: 12px;
+    color: #7C7C7C;
+}
+.light-text{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #7C7C7C;
+}
+.message-input{
+    flex: 1;
+    background: #e3e3e3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 10px 25px;
+    font-size: 14px;
+    height: 50px;
+}
+.filter-button{
+    display: flex;
+    gap: 10px;
+    height: 40px;
+    background: #FFFCFC;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    width: 165px;
+    
+}
+.filter-button input{
+    font-weight: 700;
+    font-size: 12px;
+    color: #2E2E2E;
+    cursor: pointer;
+    width: 80px;
+}
+.filter-options{
+    display: none;
+    position: absolute;
+    width: 250px;
+    bottom: 60px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(49, 49, 49, 0.25);
+}
+.relative{
+    position: relative;
+}
+.option{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    padding: 15px 25px;
+    gap: 20px;
+}
+.send-button{
+    width: 66px;
+    height: 43px;
+    background: #195FA0;
+    border-radius: 5px;
+}
+.send-button ion-icon{
+    color: white;
+    font-size: 20px;
+}
+.custom-filter{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding:20px;
+}
+.custom-filter div{
+    display: flex;
+    justify-content: flex-end;
+}
+.combo{
+    width: 200px;
+    padding: 10px 20px;
+}

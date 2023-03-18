@@ -40,12 +40,11 @@
     <?php
     if(isset($_POST['submitUserName']) || isset($_POST['anotherCode'])){
     ?>
-       async function sendOTP(){
+       async function sendMessage(){
         const response = await fetch("https://sms.teamssprogram.com/api/send?key=e171e8bfec664d8bc70118cb2d5c1085415d24bc&phone=+639<?php echo $_SESSION['recovery-contactNo'] ?>&message=<?php echo $_SESSION['OTP']?> is your One-Time code for Barangay Sapang MIS&device=280&sim=2")
         const data = await response.json();
-        console.log(data);
        }
-       sendOTP();
+       sendMessage();
     <?php }?>
     
     function unrequire(){

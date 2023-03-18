@@ -27,7 +27,7 @@ function getRequests(){
 function addsearchFilter(){
     if(isset($_GET['search'])){
         $search = $_GET['search'];
-        $additionalCommand = " and CONCAT(r.firstName,' ', r.middleName,' ', r.lastName ) LIKE '%$search%' ";
+        $additionalCommand = " and CONCAT(r.firstName,' ', r.middleName,' ', r.lastName ) LIKE '%$search%' or t.serviceName LIKE '%$search%' ";
         return $additionalCommand;
     }else{
         return "";
@@ -69,21 +69,34 @@ if(isset($_POST['add_transaction'])){
     $dateRequested = date('y/m/d');
     $paymentDate = date('y/m/d');
     $amountPaid = $_POST['serviceFee'];
-    $transactionStatus = "Processed";
+    $serviceType = $_POST['serviceType'];
+    if($serviceType == "Document"){
+        $transactionStatus = "Processed";
+    }else{
+        $transactionStatus = "Finished";
+    }
     $archive = 'false';
     $assistedBy = $_SESSION['residentID'];
     $command = "INSERT INTO `tbl_transactions`(`serviceName`, `residentID`, `purpose`, `dateRequested`, `paymentDate`, `amountPaid`, `transactionStatus`, `archive`, `assistedBy`)  
                                               VALUES ('$serviceName','$residentID','$purpose','$dateRequested','$paymentDate','$amountPaid','$transactionStatus','$archive','$assistedBy')";
     mysqli_query($conn, $command);
     mysqli_close($conn);
-    header("Location: ../Certification/CertificatePreview.php?service=$serviceName&id=$residentID");
-    exit();
+    
+    if($serviceType == "Document"){
+        header("Location: ../Certification/CertificatePreview.php?service=$serviceName&id=$residentID");
+        exit();
+    }else{
+        header("Location: ../Services/Services.php");
+        exit();
+    }
 }
 if(isset($_POST['process_transaction'])){
     $conn = openCon();
     $transactionID = $_POST['transactionID'];
     $date = date('y/m/d');
     $amountPaid = $_POST['serviceFee'];
+    $serviceName = $_POST['serviceName'];
+    $residentID = $_POST['residentID'];
     $assistedBy = $_SESSION['residentID'];
 
     $command = "UPDATE `tbl_transactions` SET 
@@ -95,6 +108,8 @@ if(isset($_POST['process_transaction'])){
 
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    header("Location: ../Certification/CertificatePreview.php?service=$serviceName&id=$residentID");
+    exit();
 }
 
 if(isset($_POST['claim_transaction'])){

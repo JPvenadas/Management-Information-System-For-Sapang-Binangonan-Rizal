@@ -23,7 +23,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
     <title>Management Information System for Barangay Sapang</title>
 
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/Certification.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/certification.css">
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

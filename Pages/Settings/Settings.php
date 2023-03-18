@@ -33,10 +33,10 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
      <?php 
     if($_SESSION['userType'] == "Administrator"){
         require "../../Components/Navbar/Administrator-Navbar.php";
-        attachNavbar("dashboard");
+        attachNavbar("settings");
     }elseif($_SESSION['userType'] == "Staff"){
         require "../../Components/Navbar/Staff-Navbar.php";
-        attachNavbar("dashboard");
+        attachNavbar("settings");
     }?>
 
     <!-- Main content of the residents-section -->

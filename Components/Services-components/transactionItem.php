@@ -17,7 +17,13 @@ function generateItem($transaction){
         </div>
     </div>
     <div class="date-issued">
-        <p><?php echo "Processed " . date("F j, Y",strtotime($transaction['paymentDate']))?></p>
+        <p><?php
+        if($transaction['transactionStatus'] == "Finished"){
+            echo "Processed " . date("F j, Y",strtotime($transaction['paymentDate']));
+        }elseif($transaction['transactionStatus'] == "Processed"){
+            echo "Ready to be claimed";
+        }
+         ?></p>
     </div>
 </button>
 

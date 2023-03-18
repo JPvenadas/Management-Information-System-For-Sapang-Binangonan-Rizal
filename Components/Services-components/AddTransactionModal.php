@@ -12,7 +12,7 @@
         <div class="record-container">
             <div class="record">
                 <div class="field">
-                    <p>Document:</p>
+                    <p>Service:</p>
                 </div>
                 <div class="value">
                     <input type="text" id="serviceName" name="serviceName">
@@ -45,7 +45,7 @@
             </div>
             <div class="record">
                 <div class="field">
-                    <p>Printed by:</p>
+                    <p>Assisted by:</p>
                 </div>
                 <div class="value">
                     <input type="text" id="user" name="assistedBy" value="<?php echo $_SESSION['firstName'] . ' ' . $_SESSION['middleName'][0] . '.' . ' ' . $_SESSION['lastName']?>"> 
@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="purpose-container">
-            <p>Document purposes</p>
+            <p>Purposes</p>
             <input id="purpose" type="text" required name="purpose" placeholder="Purpose of issued document" class="purpose-input">
         </div>
         <div class="button-container">
