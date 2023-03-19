@@ -31,6 +31,9 @@ body{
     flex-direction: column;
     gap: 20px;
 }
+.height-450{
+    max-height: 460px;
+}
 .new-message-container{
     width: 100%;
     display: flex;

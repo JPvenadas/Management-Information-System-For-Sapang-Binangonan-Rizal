@@ -3,7 +3,7 @@ session_start();
 
 //require the sql functions
 require "../../Functions/announcements-sql-commands.php";
-$announcements = getAnnouncements();
+$announcements = getAnnouncementsResident();
 
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
@@ -34,13 +34,9 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 <body>
          <!-- Attach the navbar -->
         <?php 
-        if($_SESSION['userType'] == "Administrator"){
-            require "../../Components/Navbar/Administrator-Navbar.php";
-            attachNavbar("announcements");
-        }elseif($_SESSION['userType'] == "Staff"){
-            require "../../Components/Navbar/Staff-Navbar.php";
-            attachNavbar("announcements");
-        }?>
+         require "../../Components/Navbar/Resident-Navbar.php";
+         attachNavbar("announcements");
+        ?>
 
         <!-- main content of the page -->
         <main class="main-content">
@@ -49,10 +45,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 
 
             //include the list of announcements
-            require "../../Components/Announcements-components/MessageList.php";
-
-            //include the new message section
-            require "../../Components/Announcements-components/NewMessage.php";
+            require "../../Components/Announcements-components/MessageListResident.php";
             ?>
            
         </main>

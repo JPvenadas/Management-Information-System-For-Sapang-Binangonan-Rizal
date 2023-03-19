@@ -13,7 +13,7 @@ button{
   border-style: none;
 }
 .dashboard-content{
-  margin-left: 315px;
+  margin-left: 300px;
   padding: 0 35px;
   display: flex;
   flex-direction: column;
@@ -272,4 +272,64 @@ canvas{
   display: flex;
   gap: 20px;
   flex-direction: column;
+}
+
+/* Resident's Dashboard ************************************************/
+
+.features{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 0 20px 0;
+}
+.feature-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 980px;
+  height: 170px;
+  border-radius: 10px;
+  padding: 0 60px 0 40px;
+}
+.feature-container .right{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+}
+.feature-container .right h3{
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #002C4B;
+}
+.feature-container .right p{
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: right;
+  color: #7C7C7C;
+  max-width: 590px;
+}
+.feature-container .right a{
+  cursor: pointer;
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 35px;
+  text-align: center;
+  background: #195FA0;
+  box-shadow: 0px 4px 15px 5px rgba(188, 153, 28, 0.25);
+}
+.light-gray{
+  background: #F0F9E9;
+}
+.light-blue{
+  background: #E9F2F9;
+}
+.light-red{
+  background: #F7E4E1;
 }

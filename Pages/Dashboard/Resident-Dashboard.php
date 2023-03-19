@@ -30,16 +30,11 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 </head>
 
 <body>
-     <!-- Attach the navbar -->
-     <?php 
-    if($_SESSION['userType'] == "Administrator"){
-        require "../../Components/Navbar/Administrator-Navbar.php";
-        attachNavbar("dashboard");
-    }elseif($_SESSION['userType'] == "Staff"){
-        require "../../Components/Navbar/Staff-Navbar.php";
-        attachNavbar("dashboard");
-    }?>
-
+    <!-- Attach the navbar -->
+    <?php
+     require "../../Components/Navbar/Resident-Navbar.php";
+     attachNavbar("dashboard");
+     ?>
 
     <div class="dashboard-content">
         <!-- Attach the Tab title/header -->
@@ -47,22 +42,42 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         $firstname = $_SESSION['firstName'];
         attachTabTitle("Hello $firstname! Welcome to your Dashboard")?>
 
-        <div class="upper-corner-dashboard">
-            <?php 
-           require "../../Components/Dashboard-components/ResidentSection.php";
-           require "../../Components/Dashboard-components/OtherDatas.php";
-           require "../../Components/Dashboard-components/VoterGraph.php"
-           ?>
+        <div class="features">
+            <div class="feature-container light-blue">
+                <div class="left">
+                    <img src="../../Images/ProfileInformation.png" alt="">
+                </div>
+                <div class="right">
+                    <h3>Keep Your profile updated</h3>
+                    <p>Be sure to keep your profile updated with your current contact information, and personal details.
+                        This will ensure that Barangay Personnels can easily get in touch with you, and that your data
+                        is always up-to-date.</p>
+                    <a href="">Update</a>
+                </div>
+            </div>
 
-        </div>
-        <div class="middle-part-dashboard">
-            <?php 
-            require "../../Components/Dashboard-components/AnnualRevenue.php";
-            require "../../Components/Dashboard-components/Services.php";
-            ?>
-        </div>
-        <div class="lower-part-dashboard">
-            <?php require "../../Components/Dashboard-components/OfficialsList.php"?>
+            <div class="feature-container light-red">
+                <div class="left">
+                    <img src="../../Images/Message.png" alt="">
+                </div>
+                <div class="right">
+                    <h3>New Announcements</h3>
+                    <p>To be up to date with the new announcements, you can check the website regularly, or update the
+                        mobile number in your profile to recieve sms notifications</p>
+                    <a href="">Check</a>
+                </div>
+            </div>
+
+            <div class="feature-container light-gray">
+                <div class="left">
+                    <img src="../../Images/documents3.png" alt="">
+                </div>
+                <div class="right">
+                    <h3>Pending Transactions</h3>
+                    <p>Keep Track of your Transactions and Requests.</p>
+                    <a href="">View</a>
+                </div>
+            </div>
         </div>
     </div>
 

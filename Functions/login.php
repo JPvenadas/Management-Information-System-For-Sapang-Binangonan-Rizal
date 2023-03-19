@@ -40,8 +40,16 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 				$_SESSION['lastName'] = $row['lastName'];
 				$_SESSION['extension'] = $row['extension'];
 				$_SESSION['residentID'] = $row['residentID'];
-            	header("Location: ../Pages/Dashboard/Dashboard.php");
-		        exit();
+            	
+				//redirect to their respective dashboard page
+				if($row['userType'] == "Resident"){
+					header("Location: ../Pages/Dashboard/Resident-Dashboard.php");
+		        	exit();
+				}else{
+					header("Location: ../Pages/Dashboard/Dashboard.php");
+		        	exit();
+				}
+
             }else{
 				header("Location: ../index.php?error=Incorect Username or password");
 		        exit();

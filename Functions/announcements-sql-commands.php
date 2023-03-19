@@ -95,4 +95,49 @@ function getContactsCustom(){
     mysqli_close($conn);
     return $contact;
 }
+
+function getResidentUser(){
+    $conn = openCon();
+    $residentID = $_SESSION['residentID'];
+    $command = "SELECT 
+                    purok, sex, 
+                    CASE 
+                    WHEN FLOOR(DATEDIFF(CURDATE(), birthDate) / 365.25) < 18 THEN 'Youths'
+                    WHEN FLOOR(DATEDIFF(CURDATE(), birthDate) / 365.25) >= 18 
+                    and FLOOR(DATEDIFF(CURDATE(), birthDate) / 365.25) < 60 THEN 'Adults'
+                    ELSE 'Seniors' END AS age,
+                    CASE 
+                    WHEN e.residentID IS NOT NULL and e.archive = 'false' THEN true 
+                    ELSE false END AS is_employee,
+                    CASE
+                    WHEN r.familyHead = 'Yes' THEN true
+                    else false END as familyHead
+                FROM tbl_residents as r
+                LEFT JOIN tbl_employees as e ON r.residentID = e.residentID
+                Where r.residentID = '$residentID'";
+    $result = mysqli_query($conn, $command);
+    $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $user[0];
+}
+function getAnnouncementsResident(){
+    $conn = openCon();
+    $user = getResidentUser();
+    $sex = $user['sex'];
+    $age = $user['age'];
+    $command = "SELECT CONCAT(r.firstName, ' ', LEFT(r.middleName, 1),' ', r.lastName, ' ', r.extension) as `fullName`, `message`, `datePosted`, `postedBy`, `recepients`
+     FROM `tbl_announcements` as a inner join `tbl_residents` as r on a.postedBy = r.residentID WHERE `recepients` LIKE '%All Residents%' or `recepients` LIKE '%$sex%' or `recepients` LIKE '%$age%'";
+    if($user['is_employee'] == true){
+        $command = $command . " or `recepients` LIKE '%All Employees%'";
+    }
+    if($user['familyHead'] == true){
+        $command = $command . " or `recepients` LIKE '%Family Heads%'";
+    }
+    $result = mysqli_query($conn, $command);
+    $announcements = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $announcements;
+}
 ?>
