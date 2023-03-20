@@ -134,15 +134,24 @@ a{
 }
 .modal-content-container{
     width: 720px;
-    height: 510px;
+    padding: 30px 0;
     background: white;
     border-radius: 10px;
     display: flex;
-    gap: 25px;
+    gap: 20px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+}
+.edit{
+    padding: 40px 0;
+    gap: 30px;
+}
+.divider{
+    height: 2px;
+    background: rgb(209, 209, 209);
+    width: 100%;
 }
 .modal-close-button{
     position: absolute;
@@ -213,7 +222,7 @@ a{
     justify-content: flex-end;
     gap: 20px;
 }
-.button-container button{
+.button-container button, .gcash-button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -226,10 +235,10 @@ a{
 .blue-button{
     background: #195FA0 !important;
 }
-.blue-button *{
+.blue-button *, .gcash-button p{
     color: white !important;
 }
-.button-container button p, .button-container button ion-icon {
+.button-container button p, .button-container button ion-icon, .gcash-button p{
     font-weight: 700;
     font-size: 12px;
     color: rgb(49, 48, 48)
@@ -430,5 +439,73 @@ a{
     overflow-y:scroll;
 }
 .hide{
+    display: none;
+}
+.gcash-button{
+    background: #0071BA !important;
+    cursor: pointer;
+    display: none;
+}
+.proof-image{
+    height: 80%;
+}
+.modal-close-button-2{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    background: none;
+}
+
+/* resident side services */
+
+.gcash-section{
+    width: 560px;
+    height: 100px;
+    background: #0071BA;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+.gcash-info{
+    display: flex;
+    gap: 10px;
+}
+.gcash-number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+.gcash-instruction{
+    font-weight: 400;
+    font-size: 12px;
+    color: #FFFFFF;
+    width: 300px;
+}
+.payment-proof-input{
+    display: none;
+}
+.payment-proof-button{
+    cursor: pointer;
+    transition: .5s ease;
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    color: #0071BA;
+}
+.checkmark{
+    font-size: 25px;
     display: none;
 }

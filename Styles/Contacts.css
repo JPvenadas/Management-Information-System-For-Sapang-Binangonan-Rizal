@@ -1,0 +1,51 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border-style: none;
+    outline-style: none;
+}
+body{
+    display: flex;
+    color: #2E2E2E;
+    overflow-x: hidden;
+    background: white;
+}
+
+.main-content{
+   padding: 60px 50px 30px 80px;
+   width: 100%;
+   margin-left: 300px;
+   display: flex;
+   flex-direction: column;
+}
+.title{
+    font-weight: 700;
+    font-size: 64px;
+    color: #002C4B;
+}
+.organization{
+    font-weight: 700;
+    font-size: 16px;
+    color: #696767;
+}
+.contacts-container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 35px 0;
+}
+.contact-item{
+    display: flex;
+    gap: 20px;
+}
+.contact-item ion-icon{
+    font-size: 25px;
+    color: #696767;
+}
+.contact-item p{
+    font-weight: 700;
+    font-size: 18px;
+    color: #696767;
+}

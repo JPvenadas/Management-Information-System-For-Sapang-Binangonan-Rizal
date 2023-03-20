@@ -54,6 +54,8 @@ function solveAge($birthDate){
             </form>
             <?php
             }elseif($resident['registrationStatus'] == "Verified"){
+                //if the user is a resident dont show the archive button
+                if($_SESSION['userType'] != "Resident"){
             ?>
                 <div class="resident-profile-archive-button">
                 <button onclick="openArchiveModal()" class="archive-resident-button">
@@ -62,6 +64,7 @@ function solveAge($birthDate){
                 </button>
                 </div>
             <?php
+                }
             }
             ?>
         </div>

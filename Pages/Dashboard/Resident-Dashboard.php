@@ -52,11 +52,22 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
                     <p>Be sure to keep your profile updated with your current contact information, and personal details.
                         This will ensure that Barangay Personnels can easily get in touch with you, and that your data
                         is always up-to-date.</p>
-                    <a href="">Update</a>
+                    <a href="../Residents/Profile.php?id=<?php echo $_SESSION['residentID']?>">Update</a>
                 </div>
             </div>
 
             <div class="feature-container light-red">
+                <div class="left">
+                    <img src="../../Images/documents3.png" alt="">
+                </div>
+                <div class="right">
+                    <h3>Pending Transactions</h3>
+                    <p>Keep Track of your Transactions and Requests.</p>
+                    <a href="../Services/Resident-Services.php">View</a>
+                </div>
+            </div>
+
+            <div class="feature-container light-gray">
                 <div class="left">
                     <img src="../../Images/Message.png" alt="">
                 </div>
@@ -64,20 +75,10 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
                     <h3>New Announcements</h3>
                     <p>To be up to date with the new announcements, you can check the website regularly, or update the
                         mobile number in your profile to recieve sms notifications</p>
-                    <a href="">Check</a>
+                    <a href="../Announcements/Resident-announcements.php">Check</a>
                 </div>
             </div>
 
-            <div class="feature-container light-gray">
-                <div class="left">
-                    <img src="../../Images/documents3.png" alt="">
-                </div>
-                <div class="right">
-                    <h3>Pending Transactions</h3>
-                    <p>Keep Track of your Transactions and Requests.</p>
-                    <a href="">View</a>
-                </div>
-            </div>
         </div>
     </div>
 

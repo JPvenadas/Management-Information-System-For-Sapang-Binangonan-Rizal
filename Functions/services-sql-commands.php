@@ -13,7 +13,7 @@ function getServices(){
 }
 function getRequests(){
     $conn = openCon();
-    $command = "SELECT `transactionID`,t.residentID, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, t.serviceName, s.serviceFee, s.serviceType, `transactionStatus`, `purpose`,`dateRequested`
+    $command = "SELECT `transactionID`,t.residentID, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, t.serviceName, s.serviceFee, s.serviceType, `transactionStatus`, `purpose`,`dateRequested`,paymentProof, paymentProof IS NOT NULL AS paymentNotNull
                 FROM `tbl_transactions` as t inner JOIN tbl_residents as r
                 on r.residentID = t.residentID inner join tbl_services as s
                 on s.serviceName = t.serviceName WHERE `transactionStatus` = 'Unprocessed'";
@@ -141,4 +141,50 @@ if(isset($_POST['search_button_transactions'])){
 	exit();
 }
 
+//resident side
+
+function getTransactionsbyResident(){
+    $conn = openCon();
+    $residentUser = $_SESSION['residentID'];
+    $command = " SELECT `transactionID`, t.residentID, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, t.serviceName,s.serviceFee, s.serviceType , `purpose`,`dateRequested`, `transactionStatus`, `paymentDate`, `amountPaid`, COALESCE(CONCAT(emp.firstName,' ', emp.middleName,' ', emp.lastName, ' ' ,emp.extension), 'null') as `assistedBy`, `paymentProof`
+                    FROM `tbl_transactions` as t inner JOIN tbl_residents as r
+                    on r.residentID = t.residentID LEFT join tbl_residents as emp
+                    on t.assistedBy = emp.residentID inner join tbl_services as s
+                    on s.serviceName = t.serviceName where 
+                    t.residentID = '$residentUser' and t.archive = 'false'
+                    ORDER bY t.transactionStatus = 'Unprocessed' DESC,
+                    t.transactionStatus = 'Processed' DESC,
+                    t.transactionStatus = 'Finished' DESC, 
+                    IFNULL(`paymentDate`, `dateRequested`) ASC";
+    $result = mysqli_query($conn, $command);
+    $Transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $Transactions;
+}
+
+//resident side services
+if(isset($_POST['submit_request'])){
+    $conn = openCon();
+    $serviceName = $_POST['serviceName'];
+    $purpose = $_POST['purpose'];
+    $dateRequested = date('y/m/d');
+    if($_POST['serviceType'] == "Document"){
+        $transactionStatus = "Processed";
+    }else{
+        $transactionStatus = "Finished";
+    }
+    $archive = 'false';
+    $residentID = $_SESSION['residentID'];
+    if(!empty($_FILES["paymentProof"]["tmp_name"])){
+        $image = $_FILES["paymentProof"]["tmp_name"];
+        $imageContent = addslashes(file_get_contents($image));
+    }else{
+        $imageContent = null;
+    }
+    $command = "INSERT INTO `tbl_transactions`(`serviceName`, `residentID`, `purpose`,`dateRequested`, `transactionStatus`, `archive`, `paymentProof`)  
+    VALUES ('$serviceName','$residentID','$purpose','$dateRequested','$transactionStatus','$archive', '$imageContent')";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
 ?>

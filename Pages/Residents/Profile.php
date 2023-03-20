@@ -8,6 +8,7 @@ $resident = getSingleResident($_GET['id']);
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
 if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
+if($_SESSION['userType'] == "Administrator" or $_SESSION['residentID'] == $_GET['id']){
 	?>
 <!DOCTYPE html>
 <html>
@@ -39,6 +40,9 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         attachNavbar("residents");
     }elseif($_SESSION['userType'] == "Staff"){
         require "../../Components/Navbar/Staff-Navbar.php";
+        attachNavbar("residents");
+    }elseif($_SESSION['userType'] == "Resident"){
+        require "../../Components/Navbar/Resident-Navbar.php";
         attachNavbar("residents");
     }?>
 
@@ -84,6 +88,10 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 
 </html>
 <?php
+    }else{
+        header("Location: ../../index.php");
+        exit();
+    }
 }else{
     header("Location: ../../index.php");
 	exit();

@@ -13,8 +13,11 @@ function attachNavbar($page){
         case "services":
           $services="highlight";
         break;
+        case "contacts":
+          $contacts="highlight";
+        break;
         default:
-          $contacts = "highlight";
+         
       }
 
 ?>
@@ -22,7 +25,7 @@ function attachNavbar($page){
       <ion-icon name="menu"></ion-icon>
 </div>
 <nav class="sidebar">
-    <div class="profile">
+    <a href="../../Pages/Residents/Profile.php?id=<?php echo $_SESSION['residentID']?>" class="profile">
         <div class="profile-picture">
             <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($_SESSION['image']); ?>"
                 alt="Profile Picture">
@@ -31,14 +34,14 @@ function attachNavbar($page){
             <p class="username"><?php print_r($_SESSION['firstName']); echo " "; print_r($_SESSION['lastName'])?></p>
             <p class="usertype"><?php print_r($_SESSION['userType'])?></p>
         </div>
-    </div>
+    </a>
     <ul class="navigation-container">
         <?php
          include "../../Components/Navbar/Navbar-Item.php";
          generateNavItem($dashboard, "Dashboard", "home-sharp", "../../Pages/Dashboard/Resident-Dashboard.php");
          generateNavItem($services, "Services", "document", "../../Pages/Services/Resident-Services.php");
          generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Announcements/Resident-announcements.php");
-         generateNavItem($contacts, "Contacts", "call", "../../Pages/Contact us/Contacts.php");
+         generateNavItem($contacts, "Contact us", "call", "../../Pages/Contact us/Contacts.php");
         ?>
         <!-- Logout -->
         <li class="sidebar-item logout">
