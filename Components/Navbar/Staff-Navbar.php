@@ -69,7 +69,7 @@ function attachNavbar($page){
             generateNavItem($employees, "Employees", "person", "../../Pages/Employees/Employees.php");
         }
         if($access['attendance']){
-            generateNavItem($attendance, "Attendance", "checkmark-circle", "../../Pages/Dashboard/Dashboard.php");
+            generateNavItem($attendance, "Attendance", "checkmark-circle", "../../Pages/Attendance/Attendance.php");
         }
         if($access['services']){
             generateNavItem($services, "Services", "document", "../../Pages/Services/Services.php");

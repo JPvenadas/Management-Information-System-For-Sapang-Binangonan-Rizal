@@ -92,6 +92,7 @@ if(isset($_POST['signup'])){
     $lastName = validate($_SESSION['registration-lastName']);
     $extension = validate($_SESSION['registration-extension']);
     $userName = "@$firstName$middleName$lastName$extension";
+    $userName = str_replace(' ', '', $userName);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $userType = "Resident";
     $accountStatus = "Inactive";

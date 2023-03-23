@@ -32,7 +32,7 @@ if(isset($_POST["search_button_employees"])){
 
 function getResidents(){
     $conn = openCon();
-    $command = "SELECT `residentID`, CONCAT(`firstName`,' ',`middleName`,' ',`lastName`) as 'fullName' from tbl_residents where `archive` = 'false'";
+    $command = "SELECT `residentID`, CONCAT(`firstName`,' ',`middleName`,' ',`lastName`) as 'fullName' from tbl_residents where `archive` = 'false' and `registrationStatus` = 'Verified'";
     $result = mysqli_query($conn, $command);
     $residents = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);

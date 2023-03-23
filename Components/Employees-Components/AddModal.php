@@ -1,6 +1,6 @@
 <?php require "Datalists.php"?>
 <div id="add-modal" class="modal-background-blur">
-    <form  enctype="multipart/form-data" action="" method="post" class="modal-content-container">
+    <form  enctype="multipart/form-data" action="?" method="post" class="modal-content-container">
         <div onclick="closeAddModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>
         </div>
@@ -13,9 +13,9 @@
             <input autocomplete="off" type="text" name="residentID" list="residents" required placeholder="choose the resident's profile here" class="input">
 
             <div class="signiture-container">
-                <input placeholder="Upload a signiture" id="image-title" class="input" class="signiture-image-name" readonly
+                <input required placeholder="Upload a signiture" id="image-title" class="input" class="signiture-image-name" readonly
                     type="text">
-                <input id="signiture" name="signiture" hidden type="file">
+                <input required id="signiture" name="signiture" hidden type="file">
                 <label class="signiture-button" for="signiture">
                     <p>Upload</p>
                 </label>

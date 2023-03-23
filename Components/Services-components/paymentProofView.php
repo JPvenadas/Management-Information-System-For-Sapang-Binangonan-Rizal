@@ -13,7 +13,9 @@
         body.style.overflowY = "auto"
     }
 
-    function openProofModal() {
+    function openProofModal(id) {
+        let proofImage = document.querySelector(`#payment-image-${id}`).src
+        document.querySelector('.proof-image').src = proofImage
         proofModal.style.display = "flex"
         body.style.overflowY = "hidden"
     }

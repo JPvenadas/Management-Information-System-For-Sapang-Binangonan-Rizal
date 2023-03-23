@@ -65,7 +65,7 @@
         </div>
         <div class="divider"></div>
         <div class="button-container">
-        <div id="payment-proof-button" class="gcash-button" type="submit" name="archive_transaction">
+        <div onclick="showPaymentReciept()" id="payment-proof-button" class="gcash-button" type="submit" name="archive_transaction">
                 <img src="../../Images/GCash.png" alt="">
                 <p>View Payment Reciept</p>
         </div>
@@ -145,5 +145,9 @@ function openEditTransactionModal(transactionID,transactionStatus,service, Fee, 
         archiveButton.style.display = "flex";
         paymentProof.style.display = "none";
     }
+}
+
+function showPaymentReciept(){
+    openProofModal(transactionIDEdit.value);
 }
 </script>

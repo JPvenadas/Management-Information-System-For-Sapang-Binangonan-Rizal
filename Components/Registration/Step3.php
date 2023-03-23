@@ -15,7 +15,7 @@
 
         <!-- Street -->
         <label class="label" for="address">Address</label>
-        <input placeholder="Exact Address (ex. Street, Home no.)" required id="address" name="address" class="input" type="text"
+        <input autocomplete="off" placeholder="Exact Address (ex. Street, Home no.)" required id="address" name="address" class="input" type="text"
         value="<?php inputContent('address'); ?>">
 
         <!-- Voter Status -->
@@ -34,8 +34,7 @@
         value="<?php inputContent('occupation'); ?>">
 
         <!-- Resident Categories -->
-        <label class="label" for="residentCategory">Resident Category (Optional)</label>
-        <input list="residentCategory" placeholder="Other Categories (ex. PWD, Indigent, etc)" id="residentCategory" name="residentCategory" class="input" type="text"
+        <input list="residentCategory" placeholder="Other Categories (ex. PWD, Indigent, etc)" id="residentCategory" name="residentCategory" class="input" type="hidden"
         value="<?php inputContent('residentCategory'); ?>">
 
         <div class="multiple-choice-container">

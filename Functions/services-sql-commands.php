@@ -53,7 +53,7 @@ function getResidents(){
     $conn = openCon();
     $command = "SELECT r.residentID, CONCAT(`firstName`,' ', LEFT(`middleName`, 1),' ',`lastName`,' ', `extension`) as `fullName`,`birthDate`,`image`, `purok`
                 FROM tbl_residents as r INNER JOIN tbl_userAccounts as u on u.residentID = r.residentID
-                WHERE r.archive = 'false'";
+                WHERE r.archive = 'false' and r.registrationStatus = 'Verified'";
     $result = mysqli_query($conn, $command);
     $residents = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);

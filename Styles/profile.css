@@ -308,7 +308,7 @@ body{
     gap: 30px;
 }
 .proof-image{
-    width: 50%;
+    height: 90%;
 }
 .modal-close-button-2{
     position: absolute;
