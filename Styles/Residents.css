@@ -282,13 +282,12 @@ body{
 .nav-list li a{
     display: inline-block;
     flex-shrink: 0;
-    width: 180px;
     height: 37px;
     line-height: 37px;
     font-weight: 700;
     font-size: 14px;
     color: #002C4B;
-    padding: 0 10px;
+    padding: 20px 30px;
 }
 .underline{
     border-bottom: 3px solid #195FA0;

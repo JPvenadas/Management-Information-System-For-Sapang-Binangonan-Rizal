@@ -75,7 +75,7 @@ function attachNavbar($page){
             generateNavItem($services, "Services", "document", "../../Pages/Services/Services.php");
         }
         if($access['events']){
-            generateNavItem($events, "Events", "calendar", "../../Pages/Dashboard/Dashboard.php");
+            generateNavItem($events, "Events", "calendar", "../../Pages/Events/Events.php");
         }
         if($access['announcements']){
             generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Dashboard/Dashboard.php");
