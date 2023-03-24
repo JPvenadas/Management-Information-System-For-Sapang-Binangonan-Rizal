@@ -19,7 +19,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/attendancE.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/attendance.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
     <!-- a script to prevent the "confirm resubmission" alert -->
     <script>
@@ -30,6 +30,11 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 </head>
 
 <body>
+    <div class="error-container">
+        <?php if (isset($_GET['error'])) { ?>
+        <p class="error"><?php echo $_GET['error']; ?></p>
+        <?php } ?>
+    </div>
      <!-- Attach the navbar -->
      <?php 
     if($_SESSION['userType'] == "Administrator"){
@@ -49,6 +54,10 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         
         require "../../Components/Attendance-components/Filters.php";
         require "../../Components/Attendance-components/AttendanceList.php";
+
+
+        //modal
+        require "../../Components/Attendance-components/VerificationModal.php";
         ?>
     </div>
 

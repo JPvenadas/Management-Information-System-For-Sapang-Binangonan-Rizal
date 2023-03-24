@@ -1,0 +1,280 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+body{
+    display: flex;
+    color: #2E2E2E;
+    background: white;
+}
+button, input{
+    border-style: none;
+    outline-style: none;
+}
+.main-content{
+    margin-left: 300px;
+    padding: 0 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: calc(100% - 300px);
+}
+
+/* filter-section ********************/
+.filter-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 65px;
+}
+.filter-section div{
+    display: flex;
+    align-items: center;
+}
+.filter-section .filter-input{
+    padding: 12px 30px;
+    font-size: 14px;
+    color: #002C4B;
+    width: 380px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    transition: .4s ease;
+}
+.filter-section .right{
+    background: #EDEDED;
+    display: flex;
+    gap:15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.filter-section .right p{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    color: #515151;
+}
+.filter-section .right input{
+    width: 150px;
+    height: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: gray;
+}
+.search-button{
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    transition: .4s ease;
+    background: #195FA0;
+    color: white;
+}
+.search-button:hover{
+    background: #c4d9ee;
+    transition: .4s ease;
+}
+.section-title{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    color: #002C4B;
+}
+.current-attendance-container{
+    display: flex;
+    flex-direction: column;
+}
+.current-attendance-item{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    height: 75px;
+    width: 100%;
+    padding: 0 20px;
+}
+.current-attendance-item .left h4{
+    font-weight: 700;
+    font-size: 14px;
+    color: #2E2E2E;
+}
+.current-attendance-item .left p{
+    font-weight: 400;
+    font-size: 12px;
+    color: #2E2E2E;
+}
+.attendance-button, .timed-button{
+    width: 138px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.attendance-button{
+    background: #ffffff;
+    color: #195FA0;
+    border: .5px solid #8ec8fe;
+}
+.timed-button{
+    background: #9c9c9c;
+    color: white;
+}
+.attendance-button ion-icon, .timed-button ion-icon{
+    font-size: 20px;
+}
+.attendance-button p, .timed-button p{
+    font-weight: bold;
+    font-size: 12px;
+}
+.current-attendance-item .right{
+    display: flex;
+    gap: 15px;
+}
+.modal-background-blur{
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.52);
+    left: 0;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: spawn .4s ease forwards;
+    transform: scale(.98);
+}
+.modal-content-container{
+    width: 720px;
+    padding: 40px 0;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.modal-close-button{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    background: white;
+}
+@keyframes spawn{
+    from{opacity: 0; transform: scale(.98);}
+    to{opacity: 1; transform: scale(1);}
+}
+.button-container{
+    width: 560px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.button-container button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background: #195FA0;
+    gap: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 7px rgb(0 0 0 / 10%);
+}
+.button-container button p, .button-container button ion-icon {
+    font-weight: 700;
+    font-size: 12px;
+    color: rgb(255, 255, 255)
+}
+.button-container button ion-icon{
+    font-size: 24px !important;
+}
+.error-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 80px;
+}
+.error{
+    padding: 10px 20px;
+    width: 500px;
+    text-align: center;
+    background: rgba(255, 0, 0, 0.685);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    animation: fade forwards 3s;
+}
+@keyframes fade{
+    0%{
+        opacity: 1;
+        display: block;
+    }
+    80%{
+        opacity: 1;
+        display: block
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+.profile-container{
+    width: 500px;
+    display: flex;   
+    gap: 20px;
+    align-items: center;
+}
+.profile-image img{
+    width: 80px;
+    height: 80px;
+    background: black;
+    border-radius: 100%;
+}
+.profile-information h4{
+    color: #002C4B;
+    font-size: 16px;
+    font-weight: 700;
+}
+.profile-information p{
+    font-size: 14px;
+    font-weight: 700;
+    color: #515151;
+}
+.verification-container{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.verification-container p{
+    font-size: 14px;
+    font-weight: 500;
+    color: #515151;
+}
+.password-input{
+    width: 499px;
+    height: 50px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 0 20px;
+}
+.hide{
+    display: none;
+}

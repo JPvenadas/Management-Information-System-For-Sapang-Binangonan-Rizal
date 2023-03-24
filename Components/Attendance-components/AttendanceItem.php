@@ -1,20 +1,48 @@
 <?php 
 function generateItem($employee){
 ?>
-<form method="post" action="" class="current-attendance-item">
+<div class="current-attendance-item">
     <div class="left">
+        <input type="hidden" value="<?php echo $employee['attendanceID']?>">
+        <img id="image-<?php echo $employee['employeeID']?>" style="display:none;" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($employee['image']); ?>" alt="">
         <h4><?php echo $employee['fullName']?></h4>
         <p><?php echo $employee['position']?></p>
     </div>
     <div class="right">
-        <button class="timed-button">
+        <?php if(!empty($employee['timeIn'])){?>
+            <button class="timed-button">
+                <ion-icon name="time"></ion-icon>
+                <p><?php echo date("h:i A", strtotime($employee['timeIn']))?></p>
+             </button>
+        <?php }else{?>
+            <button onclick="openVerifyModal('<?php echo $employee['employeeID']?>',
+                                        '<?php echo $employee['fullName']?>',
+                                        '<?php echo $employee['position']?>',
+                                        'timeIn')" class="attendance-button">
             <ion-icon name="time"></ion-icon>
-            <p>8:38 AM</p>
-        </button>
-        <button class="attendance-button">
+            <p>Time in</p>
+            </button>
+            
+            <button disabled style="cursor:not-allowed" class="attendance-button">
             <ion-icon name="log-out"></ion-icon>
             <p>Time out</p>
-        </button>
+            </button>
+        <?php }?>
+        
+        <?php if(!empty($employee['timeIn']) and empty($employee['timeOut'])){?>
+            <button onclick="openVerifyModal('<?php echo $employee['employeeID']?>',
+                                        '<?php echo $employee['fullName']?>',
+                                        '<?php echo $employee['position']?>',
+                                        'timeOut')" class="attendance-button">
+            <ion-icon name="log-out"></ion-icon>
+            <p>Time out</p>
+            </button>
+        <?php }elseif(!empty($employee['timeOut'])){?>
+            <button class="timed-button">
+                <ion-icon name="log-out"></ion-icon>
+                <p><?php echo date("h:i A", strtotime($employee['timeOut']))?></p>
+             </button>
+        <?php }?>
     </div>
-</form>
+</div>
 <?php } ?>

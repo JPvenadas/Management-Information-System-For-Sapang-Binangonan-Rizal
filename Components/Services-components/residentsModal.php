@@ -32,7 +32,7 @@
     filterResident.addEventListener('input', (input) =>{
     filtercontent(input.target.value);
     })
-    let filtercontent= (input)=>{
+    let filtercontent = (input)=>{
 
     for(var i=0; i<residentsList.length; i++){
             var child = residentsList[i];
