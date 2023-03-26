@@ -34,4 +34,31 @@ require "db_conn.php";
         mysqli_close($conn);
         return $events;
     }
+    if(isset($_POST['add_event'])){
+        $conn = openCon();
+        $eventName = $_POST['eventName'];
+        $eventDescription = $_POST['eventDescription'];
+        $schedule = $_POST['schedule'];
+        $command = "INSERT INTO `tbl_events`(`eventName`, `eventDescription`, `Schedule`, `archive`) 
+                                     VALUES ('$eventName','$eventDescription','$schedule','false')";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+    }
+    if(isset($_POST['save_event'])){
+        $conn = openCon();
+        $eventID = $_POST['eventID'];
+        $eventName = $_POST['eventName'];
+        $eventDescription = $_POST['eventDescription'];
+        $schedule = $_POST['schedule'];
+        $command = "UPDATE `tbl_events` SET `eventName`='$eventName',`eventDescription`='$eventDescription',`Schedule`='$schedule' WHERE `eventID` = '$eventID'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+    }
+    if(isset($_POST['archive_event'])){
+        $conn = openCon();
+        $eventID = $_POST['eventID'];
+        $command = "UPDATE `tbl_events` SET `archive`='true' WHERE `eventID` = '$eventID'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+    }
 ?>

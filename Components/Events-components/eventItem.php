@@ -1,7 +1,10 @@
 <?php
 function generateItem($event){
 ?>
-<button onclick="" type="submit" name="view_resident_button" class="event-record">
+<button onclick="openEditModal('<?php echo $event['eventID']?>',
+                               '<?php echo $event['eventName']?>',
+                               '<?php echo $event['eventDescription']?>',
+                               '<?php echo $event['Schedule']?>')" type="submit" name="view_resident_button" class="event-record">
     <div class="left">
         <div class="record-info">
             <p class="event-name"><?php echo $event['eventName']?></p>

@@ -55,9 +55,20 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         <!-- Attach the filter options -->
         <?php require "../../Components/Events-components/Filters.php"?>
 
-        <!-- display list of events -->
-        <?php require "../../Components/Events-components/eventsList.php"?>
+        <?php 
+        //display the list of events
+        require "../../Components/Events-components/eventsList.php";
+
+        // floating add button
+        require "../../Components/Events-components/floatingButton.php";
+        ?>
     </main>
+
+    <?php
+        // add modal
+        require "../../Components/Events-components/addEventModal.php";
+        require "../../Components/Events-components/editEventModal.php";
+    ?>
 
     <!-- Script for Ionic Icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
