@@ -3,9 +3,9 @@ require "db_conn.php";
 
     function getSelectCommandByFilter(){
         if(isset($_GET['filter']) and $_GET['filter'] == 'history'){
-            return "SELECT * FROM `tbl_events` WHERE `archive` = 'false' AND `Schedule` < CURDATE()";
+            return "SELECT * FROM `tbl_events` WHERE `archive` = 'false' AND `start` < CURDATE()";
         }else{
-            return "SELECT * FROM `tbl_events` WHERE `archive` = 'false' AND `Schedule` > CURDATE()";
+            return "SELECT * FROM `tbl_events` WHERE `archive` = 'false' AND `start` > CURDATE()";
         }
     }
     function searchFilter(){
@@ -38,9 +38,10 @@ require "db_conn.php";
         $conn = openCon();
         $eventName = $_POST['eventName'];
         $eventDescription = $_POST['eventDescription'];
-        $schedule = $_POST['schedule'];
-        $command = "INSERT INTO `tbl_events`(`eventName`, `eventDescription`, `Schedule`, `archive`) 
-                                     VALUES ('$eventName','$eventDescription','$schedule','false')";
+        $start = $_POST['start'];
+        $end = $_POST['end'];
+        $command = "INSERT INTO `tbl_events`(`eventName`, `eventDescription`, `start`,`end`, `archive`) 
+                                     VALUES ('$eventName','$eventDescription','$start','$end','false')";
         mysqli_query($conn, $command);
         mysqli_close($conn);
     }
@@ -49,8 +50,9 @@ require "db_conn.php";
         $eventID = $_POST['eventID'];
         $eventName = $_POST['eventName'];
         $eventDescription = $_POST['eventDescription'];
-        $schedule = $_POST['schedule'];
-        $command = "UPDATE `tbl_events` SET `eventName`='$eventName',`eventDescription`='$eventDescription',`Schedule`='$schedule' WHERE `eventID` = '$eventID'";
+        $start = $_POST['start'];
+        $end = $_POST['end'];
+        $command = "UPDATE `tbl_events` SET `eventName`='$eventName',`eventDescription`='$eventDescription',`start`='$start', `end`='$end' WHERE `eventID` = '$eventID'";
         mysqli_query($conn, $command);
         mysqli_close($conn);
     }

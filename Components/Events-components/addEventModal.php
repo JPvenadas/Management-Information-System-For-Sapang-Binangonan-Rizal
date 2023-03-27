@@ -12,8 +12,12 @@
                     <input required class="input" name="eventName" type="text" placeholder="Event Name">
                 </div>
                 <div>
-                    <p class="label">Schedule</p>
-                    <input required class="input" name="schedule" min="<?php echo date('Y-m-d');?>" type="text" onfocus="(this.type = 'date')" placeholder="Date and Time of Event">
+                    <p class="label">Date Start</p>
+                    <input required class="input" name="start" min="<?php echo date('Y-m-d');?>" type="text" onfocus="(this.type = 'date')" placeholder="Date and Time of Event">
+                </div>
+                <div>
+                    <p class="label">Date End</p>
+                    <input required class="input" name="end" min="<?php echo date('Y-m-d');?>" type="text" onfocus="(this.type = 'date')" placeholder="Date and Time of Event">
                 </div>
                 <div>
                     <p class="label">Event Description</p>

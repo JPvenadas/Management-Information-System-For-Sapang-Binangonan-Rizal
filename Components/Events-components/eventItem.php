@@ -4,11 +4,12 @@ function generateItem($event){
 <button onclick="openEditModal('<?php echo $event['eventID']?>',
                                '<?php echo $event['eventName']?>',
                                '<?php echo $event['eventDescription']?>',
-                               '<?php echo $event['Schedule']?>')" type="submit" name="view_resident_button" class="event-record">
+                               '<?php echo $event['start']?>',
+                               '<?php echo $event['end']?>')" type="submit" name="view_resident_button" class="event-record">
     <div class="left">
         <div class="record-info">
             <p class="event-name"><?php echo $event['eventName']?></p>
-            <p class="date"><?php echo date("F, d, Y", strtotime($event['Schedule']))?></p>
+            <p class="date"><?php echo date("F, d, Y", strtotime($event['start'])) . " - " . date("F, d, Y", strtotime($event['end']))?></p>
         </div>
     </div>
     <div class="action">
