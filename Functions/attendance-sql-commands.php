@@ -71,6 +71,7 @@ if(isset($_POST["browse_records"])){
     header("Location: ../../Pages/Attendance/Attendance.php?date=$date");
     exit();
 }
+
 function getEmployeeByDate(){
     $conn = openCon();
     $date = $_GET['date'];
@@ -84,4 +85,6 @@ function getEmployeeByDate(){
     mysqli_close($conn);
     return $attendance;
 }
+
+
 ?>

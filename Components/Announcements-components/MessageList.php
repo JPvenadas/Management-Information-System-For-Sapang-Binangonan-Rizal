@@ -6,7 +6,6 @@
     }    
 ?>
 </div>
-
 <script>
     var objDiv = document.querySelector(".messages-container");
     objDiv.scrollTop = objDiv.scrollHeight;

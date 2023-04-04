@@ -1,5 +1,5 @@
 <form method="post" action="../../Pages/Announcements/Announcements.php" class="new-message-container">
-    <textarea required name="message" placeholder="Type your Message here" class="message-input"></textarea>
+    <textarea required name="message" placeholder="Type your Message here" class="message-input"><?php if(isset($_GET['message'])){echo $_GET['message'];}?></textarea>
     <div class="relative">
         <?php
             //include the filter modal 

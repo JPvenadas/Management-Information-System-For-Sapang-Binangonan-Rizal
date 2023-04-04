@@ -46,5 +46,8 @@
     function openAddModal() {
     addModal.style.display = "flex"
     body.style.overflowY = "hidden"
+    
+    calendar.style.display = 'none'
+    calendarStatus = !calendarStatus
     }
 </script>

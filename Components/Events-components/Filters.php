@@ -34,8 +34,32 @@ $scheduled=""; $history="";
         <button name="search_button" type="submit" class="search-button">
             <ion-icon name="search-outline"></ion-icon>
         </button>
-        <div class="calendar-view">
-            <ion-icon name="calendar-outline"></ion-icon>
+        <div class="calendar-container">
+            <div class="calendar-panel">
+                    <?php require "calendarView.php"?>
+            </div>
+            <div class="calendar-view">
+                <ion-icon name="calendar-outline"></ion-icon>
+            </div>
         </div>
     </form>
 </div>
+
+<script>
+    let calendar = document.querySelector('.calendar-panel');
+    let calendarButton = document.querySelector('.calendar-view');
+    let calendarStatus = false;
+
+    calendarButton.addEventListener('click', ()=>{
+       showCalendar();
+    })
+
+    const showCalendar = () =>{
+        if(calendarStatus){
+            calendar.style.display = 'none'
+       }else{
+        calendar.style.display = 'block'
+       }
+       calendarStatus = !calendarStatus
+    }
+</script>

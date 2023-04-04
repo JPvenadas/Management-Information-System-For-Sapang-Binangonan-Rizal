@@ -30,6 +30,10 @@
                     <ion-icon name="archive"></ion-icon>
                     <p>Archive</p>
                 </button>
+                <button type="submit" id="announce" name="announce_event">
+                    <ion-icon name="chatbubble"></ion-icon>
+                    <p>Announce</p>
+                </button>
                 <button type="submit" name="save_event">
                     <ion-icon name="settings"></ion-icon>
                     <p>Save</p>
@@ -61,5 +65,14 @@
 
         editModal.style.display = "flex"
         body.style.overflowY = "hidden"
+       
+        calendar.style.display = 'none'
+        calendarStatus = !calendarStatus
+
+        if(new Date(start) > new Date()){
+            document.querySelector("#announce").style.display = 'flex';
+        }else{
+            document.querySelector("#announce").style.display = 'none';
+        }
     }
 </script>

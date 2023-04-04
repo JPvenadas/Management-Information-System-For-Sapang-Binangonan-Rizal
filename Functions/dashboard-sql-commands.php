@@ -59,7 +59,7 @@ function getRevenues($month){
 }
 function getUpcomingEvents(){
     $conn = openCon();
-    $command = "SELECT * FROM tbl_events WHERE `Schedule` >= CURDATE() ORDER BY `Schedule` ASC LIMIT 3";
+    $command = "SELECT * FROM tbl_events WHERE `start` >= CURDATE() ORDER BY `start` ASC LIMIT 3";
     $result = mysqli_query($conn, $command);
     $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_close($conn);

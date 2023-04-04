@@ -95,7 +95,7 @@ function getContactsCustom(){
     mysqli_close($conn);
     return $contact;
 }
-
+// resident side announcements
 function getResidentUser(){
     $conn = openCon();
     $residentID = $_SESSION['residentID'];

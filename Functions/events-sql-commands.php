@@ -63,4 +63,13 @@ require "db_conn.php";
         mysqli_query($conn, $command);
         mysqli_close($conn);
     }
+    if(isset($_POST['announce_event'])){
+        $start = date("F, d", strtotime($_POST['start']));
+        $end = $_POST['end'];
+        $description = $_POST['eventDescription'];
+        $name = $_POST['eventName'];
+        $message = "Good Day Kabarangay! our Barangay will be having $name starting this $start, '$description'";
+        header("Location: ../../Pages/Announcements/Announcements.php?message=$message");
+        exit();
+    }
 ?>

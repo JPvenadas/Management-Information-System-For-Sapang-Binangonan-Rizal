@@ -20,8 +20,15 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/Events.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/event.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
+
+    <!-- Calendar resources -->
+    <link rel="stylesheet" href="../../fullcalendar/fullcalendar.min.css" />
+    <script src="../../fullcalendar/lib/jquery.min.js"></script>
+    <script src="../../fullcalendar/lib/moment.min.js"></script>
+    <script src="../../fullcalendar/fullcalendar.min.js"></script>
+
     <!-- a script to prevent the "confirm resubmission" alert -->
     <script>
     if (window.history.replaceState) {
@@ -57,6 +64,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 
         <?php 
         //display the list of events
+        
         require "../../Components/Events-components/eventsList.php";
 
         // floating add button
