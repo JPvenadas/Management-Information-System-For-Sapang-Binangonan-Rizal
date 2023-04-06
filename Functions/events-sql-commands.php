@@ -5,7 +5,7 @@ require "db_conn.php";
         if(isset($_GET['filter']) and $_GET['filter'] == 'history'){
             return "SELECT * FROM `tbl_events` WHERE `archive` = 'false' AND `start` < CURDATE()";
         }else{
-            return "SELECT * FROM `tbl_events` WHERE `archive` = 'false' AND `start` > CURDATE()";
+            return "SELECT * FROM `tbl_events` WHERE `archive` = 'false' AND `start` >= CURDATE()";
         }
     }
     function searchFilter(){

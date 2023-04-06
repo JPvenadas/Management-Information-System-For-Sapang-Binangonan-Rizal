@@ -141,6 +141,7 @@ button, input{
     display: flex;
     gap: 15px;
 }
+/********************** Verification modal */
 .modal-background-blur{
     position: fixed;
     z-index: 10;

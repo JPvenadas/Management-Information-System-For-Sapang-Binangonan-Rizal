@@ -162,7 +162,7 @@ function EXPORT_DATABASE($host,$user,$pass,$name,       $tables=false, $backup_n
 }
 function DropTables(){
     $conn = openCon();
-    $command = "DROP TABLE IF EXISTS tbl_accessControl, tbl_attendance, tbl_committee, tbl_contacts, tbl_employees, tbl_events, tbl_inventoryList, tbl_positions, tbl_purok, tbl_residents, tbl_services, tbl_transactions, tbl_userAccounts, tbl_announcements";
+    $command = "DROP TABLE IF EXISTS tbl_accessControl, tbl_attendance, tbl_committee, tbl_contacts, tbl_employees, tbl_events, tbl_inventoryList, tbl_positions, tbl_purok, tbl_residents, tbl_services, tbl_transactions, tbl_userAccounts, tbl_announcements, tbl_curfewViolators, tbl_hearings, tbl_blotters";
     mysqli_query($conn, $command);
 }
 function restoreMysqlDB($filePath, $conn)

@@ -170,7 +170,7 @@ if(isset($_POST['submit_request'])){
     $purpose = $_POST['purpose'];
     $dateRequested = date('y/m/d');
     if($_POST['serviceType'] == "Document"){
-        $transactionStatus = "Processed";
+        $transactionStatus = "Unprocessed";
     }else{
         $transactionStatus = "Finished";
     }

@@ -4,7 +4,7 @@
             <ion-icon name="close"></ion-icon>
         </div>
         <div class="modal-title">
-            <h3>Barangat Event</h3>
+            <h3>Barangay Event</h3>
             <p>You can view or edit the information below</p>
             <div class="inputs">
                 <input type="hidden" id="event-id" name="eventID">
