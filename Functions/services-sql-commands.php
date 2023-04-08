@@ -13,7 +13,7 @@ function getServices(){
 }
 function getRequests(){
     $conn = openCon();
-    $command = "SELECT `transactionID`,t.residentID, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, t.serviceName, s.serviceFee, s.serviceType, `transactionStatus`, `purpose`,`dateRequested`,paymentProof, paymentProof IS NOT NULL AS paymentNotNull
+    $command = "SELECT `transactionID`,t.residentID, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, t.serviceName, s.serviceFee, s.serviceType, `transactionStatus`, `purpose`,`dateRequested`,paymentProof
                 FROM `tbl_transactions` as t inner JOIN tbl_residents as r
                 on r.residentID = t.residentID inner join tbl_services as s
                 on s.serviceName = t.serviceName WHERE `transactionStatus` = 'Unprocessed'";

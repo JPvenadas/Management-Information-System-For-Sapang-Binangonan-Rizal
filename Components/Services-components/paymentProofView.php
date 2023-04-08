@@ -1,11 +1,11 @@
-<div class="modal-background-blur proof-modal">
+<div id="proof-modal" class="modal-background-blur">
     <button onclick="closeProofModal()" class="modal-close-button-2">
         <ion-icon name="close"></ion-icon>
     </button>
     <img class="proof-image" src="" alt="">
 </div>
  <script>
-    let proofModal = document.querySelector('.proof-modal')
+    let proofModal = document.querySelector('#proof-modal')
     proofModal.style.display = 'none'
 
     function closeProofModal() {

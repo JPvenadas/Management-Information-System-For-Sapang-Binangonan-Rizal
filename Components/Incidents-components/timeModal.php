@@ -15,9 +15,9 @@ date_default_timezone_set('Asia/Manila');
                 <p id="age"></p>
             </div>
         </div>
-        <div class="verification-container">
+        <div class="information-container">
             <p>To facilitate the recording of your report, we kindly request that you provide the exact date and time when the alleged violation occurred. Please enter this information in the corresponding date and time fields</p>
-            <div style="display: flex">
+            <div style="display: flex; gap: 10px;">
                  <input type="hidden" name="residentID" id="residentID" value="">
                  <input type="date" class="date-input" id="date" name="date" max="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" required>
                  <input type="time" class="date-input" name="time" value="<?php echo date('H:i'); ?>"  min="00:00" />

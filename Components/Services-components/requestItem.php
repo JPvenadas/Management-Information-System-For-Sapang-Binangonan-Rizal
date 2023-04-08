@@ -10,7 +10,7 @@ function generateRequest($transaction){
                                           '<?php echo $transaction['residentID']?>',
                                           '<?php echo $transaction['fullName']?>',
                                           '<?php echo $transaction['purpose']?>',
-                                          '<?php echo $transaction['paymentNotNull']?>')" type="submit" name="view_resident_button" class="transaction-record">
+                                          '<?php echo !empty($transaction['paymentProof'])?>')" type="submit" name="view_resident_button" class="transaction-record">
     <div class="left">
     <?php if(!empty($transaction['paymentProof'])){?>
         <img class="payment-image" id="payment-image-<?php echo $transaction['transactionID']?>" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($transaction['paymentProof']); ?>" alt="">

@@ -5,7 +5,7 @@
             <ion-icon name="close"></ion-icon>
         </div>
         <div class="modal-header">
-            <h3>Select the curfew violator</h3>
+            <h3>Select the Resident</h3>
             <input id="resident-filter" type="text" placeholder="Search Resident here" class="searchbar-transactions">
         </div>
         <div id="residents-list" class="resident-items-container">
@@ -47,14 +47,17 @@
     let body = document.querySelector('body')
     residentsModal.style.display = "none"
 
+    let action = "";
+
     function closeResidentModal() {
         residentsModal.style.display = "none"
         body.style.overflowY = "auto"
     }
 
-    function openResidentModal() {
+    function openResidentModal(purpose) {
+        action = purpose;
         residentsModal.style.display = "flex"
         body.style.overflowY = "hidden"
-
+        closeAddBlotterModal();
     }
 </script>

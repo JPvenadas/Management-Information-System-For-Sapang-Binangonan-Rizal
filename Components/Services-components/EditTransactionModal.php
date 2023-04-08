@@ -148,6 +148,5 @@ function openEditTransactionModal(transactionID,transactionStatus,service, Fee, 
 }
 
 function showPaymentReciept(){
-    openProofModal(transactionIDEdit.value);
-}
+    openProofModal(transactionIDEdit.value);}
 </script>

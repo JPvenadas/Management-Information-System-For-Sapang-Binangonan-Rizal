@@ -7,7 +7,24 @@ function solveAge($birthDate){
 function generateResidentItem($resident){
 
 ?>
-<button onclick="openTimeModal('<?php echo $resident['residentID']?>',
+<script>
+    function modalAction(ID, name, birthDate){
+        if(action === "curfewViolator"){
+            openTimeModal(ID,name, birthDate)
+        }else if(action === "complainant"){
+            document.querySelector('#complainant-ID').value = ID
+            document.querySelector('#complainant-fullName').value = name
+            openAddBlotterModal()
+            closeResidentModal()
+        }else if(action === "defendant"){
+            document.querySelector('#defendant-ID').value = ID
+            document.querySelector('#defendant-fullName').value = name
+            openAddBlotterModal()
+            closeResidentModal()
+        }
+    }
+</script>
+<button onclick="modalAction('<?php echo $resident['residentID']?>',
                                '<?php echo $resident['fullName']?>',
                                '<?php echo solveAge($resident['birthDate'])?>')" type="submit" name="view_resident_button" class="resident-item-record">
     <div class="resident-info-container">

@@ -44,7 +44,7 @@
           child.classList.add('hide');
        }
     }
-}
+    }
 
  //Opening and closing of Modal
  let residentsModal = document.getElementById('residents-modal')

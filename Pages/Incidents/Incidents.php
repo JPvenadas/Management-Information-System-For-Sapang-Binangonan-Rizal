@@ -67,6 +67,10 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         include "../../Components/Incidents-components/residentsModal.php";
         include "../../Components/Incidents-components/timeModal.php";
         include "../../Components/Incidents-components/editCurfewModal.php";
+        include "../../Components/Incidents-components/addBlotterModal.php";
+        include "../../Components/Incidents-components/editBlotterModal.php";
+        include "../../Components/Incidents-components/NarrativeReportView.php";
+        include "../../Components/Incidents-components/nextHearingModal.php";
         
         ?>
     </main>

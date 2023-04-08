@@ -216,10 +216,15 @@ body{
 .modal-title{
     width: 560px;
 }
+.modal-title h3{
+    font-weight: 700;
+    font-size: 20px;
+    color: #002C4B;
+}
 .modal-title p{
     font-weight: 700;
-    font-size: 24px;
-    color: #002C4B;
+    font-size: 12px;
+    color: #3a3a3a;
 }
 .header, .modal-header h3{
     line-height: 37px;
@@ -373,17 +378,6 @@ body{
     font-weight: 700;
     color: #515151;
 }
-.verification-container{
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.verification-container p{
-    font-size: 14px;
-    font-weight: 500;
-    color: #515151;
-}
 .date-input{
     width: 499px;
     height: 50px;
@@ -391,6 +385,18 @@ body{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 0 20px;
+}
+.information-container{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.information-container p{
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: 600;
+    color:rgb(59, 59, 59);
 }
 /* ************* edit curfew modal */
 .curfew-information{
@@ -410,4 +416,122 @@ body{
 }
 .white-button *{
     color: rgb(57, 57, 57) !important;
+}
+/********************************** add blotter Modal */
+.blotter-inputs{
+    width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.blotter-input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.flex{
+    display: flex;
+}
+.input{
+    width: 100%;
+    height: 43px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    padding: 0 20px;
+}
+.long-input{
+    height: 80px;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    padding: 0 20px;
+}
+.input-container p{
+    font-weight: 700;
+    font-size: 15px;
+    color: #002C4B;
+}
+::placeholder{
+    color: #A0AAB1;
+}
+.input-container{
+    display: flex
+}
+.input-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 6%);
+    border-radius: 5px;
+    width: 120px;
+    height: 43px;
+}
+.label{
+    font-weight: 700;
+    font-size: 13px;
+    color:#1b5a95
+}
+/* ****************** edit curfew modal */
+.small-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 13px;
+    color:#195FA0;
+    font-weight: 600;
+    background: white;
+    gap: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 7px rgb(0 0 0 / 10%);
+}
+.space-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hearing-container{
+    width: 560px;
+    height: 180px;
+    background: rgb(225, 225, 225);
+    border-radius: 5px;
+    padding: 8px;
+}
+.hearing{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+    height: 50px;
+    padding: 0 20px;
+}
+.hearing .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.blue{
+    background:#195FA0;
+    color: white;
+    padding: 5px 15px;
+}
+/********************* image modal */
+.image-report{
+    height: 80%;
+}
+.modal-close-button-2{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    background: none;
+}
+.modal-close-button-2 ion-icon{
+    font-size: 40px;
+    color: white;
 }

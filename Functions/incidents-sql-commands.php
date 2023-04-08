@@ -3,7 +3,11 @@
 
   function getBlotters(){
         $conn = openCon();
-        $command = "SELECT `blotterID` ,`summary`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `narrativeReport`, `hearing1`, `hearing2`, `hearing3`, `caseStatus`   FROM `tbl_blotters` as b 
+        $command = "SELECT `blotterID` ,`summary`, `narrativeReport`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `narrativeReport`, hearing1, hearing2, hearing3,
+                    ((hearing1 IS NOT NULL) + 
+                    (hearing2 IS NOT NULL) + 
+                    (hearing3 IS NOT NULL)) as totalHearing, 
+                    `caseStatus`   FROM `tbl_blotters` as b 
                     INNER JOIN tbl_residents as complainant on complainant.residentID = b.complainant 
                     INNER JOIN tbl_residents as defendant on defendant.residentID = b.defendant WHERE b.archive = 'false'";
         $command = $command . addSearchFilterBlotters();
@@ -53,7 +57,7 @@ function getResidents(){
     $conn = openCon();
     $command = "SELECT r.residentID, CONCAT(`firstName`,' ', LEFT(`middleName`, 1),' ',`lastName`,' ', `extension`) as `fullName`,`birthDate`,`image`, `purok`
                 FROM tbl_residents as r INNER JOIN tbl_userAccounts as u on u.residentID = r.residentID
-                WHERE r.archive = 'false' and r.registrationStatus = 'Verified' and birthDate > DATE_SUB(NOW(), INTERVAL 18 YEAR)";
+                WHERE r.archive = 'false' and r.registrationStatus = 'Verified'";
     $result = mysqli_query($conn, $command);
     $residents = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);
@@ -77,6 +81,66 @@ if(isset($_POST['archive_curfew'])){
     $conn = openCon();
     $recordID = $_POST['recordID'];
     $command = "UPDATE `tbl_curfewViolators` SET `archive`='true' WHERE ID = '$recordID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+
+if(isset($_POST['add_blotter'])){
+    $conn = openCon();
+    $complainant = $_POST['complainant'];
+    $defendant = $_POST['defendant'];
+    $summary = $_POST['summary'];
+    $schedule = $_POST['schedule'];
+    $narrativeReport = $_FILES["narrativeReport"]["tmp_name"];
+    $narrativeReportFile = addslashes(file_get_contents($narrativeReport));
+    $command = "INSERT INTO `tbl_blotters`(`summary`, `complainant`, `defendant`, `narrativeReport`, `hearing1`, `caseStatus`, `archive`) 
+                                   VALUES ('$summary','$complainant','$defendant','$narrativeReportFile','$schedule','Scheduled','false')";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+
+if(isset($_POST['archive_blotter'])){
+    $conn = openCon();
+    $blotterID = $_POST['blotterID'];
+    $command = "UPDATE `tbl_blotters` SET `archive`='true' WHERE blotterID = '$blotterID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+if(isset($_POST['endorse_blotter'])){
+    $conn = openCon();
+    $blotterID = $_POST['blotterID'];
+    $command = "UPDATE `tbl_blotters` SET `caseStatus`='Endorsed to the court' WHERE blotterID = '$blotterID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+if(isset($_POST['solve_blotter'])){
+    $conn = openCon();
+    $blotterID = $_POST['blotterID'];
+    $command = "UPDATE `tbl_blotters` SET `caseStatus`='Solved' WHERE blotterID = '$blotterID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+if(isset($_POST['resched'])){
+    if(isset($_POST['date_3'])){
+        changeSched('hearing3',$_POST['date_3']);
+    }elseif(isset($_POST['date_2'])){
+        changeSched('hearing2',$_POST['date_2']);
+    }else{
+        changeSched('hearing1',$_POST['date_1']);
+    }
+}
+if(isset($_POST["add_next_hearing"])){
+    if($_POST['totalHearing'] == 1){
+        changeSched('hearing2',$_POST['date']);
+    }elseif($_POST['totalHearing'] == 2){
+        changeSched('hearing3',$_POST['date']);
+    }
+}
+
+function changeSched($hearing, $value){
+    $conn = openCon();
+    $blotterID = $_POST['blotterID'];
+    $command = "UPDATE `tbl_blotters` SET `$hearing`='$value' WHERE blotterID = '$blotterID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }
