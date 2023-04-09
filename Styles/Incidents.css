@@ -338,7 +338,7 @@ body{
     justify-content: flex-end;
     gap: 8px;
 }
-.button-container button{
+.button-container button, .modal-button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -348,12 +348,12 @@ body{
     border-radius: 5px;
     box-shadow: 0px 4px 7px rgb(0 0 0 / 10%);
 }
-.button-container button p, .button-container button ion-icon {
+.button-container button p, .button-container button ion-icon, .modal-button *{
     font-weight: 700;
     font-size: 12px;
     color: rgb(255, 255, 255)
 }
-.button-container button ion-icon{
+.button-container button ion-icon, .modal-button ion-icon{
     font-size: 24px !important;
 }
 .profile-container{
@@ -534,4 +534,7 @@ body{
 .modal-close-button-2 ion-icon{
     font-size: 40px;
     color: white;
+}
+.gray-button{
+    background: gray !important;
 }

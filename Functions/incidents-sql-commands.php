@@ -3,7 +3,7 @@
 
   function getBlotters(){
         $conn = openCon();
-        $command = "SELECT `blotterID` ,`summary`, `narrativeReport`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `narrativeReport`, hearing1, hearing2, hearing3,
+        $command = "SELECT `blotterID` ,`summary`, `narrativeReport`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `caseStatus`, hearing1, hearing2, hearing3, RIGHT(complainant.contactNo, 9) as `complainantContact`, RIGHT(defendant.contactNo, 9) as  `defendantContact`, COALESCE(hearing3, hearing2, hearing1) AS latestHearing,
                     ((hearing1 IS NOT NULL) + 
                     (hearing2 IS NOT NULL) + 
                     (hearing3 IS NOT NULL)) as totalHearing, 
@@ -94,7 +94,7 @@ if(isset($_POST['add_blotter'])){
     $narrativeReport = $_FILES["narrativeReport"]["tmp_name"];
     $narrativeReportFile = addslashes(file_get_contents($narrativeReport));
     $command = "INSERT INTO `tbl_blotters`(`summary`, `complainant`, `defendant`, `narrativeReport`, `hearing1`, `caseStatus`, `archive`) 
-                                   VALUES ('$summary','$complainant','$defendant','$narrativeReportFile','$schedule','Scheduled','false')";
+                                   VALUES ('$summary','$complainant','$defendant','$narrativeReportFile','$schedule','Pending','false')";
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }
@@ -141,6 +141,14 @@ function changeSched($hearing, $value){
     $conn = openCon();
     $blotterID = $_POST['blotterID'];
     $command = "UPDATE `tbl_blotters` SET `$hearing`='$value' WHERE blotterID = '$blotterID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+
+if(isset($_POST['back_to_pending'])){
+    $conn = openCon();
+    $blotterID = $_POST['blotterID'];
+    $command = "UPDATE `tbl_blotters` SET `caseStatus`='Pending' WHERE blotterID = '$blotterID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }
