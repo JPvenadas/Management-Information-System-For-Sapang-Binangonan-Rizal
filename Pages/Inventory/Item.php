@@ -3,6 +3,7 @@ session_start();
 
 //require the sql functions
 require "../../Functions/inventory-sql-commands.php";
+$item = getSingleItem();
 
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
@@ -21,7 +22,6 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/inventory.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
 
     <!-- a script to prevent the "confirm resubmission" alert -->
     <script>
@@ -48,20 +48,13 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
     }?>
 
     <main class="main-content">
+      <?php 
+      //include the header (upper part of the page)
+      include "../../Components/Inventory-components/itemInfoHeader.php";
+      //include the item information
+      include "../../Components/Inventory-components/itemInformation.php";
+      ?>
 
-        <!-- Attach the Tab title/header -->
-        <?php require "../../Components/Tab-title.php";
-        attachTabTitle("Inventory Management")?>
-
-        <?php include "../../Components/Inventory-components/Filters.php";?>
-         <div class="list">
-            <?php include "../../Components/Inventory-components/PageContent.php";?>
-        </div>
-        <?php include "../../Components/Inventory-components/floatingButton.php";
-        
-        //include the modals
-        include "../../Components/Inventory-components/addItemModal.php";
-        ?>
     </main>
 
     <!-- Script for Ionic Icons -->
