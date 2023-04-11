@@ -5,7 +5,6 @@ function solveAge($birthDate){
     return $diff->format('%y') . " years old";
 }
 function generateResidentItem($resident){
-
 ?>
 <button onclick="selectResident('<?php echo $resident['residentID']?>',
                                 '<?php echo $resident['fullName']?>')" type="submit" name="view_resident_button" class="resident-item-record">

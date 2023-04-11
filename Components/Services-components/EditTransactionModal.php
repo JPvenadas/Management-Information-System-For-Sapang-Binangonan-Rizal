@@ -1,9 +1,7 @@
 <div id="edit-transaction-modal" class="modal-background-blur">
-    <form
-        action="../../Pages/Services/Services.php?page=<?php if(isset($_GET['page'])){
+    <form action="../../Pages/Services/Services.php?page=<?php if(isset($_GET['page'])){
             echo $_GET['page'];
-        }?>";
-        method="post" class="edit modal-content-container">
+        }?>" ; method="post" class="edit modal-content-container">
         <div onclick="closeEditTransactionModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>
         </div>
@@ -26,7 +24,7 @@
                     <p>Amount:</p>
                 </div>
                 <div class="value">
-                <input readonly type="text" id="serviceFee-edit" name="serviceFee">
+                    <input readonly type="text" id="serviceFee-edit" name="serviceFee">
                 </div>
             </div>
             <div class="record">
@@ -43,7 +41,8 @@
                     <p>issued at:</p>
                 </div>
                 <div class="value">
-                    <input readonly type="text" id="dateRequested-edit" name="dateRequested" value="<?php echo date('F d, Y')?>">   
+                    <input readonly type="text" id="dateRequested-edit" name="dateRequested"
+                        value="<?php echo date('F d, Y')?>">
                 </div>
             </div>
             <div class="record">
@@ -51,7 +50,8 @@
                     <p>Assisted by:</p>
                 </div>
                 <div class="value">
-                    <input readonly type="text" id="user" name="assistedBy-edit" value="<?php echo $_SESSION['firstName'] . ' ' . $_SESSION['middleName'][0] . '.' . ' ' . $_SESSION['lastName']?>"> 
+                    <input readonly type="text" id="user" name="assistedBy-edit"
+                        value="<?php echo $_SESSION['firstName'] . ' ' . $_SESSION['middleName'][0] . '.' . ' ' . $_SESSION['lastName']?>">
                 </div>
             </div>
             <div class="record">
@@ -59,16 +59,17 @@
                     <p>Purpose</p>
                 </div>
                 <div class="value">
-                    <input readonly type="text" id="purpose-edit" name="purpose"> 
+                    <input readonly type="text" id="purpose-edit" name="purpose">
                 </div>
             </div>
         </div>
         <div class="divider"></div>
         <div class="button-container">
-        <div onclick="showPaymentReciept()" id="payment-proof-button" class="gcash-button" type="submit" name="archive_transaction">
+            <div onclick="showPaymentReciept()" id="payment-proof-button" class="gcash-button" type="submit"
+                name="archive_transaction">
                 <img src="../../Images/GCash.png" alt="">
                 <p>View Payment Reciept</p>
-        </div>
+            </div>
             <button id="confirm-button" class="blue-button" type="submit" name="process_transaction">
                 <ion-icon name="card"></ion-icon>
                 <p>Confirm Payment</p>
@@ -82,7 +83,7 @@
                 <p>Archive</p>
             </button>
         </div>
-       
+
     </form>
 </div>
 
@@ -111,11 +112,12 @@ function closeEditTransactionModal() {
     body.style.overflowY = "auto"
 }
 //open modal with content attached
-function openEditTransactionModal(transactionID,transactionStatus,service, Fee, Type, residentID, issuer, purpose, paymentNotNull) {
+function openEditTransactionModal(transactionID, transactionStatus, service, Fee, Type, residentID, issuer, purpose,
+    paymentNotNull) {
     closeResidentModal()
     editTransactionModal.style.display = "flex";
     body.style.overflowY = "hidden";
-    
+
     transactionIDEdit.value = transactionID
     transactionStatusEdit = transactionStatus
     serviceTypeEdit.value = Type
@@ -125,21 +127,21 @@ function openEditTransactionModal(transactionID,transactionStatus,service, Fee, 
     residentIDEdit.value = residentID
     purposeEdit.value = purpose
 
-    if(transactionStatusEdit == "Unprocessed"){
+    if (transactionStatusEdit == "Unprocessed") {
         confirmButton.style.display = "flex";
         claimButton.style.display = "none";
         archiveButton.style.display = "none";
-        if(paymentNotNull == true){
+        if (paymentNotNull == true) {
             paymentProof.style.display = "flex";
-        }else{
+        } else {
             paymentProof.style.display = "none";
         }
-    }else if(transactionStatusEdit == "Processed"){
+    } else if (transactionStatusEdit == "Processed") {
         confirmButton.style.display = "none";
         claimButton.style.display = "flex";
         archiveButton.style.display = "none";
         paymentProof.style.display = "none";
-    }else{
+    } else {
         confirmButton.style.display = "none";
         claimButton.style.display = "none";
         archiveButton.style.display = "flex";
@@ -147,6 +149,7 @@ function openEditTransactionModal(transactionID,transactionStatus,service, Fee, 
     }
 }
 
-function showPaymentReciept(){
-    openProofModal(transactionIDEdit.value);}
+function showPaymentReciept() {
+    openProofModal(transactionIDEdit.value);
+}
 </script>

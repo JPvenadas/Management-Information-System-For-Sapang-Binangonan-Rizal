@@ -5,62 +5,49 @@
             <ion-icon name="close"></ion-icon>
         </div>
         <div class="modal-title">
-            <h3>Transaction Record</h3>
+            <h3>Borrowing Record</h3>
         </div>
         <div class="record-container">
-            <div class="record">
-                <div class="field">
-                    <p>Service:</p>
+            <div class="transaction-info">
+                <div class="transaction-field">
+                    <p>Borrower</p>
                 </div>
-                <div class="value">
-                    <input readonly type="text" id="serviceName-edit" name="serviceName">
-                </div>
-            </div>
-            <div class="record">
-                <div class="field">
-                    <p>Amount:</p>
-                </div>
-                <div class="value">
-                    <input readonly type="text" id="serviceFee-edit" name="serviceFee">
+                <div class="transaction-value">
+                    <p>Henry C. Dela Cruz</p>
                 </div>
             </div>
-            <div class="record">
-                <div class="field">
-                    <p>for:</p>
+            <div class="transaction-info">
+                <div class="transaction-field">
+                    <p>Item</p>
                 </div>
-                <div class="value">
-                    <input type="hidden" id="residentID-edit" name="residentID">
-                    <input readonly type="text" id="issuer-edit" name="fullName">
-                </div>
-            </div>
-            <div class="record">
-                <div class="field">
-                    <p>issued at:</p>
-                </div>
-                <div class="value">
-                    <input readonly type="text" id="dateRequested-edit" name="dateRequested"
-                        value="<?php echo date('F d, Y')?>">
+                <div class="transaction-value">
+                    <p>Barangay Boat</p>
                 </div>
             </div>
-            <div class="record">
-                <div class="field">
-                    <p>Assisted by:</p>
+            <div class="transaction-info">
+                <div class="transaction-field">
+                    <p>Quantity</p>
                 </div>
-                <div class="value">
-                    <input readonly type="text" id="user" name="assistedBy-edit"
-                        value="<?php echo $_SESSION['firstName'] . ' ' . $_SESSION['middleName'][0] . '.' . ' ' . $_SESSION['lastName']?>">
+                <div class="transaction-value">
+                    <p>1</p>
                 </div>
             </div>
-            <div class="record">
-                <div class="field">
-                    <p>Purpose</p>
+            <div class="transaction-info">
+                <div class="transaction-field">
+                    <p>date</p>
                 </div>
-                <div class="value">
-                    <input readonly type="text" id="purpose-edit" name="purpose">
+                <div class="transaction-value">
+                    <p>April, 11, 2023</p>
                 </div>
             </div>
         </div>
-        <div class="divider"></div>
+        <div class="divider-2"></div>
+        <div class="button-container">
+            <button class="modal-button" type="submit" name="add_stock_submit">
+                <ion-icon name="log-in"></ion-icon>
+                <p>Return</p>
+            </button>
+        </div>
     </form>
 </div>
 <script>

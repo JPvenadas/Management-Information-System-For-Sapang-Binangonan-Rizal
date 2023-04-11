@@ -1,7 +1,7 @@
 <?php
 function generateInUseItem($transaction){
 ?>
-<button type="submit" class="record">
+<button onclick="openEditTransactionModal()" type="submit" class="record">
     <div class="left">
         <div class="record-info">
             <h3><?php 

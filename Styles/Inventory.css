@@ -497,23 +497,29 @@ body{
 }
 /* *************** transaction modal */
 .record-container{
+    width: 560px;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
-.record{
+.transaction-info{
     display: flex;
     justify-content: space-between;
-    width: 560px;
+    align-items: center;
 }
-.record .field p{
-    font-weight: 400;
-    font-size: 15px;
-    color: #696767;
-}
-.record .value input, .record .value p{
+.transaction-value{
     font-weight: 700;
     font-size: 15px;
     color: #696767;
     text-align: right;
+}
+.transaction-field{
+    font-weight: 400;
+    font-size: 15px;
+    color: #696767;
+}
+.divider-2{
+    height: 2px;
+    background: rgb(209, 209, 209);
+    width: 100%;
 }
