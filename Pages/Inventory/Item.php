@@ -21,7 +21,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/inventory.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Inventory.css">
 
     <!-- a script to prevent the "confirm resubmission" alert -->
     <script>
@@ -53,6 +53,14 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
       include "../../Components/Inventory-components/itemInfoHeader.php";
       //include the item information
       include "../../Components/Inventory-components/itemInformation.php";
+
+
+      //include the modals
+      include "../../Components/Inventory-components/AddStockModal.php";
+      include "../../Components/Inventory-components/borrowItemModal.php";
+      include "../../Components/Inventory-components/residentsModal.php";
+      include "../../Components/Inventory-components/editItemModal.php";
+      include "../../Components/Inventory-components/editTransactionModal.php";
       ?>
 
     </main>

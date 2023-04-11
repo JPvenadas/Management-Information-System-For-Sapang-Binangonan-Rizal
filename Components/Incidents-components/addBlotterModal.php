@@ -12,7 +12,7 @@
                 <p class="label">Complainant</p>
                 <div class="input-container">
                     <input required placeholder="Select the Complainant" id="complainant-fullName" class="input" readonly type="text">
-                    <input required id="complainant-ID" name="complainant" hidden type="text">
+                    <input required id="complainant-ID" name="complainant" type="hidden">
                     <div onclick="openResidentModal('complainant')" class="input-button">
                         <p>Select</p>
                     </div>
@@ -22,7 +22,7 @@
                 <p class="label">Defendant</p>
                 <div class="input-container">
                     <input required placeholder="Select the Defendant" id="defendant-fullName" class="input" class="defendant-fullName" readonly type="text">
-                    <input required id="defendant-ID" name="defendant" hidden type="text">
+                    <input required id="defendant-ID" name="defendant" type="hidden">
                     <div onclick="openResidentModal('defendant')" class="input-button">
                         <p>Select</p>
                     </div>
