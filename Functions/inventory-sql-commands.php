@@ -14,7 +14,7 @@
  function getTransactions(){
    $conn = openCon();
    $command = "SELECT `transactionID`, t.residentID, CONCAT(r.firstName,' ', LEFT(r.middleName,1), '. ', r.lastName, ' ', r.extension) as `fullName`, t.itemID,i.itemName,`date`,`quantity`,`status` FROM `tbl_inventoryTransaction` as t INNER JOIN tbl_residents as r on t.residentID = r.residentID INNER JOIN tbl_inventoryList as i on t.itemID = i.itemID WHERE t.archive = 'false'";
-   $command = $command . addFilters() . addSearchFilterTransaction();
+   $command = $command . addFilters() . addSearchFilterTransaction() . " order by `transactionID` DESC";
    $result = mysqli_query($conn, $command);
    $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
    mysqli_free_result($result);
@@ -157,5 +157,22 @@
    $command = "UPDATE tbl_inventoryList SET itemName = '$name' WHERE itemID = '$id'";
    mysqli_query($conn, $command);
    mysqli_close($conn);
+  }
+  if(isset($_POST['archive_transaction'])){
+    $conn = openCon();
+    $id = $_POST['transactionID'];
+    $command = "UPDATE `tbl_inventoryTransaction` set `archive` = 'true' WHERE `transactionID` = '$id'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+    header("Location: ../../Pages/Inventory/Inventory.php");
+	  exit();
+  }
+  if(isset($_POST['return_item'])){
+    $conn = openCon();
+    $id = $_POST['transactionID'];
+    $command = "UPDATE `tbl_inventoryTransaction` set `status` = 'Returned' WHERE `transactionID` = '$id'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+    updateQuantity($_POST['quantity'], "add");
   }
 ?>
