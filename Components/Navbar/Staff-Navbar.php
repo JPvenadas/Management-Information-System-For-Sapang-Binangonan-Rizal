@@ -87,7 +87,7 @@ function attachNavbar($page){
             generateNavItem($incidents, "Incidents", "alert-circle", "../../Pages/Incidents/Incidents.php");
         }
         if($access['reports']){
-            generateNavItem($reports, "Reports", "stats-chart", "../../Pages/Dashboard/Dashboard.php");
+            generateNavItem($reports, "Reports", "stats-chart", "../../Pages/Reports/Reports.php");
         }
         
         ?>

@@ -69,7 +69,7 @@ function attachNavbar($page){
          generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Announcements/Announcements.php");
          generateNavItem($inventory, "Inventory", "albums", "../../Pages/Inventory/Inventory.php");
          generateNavItem($incidents, "Incidents", "alert-circle", "../../Pages/Incidents/Incidents.php");
-         generateNavItem($reports, "Reports", "stats-chart", "../../Pages/Dashboard/Dashboard.php");
+         generateNavItem($reports, "Reports", "stats-chart", "../../Pages/Reports/Reports.php");
          generateNavItem($settings, "Settings", "settings", "../../Pages/Settings/Settings.php");
         ?>
         <!-- Logout -->
