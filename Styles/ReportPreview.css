@@ -170,5 +170,5 @@ td{
   }
 @page{
     size: 25cm 35.7cm;
-    margin: 25mm 5mm 25mm 5mm; /* change the margins as you want them to be. */
+    margin: 25mm 0mm 25mm 0mm; /* change the margins as you want them to be. */
 }

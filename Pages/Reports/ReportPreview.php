@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require "../../Functions/reports-sql-commands.php";
+
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
 if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
@@ -17,7 +19,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/reportPreview.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/ReportPreview.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
 
     <!-- a script to prevent the "confirm resubmission" alert -->

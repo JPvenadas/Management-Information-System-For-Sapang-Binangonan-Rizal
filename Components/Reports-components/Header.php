@@ -18,7 +18,6 @@ function printDiv(divName) {
     document.body.classList.add('print-container')
     document.body.innerHTML = printContents;
 
-    
     window.print();
     document.body.classList.remove('print-container')
     document.body.innerHTML = originalContents;
