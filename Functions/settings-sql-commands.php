@@ -1,6 +1,7 @@
 <?php
 // connection to mysql
 require "db_conn.php";
+require "insertLogs.php";
 
 // get services offered in the database
 function getServices(){
@@ -49,6 +50,7 @@ if(isset($_POST['change_amount'])){
     $command = "UPDATE `tbl_services` SET `serviceFee`='$newAmount' WHERE `serviceName` = '$serviceID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Change the amount of a service with ID: $serviceID");
 }
 // add the purok in the database
 if(isset($_POST['add_purok'])){
@@ -56,8 +58,8 @@ if(isset($_POST['add_purok'])){
     $purokName = $_POST['purokName'];
     $command = "INSERT INTO `tbl_purok`(`purok`, `archive`) VALUES ('$purokName','false')";
     mysqli_query($conn, $command);
-    $addedPurok = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("Added a purok");
 }
 // edit and update the purok
 if(isset($_POST['edit_purok'])){
@@ -67,6 +69,7 @@ if(isset($_POST['edit_purok'])){
     $command = "UPDATE `tbl_purok` SET `purok`='$purokName' WHERE `purok` = '$purokID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Updated a Purok information with a name: $purokID");
 }
 // archive a certain purok if the archived button is clicked
 if(isset($_POST['archive_purok'])){
@@ -75,6 +78,7 @@ if(isset($_POST['archive_purok'])){
     $command = "UPDATE `tbl_purok` SET `archive`= 'true' WHERE `purok` = '$purokID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archived a Purok with a name: $purokID");
 }
 // add new personnel's position
 if(isset($_POST['add_position'])){
@@ -82,8 +86,8 @@ if(isset($_POST['add_position'])){
     $positionName = $_POST['positionName'];
     $command = "INSERT INTO `tbl_positions`(`position`, `archive`) VALUES ('$positionName','false')";
     mysqli_query($conn, $command);
-    $addedPosition = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("Added an employee position");
 }
 // edit a certain personnel's position
 if(isset($_POST['edit_position'])){
@@ -93,6 +97,7 @@ if(isset($_POST['edit_position'])){
     $command = "UPDATE `tbl_positions` SET `position`='$positionName' WHERE `position` = '$positionID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Updated a position information with a name: $positionID");
 }
 // archive a certain position if the "archive" button is clicked
 if(isset($_POST['archive_position'])){
@@ -101,14 +106,15 @@ if(isset($_POST['archive_position'])){
     $command = "UPDATE `tbl_positions` SET `archive`='true' WHERE `position` = '$positionID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archived a Position with a Name: $positionID");
 }
 if(isset($_POST['add_committee'])){
     $conn = openCon();
     $committee = $_POST['committee'];
     $command = "INSERT INTO `tbl_committee`(`committee`, `archive`) VALUES ('$committee','false')";
     mysqli_query($conn, $command);
-    $addedPosition = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("Added a committee");
 }
 // edit a certain personnel's position
 if(isset($_POST['edit_committee'])){
@@ -118,6 +124,7 @@ if(isset($_POST['edit_committee'])){
     $command = "UPDATE `tbl_committee` SET `committee`='$committee' WHERE `committee` = '$committeeID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Updated a committe information with a Name: $committee");
 }
 // archive a certain position if the "archive" button is clicked
 if(isset($_POST['archive_committee'])){
@@ -126,15 +133,18 @@ if(isset($_POST['archive_committee'])){
     $command = "UPDATE `tbl_committee` SET `archive`='true' WHERE `committee` = '$committeeID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archived a committee with  a Name: $committeeID");
 }
 //create backup
 if(isset($_POST['create_backup'])){
+    insertLogs("Generated a backup file");
     EXPORT_DATABASE('127.0.0.2:3307','root','','db_SapangMIS'); 
     
 }
 if(isset($_POST['restore_backup'])){
      $conn = openCon();
      $file = $_FILES["backup"]["tmp_name"];
+     insertLogs("Restored a backup file");
      restoreMysqlDB($file, $conn);
 }
 function EXPORT_DATABASE($host,$user,$pass,$name,       $tables=false, $backup_name=false)
@@ -218,6 +228,7 @@ if(isset($_POST['save-contacts'])){
     $command = "UPDATE `tbl_contacts` SET `webLink`='$webLink',`phone`='$phone',`facebook`='$facebook',`email`='$email',`telegram`='$telegram',`address`='$address',`gcash`='$gcash' WHERE 1";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Updated the baranggay Contacts");
 }
 if(isset($_POST['add_service'])){
     $conn = openCon();
@@ -228,6 +239,7 @@ if(isset($_POST['add_service'])){
     mysqli_query($conn, $command);
     $addedService = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("Add a service with ID: $addedService");
 }
 if(isset($_POST['archive_service'])){
     $conn = openCon();
@@ -235,5 +247,6 @@ if(isset($_POST['archive_service'])){
     $command = "UPDATE `tbl_services` SET `archive`='true' WHERE `serviceName` = '$serviceID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archived a service with ID: $serviceID");
 }
 ?>

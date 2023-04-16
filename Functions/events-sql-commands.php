@@ -1,5 +1,6 @@
 <?php
 require "db_conn.php";
+require "insertLogs.php";
 
     function getSelectCommandByFilter(){
         if(isset($_GET['filter']) and $_GET['filter'] == 'history'){
@@ -37,24 +38,27 @@ require "db_conn.php";
     if(isset($_POST['add_event'])){
         $conn = openCon();
         $eventName = $_POST['eventName'];
-        $eventDescription = $_POST['eventDescription'];
+        $eventDescription = mysqli_real_escape_string($conn, addslashes($_POST['eventDescription']));
         $start = $_POST['start'];
         $end = $_POST['end'];
         $command = "INSERT INTO `tbl_events`(`eventName`, `eventDescription`, `start`,`end`, `archive`) 
                                      VALUES ('$eventName','$eventDescription','$start','$end','false')";
         mysqli_query($conn, $command);
+        $addedPersonnelID = mysqli_insert_id($conn);
         mysqli_close($conn);
+        insertLogs("added an event with ID: $addedPersonnelID");
     }
     if(isset($_POST['save_event'])){
         $conn = openCon();
         $eventID = $_POST['eventID'];
         $eventName = $_POST['eventName'];
-        $eventDescription = $_POST['eventDescription'];
+        $eventDescription = mysqli_real_escape_string($conn, addslashes($_POST['eventDescription']));
         $start = $_POST['start'];
         $end = $_POST['end'];
         $command = "UPDATE `tbl_events` SET `eventName`='$eventName',`eventDescription`='$eventDescription',`start`='$start', `end`='$end' WHERE `eventID` = '$eventID'";
         mysqli_query($conn, $command);
         mysqli_close($conn);
+        insertLogs("Updated an event with ID: $eventID");
     }
     if(isset($_POST['archive_event'])){
         $conn = openCon();
@@ -62,6 +66,7 @@ require "db_conn.php";
         $command = "UPDATE `tbl_events` SET `archive`='true' WHERE `eventID` = '$eventID'";
         mysqli_query($conn, $command);
         mysqli_close($conn);
+        insertLogs("Archived an event with ID: $eventID");
     }
     if(isset($_POST['announce_event'])){
         $start = date("F, d", strtotime($_POST['start']));

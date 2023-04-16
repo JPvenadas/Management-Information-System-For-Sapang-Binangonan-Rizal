@@ -1,6 +1,7 @@
 <?php 
 
 require "db_conn.php";
+require "insertLogs.php";
 
     function getUsers(){
         $conn = openCon();
@@ -9,6 +10,7 @@ require "db_conn.php";
         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
+        insertLogs("Generated Users Report");
         return $users;
     }
     function getTransactions(){
@@ -18,6 +20,7 @@ require "db_conn.php";
         $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
+        insertLogs("Generated Transactions Report");
         return $transactions;
     }
     function getEmployees(){
@@ -27,15 +30,17 @@ require "db_conn.php";
         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
+        insertLogs("Generated Employees Report");
         return $users;
     }
     function getAttendance(){
         $conn = openCon();
-        $command = "SELECT `attendanceID`, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName` ,e.position, DATE_FORMAT(a.date, '%b, %e %Y') as `date`, DATE_FORMAT(`timeIn`, '%h, %i %p') as `timeIn`, DATE_FORMAT(`timeOut`, '%h, %i %p') as `timeOut` FROM `tbl_attendance` as a INNER JOIN tbl_employees as e on e.employeeID = a.employeeID INNER JOIN tbl_residents as r on e.residentID = r.residentID";
+        $command = "SELECT `attendanceID`, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName` ,e.position, DATE_FORMAT(a.date, '%b, %e %Y') as `date`, DATE_FORMAT(`timeIn`, '%h:%i %p') as `timeIn`, DATE_FORMAT(`timeOut`, '%h:%i %p') as `timeOut` FROM `tbl_attendance` as a INNER JOIN tbl_employees as e on e.employeeID = a.employeeID INNER JOIN tbl_residents as r on e.residentID = r.residentID";
         $result = mysqli_query($conn, $command);
         $attendance = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
+        insertLogs("Generated Attendance Report");
         return $attendance;
     }
     function getInventoryTransactions(){
@@ -45,6 +50,7 @@ require "db_conn.php";
         $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
+        insertLogs("Generated Inventory Transactions Report");
         return $transactions;
     }
     function getEvents(){
@@ -54,6 +60,7 @@ require "db_conn.php";
         $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
+        insertLogs("Generated Events Report");
         return $events;
     }
     function getBlotters(){
@@ -63,6 +70,7 @@ require "db_conn.php";
         $blotters = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
+        insertLogs("Generated Blotters Report");
         return $blotters;
     }
     function getAnnouncements(){
@@ -73,6 +81,28 @@ require "db_conn.php";
         $announcements = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
         mysqli_close($conn);
+        insertLogs("Generated Announcements Report");
         return $announcements;
+    }
+
+    function getLogs(){
+        $conn = openCon();
+        $command = "SELECT * FROM `tbl_activityLogs`";
+        $result = mysqli_query($conn, $command);
+        $logs = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $logs;
+    }
+
+    function getResidents(){
+        $conn = openCon();
+        $command = "SELECT `residentID`, CONCAT(`firstName`, ' ',`middleName`, ' ', `lastName`, ' ', `extension`) as `fullName`, DATE_FORMAT(birthDate, '%b, %e %Y') as `birthDate`,`image`,`purok`,`exactAddress`,`voterStatus`,`sex`,`maritalStatus`, `occupation`,`contactNo`,`familyHead`
+        FROM `tbl_residents` WHERE `archive`='false' and `registrationStatus` = 'Verified'";
+        $result = mysqli_query($conn, $command);
+        $residents = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $residents;
     }
 ?>

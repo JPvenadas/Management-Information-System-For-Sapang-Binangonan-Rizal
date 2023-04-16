@@ -1,5 +1,6 @@
 <?php
 require "db_conn.php";
+require "insertLogs.php";
 
 // add condition to filter verified to non-verified residents
 function addFilters(){
@@ -78,6 +79,7 @@ function activate(){
     $command = "UPDATE `tbl_userAccounts` SET `accountStatus`='Active' WHERE residentID = '$residentID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Activated a user with resident ID: $residentID");
 }
 //function to reject a residents verification
 if(isset($_POST['reject'])){
@@ -95,6 +97,7 @@ if(isset($_POST['archive_resident'])){
     $command = "UPDATE `tbl_residents` SET `archive` = 'true' WHERE `residentID` = '$residentID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archived a user with ID: $residentID");
 }
 //function to change the registration Status of a resident. either confirmed or rejected
 function changeStatus($status){
@@ -103,6 +106,7 @@ function changeStatus($status){
     $command = "UPDATE `tbl_residents` SET `registrationStatus` = '$status' WHERE `residentID` = '$residentID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("$status a user with ID: $residentID");
 }
 //updating of a residents profile
 if(isset($_POST['save-edit-profile'])){
@@ -147,6 +151,7 @@ if(isset($_POST['save-edit-profile'])){
         WHERE `residentID` = '$residentID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Updated information about a resident with ID: $residentID");
 }
 //registration of new users/residents
 if(isset($_POST['add_resident_button'])){
@@ -175,6 +180,7 @@ if(isset($_POST['add_resident_button'])){
                                 VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$imageContent','$purok','$address','$voterStatus','$sex','$maritalStatus','$residentCategory','$occupation','$familyHead','$familyMembers','$archive','$contactNo','$registrationStatus')";
     mysqli_query($conn, $command);
     $residentID = mysqli_insert_id($conn);
+    insertLogs("Added a resident with ID: $residentID");
     
     // registration of user Accounts
     $userName = "$firstName$middleName$lastName$extension";
@@ -185,5 +191,15 @@ if(isset($_POST['add_resident_button'])){
                                         VALUES ('@$userName','$residentID','$password','$userType','$accountStatus')" ;
     mysqli_query($conn, $command);
     mysqli_close($conn);
+}
+if(isset($_POST["change_image_button"])){
+    $conn = openCon();
+    $id = $_GET['id'];
+    $image = $_FILES["change_image_input"]["tmp_name"];
+    $imageContent = addslashes(file_get_contents($image));
+    $command = "UPDATE `tbl_residents` SET `image`='$imageContent' WHERE `residentID` = '$id'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+    insertLogs("Updated a profile picture of resident with ID: $id");
 }
 ?>

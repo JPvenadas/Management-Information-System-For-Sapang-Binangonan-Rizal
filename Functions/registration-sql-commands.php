@@ -1,5 +1,6 @@
 <?php
 require "db_conn.php";
+require "insertLogs.php";
 
 /*a function that you can call if you want to retain the inputs made by the user.
 so that if they click the previous button. the inputs will still be saved*/

@@ -1,5 +1,6 @@
 <?php
 require "db_conn.php";
+require "insertLogs.php";
 
 if(isset($_POST['submitUserName'])){
     $conn = openCon();
@@ -32,9 +33,7 @@ if(isset($_POST['submitUserName'])){
         header("Location: ../../Pages/Recovery/AccountRecovery.php?error=No such Username");
 	    exit();
     }
-   
 }
-
 
 //function to generate 6 digit OTP
 function generateRandomNumber() {

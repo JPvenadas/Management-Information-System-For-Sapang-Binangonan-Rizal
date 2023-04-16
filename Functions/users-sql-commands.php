@@ -1,5 +1,6 @@
 <?php
 require "db_conn.php";
+require "insertLogs.php";
 
 // add condition to filter verified to non-verified users
 function addFilters(){
@@ -63,6 +64,7 @@ function changeUserType($userType){
     $command = "UPDATE `tbl_userAccounts` SET `userType`='$userType' WHERE `userName` = '$userName'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Change the user type of $userName to $userType");
 }
 if(isset($_POST['changeAccess'])){
     removeExistingAccess();
@@ -110,6 +112,7 @@ function changeAccountStatus($status){
     $command = "UPDATE `tbl_userAccounts` SET `accountStatus`='$status' WHERE `userName` = '$userName'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Change the account status of $userName to $status");
 }
 if(isset($_POST['change_password'])){
     $conn = openCon();
@@ -118,5 +121,6 @@ if(isset($_POST['change_password'])){
     $command = "UPDATE tbl_userAccounts SET `password` = '$password' WHERE `userName` = '$userName'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Change the user password of $userName");
 }
 ?>

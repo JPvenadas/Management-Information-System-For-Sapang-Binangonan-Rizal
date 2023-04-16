@@ -1,6 +1,7 @@
 <?php 
 session_start(); 
 include "../Functions/db_conn.php";
+require "insertLogs.php";
 $conn = openCon();
 
 if (isset($_POST['uname']) && isset($_POST['password'])) {
@@ -15,8 +16,9 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
         header("Location: ../index.php?error=Password is required");
 	    exit();
 	}else{
-		$sql = "SELECT u.userName, u.password, u.userType, u.accountStatus, r.residentID, r.firstName,r.middleName, r.lastName, r.extension, r.image 
+		$sql = "SELECT u.userName, u.password, u.userType, u.accountStatus, r.residentID, r.firstName,r.middleName, r.lastName, r.extension, r.image, e.signiture
 		from tbl_userAccounts as u INNER JOIN tbl_residents as r on u.residentID = r.residentID
+		INNER JOIN tbl_employees as e on e.residentID = r.residentID
         WHERE u.userName = '$uname'";
 	
 		$result = mysqli_query($conn, $sql);
@@ -40,6 +42,8 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 				$_SESSION['lastName'] = $row['lastName'];
 				$_SESSION['extension'] = $row['extension'];
 				$_SESSION['residentID'] = $row['residentID'];
+				$_SESSION['signiture'] = $row['signiture'];
+				insertLogs("logged in");
             	
 				//redirect to their respective dashboard page
 				if($row['userType'] == "Resident"){

@@ -1,5 +1,6 @@
 <?php 
 require "db_conn.php";
+require "insertLogs.php";
 
 function getAnnouncements(){
     $conn = openCon();
@@ -35,7 +36,9 @@ if(isset($_POST['send_message'])){
     $command = "INSERT INTO `tbl_announcements`(`message`, `postedBy`, `recepients`) 
                                         VALUES ('$message','$postedBy','$recepients')";
     mysqli_query($conn, $command);
+    $addedPersonnelID = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("sent an announcement with ID: $addedPersonnelID");
 }
 function getPuroks(){
     $conn = openCon();

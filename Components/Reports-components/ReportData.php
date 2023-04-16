@@ -28,9 +28,23 @@
         case "Announcements":
             require "Data/Announcements.php";
         break;
+        case "Activity Logs":
+            require "Data/Logs.php";
+        break;
+        case "Residents":
+            require "Data/Residents.php";
+        break;
         default:
          require "Data/Users.php";
         } ?>
+
+        <div class="report-footer">
+            <div class="employee-container">
+                <p>Prepared by:</p>
+                <img class="signiture" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($_SESSION['signiture'])?>" alt="">
+                <p class="name"><?php echo $_SESSION['firstName'] .' '. $_SESSION['lastName']?></p>
+            </div>
+        </div>
 
         </div>
         </div>

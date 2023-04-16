@@ -1,5 +1,6 @@
 <?php
   require "db_conn.php";
+  require "insertLogs.php";
 
   function getBlotters(){
         $conn = openCon();
@@ -74,7 +75,9 @@ if(isset($_POST['recordViolation'])){
     $command = "INSERT INTO `tbl_curfewViolators`(`residentID`, `date`, `time`, `archive`)
                                           VALUES ('$residentID','$date','$time','false')";
     mysqli_query($conn, $command);
+    $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("Added a curfew violation record with ID: $addedID");
 }
 
 if(isset($_POST['archive_curfew'])){
@@ -83,6 +86,7 @@ if(isset($_POST['archive_curfew'])){
     $command = "UPDATE `tbl_curfewViolators` SET `archive`='true' WHERE ID = '$recordID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archived a curfew violation record with ID: $recordID");
 }
 
 if(isset($_POST['add_blotter'])){
@@ -96,7 +100,9 @@ if(isset($_POST['add_blotter'])){
     $command = "INSERT INTO `tbl_blotters`(`summary`, `complainant`, `defendant`, `narrativeReport`, `hearing1`, `caseStatus`, `archive`) 
                                    VALUES ('$summary','$complainant','$defendant','$narrativeReportFile','$schedule','Pending','false')";
     mysqli_query($conn, $command);
+    $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("Added a blotter record with ID: $addedID");
 }
 
 if(isset($_POST['archive_blotter'])){
@@ -105,6 +111,7 @@ if(isset($_POST['archive_blotter'])){
     $command = "UPDATE `tbl_blotters` SET `archive`='true' WHERE blotterID = '$blotterID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archived a blotter record with ID: $blotterID");
 }
 if(isset($_POST['endorse_blotter'])){
     $conn = openCon();
@@ -112,6 +119,7 @@ if(isset($_POST['endorse_blotter'])){
     $command = "UPDATE `tbl_blotters` SET `caseStatus`='Endorsed to the court' WHERE blotterID = '$blotterID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Mark the blotter with ID: $blotterID as something that is endorsed in the court");
 }
 if(isset($_POST['solve_blotter'])){
     $conn = openCon();
@@ -119,6 +127,7 @@ if(isset($_POST['solve_blotter'])){
     $command = "UPDATE `tbl_blotters` SET `caseStatus`='Solved' WHERE blotterID = '$blotterID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Mark the blotter wiht ID: $blotterID as solved");
 }
 if(isset($_POST['resched'])){
     if(isset($_POST['date_3'])){
@@ -128,6 +137,8 @@ if(isset($_POST['resched'])){
     }else{
         changeSched('hearing1',$_POST['date_1']);
     }
+    $ID = $_POST['blotterID'];
+    insertLogs("Reschedule the hearing of a blotter with ID: $ID");
 }
 if(isset($_POST["add_next_hearing"])){
     if($_POST['totalHearing'] == 1){
@@ -135,6 +146,8 @@ if(isset($_POST["add_next_hearing"])){
     }elseif($_POST['totalHearing'] == 2){
         changeSched('hearing3',$_POST['date']);
     }
+    $ID = $_POST['blotterID'];
+    insertLogs("Add another hearing to a blotter with ID: $ID");
 }
 
 function changeSched($hearing, $value){

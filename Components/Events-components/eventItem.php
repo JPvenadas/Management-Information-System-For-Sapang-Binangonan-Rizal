@@ -1,6 +1,7 @@
 <?php
 function generateItem($event){
 ?>
+
 <button onclick="openEditModal('<?php echo $event['eventID']?>',
                                '<?php echo $event['eventName']?>',
                                '<?php echo $event['eventDescription']?>',
@@ -16,5 +17,16 @@ function generateItem($event){
         <p>Click to view details</p>
     </div>
 </button>
-
+<script>
+function escapeSpecialChars(str) {
+  // Escape single quotes, double quotes, and backticks
+  str = str.replace(/['"`]/g, '\\$&');
+  
+  // Remove any whitespace characters introduced by hitting "Enter" key in a textarea
+  str = str.replace(/[\n\r]/g, '');
+  
+  return str;
+}
+console.log(escapeSpecialChars('<?php echo $event['eventDescription']?>'))
+</script>
 <?php }?>

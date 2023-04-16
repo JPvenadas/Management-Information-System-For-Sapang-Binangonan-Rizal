@@ -1,5 +1,6 @@
 <?php
  require "db_conn.php";
+ require "insertLogs.php";
 
  function getItemList(){
     $conn = openCon();
@@ -59,7 +60,9 @@
    $command = "INSERT INTO `tbl_inventoryList`(`itemName`, `totalNumber`, `archive`) 
                                        VALUES ('$name','$quantity','false')";
    mysqli_query($conn, $command);
+   $addedID = mysqli_insert_id($conn);
    mysqli_close($conn);
+   insertLogs("Added an item in inventory with ID: $addedID");
  }
 
  function getSingleItem(){
@@ -69,6 +72,7 @@
    $result = mysqli_query($conn, $command);
    $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
    mysqli_free_result($result);
+   $addedID = mysqli_insert_id($conn);
    mysqli_close($conn);
    return $items[0];
  }
@@ -78,6 +82,7 @@
    $command = "UPDATE `tbl_inventoryList` set `archive` = 'true' WHERE `itemID` = '$id'";
    mysqli_query($conn, $command);
    mysqli_close($conn);
+   insertLogs("Archived an item with ID: $id");
    header("Location: ../../Pages/Inventory/Inventory.php");
 	exit();
  }
@@ -104,6 +109,7 @@
    $command = "INSERT INTO `tbl_addedStocks`(`itemID`, `stocksAdded`) VALUES ('$id','$quantity')";
    mysqli_query($conn, $command);
    mysqli_close($conn);
+   insertLogs("Added stocks to an item with ID: $id");
  }
  function getResidents(){
   $conn = openCon();
@@ -134,7 +140,9 @@
     $command = "INSERT INTO `tbl_inventoryTransaction`(`residentID`, `itemID`, `quantity`, `status`,`archive`) 
                                                VALUES ('$residentID','$itemID','$quantity','Borrowed','false')";
     mysqli_query($conn, $command);
+    $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("Assist in borrowing an item with Transaction ID: $addedID");
   }
   if(isset($_POST['borrow_item'])){
     updateQuantity($_POST['quantity'], "subtract");
@@ -157,6 +165,7 @@
    $command = "UPDATE tbl_inventoryList SET itemName = '$name' WHERE itemID = '$id'";
    mysqli_query($conn, $command);
    mysqli_close($conn);
+   insertLogs("Edit the name of the item with ID: $id to $name");
   }
   if(isset($_POST['archive_transaction'])){
     $conn = openCon();
@@ -164,6 +173,7 @@
     $command = "UPDATE `tbl_inventoryTransaction` set `archive` = 'true' WHERE `transactionID` = '$id'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archive an inventory transaction with ID: $id");
     header("Location: ../../Pages/Inventory/Inventory.php");
 	  exit();
   }
@@ -173,6 +183,7 @@
     $command = "UPDATE `tbl_inventoryTransaction` set `status` = 'Returned' WHERE `transactionID` = '$id'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Assists in returning of item with Transaction ID: $id");
     updateQuantity($_POST['quantity'], "add");
   }
 ?>

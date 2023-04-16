@@ -1,5 +1,6 @@
 <?php
 require "db_conn.php";
+require "insertLogs.php";
 
 function getEmployeeAttendance(){
     $conn = openCon();
@@ -51,19 +52,22 @@ function timeIn(){
     $date = date('y/m/d');
     $timeIn = date("h:i:s");
     $command = "INSERT INTO `tbl_attendance`(`employeeID`, `date`, `timeIn`) 
-                                     VALUES ('$employeeID','$date','$timeIn')";
+                                     VALUES ('$employeeID','$date','$timeIn')";                                 
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Time in ( EmployeeID: $employeeID, Date: $date )");
 }
 function timeOut(){
     $conn = openCon();
     $employeeID = $_POST['employeeID'];
+    $date = date('y/m/d');
     date_default_timezone_set('Asia/Manila');
     $timeOut = date("h:i:s");
     $command = "UPDATE `tbl_attendance` SET `timeOut`='$timeOut' 
                 WHERE `employeeID` = '$employeeID' AND `date` = CURRENT_DATE";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Time out ( EmployeeID: $employeeID, Date: $date )");
 }
 
 if(isset($_POST["browse_records"])){

@@ -1,6 +1,6 @@
 <?php
 require "db_conn.php";
-
+require "insertLogs.php";
 
 function getServices(){
     $conn = openCon();
@@ -80,7 +80,9 @@ if(isset($_POST['add_transaction'])){
     $command = "INSERT INTO `tbl_transactions`(`serviceName`, `residentID`, `purpose`, `dateRequested`, `paymentDate`, `amountPaid`, `transactionStatus`, `archive`, `assistedBy`)  
                                               VALUES ('$serviceName','$residentID','$purpose','$dateRequested','$paymentDate','$amountPaid','$transactionStatus','$archive','$assistedBy')";
     mysqli_query($conn, $command);
+    $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("Assist a transaction with ID: $addedID");
     
     if($serviceType == "Document"){
         header("Location: ../Certification/CertificatePreview.php?service=$serviceName&id=$residentID");
@@ -108,6 +110,7 @@ if(isset($_POST['process_transaction'])){
 
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Processed a request with ID: $transactionID");
     header("Location: ../Certification/CertificatePreview.php?service=$serviceName&id=$residentID");
     exit();
 }
@@ -122,6 +125,7 @@ if(isset($_POST['claim_transaction'])){
 
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Assist in claiming a document with ID: $transactionID");
 }
 if(isset($_POST['archive_transaction'])){
     $conn = openCon();
@@ -133,6 +137,7 @@ if(isset($_POST['archive_transaction'])){
 
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Archived a transaction with ID: $transactionID");
 }
 if(isset($_POST['search_button_transactions'])){
     $search = $_POST['search_input_transactions'];
@@ -185,6 +190,8 @@ if(isset($_POST['submit_request'])){
     $command = "INSERT INTO `tbl_transactions`(`serviceName`, `residentID`, `purpose`,`dateRequested`, `transactionStatus`, `archive`, `paymentProof`)  
     VALUES ('$serviceName','$residentID','$purpose','$dateRequested','$transactionStatus','$archive', '$imageContent')";
     mysqli_query($conn, $command);
+    $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);
+    insertLogs("submitted a service request with Transaction ID: $addedID");
 }
 ?>

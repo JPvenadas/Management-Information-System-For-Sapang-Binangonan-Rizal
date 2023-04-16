@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <p class="label">Event Description</p>
-                    <textarea id="event-description" class="long-input" name="eventDescription" placeholder="Event Description"></textarea>
+                    <textarea onkeydown="if (event.keyCode == 13) {event.preventDefault();}" id="event-description" class="long-input" name="eventDescription" placeholder="Event Description"></textarea>
                 </div>
             </div>
             <div class="button-container">

@@ -1,5 +1,6 @@
 <?php
 require "db_conn.php";
+require "insertLogs.php";
 
 // function to get the employees list and display it on the screen
 function getEmployees(){
@@ -106,6 +107,7 @@ if(isset($_POST['add_employee'])){
             mysqli_query($conn, $command);
             $addedemployeeID = mysqli_insert_id($conn);
             mysqli_close($conn);
+            insertLogs("Added an Employee with ID: $addedemployeeID");
         }
         else{
             header("Location: ../../Pages/Employees/Employees.php?error=Position already Taken");
@@ -145,6 +147,7 @@ if(isset($_POST['edit_employee'])){
     }
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Updated an Employee with ID: $employeeID");
 }
 
 if(isset($_POST['deactivate_term'])){
@@ -156,4 +159,5 @@ if(isset($_POST['deactivate_term'])){
                                         where `employeeID` = '$employeeID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    insertLogs("Deactivated an employee with ID: $employeeID");
 }

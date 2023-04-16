@@ -1,5 +1,6 @@
 <?php
 require "db_conn.php";
+require "insertLogs.php";
 
     function getIssuer($residentID){
         $conn = openCon();
