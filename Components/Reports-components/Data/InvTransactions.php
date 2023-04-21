@@ -14,8 +14,8 @@
         <td><?php echo $transaction['transactionID']?></td>
         <td><?php echo $transaction['fullName']?></td>
         <td><?php echo $transaction['itemName']?></td>
-        <td><?php echo $transaction['date']?></td>
         <td><?php echo $transaction['quantity']?></td>
+        <td><?php echo $transaction['date']?></td>
         <td><?php echo $transaction['status']?></td>
     </tr>
     <?php }?>

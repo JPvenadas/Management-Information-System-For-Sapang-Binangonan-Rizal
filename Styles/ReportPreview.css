@@ -255,3 +255,75 @@ td{
 .other-info span, .name-container span{
     color: #0b2f51 !important;
 }
+
+/* ******************************** filtering section */
+.side-bar{
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #195FA0;
+    transition: 0.5s ease;
+    z-index: 10;
+}
+.logo-container{
+    background: #16538B;
+    display: flex;
+    padding: 20px;
+    gap: 15px;
+}
+.logo-container .right .logo{
+    width: 30px;
+    height: 30px;
+}
+.logo-container .left p{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    color: #FFFFFF;
+
+}
+.white-text{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.filter-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.filter-content{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.input{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0 20px;
+    color: gray;
+}
+.filter-button-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.filter-button{
+    width: 120px;
+    height: 40px;
+    border-radius: 3.5px;
+    background-color: white;
+    font-weight: 700;
+    font-size: 13px;
+    color: #195FA0;
+}

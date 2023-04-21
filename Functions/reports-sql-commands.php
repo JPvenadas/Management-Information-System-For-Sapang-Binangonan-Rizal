@@ -105,4 +105,61 @@ require "insertLogs.php";
         mysqli_close($conn);
         return $residents;
     }
+    function getPuroks(){
+        $conn = openCon();
+        $command = "SELECT * FROM `tbl_purok` WHERE `archive` = 'false'";
+        $result = mysqli_query($conn, $command);
+        $puroks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $puroks;
+    }
+
+    function getPositions(){
+        $conn = openCon();
+        $command = "SELECT * FROM `tbl_positions` WHERE `archive` = 'false'";
+        $result = mysqli_query($conn, $command);
+        $positions = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $positions;
+    }
+    function getServices(){
+        $conn = openCon();
+        $command = "SELECT * FROM `tbl_services` WHERE `archive` = 'false'";
+        $result = mysqli_query($conn, $command);
+        $services = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $services;
+    }
+    function getEmployeesWithAttendance(){
+        $conn = openCon();
+        $command = "SELECT DISTINCT a.employeeID, CONCAT(r.firstName,' ', r.middleName, ' ', r.lastName, ' ', r.extension) as fullName FROM tbl_attendance as a 
+                    INNER JOIN tbl_employees as e on e.employeeID = a.employeeID
+                    INNER JOIN tbl_residents as r on r.residentID = e.residentID";
+        $result = mysqli_query($conn, $command);
+        $employees = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $employees;
+    }
+    function getItemList(){
+        $conn = openCon();
+        $command = "SELECT * FROM `tbl_inventoryList` WHERE `archive` = 'false'";
+        $result = mysqli_query($conn, $command);
+        $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $items;
+    }
+    function getUsersWithLogs(){
+        $conn = openCon();
+        $command = "SELECT DISTINCT a.userName, CONCAT(r.firstName,' ', r.middleName, ' ', r.lastName, ' ', r.extension) as fullName FROM tbl_activityLogs as a INNER JOIN tbl_userAccounts as u on u.userName = a.userName INNER JOIN tbl_residents as r on r.residentID = u.residentID;";
+        $result = mysqli_query($conn, $command);
+        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $users;
+    }
 ?>
