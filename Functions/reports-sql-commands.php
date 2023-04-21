@@ -3,9 +3,22 @@
 require "db_conn.php";
 require "insertLogs.php";
 
+    function applyFilterIfSet($field, $value){
+        $command = " AND $field='$value'";
+        return $command;
+    }
     function getUsers(){
         $conn = openCon();
-        $command = "SELECT `userName`,CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName` , `userType`,`accountStatus` FROM `tbl_userAccounts` as u INNER JOIN tbl_residents as r on u.residentID = r.residentID";
+        $command = "SELECT `userName`,CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName` , `userType`,`accountStatus` FROM `tbl_userAccounts` as u INNER JOIN tbl_residents as r on u.residentID = r.residentID Where 1";
+
+        //apply the filters. if there is
+        if(isset($_GET['userType'])){
+           $command .= applyFilterIfSet('userType', $_GET['userType']);
+        }
+        if(isset($_GET['accountStatus'])){
+            $command .= applyFilterIfSet('accountStatus', $_GET['accountStatus']);
+         }
+
         $result = mysqli_query($conn, $command);
         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -13,6 +26,7 @@ require "insertLogs.php";
         insertLogs("Generated Users Report");
         return $users;
     }
+
     function getTransactions(){
         $conn = openCon();
         $command = "SELECT CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `resident`, `serviceName`,DATE_FORMAT(dateRequested, '%b, %e %Y') as `dateRequested`,`amountPaid`,DATE_FORMAT(paymentDate, '%b, %e %Y') as `paymentDate`,`transactionStatus`, `purpose` FROM `tbl_transactions` as t inner JOIN tbl_residents as r on r.residentID = t.residentID WHERE transactionStatus != 'Unprocessed'  ORDER BY transactionID";
@@ -99,6 +113,18 @@ require "insertLogs.php";
         $conn = openCon();
         $command = "SELECT `residentID`, CONCAT(`firstName`, ' ',`middleName`, ' ', `lastName`, ' ', `extension`) as `fullName`, DATE_FORMAT(birthDate, '%b, %e %Y') as `birthDate`,`image`,`purok`,`exactAddress`,`voterStatus`,`sex`,`maritalStatus`, `occupation`,`contactNo`,`familyHead`
         FROM `tbl_residents` WHERE `archive`='false' and `registrationStatus` = 'Verified'";
+
+        //apply the filters. if set
+        if(isset($_GET['sex'])){
+            $command .= applyFilterIfSet('sex', $_GET['sex']);
+         }
+        if(isset($_GET['purok'])){
+             $command .= applyFilterIfSet('purok', $_GET['purok']);
+        }
+        if(isset($_GET['voterStatus'])){
+            $command .= applyFilterIfSet('voterStatus', $_GET['voterStatus']);
+        }
+
         $result = mysqli_query($conn, $command);
         $residents = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
