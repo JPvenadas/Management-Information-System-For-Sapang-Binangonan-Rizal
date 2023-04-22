@@ -4,7 +4,11 @@ require "db_conn.php";
 require "insertLogs.php";
 
     function applyFilterIfSet($field, $value){
-        $command = " AND $field='$value'";
+        $command = " AND $field='$value' ";
+        return $command;
+    }
+    function applyDateFilter($field, $start, $end){
+        $command = " AND $field >= DATE_FORMAT('$start', '%Y-%m-%d') AND $field <= DATE_FORMAT('$end', '%Y-%m-%d')";
         return $command;
     }
     function getUsers(){
@@ -17,8 +21,8 @@ require "insertLogs.php";
         }
         if(isset($_GET['accountStatus'])){
             $command .= applyFilterIfSet('accountStatus', $_GET['accountStatus']);
-         }
-
+        }
+    
         $result = mysqli_query($conn, $command);
         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -29,7 +33,17 @@ require "insertLogs.php";
 
     function getTransactions(){
         $conn = openCon();
-        $command = "SELECT CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `resident`, `serviceName`,DATE_FORMAT(dateRequested, '%b, %e %Y') as `dateRequested`,`amountPaid`,DATE_FORMAT(paymentDate, '%b, %e %Y') as `paymentDate`,`transactionStatus`, `purpose` FROM `tbl_transactions` as t inner JOIN tbl_residents as r on r.residentID = t.residentID WHERE transactionStatus != 'Unprocessed'  ORDER BY transactionID";
+        $command = "SELECT CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `resident`, `serviceName`,DATE_FORMAT(dateRequested, '%b, %e %Y') as `dateRequested`,`amountPaid`,DATE_FORMAT(paymentDate, '%b, %e %Y') as `paymentDate`,`transactionStatus`, `purpose` FROM `tbl_transactions` as t inner JOIN tbl_residents as r on r.residentID = t.residentID WHERE transactionStatus != 'Unprocessed'";
+        
+        //apply the filters
+        if(isset($_GET['service'])){
+            $command .= applyFilterIfSet('serviceName', $_GET['service']);
+        }
+        if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
+             $command .= applyDateFilter('paymentDate', $_GET['start'], $_GET['end'] );
+        }
+
+         $command .= " ORDER BY transactionID ";
         $result = mysqli_query($conn, $command);
         $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -39,7 +53,16 @@ require "insertLogs.php";
     }
     function getEmployees(){
         $conn = openCon();
-        $command = "SELECT `employeeID`, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, `position`, IF(`committee` = 'N/A', 'none', `committee`) AS `committee` ,DATE_FORMAT(termStart, '%b, %e %Y') as `termStart`, DATE_FORMAT(termEnd, '%b, %e %Y') as `termEnd` FROM `tbl_employees` e INNER JOIN tbl_residents as r on e.residentID = r.residentID;";
+        $command = "SELECT `employeeID`, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, `position`, IF(`committee` = 'N/A', 'none', `committee`) AS `committee` ,DATE_FORMAT(termStart, '%b, %e %Y') as `termStart`, DATE_FORMAT(termEnd, '%b, %e %Y') as `termEnd`, `termStatus` FROM `tbl_employees` e INNER JOIN tbl_residents as r on e.residentID = r.residentID WHERE 1";
+        
+        //apply the filters
+        if(isset($_GET['position'])){
+            $command .= applyFilterIfSet('position', $_GET['position']);
+        }
+        if(isset($_GET['termStatus'])){
+            $command .= applyFilterIfSet('termStatus', $_GET['termStatus']);
+        }
+
         $result = mysqli_query($conn, $command);
         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -50,6 +73,15 @@ require "insertLogs.php";
     function getAttendance(){
         $conn = openCon();
         $command = "SELECT `attendanceID`, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName` ,e.position, DATE_FORMAT(a.date, '%b, %e %Y') as `date`, DATE_FORMAT(`timeIn`, '%h:%i %p') as `timeIn`, DATE_FORMAT(`timeOut`, '%h:%i %p') as `timeOut` FROM `tbl_attendance` as a INNER JOIN tbl_employees as e on e.employeeID = a.employeeID INNER JOIN tbl_residents as r on e.residentID = r.residentID";
+        
+        //apply the filters
+        if(isset($_GET['employee'])){
+            $command .= applyFilterIfSet('a.employeeID', $_GET['employee']);
+        }
+        if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
+             $command .= applyDateFilter('Date', $_GET['start'], $_GET['end'] );
+        }
+
         $result = mysqli_query($conn, $command);
         $attendance = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -60,6 +92,15 @@ require "insertLogs.php";
     function getInventoryTransactions(){
         $conn = openCon();
         $command = "SELECT `transactionID`, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, l.itemName, DATE_FORMAT(t.date, '%b, %e %Y') as `date`, `quantity`,`status` FROM `tbl_inventoryTransaction` as t INNER JOIN tbl_inventoryList as l on t.itemID = l.itemID INNER JOIN tbl_residents as r on r.residentID = t.residentID";
+        
+         //apply the filters
+        if(isset($_GET['item'])){
+            $command .= applyFilterIfSet('t.itemID', $_GET['item']);
+        }
+        if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
+             $command .= applyDateFilter('t.date', $_GET['start'], $_GET['end'] );
+        }
+        
         $result = mysqli_query($conn, $command);
         $transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -70,6 +111,11 @@ require "insertLogs.php";
     function getEvents(){
         $conn = openCon();
         $command = "SELECT `eventID`,`eventName`, CONCAT(DATE_FORMAT(start, '%b, %e %Y'), ' - ' ,DATE_FORMAT(end, '%b, %e %Y')) as `date`, `eventDescription` FROM `tbl_events` WHERE `archive` = 'false'";
+        
+        if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
+            $command .= applyDateFilter('start', $_GET['start'], $_GET['end'] );
+        }
+        
         $result = mysqli_query($conn, $command);
         $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -89,8 +135,13 @@ require "insertLogs.php";
     }
     function getAnnouncements(){
         $conn = openCon();
-        $command = "SELECT `announcementID`, CONCAT(r.firstName, ' ', LEFT(r.middleName, 1),' ', r.lastName, ' ', r.extension) as `fullName`, `message`, `datePosted`, `postedBy`, `recepients` 
+        $command = "SELECT `announcementID`, CONCAT(r.firstName, ' ', LEFT(r.middleName, 1),' ', r.lastName, ' ', r.extension) as `fullName`, `message`, DATE_FORMAT(datePosted, '%b, %e %Y') as `datePosted`, `postedBy`, `recepients` 
         FROM `tbl_announcements` as a inner JOIN tbl_residents as r on r.residentID = postedBy ";
+        
+        if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
+            $command .= applyDateFilter('datePosted', $_GET['start'], $_GET['end'] );
+        }
+        
         $result = mysqli_query($conn, $command);
         $announcements = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -101,7 +152,16 @@ require "insertLogs.php";
 
     function getLogs(){
         $conn = openCon();
-        $command = "SELECT * FROM `tbl_activityLogs`";
+        $command = "SELECT * FROM `tbl_activityLogs` WHERE 1";
+         
+         //apply the filters
+         if(isset($_GET['user'])){
+            $command .= applyFilterIfSet('userName', $_GET['user']);
+        }
+        if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
+             $command .= applyDateFilter('date', $_GET['start'], $_GET['end'] );
+        }
+
         $result = mysqli_query($conn, $command);
         $logs = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);

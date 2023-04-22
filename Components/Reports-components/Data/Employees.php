@@ -6,6 +6,7 @@
         <th>Committee</th>
         <th>Start of Term</th>
         <th>End of Term</th>
+        <th>Term Status</th>
     </tr>
     <?php
                         $employees = getEmployees();
@@ -17,6 +18,7 @@
         <td><?php echo $employee['committee']?></td>
         <td><?php echo $employee['termStart']?></td>
         <td><?php echo $employee['termEnd']?></td>
+        <td><?php echo $employee['termStatus']?></td>
     </tr>
     <?php }?>
 </table>
