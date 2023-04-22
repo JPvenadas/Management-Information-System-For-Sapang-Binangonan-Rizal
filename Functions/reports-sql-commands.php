@@ -125,7 +125,16 @@ require "insertLogs.php";
     }
     function getBlotters(){
         $conn = openCon();
-        $command = "SELECT `blotterID` ,`summary`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `caseStatus`, RIGHT(complainant.contactNo, 9) as `complainantContact`, RIGHT(defendant.contactNo, 9) as `defendantContact`, COALESCE(hearing3, hearing2, hearing1) AS latestHearing, ((hearing1 IS NOT NULL) + (hearing2 IS NOT NULL) + (hearing3 IS NOT NULL)) as totalHearing, `caseStatus` FROM `tbl_blotters` as b INNER JOIN tbl_residents as complainant on complainant.residentID = b.complainant INNER JOIN tbl_residents as defendant on defendant.residentID = b.defendant WHERE b.archive = 'false';";
+        $command = "SELECT `blotterID` ,`summary`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `caseStatus`, RIGHT(complainant.contactNo, 9) as `complainantContact`, RIGHT(defendant.contactNo, 9) as `defendantContact`, COALESCE(hearing3, hearing2, hearing1) AS latestHearing, ((hearing1 IS NOT NULL) + (hearing2 IS NOT NULL) + (hearing3 IS NOT NULL)) as totalHearing, `caseStatus` FROM `tbl_blotters` as b INNER JOIN tbl_residents as complainant on complainant.residentID = b.complainant INNER JOIN tbl_residents as defendant on defendant.residentID = b.defendant WHERE b.archive = 'false'";
+        
+         //apply the filters
+         if(isset($_GET['caseStatus'])){
+            $command .= applyFilterIfSet('caseStatus', $_GET['caseStatus']);
+        }
+        if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
+             $command .= applyDateFilter('COALESCE(hearing3, hearing2, hearing1)', $_GET['start'], $_GET['end'] );
+        }
+        
         $result = mysqli_query($conn, $command);
         $blotters = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);

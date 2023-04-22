@@ -11,10 +11,10 @@
         <?php }?>
     </select>
     <p class="white-text">Filter by Activity Date</p>
-    <input value="<?php if(isset($_GET['start'])){echo $_GET['start'];}?>" name="start" class="input" placeholder="Start date" onfocus="(this.type = 'date')" type="text">
-    <input value="<?php if(isset($_GET['end'])){echo $_GET['end'];}?>" name="end" class="input" placeholder="End date" onfocus="(this.type = 'date')" type="text">
+    <input value="<?php if(isset($_GET['start'])){echo $_GET['start'];}?>" value="<?php if(isset($_GET['start'])){echo $_GET['start'];}?>" name="start" class="input" placeholder="Start date" onfocus="(this.type = 'date')" type="text">
+    <input value="<?php if(isset($_GET['end'])){echo $_GET['end'];}?>" value="<?php if(isset($_GET['end'])){echo $_GET['end'];}?>" name="end" class="input" placeholder="End date" onfocus="(this.type = 'date')" type="text">
     <div class="filter-button-container">
-        <button class="filter-button">Apply Filters</button>
+        <button type="submit" class="filter-button">Apply Filters</button>
     </div>
 </form>
 <script>
