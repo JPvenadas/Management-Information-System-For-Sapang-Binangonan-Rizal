@@ -1,4 +1,4 @@
-<div class="modal-background-blur">
+<div id="add-modal" class="modal-background-blur">
     <div class="scroll">
         <form enctype="multipart/form-data" method="post" action="../../Pages/Residents/Residents.php"
             class="modal-content-container">
@@ -51,8 +51,6 @@
                     name="maritalStatus" type="text">
                 <input required autocomplete="off" placeholder="Occupation" class="resident-input" name="occupation"
                     type="text">
-                <input autocomplete="off" list="residentCategory" placeholder="Resident Category" class="resident-input"
-                    name="residentCategory" type="text">
             </div>
             <!-- Head of the family field -->
             <div class="multiple-choice-container">
@@ -91,7 +89,7 @@
     let imageInput = document.querySelector('.resident-upload-input')
     let imagePreview = document.querySelector('.resident-image-preview')
     let body = document.querySelector('body')
-    let modal = document.querySelector('.modal-background-blur')
+    let modal = document.querySelector('#add-modal')
 
 
     // radio

@@ -12,7 +12,6 @@ function AttachPersonalInfo($resident){
     generateInfoItem("voterStatus","Voter's Status", $resident['voterStatus'], "text");
     generateInfoItem("maritalStatus","Marital Status", $resident['maritalStatus'], "text");
     generateInfoItem("occupation","Occupation", $resident['occupation'], "text");
-    generateInfoItem("residentCategory","Resident Category", $resident['residentCategory'], "text");
     generateInfoItem("familyHead","Family Head", $resident['familyHead'], "text");
     if($resident['familyHead'] == "Yes"){
         generateInfoItem("familyMembers","Number of Family Members", $resident['familyMembers'], "number");
