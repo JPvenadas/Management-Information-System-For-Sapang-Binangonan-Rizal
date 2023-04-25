@@ -35,6 +35,16 @@ if(isset($_POST['next2'])){
     $_SESSION['registration-lastName'] = $_POST['lastName'];
     $_SESSION['registration-extension'] = $_POST['extension'];
     $_SESSION['registration-birthDate'] = $_POST['birthDate'];
+    $userName = "@" . $_POST['firstName'] . $_POST['middleName'] . $_POST['lastName'] . $_POST['extension'];
+    $userName = str_replace(' ', '', $userName);
+
+    if(checkExistingResidents($userName)){
+        header("Location: ../../index.php?error=You are already registered");
+        exit();
+    }else{
+        header("Location: ?step=3");
+        exit();
+    }
 }
 
 if(isset($_POST['next3'])){
@@ -74,7 +84,6 @@ if(isset($_POST['signup'])){
     $purok = validate($_SESSION['registration-purok']);
     $voterStatus = validate($_SESSION['registration-voterStatus']);
     $maritalStatus = validate($_SESSION['registration-maritalStatus']);
-    $residentCategory = validate($_SESSION['registration-residentCategory']);
     $occupation = validate($_SESSION['registration-occupation']);
     $familyHead = validate($_SESSION['registration-familyHead']);
     $familyMembers = $_SESSION['registration-familyMembers'];
@@ -82,29 +91,68 @@ if(isset($_POST['signup'])){
     $registrationStatus = 'Unverified';
     $mobileNumber = validate($_SESSION['registration-mobileNumber']);
     $residenceProof = $_SESSION['registration-residenceProof'];
-    $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `residentCategory`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `residenceProof`, `registrationStatus`) 
-                                    VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$profilePicture','$purok','$address','$voterStatus','$sex','$maritalStatus','$residentCategory','$occupation','$familyHead','$familyMembers','$archive','$mobileNumber','$residenceProof', '$registrationStatus')";
+    $userName = "@$firstName$middleName$lastName$extension";
+    $userName = str_replace(' ', '', $userName);
+
+    $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `residenceProof`, `registrationStatus`) 
+    VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$profilePicture','$purok','$address','$voterStatus','$sex','$maritalStatus','$occupation','$familyHead','$familyMembers','$archive','$mobileNumber','$residenceProof', '$registrationStatus')";
     mysqli_query($conn, $command);
     $residentID =  mysqli_insert_id($conn);
-    
     //user account registration
     $firstName = validate($_SESSION['registration-firstName']);
     $middleName = validate($_SESSION['registration-middleName']);
     $lastName = validate($_SESSION['registration-lastName']);
     $extension = validate($_SESSION['registration-extension']);
-    $userName = "@$firstName$middleName$lastName$extension";
-    $userName = str_replace(' ', '', $userName);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $userType = "Resident";
     $accountStatus = "Inactive";
     $command = "INSERT INTO `tbl_userAccounts`(`userName`, `residentID`, `password`, `userType`, `accountStatus`) 
-                                        VALUES ('$userName','$residentID','$password','$userType','$accountStatus')" ;
+                VALUES ('$userName','$residentID','$password','$userType','$accountStatus')" ;
     mysqli_query($conn, $command);
     mysqli_close($conn);
+    CompressImage($residentID);
     session_unset();
     header("Location: ?step=done&username=$userName");
-	exit();
+    exit();
 }
-    
+
+function CompressImage($residentID){
+    $conn = openCon();
+    $command = "SELECT residentID, image FROM tbl_residents where residentID = $residentID";
+    $result = mysqli_query($conn, $command);
+
+        // Compress the images and update the records
+        $quality = 50; // Set the compression quality (0-100)
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Create a GD image from the blob data
+            $source = imagecreatefromstring($row['image']);
+
+            // Compress the image
+            ob_start();
+            imagejpeg($source, null, $quality);
+            $compressedImage = ob_get_clean();
+
+            // Update the record with the compressed image
+            $id = $row['residentID'];
+            $command = "UPDATE tbl_residents SET image = ? WHERE residentID = ?";
+            $stmt = mysqli_prepare($conn, $command);
+            mysqli_stmt_bind_param($stmt, "si", $compressedImage, $residentID);
+            mysqli_stmt_execute($stmt);
+        }
+    // Close the database connection
+    mysqli_close($conn);
+}
+function checkExistingResidents($userName){
+    $conn = openCon();
+    $command = "SELECT * from tbl_userAccounts WHERE `userName` = '$userName'";
+    $result = mysqli_query($conn, $command);
+    if(mysqli_num_rows($result) >= 1){
+        mysqli_close($conn);
+        return true;
+    }else{
+        mysqli_close($conn);
+        return false;
+    }
+}
 
 ?>

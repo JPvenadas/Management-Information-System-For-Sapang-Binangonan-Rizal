@@ -1,4 +1,4 @@
-<form action="?step=3" method="POST" class="form">
+<form method="POST" class="form">
     <div class="limit-width">
         <h2 class="form-title">Create an Account</h2>
         <p class="text">Please fill the necessary information below</p>

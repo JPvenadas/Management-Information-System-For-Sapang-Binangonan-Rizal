@@ -33,7 +33,7 @@ if(isset($_POST['search_button_residents'])){
 // get the lists of the residents
 function getResidents(){
     $conn = openCon();
-    $command = "SELECT r.residentID,`firstName`,`middleName`,`lastName`,`birthDate`,`image`, `purok`
+    $command = "SELECT r.residentID, CONCAT(firstName, ' ', middleName, ' ', lastName, ' ', extension) as fullName,`birthDate`,`image`, `purok`
                 FROM tbl_residents as r INNER JOIN tbl_userAccounts as u on u.residentID = r.residentID
                 WHERE r.archive = 'false'";
     $command = $command . addFilters(); 
@@ -162,8 +162,11 @@ if(isset($_POST['add_resident_button'])){
     $extension =  $_POST['extension'];
     $address =  $_POST['address'];
     $birthDate =  $_POST['birthDate'];
+
+    //get the image contents
     $image = $_FILES["image"]["tmp_name"];
     $imageContent = addslashes(file_get_contents($image));
+
     $purok =  $_POST['purok'];
     $voterStatus =  $_POST['voterStatus'];
     $sex =  $_POST['sex'];
@@ -175,21 +178,32 @@ if(isset($_POST['add_resident_button'])){
     $archive = "false";
     $registrationStatus = "Verified";
 
-    $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `registrationStatus`) 
-                                VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$imageContent','$purok','$address','$voterStatus','$sex','$maritalStatus','$occupation','$familyHead','$familyMembers','$archive','$contactNo','$registrationStatus')";
-    mysqli_query($conn, $command);
-    
-    insertLogs("Added a resident with ID: $residentID");
-    
-    // registration of user Accounts
+    //concat the username then remove spaces
     $userName = "$firstName$middleName$lastName$extension";
-    $password = password_hash($userName, PASSWORD_DEFAULT);
-    $userType = "Resident";
-    $accountStatus = "Active";
-    $command = "INSERT INTO `tbl_userAccounts`(`userName`, `residentID`, `password`, `userType`, `accountStatus`) 
-                                        VALUES ('@$userName','$residentID','$password','$userType','$accountStatus')" ;
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
+    $userName = str_replace(' ', '', $userName);
+
+    //check if the resident is already registered if so void the registration
+    if(checkExistingResidents("@$userName")){
+        header("Location: ../../Pages/Residents/Residents.php?error=Resident is already registered");
+        exit();
+    }else{
+        $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `registrationStatus`) 
+        VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$imageContent','$purok','$address','$voterStatus','$sex','$maritalStatus','$occupation','$familyHead','$familyMembers','$archive','$contactNo','$registrationStatus')";
+        mysqli_query($conn, $command);
+        $residentID = mysqli_insert_id($conn);
+        insertLogs("Added a resident with ID: $residentID");
+
+        // registration of user Accounts
+        $password = password_hash($userName, PASSWORD_DEFAULT);
+        $userType = "Resident";
+        $accountStatus = "Active";
+        $command = "INSERT INTO `tbl_userAccounts`(`userName`, `residentID`, `password`, `userType`, `accountStatus`) 
+                    VALUES ('@$userName','$residentID','$password','$userType','$accountStatus')" ;
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+
+        CompressImage($residentID);
+   }
 }
 if(isset($_POST["change_image_button"])){
     $conn = openCon();
@@ -200,6 +214,7 @@ if(isset($_POST["change_image_button"])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
     insertLogs("Updated a profile picture of resident with ID: $id");
+    CompressImage($id);
 }
 
 if(isset($_POST['submit_csv'])){
@@ -223,25 +238,26 @@ if(isset($_POST['submit_csv'])){
                 // Insert data into the table
                
                 $conn = openCon();
-                $image = addslashes(file_get_contents("../../Images/ProfileBlank.webp"));
+                $image = addslashes(file_get_contents("../../Images/profileBlank.png"));
                 $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `occupation`, `familyHead`, `familyMembers`, `contactNo`, `registrationStatus`, `archive`, `image`) 
                             VALUES ('{$row[0]}','{$row[1]}','{$row[2]}','{$row[3]}','{$row[4]}','{$row[5]}','{$row[6]}','{$row[7]}','{$row[8]}','{$row[9]}','{$row[10]}','{$row[11]}','{$row[13]}','{$row[12]}','Verified', 'false', '$image')";
-                $result = $conn->query($command);
-                mysqli_query($conn, $command);
-
-
-                $residentID = mysqli_insert_id($conn);
-                $userName = "@{$row[0]}{$row[1]}{$row[2]}{$row[3]}";
-                $password = password_hash($userName, PASSWORD_DEFAULT);
-                $userType = "Resident";
-                $accountStatus = "Active";
-                $command = "INSERT INTO `tbl_userAccounts`(`userName`, `residentID`, `password`, `userType`, `accountStatus`) 
-                                                    VALUES ('@$userName','$residentID','$password','$userType','$accountStatus')" ;
-                mysqli_query($conn, $command);
-                mysqli_close($conn);
-                if (!$result) {
-                    header("Location: ../../Pages/Residents/Residents.php?error=Error Importing data");
-                    exit();
+                $userName = "{$row[0]}{$row[1]}{$row[2]}{$row[3]}";
+                $userName = str_replace(' ', '', $userName);
+                if(checkExistingResidents("@$userName")){
+                }else{
+                    //register the resident in tbl_residents
+                    $result = $conn->query($command);
+                    mysqli_query($conn, $command);
+                    
+                    //create an account
+                    $residentID = mysqli_insert_id($conn);
+                    $password = password_hash($userName, PASSWORD_DEFAULT);
+                    $userType = "Resident";
+                    $accountStatus = "Active";
+                    $command = "INSERT INTO `tbl_userAccounts`(`userName`, `residentID`, `password`, `userType`, `accountStatus`) 
+                                                        VALUES ('@$userName','$residentID','$password','$userType','$accountStatus')" ;
+                    mysqli_query($conn, $command);
+                    mysqli_close($conn);
                 }
               }
         }
@@ -253,6 +269,46 @@ if(isset($_POST['submit_csv'])){
     }else{
         header("Location: ../../Pages/Residents/Residents.php?error=Error uploading the file");
         exit();
+    }
+}
+
+
+function CompressImage($residentID){
+    $conn = openCon();
+    $command = "SELECT residentID, image FROM tbl_residents where residentID = $residentID";
+    $result = mysqli_query($conn, $command);
+
+        // Compress the images and update the records
+        $quality = 50; // Set the compression quality (0-100)
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Create a GD image from the blob data
+            $source = imagecreatefromstring($row['image']);
+
+            // Compress the image
+            ob_start();
+            imagejpeg($source, null, $quality);
+            $compressedImage = ob_get_clean();
+
+            // Update the record with the compressed image
+            $id = $row['residentID'];
+            $command = "UPDATE tbl_residents SET image = ? WHERE residentID = ?";
+            $stmt = mysqli_prepare($conn, $command);
+            mysqli_stmt_bind_param($stmt, "si", $compressedImage, $residentID);
+            mysqli_stmt_execute($stmt);
+        }
+    // Close the database connection
+    mysqli_close($conn);
+}
+function checkExistingResidents($userName){
+    $conn = openCon();
+    $command = "SELECT * from tbl_userAccounts WHERE `userName` = '$userName'";
+    $result = mysqli_query($conn, $command);
+    if(mysqli_num_rows($result) >= 1){
+        mysqli_close($conn);
+        return true;
+    }else{
+        mysqli_close($conn);
+        return false;
     }
 }
 ?>

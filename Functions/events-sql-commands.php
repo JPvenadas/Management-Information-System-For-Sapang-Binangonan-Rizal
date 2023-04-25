@@ -38,7 +38,7 @@ require "insertLogs.php";
     if(isset($_POST['add_event'])){
         $conn = openCon();
         $eventName = $_POST['eventName'];
-        $eventDescription = mysqli_real_escape_string($conn, addslashes($_POST['eventDescription']));
+        $eventDescription = validate($_POST['eventDescription']);
         $start = $_POST['start'];
         $end = $_POST['end'];
         $command = "INSERT INTO `tbl_events`(`eventName`, `eventDescription`, `start`,`end`, `archive`) 
@@ -52,7 +52,7 @@ require "insertLogs.php";
         $conn = openCon();
         $eventID = $_POST['eventID'];
         $eventName = $_POST['eventName'];
-        $eventDescription = mysqli_real_escape_string($conn, addslashes($_POST['eventDescription']));
+        $eventDescription = validate($_POST['eventDescription']);
         $start = $_POST['start'];
         $end = $_POST['end'];
         $command = "UPDATE `tbl_events` SET `eventName`='$eventName',`eventDescription`='$eventDescription',`start`='$start', `end`='$end' WHERE `eventID` = '$eventID'";
