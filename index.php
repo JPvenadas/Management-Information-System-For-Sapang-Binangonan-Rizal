@@ -41,7 +41,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         <div class="login-left">
             <div class="login-title-container">
                 <img class="logo" src="Images/logo.png" alt="">
-                <h1 class="title">Sapang Management Information System</h1>
+                <h1 class="title">Management Information System for Barangay Sapang</h1>
             </div>
             <h2 class="greeting">WELCOME KABARANGAY!</h2>
             <form class="login-form" action="Functions/login.php" method="POST">

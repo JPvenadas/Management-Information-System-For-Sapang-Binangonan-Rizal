@@ -29,6 +29,8 @@ body{
 }
 .login-right{
     width: 50%;
+    position: relative;
+    height: 500px;
 }
 .logo{
     width: 30px;
@@ -106,10 +108,6 @@ input, button{
 .button-white:hover{
     background: #e6e5e5;
 }
-.login-right{
-    position: relative;
-    height: 100%;
-}
 .error-container{
     width: 100vw;
     display: flex;
@@ -138,13 +136,13 @@ input, button{
 }
 .login-figure{
     width: 100vw;
-    max-width: 900px;
-    max-height: 900px;
+    max-width: 870px;
+    max-height: 950px;
     height: 100vw;
     position: absolute;
     background: url('../Images/login-background.png');
     background-size: 100% 100%;
-    bottom: -170px;
+    bottom: -220px;
     left: -100px;
 }
 .forgot-password{
@@ -192,14 +190,61 @@ input, button{
     }
 }
 @media (max-width: 700px){
+    .login-container{
+        padding: 50px 0 0 0;
+    }
     .login-title-container{
-        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 100px;
+        background: #195FA0;
+        top: 0;
+        left: 0;
+        gap: 40px;
+    }
+    .title{
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 20px;
+        color: #FFFFFF;
     }
     .logo{
-        width: 90px;
-        height: 90px;
+        width: 70px;
+        height: 70px;
     }
     .login-left{
-        gap: 40px;
+        gap: 25px;
+        padding: 0 35px;
+    }
+    .greeting{
+        text-align: left;
+        font-weight: 700;
+        font-size: 30px;
+        color: #002C4B;
+        max-width: 320px;
+        width: 100%;
+    }
+    .label{
+        display: none;
+    }
+    .text-1{
+        border-radius: 2px;
+        box-shadow: none;
+        border: 1px solid #B4B4B4;
+        font-size: 16px;
+        max-width: none;
+        width: 100%;
+    }
+    .login-button{
+        border-radius: 2px;
+    }
+    .login-form{
+        max-width: 350px;
+        width: 100%;
+    }
+    .button-white{
+        background: #D1D1D1;
     }
 }

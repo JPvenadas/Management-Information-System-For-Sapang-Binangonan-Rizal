@@ -333,3 +333,9 @@ canvas{
 .light-red{
   background: #F7E4E1;
 }
+@media (max-width: 1000px){
+
+}
+@media (max-width: 700px){
+
+}
