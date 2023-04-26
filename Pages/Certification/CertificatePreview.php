@@ -14,7 +14,7 @@ $service = getServices();
 
 
 //determine if the user accessing the url is logged in
-if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
+if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['userType'] === "Administrator" || (isset($_SESSION['access']) && $_SESSION['access']['services'])) {
  ?>
 <!DOCTYPE html>
 <html>

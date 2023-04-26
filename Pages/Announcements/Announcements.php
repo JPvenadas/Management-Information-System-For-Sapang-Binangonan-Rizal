@@ -7,7 +7,7 @@ $announcements = getAnnouncements();
 
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
-if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
+if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['userType'] === "Administrator" || (isset($_SESSION['access']) && $_SESSION['access']['announcements'])) {
 	?>
     <!DOCTYPE html>
 <html>

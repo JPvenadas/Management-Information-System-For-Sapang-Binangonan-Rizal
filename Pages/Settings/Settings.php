@@ -4,7 +4,7 @@ session_start();
 require "../../Functions/settings-sql-commands.php";
 
 //determine if the user accessing the url is logged in
-if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['userType'] == "Administrator") {
+if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['userType'] === "Administrator") {
  ?>
 <!DOCTYPE html>
 <html>

@@ -7,7 +7,7 @@ require "../../Functions/registration-sql-commands.php";
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
 if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
-	header("Location: Pages/Dashboard/dashboard.php");
+	header("Location: Pages/Dashboard/Dashboard.php");
 	exit();
 }else{
 
