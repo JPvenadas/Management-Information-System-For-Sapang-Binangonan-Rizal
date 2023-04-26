@@ -94,10 +94,10 @@ if(isset($_POST['add_employee'])){
     if(existingResidents()){
         if(existingRole()){
             $conn = openCon();
-            $residentID = $_POST['residentID'];
-            $position = $_POST['position'];
+            $residentID = validate($_POST['residentID']);
+            $position = validate($_POST['position']);
             $termstart = $_POST['termstart'];
-            $committee = $_POST['committee'];
+            $committee = validate($_POST['committee']);
             $termend = $_POST['termend'];
             $termStatus = 'Active';
             $signiture = $_FILES["signiture"]["tmp_name"];
@@ -120,12 +120,12 @@ if(isset($_POST['add_employee'])){
 }
 if(isset($_POST['edit_employee'])){
     $conn = openCon();
-    $employeeID = $_POST['employeeID'];
-    $residentID = $_POST['residentID'];
-    $position = $_POST['position'];
+    $employeeID = validate($_POST['employeeID']);
+    $residentID = validate($_POST['residentID']);
+    $position = validate($_POST['position']);
     $termstart = $_POST['termstart'];
     $termend = $_POST['termend'];
-    $committee = $_POST['committee'];
+    $committee = validate($_POST['committee']);
     $command = "";
     if(isset($_FILES['signiture'])){
         $signiture = $_FILES["signiture"]["tmp_name"];
@@ -153,7 +153,7 @@ if(isset($_POST['edit_employee'])){
 if(isset($_POST['deactivate_term'])){
     $conn = openCon();
     $termend = date('y-m-d');
-    $employeeID = $_POST['employeeID'];
+    $employeeID = validate($_POST['employeeID']);
     $command = "UPDATE tbl_employees set `termStatus` = 'Inactive', 
                                          `termend` = '$termend' 
                                         where `employeeID` = '$employeeID'";

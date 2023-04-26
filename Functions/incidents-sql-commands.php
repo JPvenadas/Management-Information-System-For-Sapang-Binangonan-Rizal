@@ -68,7 +68,7 @@ function getResidents(){
 
 if(isset($_POST['recordViolation'])){
     $conn = openCon();
-    $residentID = $_POST['residentID'];
+    $residentID = validate($_POST['residentID']);
     $date = $_POST['date'];
     $time = $_POST['time'];
 
@@ -82,7 +82,7 @@ if(isset($_POST['recordViolation'])){
 
 if(isset($_POST['archive_curfew'])){
     $conn = openCon();
-    $recordID = $_POST['recordID'];
+    $recordID = validate($_POST['recordID']);
     $command = "UPDATE `tbl_curfewViolators` SET `archive`='true' WHERE ID = '$recordID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);

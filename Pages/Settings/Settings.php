@@ -29,8 +29,8 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
 </head>
 
 <body>
-     <!-- Attach the navbar -->
-     <?php 
+    <!-- Attach the navbar -->
+    <?php 
     if($_SESSION['userType'] == "Administrator"){
         require "../../Components/Navbar/Administrator-Navbar.php";
         attachNavbar("settings");
@@ -38,6 +38,12 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
         require "../../Components/Navbar/Staff-Navbar.php";
         attachNavbar("settings");
     }?>
+
+    <?php if (isset($_GET['error'])) { ?>
+        <div class="error-container">
+            <p class="error"><?php echo $_GET['error']; ?></p>
+        </div>
+    <?php } ?>
 
     <!-- Main content of the residents-section -->
     <div class="main-content">

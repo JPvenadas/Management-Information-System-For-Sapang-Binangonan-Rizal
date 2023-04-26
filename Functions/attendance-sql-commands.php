@@ -29,7 +29,7 @@ function checkPassword(){
     $result = mysqli_query($conn, $command);
     if (mysqli_num_rows($result) === 1) {
         $passwords = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        $password = $_POST['password'];
+        $password = validate($_POST['password']);
         mysqli_free_result($result);
         if(password_verify($password, $passwords[0]['password'])){
             if($_POST['process'] == 'timeIn'){

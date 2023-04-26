@@ -4,7 +4,7 @@ require "insertLogs.php";
 
 if(isset($_POST['submitUserName'])){
     $conn = openCon();
-    $userName =$_POST['userName'];
+    $userName = validate($_POST['userName']);
     $command = "SELECT u.userName, u.accountStatus, r.contactNo 
                 from tbl_userAccounts AS u 
                 INNER JOIN tbl_residents as r 
@@ -21,7 +21,7 @@ if(isset($_POST['submitUserName'])){
 	        exit();
         }
         elseif($userName[0]['contactNo'] == ""){
-            header("Location: ../../Pages/Recovery/AccountRecovery.php?page=no contacts&hd=$ss");
+            header("Location: ../../Pages/Recovery/AccountRecovery.php?page=no contacts");
 	        exit();
         }else{
             $_SESSION['recovery-userName'] = $userName[0]['userName'];

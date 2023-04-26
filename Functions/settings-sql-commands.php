@@ -45,7 +45,7 @@ function getCommittees(){
 //change the amount/fee of the service if the "change amount" button is clicked
 if(isset($_POST['change_amount'])){
     $conn = openCon();
-    $newAmount = $_POST['serviceFee'];
+    $newAmount = validate($_POST['serviceFee']);
     $serviceID = $_POST['serviceID'];
     $command = "UPDATE `tbl_services` SET `serviceFee`='$newAmount' WHERE `serviceName` = '$serviceID'";
     mysqli_query($conn, $command);
@@ -55,26 +55,36 @@ if(isset($_POST['change_amount'])){
 // add the purok in the database
 if(isset($_POST['add_purok'])){
     $conn = openCon();
-    $purokName = $_POST['purokName'];
-    $command = "INSERT INTO `tbl_purok`(`purok`, `archive`) VALUES ('$purokName','false')";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Added a purok");
+    $purokName = validate($_POST['purokName']);
+    if(checkExistingRecord('tbl_purok', 'purok', $purokName)){
+        header("Location: ?page=purok&error=Name already taken");
+        exit();
+    }else{
+        $command = "INSERT INTO `tbl_purok`(`purok`, `archive`) VALUES ('$purokName','false')";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+        insertLogs("Added a purok");
+    }
 }
 // edit and update the purok
 if(isset($_POST['edit_purok'])){
     $conn = openCon();
-    $purokID = $_POST['purokID'];
-    $purokName = $_POST['purokName'];
-    $command = "UPDATE `tbl_purok` SET `purok`='$purokName' WHERE `purok` = '$purokID'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Updated a Purok information with a name: $purokID");
+    $purokID = validate($_POST['purokID']);
+    $purokName = validate($_POST['purokName']);
+    if(checkExistingRecord('tbl_purok', 'purok', $purokName)){
+        header("Location: ?page=purok&error=Name already taken");
+        exit();
+    }else{
+        $command = "UPDATE `tbl_purok` SET `purok`='$purokName' WHERE `purok` = '$purokID'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+        insertLogs("Updated a Purok information with a name: $purokID");
+    }
 }
 // archive a certain purok if the archived button is clicked
 if(isset($_POST['archive_purok'])){
     $conn = openCon();
-    $purokID = $_POST['purokID'];
+    $purokID = validate($_POST['purokID']);
     $command = "UPDATE `tbl_purok` SET `archive`= 'true' WHERE `purok` = '$purokID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
@@ -83,26 +93,36 @@ if(isset($_POST['archive_purok'])){
 // add new personnel's position
 if(isset($_POST['add_position'])){
     $conn = openCon();
-    $positionName = $_POST['positionName'];
-    $command = "INSERT INTO `tbl_positions`(`position`, `archive`) VALUES ('$positionName','false')";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Added an employee position");
+    $positionName = validate($_POST['positionName']);
+    if(checkExistingRecord('tbl_positions', 'position', $positionName)){
+        header("Location: ?page=positions&error=Position already exists");
+        exit();
+    }else{
+        $command = "INSERT INTO `tbl_positions`(`position`, `archive`) VALUES ('$positionName','false')";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+        insertLogs("Added an employee position");
+    }
 }
 // edit a certain personnel's position
 if(isset($_POST['edit_position'])){
     $conn = openCon();
-    $positionID = $_POST['positionID'];
-    $positionName = $_POST['positionName'];
-    $command = "UPDATE `tbl_positions` SET `position`='$positionName' WHERE `position` = '$positionID'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Updated a position information with a name: $positionID");
+    $positionID = validate($_POST['positionID']);
+    $positionName = validate($_POST['positionName']);
+    if(checkExistingRecord('tbl_positions', 'position', $positionName)){
+        header("Location: ?page=positions&error=Position already exists");
+        exit();
+    }else{
+        $command = "UPDATE `tbl_positions` SET `position`='$positionName' WHERE `position` = '$positionID'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+        insertLogs("Updated a position information with a name: $positionID");
+    }
 }
 // archive a certain position if the "archive" button is clicked
 if(isset($_POST['archive_position'])){
     $conn = openCon();
-    $positionID = $_POST['positionID'];
+    $positionID = validate($_POST['positionID']);
     $command = "UPDATE `tbl_positions` SET `archive`='true' WHERE `position` = '$positionID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
@@ -110,21 +130,31 @@ if(isset($_POST['archive_position'])){
 }
 if(isset($_POST['add_committee'])){
     $conn = openCon();
-    $committee = $_POST['committee'];
-    $command = "INSERT INTO `tbl_committee`(`committee`, `archive`) VALUES ('$committee','false')";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Added a committee");
+    $committee = validate($_POST['committee']);
+    if(checkExistingRecord('tbl_committee', 'committee', $committee)){
+        header("Location: ?page=positions&error=Committee already exists");
+        exit();
+    }else{
+        $command = "INSERT INTO `tbl_committee`(`committee`, `archive`) VALUES ('$committee','false')";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+        insertLogs("Added a committee");
+    }
 }
 // edit a certain personnel's position
 if(isset($_POST['edit_committee'])){
     $conn = openCon();
     $committeeID = $_POST['committeeID'];
     $committee = $_POST['committee'];
-    $command = "UPDATE `tbl_committee` SET `committee`='$committee' WHERE `committee` = '$committeeID'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Updated a committe information with a Name: $committee");
+    if(checkExistingRecord('tbl_committee', 'committee', $committee)){
+        header("Location: ?page=positions&error=Committee already exists");
+        exit();
+    }else{
+        $command = "UPDATE `tbl_committee` SET `committee`='$committee' WHERE `committee` = '$committeeID'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+        insertLogs("Updated a committe information with a Name: $committee");
+    }
 }
 // archive a certain position if the "archive" button is clicked
 if(isset($_POST['archive_committee'])){
@@ -218,13 +248,13 @@ function getContacts(){
 }
 if(isset($_POST['save-contacts'])){
     $conn = openCon();
-    $webLink = $_POST['contact-webLink'];
-    $phone = $_POST['contact-phone'];
-    $facebook = $_POST['contact-facebook'];
-    $email = $_POST['contact-email'];
-    $telegram = $_POST['contact-telegram'];
-    $address = $_POST['contact-address'];
-    $gcash = $_POST['contact-gcash'];
+    $webLink = validate($_POST['contact-webLink']);
+    $phone = validate($_POST['contact-phone']);
+    $facebook = validate($_POST['contact-facebook']);
+    $email = validate($_POST['contact-email']);
+    $telegram = validate($_POST['contact-telegram']);
+    $address = validate($_POST['contact-address']);
+    $gcash = validate($_POST['contact-gcash']);
     $command = "UPDATE `tbl_contacts` SET `webLink`='$webLink',`phone`='$phone',`facebook`='$facebook',`email`='$email',`telegram`='$telegram',`address`='$address',`gcash`='$gcash' WHERE 1";
     mysqli_query($conn, $command);
     mysqli_close($conn);
@@ -232,14 +262,19 @@ if(isset($_POST['save-contacts'])){
 }
 if(isset($_POST['add_service'])){
     $conn = openCon();
-    $serviceName = $_POST['serviceName'];
-    $serviceFee = $_POST['serviceFee'];
-    $command = "INSERT INTO `tbl_services`(`serviceName`, `serviceFee`, `archive`, `serviceType`)  
-                                  VALUES ('$serviceName','$serviceFee','false','Non-document')";
-    mysqli_query($conn, $command);
-    $addedService = mysqli_insert_id($conn);
-    mysqli_close($conn);
-    insertLogs("Add a service with ID: $addedService");
+    $serviceName = validate($_POST['serviceName']);
+    $serviceFee = validate($_POST['serviceFee']);
+    if(checkExistingRecord('tbl_services', 'serviceName', $serviceName)){
+        header("Location: ?page=services&error=Service already exists");
+        exit();
+    }else{
+        $command = "INSERT INTO `tbl_services`(`serviceName`, `serviceFee`, `archive`, `serviceType`)  
+                                    VALUES ('$serviceName','$serviceFee','false','Non-document')";
+        mysqli_query($conn, $command);
+        $addedService = mysqli_insert_id($conn);
+        mysqli_close($conn);
+        insertLogs("Add a service with ID: $addedService");
+    }
 }
 if(isset($_POST['archive_service'])){
     $conn = openCon();
@@ -248,5 +283,18 @@ if(isset($_POST['archive_service'])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
     insertLogs("Archived a service with ID: $serviceID");
+}
+
+function checkExistingRecord($table, $primaryField, $value){
+    $conn = openCon();
+    $command = "SELECT * from $table WHERE `$primaryField` = '$value'";
+    $result = mysqli_query($conn, $command);
+    if(mysqli_num_rows($result) >= 1){
+        mysqli_close($conn);
+        return true;
+    }else{
+        mysqli_close($conn);
+        return false;
+    }
 }
 ?>

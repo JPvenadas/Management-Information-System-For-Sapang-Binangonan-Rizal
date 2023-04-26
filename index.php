@@ -6,7 +6,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         header("Location: Pages/Dashboard/Resident-Dashboard.php");
 	    exit();
     }else{
-        header("Location: Pages/Dashboard/dashboard.php");
+        header("Location: Pages/Dashboard/Dashboard.php");
 	    exit();
     }
 }else{

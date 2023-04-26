@@ -39,7 +39,7 @@
             <!-- Other Informtion Inputs -->
             <p class="label">Other Information</p>
             <div class="resident-info-inputs">
-                <input required autocomplete="off" placeholder="Birth Date" onfocus="(this.type = 'date')"
+                <input required autocomplete="off" placeholder="Birth Date" max="<?php echo date('Y-m-d');?>" onfocus="(this.type = 'date')"
                     class="resident-input" name="birthDate" type="text">
                 <input  autocomplete="off"required list="purok" placeholder="Purok" class="resident-input" name="purok" type="text">
                 <input required autocomplete="off" placeholder="Exact Address" class="resident-input" name="address"
@@ -74,7 +74,11 @@
             <p class="label">Contact Information</p>
             <div class="resident-info-inputs">
                 <input autocomplete="off" placeholder="Contact Number (Optional)" class="resident-input"
-                    name="contactNo" type="tet">
+                    name="contactNo" type="text" onkeypress="
+            //function that will prevent non-numeric char
+            return event.charCode >= 48 && event.charCode <= 57" oninput="
+            //function that will prevent user from typing more than 6 digit
+            this.value = this.value.slice(0, 11)">
             </div>
             <div class="submit-button-container">
                 <button class="add-resident-button" name="add_resident_button" type="submit">

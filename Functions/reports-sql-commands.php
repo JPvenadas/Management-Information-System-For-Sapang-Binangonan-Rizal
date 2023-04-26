@@ -17,10 +17,10 @@ require "insertLogs.php";
 
         //apply the filters. if there is
         if(isset($_GET['userType'])){
-           $command .= applyFilterIfSet('userType', $_GET['userType']);
+           $command .= applyFilterIfSet('userType', validate($_GET['userType']));
         }
         if(isset($_GET['accountStatus'])){
-            $command .= applyFilterIfSet('accountStatus', $_GET['accountStatus']);
+            $command .= applyFilterIfSet('accountStatus', validate($_GET['accountStatus']));
         }
     
         $result = mysqli_query($conn, $command);
@@ -37,7 +37,7 @@ require "insertLogs.php";
         
         //apply the filters
         if(isset($_GET['service'])){
-            $command .= applyFilterIfSet('serviceName', $_GET['service']);
+            $command .= applyFilterIfSet('serviceName', validate($_GET['service']));
         }
         if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
              $command .= applyDateFilter('paymentDate', $_GET['start'], $_GET['end'] );
@@ -57,10 +57,10 @@ require "insertLogs.php";
         
         //apply the filters
         if(isset($_GET['position'])){
-            $command .= applyFilterIfSet('position', $_GET['position']);
+            $command .= applyFilterIfSet('position', validate($_GET['position']));
         }
         if(isset($_GET['termStatus'])){
-            $command .= applyFilterIfSet('termStatus', $_GET['termStatus']);
+            $command .= applyFilterIfSet('termStatus', validate($_GET['termStatus']));
         }
 
         $result = mysqli_query($conn, $command);
@@ -76,7 +76,7 @@ require "insertLogs.php";
         
         //apply the filters
         if(isset($_GET['employee'])){
-            $command .= applyFilterIfSet('a.employeeID', $_GET['employee']);
+            $command .= applyFilterIfSet('a.employeeID', validate($_GET['employee']));
         }
         if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
              $command .= applyDateFilter('Date', $_GET['start'], $_GET['end'] );
@@ -95,7 +95,7 @@ require "insertLogs.php";
         
          //apply the filters
         if(isset($_GET['item'])){
-            $command .= applyFilterIfSet('t.itemID', $_GET['item']);
+            $command .= applyFilterIfSet('t.itemID', validate($_GET['item']));
         }
         if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
              $command .= applyDateFilter('t.date', $_GET['start'], $_GET['end'] );
@@ -129,7 +129,7 @@ require "insertLogs.php";
         
          //apply the filters
          if(isset($_GET['caseStatus'])){
-            $command .= applyFilterIfSet('caseStatus', $_GET['caseStatus']);
+            $command .= applyFilterIfSet('caseStatus', validate($_GET['caseStatus']));
         }
         if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
              $command .= applyDateFilter('COALESCE(hearing3, hearing2, hearing1)', $_GET['start'], $_GET['end'] );
@@ -165,7 +165,7 @@ require "insertLogs.php";
          
          //apply the filters
          if(isset($_GET['user'])){
-            $command .= applyFilterIfSet('userName', $_GET['user']);
+            $command .= applyFilterIfSet('userName', validate($_GET['user']));
         }
         if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
              $command .= applyDateFilter('date', $_GET['start'], $_GET['end'] );
@@ -185,13 +185,13 @@ require "insertLogs.php";
 
         //apply the filters. if set
         if(isset($_GET['sex'])){
-            $command .= applyFilterIfSet('sex', $_GET['sex']);
+            $command .= applyFilterIfSet('sex', validate($_GET['sex']));
          }
         if(isset($_GET['purok'])){
-             $command .= applyFilterIfSet('purok', $_GET['purok']);
+             $command .= applyFilterIfSet('purok', validate($_GET['purok']));
         }
         if(isset($_GET['voterStatus'])){
-            $command .= applyFilterIfSet('voterStatus', $_GET['voterStatus']);
+            $command .= applyFilterIfSet('voterStatus', validate($_GET['voterStatus']));
         }
 
         $result = mysqli_query($conn, $command);

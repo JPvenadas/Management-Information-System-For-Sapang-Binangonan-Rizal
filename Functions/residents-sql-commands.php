@@ -16,7 +16,7 @@ function addFilters(){
 // filter residents to what the user searches
 function addsearchFilter(){
     if(isset($_GET['search'])){
-        $search = $_GET['search'];
+        $search = validate($_GET['search']);
         $additionalCommand = " and CONCAT(firstName,' ', middleName,' ', lastName ) LIKE '%$search%'";
         return $additionalCommand;
     }else{
@@ -75,7 +75,7 @@ function getSingleResident($residentID){
 //change to inactive users to active
 function activate(){
     $conn = openCon();
-    $residentID = $_POST['residentID'];
+    $residentID = validate($_POST['residentID']);
     $command = "UPDATE `tbl_userAccounts` SET `accountStatus`='Active' WHERE residentID = '$residentID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
@@ -112,25 +112,25 @@ function changeStatus($status){
 if(isset($_POST['save-edit-profile'])){
     $conn = openCon();
     $residentID = $_GET['id'];
-    $firstName = $_POST['personal-information-firstName'];
-    $middleName = $_POST['personal-information-middleName'];
-    $lastName = $_POST['personal-information-lastName'];
-    $extension = $_POST['personal-information-extension'];
+    $firstName = validate($_POST['personal-information-firstName']);
+    $middleName = validate($_POST['personal-information-middleName']);
+    $lastName = validate($_POST['personal-information-lastName']);
+    $extension = validate($_POST['personal-information-extension']);
     $birthDate = $_POST['personal-information-birthDate'];
-    $sex = $_POST['personal-information-sex'];
-    $purok = $_POST['personal-information-purok'];
-    $address = $_POST['personal-information-address'];
-    $voterStatus = $_POST['personal-information-voterStatus'];
-    $maritalStatus = $_POST['personal-information-maritalStatus'];
-    $occupation = $_POST['personal-information-occupation'];
-    $residentCategory = $_POST['personal-information-residentCategory'];
+    $sex = validate($_POST['personal-information-sex']);
+    $purok = validate($_POST['personal-information-purok']);
+    $address = validate($_POST['personal-information-address']);
+    $voterStatus = validate($_POST['personal-information-voterStatus']);
+    $maritalStatus = validate($_POST['personal-information-maritalStatus']);
+    $occupation = validate($_POST['personal-information-occupation']);
+    $residentCategory = validate($_POST['personal-information-residentCategory']);
     if(isset($_POST['personal-information-familyMembers'])){
-        $familyMembers = $_POST['personal-information-familyMembers'];
+        $familyMembers = validate($_POST['personal-information-familyMembers']);
     }else{
         $familyMembers = "";
     }
-    $familyHead = $_POST['personal-information-familyHead'];
-    $contactNo = $_POST['personal-information-contactNo'];
+    $familyHead = validate($_POST['personal-information-familyHead']);
+    $contactNo = validate($_POST['personal-information-contactNo']);
 
     $command = "UPDATE `tbl_residents` 
     SET `firstName`='$firstName',
@@ -156,25 +156,25 @@ if(isset($_POST['save-edit-profile'])){
 //registration of new users/residents
 if(isset($_POST['add_resident_button'])){
     $conn = openCon();
-    $firstName = $_POST['firstName'];
-    $middleName = $_POST['middleName'];
-    $lastName =  $_POST['lastName'];
-    $extension =  $_POST['extension'];
-    $address =  $_POST['address'];
+    $firstName = validate($_POST['firstName']);
+    $middleName = validate($_POST['middleName']);
+    $lastName =  validate($_POST['lastName']);
+    $extension =  validate($_POST['extension']);
+    $address =  validate($_POST['address']);
     $birthDate =  $_POST['birthDate'];
 
     //get the image contents
     $image = $_FILES["image"]["tmp_name"];
     $imageContent = addslashes(file_get_contents($image));
 
-    $purok =  $_POST['purok'];
-    $voterStatus =  $_POST['voterStatus'];
-    $sex =  $_POST['sex'];
-    $occupation =  $_POST['occupation'];
-    $maritalStatus =  $_POST['maritalStatus'];
-    $familyHead =  $_POST['familyHead'];
-    $familyMembers =  $_POST['familyMembers'];
-    $contactNo =  $_POST['contactNo'];
+    $purok =  validate($_POST['purok']);
+    $voterStatus =  validate($_POST['voterStatus']);
+    $sex =  validate($_POST['sex']);
+    $occupation =  validate($_POST['occupation']);
+    $maritalStatus =  validate($_POST['maritalStatus']);
+    $familyHead =  validate($_POST['familyHead']);
+    $familyMembers =  validate($_POST['familyMembers']);
+    $contactNo =  validate($_POST['contactNo']);
     $archive = "false";
     $registrationStatus = "Verified";
 

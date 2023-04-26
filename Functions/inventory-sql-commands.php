@@ -24,7 +24,7 @@
  }
  function addSearchFilterTransaction(){
    if(isset($_GET['search'])){
-      $search = $_GET['search'];
+      $search = validate($_GET['search']);
       $additionalCommand = " and CONCAT(r.firstName,' ', LEFT(r.middleName, 1),' ', r.lastName ) LIKE '%$search%'
       or i.itemName LIKE '%$search%' or i.itemID LIKE '%$search%'";
       return $additionalCommand;
@@ -55,8 +55,8 @@
  }
  if(isset($_POST['add_item'])){
    $conn = openCon();
-   $name = $_POST['item_name'];
-   $quantity = $_POST['item_quantity'];
+   $name = validate($_POST['item_name']);
+   $quantity = validate($_POST['item_quantity']);
    $command = "INSERT INTO `tbl_inventoryList`(`itemName`, `totalNumber`, `archive`) 
                                        VALUES ('$name','$quantity','false')";
    mysqli_query($conn, $command);
@@ -93,7 +93,7 @@
  }
  function updateQuantity($quantity, $operation){
    $conn = openCon();
-   $id = $_POST['itemID'];
+   $id = validate($_POST['itemID']);
    if($operation == "add"){
     $command = "UPDATE tbl_inventoryList SET totalNumber = totalNumber + $quantity WHERE itemID = '$id'";
    }else{
@@ -104,8 +104,8 @@
  }
  function recordStocksAdded(){
    $conn = openCon();
-   $id = $_POST['itemID'];
-   $quantity = $_POST['quantity'];
+   $id = validate($_POST['itemID']);
+   $quantity = validate($_POST['quantity']);
    $command = "INSERT INTO `tbl_addedStocks`(`itemID`, `stocksAdded`) VALUES ('$id','$quantity')";
    mysqli_query($conn, $command);
    mysqli_close($conn);
@@ -133,9 +133,9 @@
   }
   function addTransaction(){
     $conn = openCon();
-    $residentID = $_POST['residentID'];
-    $itemID = $_POST['itemID'];
-    $quantity = $_POST['quantity'];
+    $residentID = validate($_POST['residentID']);
+    $itemID = validate($_POST['itemID']);
+    $quantity = validate($_POST['quantity']);
 
     $command = "INSERT INTO `tbl_inventoryTransaction`(`residentID`, `itemID`, `quantity`, `status`,`archive`) 
                                                VALUES ('$residentID','$itemID','$quantity','Borrowed','false')";
@@ -160,8 +160,8 @@
   }
   if(isset($_POST['edit_item_name'])){
    $conn = openCon();
-   $id = $_POST['itemID'];
-   $name = $_POST['itemName'];
+   $id = validate($_POST['itemID']);
+   $name = validate($_POST['itemName']);
    $command = "UPDATE tbl_inventoryList SET itemName = '$name' WHERE itemID = '$id'";
    mysqli_query($conn, $command);
    mysqli_close($conn);
@@ -169,7 +169,7 @@
   }
   if(isset($_POST['archive_transaction'])){
     $conn = openCon();
-    $id = $_POST['transactionID'];
+    $id = validate($_POST['transactionID']);
     $command = "UPDATE `tbl_inventoryTransaction` set `archive` = 'true' WHERE `transactionID` = '$id'";
     mysqli_query($conn, $command);
     mysqli_close($conn);

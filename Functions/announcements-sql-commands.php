@@ -14,24 +14,24 @@ function getAnnouncements(){
 }
 if(isset($_POST['send_message'])){
     $conn = openCon();
-    $message = $_POST['message'];
-    $postedBy = $_SESSION['residentID'];
+    $message = validate($_POST['message']);
+    $postedBy = validate($_SESSION['residentID']);
     $recepients = "";
 
     //if the filter is in custom, 
     if($_POST['filter_value'] == "Custom"){
         if(isset($_POST['purok'])){
-            $purok = $_POST['purok'];
+            $purok = validate($_POST['purok']);
             $recepients = $recepients . "($purok) ";
         }if(isset($_POST['age'])){
-            $age = $_POST['age'];
+            $age = validate($_POST['age']);
             $recepients = $recepients . "($age) ";
         }if(isset($_POST['sex'])){
-            $sex = $_POST['sex'];
+            $sex = validate($_POST['sex']);
             $recepients = $recepients . "($sex) ";
         }
     }else{
-        $recepients = $_POST['filter_value'];
+        $recepients = validate($_POST['filter_value']);
     }
     $command = "INSERT INTO `tbl_announcements`(`message`, `postedBy`, `recepients`) 
                                         VALUES ('$message','$postedBy','$recepients')";
@@ -74,15 +74,15 @@ function getContactsCustom(){
     $conn = openCon();
     $command = "SELECT CONCAT(`firstName`,' ',LEFT(`middleName`, 1),' ',`lastName`) as Fullname, RIGHT(`contactNo`, 9) as contactNo FROM `tbl_residents` where archive = 'false'";
     if(isset($_POST['purok'])){ 
-        $purok = $_POST['purok'];
+        $purok = validate($_POST['purok']);
         $command = $command . " and `purok` = '$purok'";
     }
     if(isset($_POST['sex'])){
-        $sex = $_POST['sex'];
+        $sex = validate($_POST['sex']);
         $command = $command . " and `sex` = '$sex'";
     }
     if(isset($_POST['age'])){
-        $age = $_POST['age'];
+        $age = validate($_POST['age']);
         if($age == "Youths"){
             $command = $command . " and DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(`birthDate`, '%Y') < 18";
         }elseif($age == "Adults"){
@@ -127,8 +127,8 @@ function getResidentUser(){
 function getAnnouncementsResident(){
     $conn = openCon();
     $user = getResidentUser();
-    $sex = $user['sex'];
-    $age = $user['age'];
+    $sex = validate($user['sex']);
+    $age = validate($user['age']);
     $command = "SELECT CONCAT(r.firstName, ' ', LEFT(r.middleName, 1),' ', r.lastName, ' ', r.extension) as `fullName`, `message`, `datePosted`, `postedBy`, `recepients`
      FROM `tbl_announcements` as a inner join `tbl_residents` as r on a.postedBy = r.residentID WHERE `recepients` LIKE '%All Residents%' or `recepients` LIKE '%$sex%' or `recepients` LIKE '%$age%'";
     if($user['is_employee'] == true){

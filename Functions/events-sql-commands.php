@@ -37,7 +37,7 @@ require "insertLogs.php";
     }
     if(isset($_POST['add_event'])){
         $conn = openCon();
-        $eventName = $_POST['eventName'];
+        $eventName = validate($_POST['eventName']);
         $eventDescription = validate($_POST['eventDescription']);
         $start = $_POST['start'];
         $end = $_POST['end'];
@@ -50,8 +50,8 @@ require "insertLogs.php";
     }
     if(isset($_POST['save_event'])){
         $conn = openCon();
-        $eventID = $_POST['eventID'];
-        $eventName = $_POST['eventName'];
+        $eventID = validate($_POST['eventID']);
+        $eventName = validate($_POST['eventName']);
         $eventDescription = validate($_POST['eventDescription']);
         $start = $_POST['start'];
         $end = $_POST['end'];
@@ -62,7 +62,7 @@ require "insertLogs.php";
     }
     if(isset($_POST['archive_event'])){
         $conn = openCon();
-        $eventID = $_POST['eventID'];
+        $eventID = validate($_POST['eventID']);
         $command = "UPDATE `tbl_events` SET `archive`='true' WHERE `eventID` = '$eventID'";
         mysqli_query($conn, $command);
         mysqli_close($conn);

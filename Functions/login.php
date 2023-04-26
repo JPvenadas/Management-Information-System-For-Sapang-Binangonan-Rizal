@@ -44,6 +44,13 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 				$_SESSION['residentID'] = $row['residentID'];
 				$_SESSION['signiture'] = $row['signiture'];
 				insertLogs("logged in");
+
+				//save the access control for the user who logged in
+				if($row['userType'] == "Staff"){
+					include "getAccess.php";
+					$access = getAccess();
+					$_SESSION['access'] = $access;
+				}
             	
 				//redirect to their respective dashboard page
 				if($row['userType'] == "Resident"){

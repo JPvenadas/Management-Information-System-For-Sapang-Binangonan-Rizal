@@ -335,3 +335,47 @@ body{
 .width-499{
     width: 499px;
 }
+/*********************** error */
+.error-container, .notif-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 80px;
+    z-index: 10;
+}
+.error{
+    padding: 10px 20px;
+    width: 500px;
+    text-align: center;
+    background: rgba(255, 0, 0, 0.685);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    animation: fade forwards 3s;
+}
+.notif{
+    padding: 10px 20px;
+    width: 500px;
+    text-align: center;
+    background: rgba(7, 109, 212, 0.685);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    animation: fade forwards 3s;
+}
+@keyframes fade{
+    0%{
+        opacity: 1;
+        display: block;
+    }
+    80%{
+        opacity: 1;
+        display: block
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}

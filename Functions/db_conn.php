@@ -18,6 +18,7 @@ return $conn;
 
 // function to validate user input
 function validate($data){
+    $data = str_replace("'", "", $data);
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);

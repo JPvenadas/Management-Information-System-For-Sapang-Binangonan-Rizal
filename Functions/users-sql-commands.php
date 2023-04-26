@@ -20,7 +20,7 @@ function addFilters(){
 // filter users to what the user searches
 function addsearchFilter(){
     if(isset($_GET['search'])){
-        $search = $_GET['search'];
+        $search = validate($_GET['search']);
         $additionalCommand = " and CONCAT(firstName,' ', middleName,' ', lastName ) LIKE '%$search%' and userName  LIKE '%$search%'";
         return $additionalCommand;
     }else{
@@ -60,7 +60,7 @@ function getAccessFields(){
 }
 function changeUserType($userType){
     $conn = openCon();
-    $userName = $_POST['userName'];
+    $userName = validate($_POST['userName']);
     $command = "UPDATE `tbl_userAccounts` SET `userType`='$userType' WHERE `userName` = '$userName'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
@@ -108,7 +108,7 @@ if(isset($_POST['activate'])){
  }
 function changeAccountStatus($status){
     $conn = openCon();
-    $userName = $_POST['userName'];
+    $userName = validate($_POST['userName']);
     $command = "UPDATE `tbl_userAccounts` SET `accountStatus`='$status' WHERE `userName` = '$userName'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
@@ -117,7 +117,7 @@ function changeAccountStatus($status){
 if(isset($_POST['change_password'])){
     $conn = openCon();
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $userName = $_POST['userName'];
+    $userName = validate($_POST['userName']);
     $command = "UPDATE tbl_userAccounts SET `password` = '$password' WHERE `userName` = '$userName'";
     mysqli_query($conn, $command);
     mysqli_close($conn);

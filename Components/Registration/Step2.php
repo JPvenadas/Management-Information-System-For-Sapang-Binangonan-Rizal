@@ -25,7 +25,7 @@
 
          <!-- Name Extension input -->
          <label class="label" for="Birthdate">Birth Date</label>
-        <input required placeholder="Birth Date" onfocus="(this.type = 'date')" id="BirthDate" name="birthDate" class="input" type="text"
+        <input max="<?php echo date('Y-m-d');?>" required placeholder="Birth Date" onfocus="(this.type = 'date')" id="BirthDate" name="birthDate" class="input" type="text"
         value="<?php inputContent('birthDate'); ?>">
     </div>
     <div class="button-group">

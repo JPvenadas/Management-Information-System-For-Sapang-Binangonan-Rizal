@@ -26,7 +26,7 @@ function getRequests(){
 // filter residents to what the user searches
 function addsearchFilter(){
     if(isset($_GET['search'])){
-        $search = $_GET['search'];
+        $search = validate($_GET['search']);
         $additionalCommand = " and CONCAT(r.firstName,' ', r.middleName,' ', r.lastName ) LIKE '%$search%' or t.serviceName LIKE '%$search%' ";
         return $additionalCommand;
     }else{
@@ -63,20 +63,20 @@ function getResidents(){
 //registration of new transaction
 if(isset($_POST['add_transaction'])){
     $conn = openCon();
-    $serviceName = $_POST['serviceName'];
-    $residentID = $_POST['residentID'];
-    $purpose = $_POST['purpose'];
+    $serviceName = validate($_POST['serviceName']);
+    $residentID = validate($_POST['residentID']);
+    $purpose = validate($_POST['purpose']);
     $dateRequested = date('y/m/d');
     $paymentDate = date('y/m/d');
-    $amountPaid = $_POST['serviceFee'];
-    $serviceType = $_POST['serviceType'];
+    $amountPaid = validate($_POST['serviceFee']);
+    $serviceType = validate($_POST['serviceType']);
     if($serviceType == "Document"){
         $transactionStatus = "Processed";
     }else{
         $transactionStatus = "Finished";
     }
     $archive = 'false';
-    $assistedBy = $_SESSION['residentID'];
+    $assistedBy = validate($_SESSION['residentID']);
     $command = "INSERT INTO `tbl_transactions`(`serviceName`, `residentID`, `purpose`, `dateRequested`, `paymentDate`, `amountPaid`, `transactionStatus`, `archive`, `assistedBy`)  
                                               VALUES ('$serviceName','$residentID','$purpose','$dateRequested','$paymentDate','$amountPaid','$transactionStatus','$archive','$assistedBy')";
     mysqli_query($conn, $command);
@@ -141,7 +141,7 @@ if(isset($_POST['archive_transaction'])){
 }
 if(isset($_POST['search_button_transactions'])){
     $search = $_POST['search_input_transactions'];
-    $page = $_POST['page'];
+    $page = validate($_POST['page']);
     header("Location: ../../Pages/Services/Services.php?page=$page&search=$search");
 	exit();
 }
@@ -171,8 +171,8 @@ function getTransactionsbyResident(){
 //resident side services
 if(isset($_POST['submit_request'])){
     $conn = openCon();
-    $serviceName = $_POST['serviceName'];
-    $purpose = $_POST['purpose'];
+    $serviceName = validate($_POST['serviceName']);
+    $purpose = validate($_POST['purpose']);
     $dateRequested = date('y/m/d');
     if($_POST['serviceType'] == "Document"){
         $transactionStatus = "Unprocessed";
@@ -180,7 +180,7 @@ if(isset($_POST['submit_request'])){
         $transactionStatus = "Finished";
     }
     $archive = 'false';
-    $residentID = $_SESSION['residentID'];
+    $residentID = validate($_SESSION['residentID']);
     if(!empty($_FILES["paymentProof"]["tmp_name"])){
         $image = $_FILES["paymentProof"]["tmp_name"];
         $imageContent = addslashes(file_get_contents($image));
