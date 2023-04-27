@@ -381,6 +381,7 @@ canvas{
   }
   .graph-container{
     width: 90vw;
+    border-radius: 4px;
     height: 160px;
   }
   .system-stat, .system-stat .left, .system-stat .right{
