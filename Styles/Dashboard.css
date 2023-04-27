@@ -6,6 +6,7 @@
 }
 body{
   display: flex;
+  justify-content: center;
   color: #2E2E2E;
   background: white;
 }
@@ -19,9 +20,37 @@ button{
   flex-direction: column;
   gap: 20px;
 }
-.upper-corner-dashboard{
+.system-stat{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 35px;
+  max-width: 950px;
+}
+.system-stat .left{
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  flex: 2;
+}
+.system-stat .right{
+  max-width: 620px;
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 35px;
+}
+.system-stat .upper-left{
   display: flex;
   gap: 35px;
+  flex-flow: row wrap;
+  max-width: 100vw;
+
+}
+.system-stat .lower-left{
+
 }
 /* ***************************************resident */
 .first-division{
@@ -54,8 +83,7 @@ button{
   height: 145px;
 }
 .residents-view-button button{
-  width: 75px;
-  height: 30px;
+  padding: 9px 20px;
   background: #195FA0;
   box-shadow: 0px 4px 30px 10px rgba(188, 153, 28, 0.25);
   border-radius: 20px;
@@ -63,6 +91,7 @@ button{
   font-size: 11px;
   color: #FBFDFF;
 }
+/* *******************Transactions panel */
 .transactions-container{
   width: 300px;
   height: 130px;
@@ -93,8 +122,7 @@ button{
   justify-content: flex-end;
 }
 .transactions-bottom button{
-  width: 160px;
-  height: 30px;
+  padding: 9px 20px;
   background: #B85555;
   box-shadow: 0px 4px 30px 10px rgba(188, 153, 28, 0.25);
   border-radius: 20px;
@@ -157,20 +185,20 @@ button{
 }
 .graph-container{
   width: 600px;
-  height: 197px;
+  height: 220px;
   background: #EAEAEA;
   border-radius: 20px;
 }
 canvas{
   width: 600px !important;
-  height: 180px !important;
+  height: 210px !important;
 }
-.services-section *{
+.events-section *{
   color: white;
 }
-.services-section{
+.events-section{
   width: 280px;
-  height: 220px;
+  height: 260px;
   background: linear-gradient(270deg, #812FEA 0%, #CC4EF8 100%);
   border-radius: 20px;
   display: flex;
@@ -179,15 +207,15 @@ canvas{
   flex-direction: column;
   gap: 15px;
 }
-.services-section h3{
+.events-section h3{
   width: 230px;
 }
-.services-section > div{
+.events-section > div{
   display: flex;
   gap: 10px;
   flex-direction: column;
 }
-.service{
+.event{
   width: 230px;
   height: 30px;
   background: rgba(255, 255, 255, 0.3);
@@ -334,8 +362,128 @@ canvas{
   background: #F7E4E1;
 }
 @media (max-width: 1000px){
-
+  .dashboard-content{
+    margin-left: 0;
+    padding: 0 20px 0 20px;
+  }
 }
 @media (max-width: 700px){
-
+  .tab-title{
+    font-size: 15px !important;
+  }
+  .dashboard-content{
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  canvas{
+    width: 90vw !important;
+    height: 150px !important;
+  }
+  .graph-container{
+    width: 90vw;
+    height: 160px;
+  }
+  .system-stat, .system-stat .left, .system-stat .right{
+    gap: 15px;
+  }
+  .system-stat .upper-left{
+    gap: 10px;
+  }
+  .revenues-section{
+    gap: 15px;
+  }
+  /* ***************Residents panel */
+  .first-division .top{
+    display: none;
+  }
+  .first-division{
+    padding: 0 20px;
+    height: 70px;
+    width: 90vw;
+    border-radius: 4px;
+  }
+  .residents-view-button button{
+    border-radius: 4px;
+  }
+  .first-division .bottom{
+    justify-content: space-between;
+    width: 100%;
+  }
+  /* ************** Pending Transactions panel */
+  .transactions-container{
+    padding: 0 20px;
+    height: 100px;
+    border-radius: 4px;
+    width: 90vw;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .transactions-image{
+    display: none;
+  }
+  .transactions-bottom button{
+    border-radius: 4px;
+  }
+  .personnels-container, .puroks-container{
+    flex: 1;
+    border-radius: 4px;
+    height: 80px;
+    padding: 10px 0;
+  }
+  .personnels-container div, .puroks-container div{
+    height: auto;
+  }
+  .second-division{
+    gap: 10px;
+  }
+  /* *************** pie chart */
+  .third-division{
+    width: 90vw;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* **************** Events panel */
+  .events-section{
+    width: 90vw;
+    border-radius: 4px;
+    padding: 25px;
+  }
+  .events-section .section-title, .events-section div{
+    width: 100%;
+  }
+  /* *********** officials list */
+  .barangay-officials-section{
+    gap: 15px;
+  }
+  .barangay-officials-section *{
+    text-align: left;
+  }
+  .officials-items-container{
+    padding: 8px 4px;
+    border-radius: 4px;
+  }
+  .officials-image{
+    width: 45px;
+    height: 45px;
+  }
+  .officials-item-record{
+    height: auto;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+  .action-text{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0 10px;
+    border-radius: 4px;
+  }
+  .action-text p{
+    font-weight: 600;
+    color: rgb(84, 84, 84);
+  }
 }

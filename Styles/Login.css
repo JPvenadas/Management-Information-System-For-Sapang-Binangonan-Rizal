@@ -202,7 +202,7 @@ input, button{
         background: #195FA0;
         top: 0;
         left: 0;
-        gap: 40px;
+        gap: 25px;
     }
     .title{
         font-weight: 700;
@@ -231,8 +231,6 @@ input, button{
     }
     .text-1{
         border-radius: 2px;
-        box-shadow: none;
-        border: 1px solid #B4B4B4;
         font-size: 16px;
         max-width: none;
         width: 100%;
@@ -240,11 +238,12 @@ input, button{
     .login-button{
         border-radius: 2px;
     }
-    .login-form{
+    .login-form, .forgot-password{
         max-width: 350px;
         width: 100%;
     }
     .button-white{
         background: #D1D1D1;
     }
+
 }

@@ -47,21 +47,31 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && ($_SESSION['
         $firstname = $_SESSION['firstName'];
         attachTabTitle("Hello $firstname! Welcome to your Dashboard")?>
 
-        <div class="upper-corner-dashboard">
-            <?php 
-           require "../../Components/Dashboard-components/ResidentSection.php";
-           require "../../Components/Dashboard-components/OtherDatas.php";
-           require "../../Components/Dashboard-components/VoterGraph.php"
-           ?>
-
+        <div class="system-stat">
+            <div class="left">
+                <div class="upper-left">
+                    <?php
+                    //require the needed components
+                    include "../../Components/Dashboard-components/ResidentSection.php";
+                    include "../../Components/Dashboard-components/OtherDatas.php"
+                    ?>
+                </div>
+                <div class="lower-left">
+                <?php
+                    //require the annual revenues graph
+                    include "../../Components/Dashboard-components/AnnualRevenue.php";
+                    ?>
+                </div>
+            </div>
+            <div class="right">
+                <?php
+                    //require the needed components
+                    include "../../Components/Dashboard-components/VoterGraph.php";
+                    include "../../Components/Dashboard-components/Events.php"
+                    ?>
+            </div>
         </div>
-        <div class="middle-part-dashboard">
-            <?php 
-            require "../../Components/Dashboard-components/AnnualRevenue.php";
-            require "../../Components/Dashboard-components/Services.php";
-            ?>
-        </div>
-        <div class="lower-part-dashboard">
+        <div class="barangay-officials">
             <?php require "../../Components/Dashboard-components/OfficialsList.php"?>
         </div>
     </div>

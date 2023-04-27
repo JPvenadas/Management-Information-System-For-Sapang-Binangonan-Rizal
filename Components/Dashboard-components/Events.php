@@ -1,11 +1,11 @@
 <?php 
     $events = getUpcomingEvents();
 ?>
-<div class="services-section">
+<div class="events-section">
     <h3 class="section-title">Upcoming Events</h3>
     <div>
         <?php foreach($events as $event){?>
-        <div class="service">
+        <div class="event">
             <p><?php echo $event['eventName']?></p>
         </div>
         <?php } ?>

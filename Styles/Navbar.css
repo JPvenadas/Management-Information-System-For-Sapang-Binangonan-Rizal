@@ -117,5 +117,9 @@
         display: flex;
    }
 }
-
+@media (max-width: 700px) and (max-height: 740px){
+    .navigation-container{
+        padding-bottom: 150px;
+    }
+}
 

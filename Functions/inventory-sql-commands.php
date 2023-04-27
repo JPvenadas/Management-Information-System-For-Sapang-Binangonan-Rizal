@@ -179,7 +179,7 @@
   }
   if(isset($_POST['return_item'])){
     $conn = openCon();
-    $id = $_POST['transactionID'];
+    $id = validate($_POST['transactionID']);
     $command = "UPDATE `tbl_inventoryTransaction` set `status` = 'Returned' WHERE `transactionID` = '$id'";
     mysqli_query($conn, $command);
     mysqli_close($conn);

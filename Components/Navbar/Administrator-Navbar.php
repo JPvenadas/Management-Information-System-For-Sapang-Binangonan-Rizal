@@ -86,12 +86,11 @@ function attachNavbar($page){
     let sidebar = document.querySelector('.sidebar');
     let menu = document.querySelector('.ham-menu');
     let navStatus = false;
+    let outside =document.querySelector('body');
 
     menu.addEventListener('click', ()=>{
       navStatus = !navStatus;
       shownavbar();
-      console.log(navStatus)
-     
     })
     
     window.addEventListener("resize", ()=>{
@@ -110,9 +109,11 @@ function attachNavbar($page){
       if(navStatus === false){
         sidebar.style.left = "-300px";
         menu.style.left = "10px";
+        outside.style.overflow = "auto";
       }else{
         sidebar.style.left = "0";
         menu.style.left = "270px";
+        outside.style.overflow = "hidden";
       }
     }
 </script>

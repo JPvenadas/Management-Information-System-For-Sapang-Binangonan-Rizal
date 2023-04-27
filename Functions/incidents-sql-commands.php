@@ -91,9 +91,9 @@ if(isset($_POST['archive_curfew'])){
 
 if(isset($_POST['add_blotter'])){
     $conn = openCon();
-    $complainant = $_POST['complainant'];
-    $defendant = $_POST['defendant'];
-    $summary = $_POST['summary'];
+    $complainant = validate($_POST['complainant']);
+    $defendant = validate($_POST['defendant']);
+    $summary = validate($_POST['summary']);
     $schedule = $_POST['schedule'];
     $narrativeReport = $_FILES["narrativeReport"]["tmp_name"];
     $narrativeReportFile = addslashes(file_get_contents($narrativeReport));

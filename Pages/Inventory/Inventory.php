@@ -6,7 +6,7 @@ require "../../Functions/inventory-sql-commands.php";
 
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
-if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
+if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['userType'] === "Administrator" || (isset($_SESSION['access']) && $_SESSION['access']['inventory'])) {
 	?>
 <!DOCTYPE html>
 <html>
@@ -77,3 +77,20 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 	exit();
 }
 ?>
+
+<div class="box-container">
+     <div class="left">
+        <div class="green-boxes">
+                <div class="green1"></div>
+                <div class="green2"></div>
+            </div>
+            <div class="red-boxes">
+                <div class="red1"></div>
+                <div class="red2"></div>
+        </div>
+     </div>
+    <div class="blue">
+         <div class="blue1"></div>
+         <div class="blue2"></div>
+    </div>
+</div>
