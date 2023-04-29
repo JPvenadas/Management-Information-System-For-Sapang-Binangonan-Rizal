@@ -7,7 +7,7 @@
             <h3>Barangay employee</h3>
         </div>
         <div class="container">
-            <p>Resident's profile</p>
+            <p class="modal-title-container">Resident's profile</p>
             <input list="residents" id="residentID" name="residentID" autocomplete="off" type="text" required placeholder="choose the resident's profile here"
                 class="input">
             <input required type="hidden" id="employeeID" name="employeeID">
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="container">
-            <p>Assigned Role</p>
+            <p class="modal-title-container">Assigned Role</p>
             <input list="positions" name="position" id="position" class="input" type="text" placeholder="Employee's position">
             <input list="committee" name="committee" id="committeeField" class="input" type="text" placeholder="Committee">
             <div class="term-container">

@@ -9,7 +9,7 @@
             <p>Fill the necessary information below</p>
         </div>
         <div class="container">
-            <p>Resident's profile</p>
+            <p class="modal-title-container">Resident's profile</p>
             <input autocomplete="off" type="text" name="residentID" list="residents" required placeholder="choose the resident's profile here" class="input">
 
             <div class="signiture-container">
@@ -22,13 +22,15 @@
             </div>
         </div>
         <div class="container">
-            <p>Assigned Role</p>
+            <p class="modal-title-container">Assigned Role</p>
             <input required autocomplete="off" class="input" name="position" type="text" list="positions" placeholder="Employee's position">
             <input required autocomplete="off" class="input" name="committee" type="text" list="committee" placeholder="Committee"> 
            
             <div class="term-container">
                 <input required name="termstart" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Start of Term">
-                <input required name="termend" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Expected end of Term">
+            </div>
+            <div class="term-container">
+            <input required name="termend" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Expected end of Term">
             </div>
         </div>
         <div class="button-container">

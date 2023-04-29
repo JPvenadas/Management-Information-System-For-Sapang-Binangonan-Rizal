@@ -14,7 +14,13 @@ $new=""; $processed=""; $finished="";
         $new = "underline";
     }
 ?>
-
+<div class="filter-select-container action-controls-container">
+    <select class="filter-select" onchange="redirectToPage()" id="filter-select">
+        <option <?php if(!isset($_GET['page']) or $_GET['page'] !== 'new') { echo 'selected'; } ?> value="?">New Transaction</option>
+        <option <?php if(isset($_GET['page']) and $_GET['page'] === 'Processed') { echo 'selected'; } ?> value="?page=Processed">Processed Certificates</option>
+        <option <?php if(isset($_GET['page']) and $_GET['page'] === 'Finished') { echo 'selected'; } ?> value="?page=Finished">History</option>
+    </select>
+</div>
 <div class="action-controls-container">
     <div class="settings-nav">
         <ul class="nav-list">
@@ -42,3 +48,12 @@ $new=""; $processed=""; $finished="";
     }
     ?>
 </div>
+<script>
+    function redirectToPage() {
+    var selectElement = document.getElementById("filter-select");
+    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+    if (selectedValue !== "") {
+        window.location.href = selectedValue;
+    }
+}
+</script>

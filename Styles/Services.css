@@ -264,6 +264,8 @@ a{
     font-size: 14px;
     color: #002C4B;
     padding: 0 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .underline{
     border-bottom: 3px solid #195FA0;
@@ -516,13 +518,146 @@ a{
     font-size: 25px;
     display: none;
 }
+.filter-select-container{
+    display: none;
+}
 @media (max-width: 1000px){
     .main-content{
         margin-left: 0;
+    }
+    .modal-content-container{
+        width: 90%;
+        max-width: 720px;
+    }
+    .record{
+        max-width: 500px;
+        width: 90%;
+    }
+    .record-container{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-title p{
+        max-width: 500px;
+        width: 90%;
+    }
+    .proof-image{
+        width: 80%;
+        height: auto;
+    }
+    .modal-close-button-2 ion-icon {
+        font-size: 28px;
     }
 }
 @media (max-width: 700px){
     .main-content{
         padding: 0 20px;
+        margin-bottom: 50px;
+    }
+    .action-controls-container{
+        margin: 10px 0;;
+    }
+    .action-controls-container .settings-nav{
+        display: none;
+    }
+    .modal-content-container{
+        position: relative;
+        bottom: 30px;
+        padding: 30px 15px;
+        border-radius: 4px;
+    }
+    .filter-select-container{
+        display: block;
+    }
+    .filter-select{
+        width: 100%;
+        border-radius: 4px;
+        height: 40px;
+        padding: 0 10px;
+        font-weight: 600;
+        color: gray;
+    }
+    .services-item{
+        width: 100%;
+        justify-content: space-between;
+        border-radius: 4px;
+        padding: 10px 20px;
+        margin: 10px 0;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    }
+    .modal-header{
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    .resident-items-container{
+        padding: 0 20px;
+    }
+    #resident-filter{
+        width: 100%;
+        min-width: 0;
+    }
+    .resident-info *{
+        text-align: left;
+    }
+    .resident-image{
+        width: 40px;
+        height: 40px;
+    }
+    .resident-item-record{
+        height: 70px;
+    }
+    .modal-content-container{
+        width: 95%;
+    }
+    .transaction-record{
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 15px;
+    }
+    .modal-title p{
+        font-size: 17px;
+    }
+    .purpose-container, .modal-title, .button-container, .purpose-container p, .purpose-input{
+        width: 100%;
+    }
+    .purpose-container{
+        gap: 5px;
+        height: auto;
+        padding: 15px 10px;
+    }
+    .record .field p, .record .value input{
+        font-size: 12px;
+    }
+    .record-container{
+        gap: 5px;
+    }
+    .button-container{
+        flex-direction: column;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+    .button-container button{
+        width: auto;
+        border-radius: 4px;
+    }
+    .search-button-container{
+        width: 100%;
+        justify-content: space-between;
+    }
+    .searchbar-transactions{
+        border-radius: 4px;
+        flex: 1;
+        height: 40px;
+        width: auto;
+        min-width: 0;
+        box-shadow: none;
+        background: #ececec;
+        max-width: 100%;
+    }
+    .search-button-transactions{
+        border-radius: 4px;
+        height: 40px;
     }
 }
