@@ -516,3 +516,13 @@ a{
     font-size: 25px;
     display: none;
 }
+@media (max-width: 1000px){
+    .main-content{
+        margin-left: 0;
+    }
+}
+@media (max-width: 700px){
+    .main-content{
+        padding: 0 20px;
+    }
+}

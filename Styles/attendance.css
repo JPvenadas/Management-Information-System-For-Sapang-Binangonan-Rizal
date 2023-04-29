@@ -7,7 +7,7 @@
 body{
     display: flex;
     color: #2E2E2E;
-    background: white;
+    background: rgb(255, 255, 255);
 }
 button, input{
     border-style: none;
@@ -26,6 +26,7 @@ button, input{
 .filter-section{
     display: flex;
     width: 100%;
+    justify-content: space-between;
     height: 65px;
 }
 .filter-section div{
@@ -48,6 +49,7 @@ button, input{
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    padding: 0 20px;
 }
 .filter-section .right p{
     font-weight: 700;
@@ -278,6 +280,9 @@ button, input{
 .hide{
     display: none;
 }
+.browse-container{
+    display: flex; gap: 15px;
+}
 @media (max-width: 1000px){
     .main-content{
         margin-left: 0px;
@@ -287,7 +292,8 @@ button, input{
 @media (max-width: 700px){
     .main-content{
         padding: 0px 20px;
-        gap: 50px;
+        gap: 20px;
+        width: 100%;
     }
     .current-attendance-item{
         flex-direction: column;
@@ -297,30 +303,47 @@ button, input{
         padding: 10px 20px;
     }
     .filter-section{
-        flex-direction: column;
+        flex-direction: column-reverse;
+        height: auto;
+        gap: 10px;
     }
     .filter-section .right{
         flex-direction: column;
         height: auto;
-        flex-shrink: 0;
         align-items: flex-start;
+        gap: 5px;
+        padding: 15px;
+    }
+    .filter-section .right input{
+        flex: 1;
+        box-shadow: none;
+    }
+    .filter-section .filter-input{
+        width: 100%;
+        height: 40px;
+        background: rgb(236, 236, 236);
     }
     .modal-content-container{
         width: 95%;
+        border-radius: 4px;
     }
-    .profile-container{
-        width: auto;
-    }
-    .verification-container{
-        width: auto;
+    .profile-container, .button-container, .verification-container{
+        width: 80%;
+        max-width: 400px;
     }
     .verification-container p{
         width: 300px;
     }
-    .button-container{
-        width: 300px; 
-    }
     .password-input{
-        width: 300px;
+        width: 100%;
+        border-radius: 4px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
     }
+    .browse-container{
+        width: 100%;
+    }
+    .attendance-button{
+        max-width: 130px;
+    }
+    
 }
