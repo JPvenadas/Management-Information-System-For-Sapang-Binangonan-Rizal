@@ -24,8 +24,7 @@ button, input{
 
 /* filter-section ********************/
 .filter-section{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     width: 100%;
     height: 65px;
 }
@@ -278,4 +277,50 @@ button, input{
 }
 .hide{
     display: none;
+}
+@media (max-width: 1000px){
+    .main-content{
+        margin-left: 0px;
+    }
+
+}
+@media (max-width: 700px){
+    .main-content{
+        padding: 0px 20px;
+        gap: 50px;
+    }
+    .current-attendance-item{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        height: auto;
+        padding: 10px 20px;
+    }
+    .filter-section{
+        flex-direction: column;
+    }
+    .filter-section .right{
+        flex-direction: column;
+        height: auto;
+        flex-shrink: 0;
+        align-items: flex-start;
+    }
+    .modal-content-container{
+        width: 95%;
+    }
+    .profile-container{
+        width: auto;
+    }
+    .verification-container{
+        width: auto;
+    }
+    .verification-container p{
+        width: 300px;
+    }
+    .button-container{
+        width: 300px; 
+    }
+    .password-input{
+        width: 300px;
+    }
 }

@@ -12,8 +12,13 @@ $verified=""; $unverified="";
         $verified = "underline";
     }
 ?>
-
-<div class="action-controls-container">
+<div class="filter-select-container action-controls-container">
+    <select class="filter-select" onchange="redirectToPage()" id="filter-select">
+        <option <?php if(!isset($_GET['filter']) or $_GET['filter'] !== 'unverified') { echo 'selected'; } ?> value="?filter=verified">Registered Residents</option>
+        <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'unverified') { echo 'selected'; } ?> value="?filter=unverified">Unverified Residents</option>
+    </select>
+</div>
+<div class="filter-nav-container action-controls-container">
     <div class="settings-nav">
         <ul class="nav-list">
             <li><a class="<?php echo $verified?>" href="?">Registered Residents</a></li>
@@ -36,3 +41,13 @@ $verified=""; $unverified="";
         </button>
     </form>
 </div>
+
+<script>
+function redirectToPage() {
+    var selectElement = document.getElementById("filter-select");
+    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+    if (selectedValue !== "") {
+        window.location.href = selectedValue;
+    }
+}
+</script>

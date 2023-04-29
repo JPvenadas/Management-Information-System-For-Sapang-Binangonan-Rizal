@@ -10,8 +10,9 @@
             <!-- Form Content -->
             <div class="modal-header-container">
                 <div class="modal-Image-upload-container">
-                    <img class="resident-image-preview"
-                        src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="">
+                    <label for="upload-residendt">
+                    <img class="resident-image-preview" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="">
+                    </label>
                     <label class="resident-upload-button" for="upload-resident">
                         <ion-icon name="arrow-up-circle"></ion-icon>
                     </label>

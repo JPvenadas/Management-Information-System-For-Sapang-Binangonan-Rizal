@@ -4,7 +4,7 @@
         <div onclick="closeCSVModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>
         </div>
-        <div style="width: 500px; padding: 30px 0 10px 0;">
+        <div class="modal-content">
             <div class="modal-title">Add Residents via CSV</div>
             <div style="padding: 10px 0;" class="modal-instructions">To register a group of residents, simply upload a
                 CSV file and the system

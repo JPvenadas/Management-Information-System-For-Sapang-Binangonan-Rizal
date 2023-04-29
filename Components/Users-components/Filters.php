@@ -14,7 +14,6 @@ $administators=""; $staffs=""; $residents="";
         $administators = "underline";
     }
 ?>
-
 <div class="action-controls-container">
     <div class="settings-nav">
         <ul class="nav-list">

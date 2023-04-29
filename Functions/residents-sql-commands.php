@@ -123,7 +123,6 @@ if(isset($_POST['save-edit-profile'])){
     $voterStatus = validate($_POST['personal-information-voterStatus']);
     $maritalStatus = validate($_POST['personal-information-maritalStatus']);
     $occupation = validate($_POST['personal-information-occupation']);
-    $residentCategory = validate($_POST['personal-information-residentCategory']);
     if(isset($_POST['personal-information-familyMembers'])){
         $familyMembers = validate($_POST['personal-information-familyMembers']);
     }else{
@@ -143,7 +142,6 @@ if(isset($_POST['save-edit-profile'])){
         `voterStatus`='$voterStatus',
         `sex`='$sex',
         `maritalStatus`='$maritalStatus',
-        `residentCategory`='$residentCategory',
         `occupation`='$occupation',
         `familyHead`='$familyHead',
         `familyMembers`='$familyMembers',

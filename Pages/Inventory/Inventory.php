@@ -77,20 +77,3 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
 	exit();
 }
 ?>
-
-<div class="box-container">
-     <div class="left">
-        <div class="green-boxes">
-                <div class="green1"></div>
-                <div class="green2"></div>
-            </div>
-            <div class="red-boxes">
-                <div class="red1"></div>
-                <div class="red2"></div>
-        </div>
-     </div>
-    <div class="blue">
-         <div class="blue1"></div>
-         <div class="blue2"></div>
-    </div>
-</div>

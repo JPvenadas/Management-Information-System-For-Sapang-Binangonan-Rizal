@@ -90,7 +90,7 @@
 }
 .ham-menu{
     position: absolute;
-    z-index: 100;
+    z-index: 9;
     left: 10px;
     top: 10px;
     color: white;
