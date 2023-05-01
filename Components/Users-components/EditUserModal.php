@@ -9,10 +9,15 @@
                 <p id="username"></p>
                 <p id="userType"></p>
             </div>
-            <div class="profile-right">
+            <div class="profile-right" id="profile">
                 <a href="../../Pages/Residents/Profile.php?id=" class="view-profile-button">
                     <ion-icon name="person-circle-outline"></ion-icon>
                     <p>View Profile</p>
+                </a>
+            </div>
+            <div class="profile-right" id="profile-icon">
+                <a href="../../Pages/Residents/Profile.php?id=" class="view-profile-button">
+                    <ion-icon name="person"></ion-icon>
                 </a>
             </div>
         </div>

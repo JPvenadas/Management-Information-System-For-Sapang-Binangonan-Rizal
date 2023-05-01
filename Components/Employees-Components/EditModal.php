@@ -17,8 +17,11 @@
                 <input id="image-title-edit" placeholder="Change the signiture" class="input" readonly
                     type="text">
                 <input id="signiture-edit" name="signiture" hidden type="file">
-                <label class="signiture-button" for="signiture-edit">
+                <label id="upload" class="signiture-button" for="signiture-edit">
                     <p>Re-Upload</p>
+                </label>
+                <label id="upload-icon" class="signiture-button" for="signiture-edit">
+                    <ion-icon name="caret-up"></ion-icon>
                 </label>
             </div>
         </div>

@@ -361,6 +361,9 @@ body{
     border-radius: 5px;
     animation: fade forwards 3s;
 }
+#profile-icon{
+    display: none;
+}
 @keyframes fade{
     0%{
         opacity: 1;
@@ -402,4 +405,184 @@ body{
 }
 .h3{
     color: #002C4B;
+}
+
+.filter-select-container{
+    display: none;
+}
+@keyframes fade{
+    0%{
+        opacity: 1;
+        display: block;
+    }
+    80%{
+        opacity: 1;
+        display: block
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+@keyframes spawn{
+    from{opacity: 0; transform: scale(.98);}
+    to{opacity: 1; transform: scale(1);}
+}
+@keyframes floating {
+    0% {
+      transform: translateY(0%);
+    }
+    50% {
+      transform: translateY(-10%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+@media (max-width: 1000px){
+    .main-content{
+        margin-left: 0;
+        padding: 0 20px 0 20px;
+     }
+}
+
+@media (max-width: 700px){
+    .nav-list li a{
+        font-size: 12px;
+        width: 150px;
+    }
+    .nav-list{
+        gap: 10px;
+    }
+    .action-controls-container{
+        flex-direction: column;
+        gap: 10px;
+        margin: 15px 0;
+    }
+    .action-text{
+        display: none;
+    }
+    .searchbar-users{
+        width: calc(100% - 80px);
+        max-width: none;
+        min-width: none;
+    }
+    .scroll{
+        width: 100%;
+    }
+    .modal-header-container{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .modal-content-container{
+        width: 95%;
+        border-radius: 4px;
+        padding: 30px 20px;
+    }
+    .user-fullname{
+        text-align: left;
+    }
+    .user-age{
+        text-align: left;
+    }
+    .user-purok{
+        text-align: left;
+    }
+    .label{
+        width: 85%;
+    }
+    .submit-button-container{
+        width: 90%;
+    }
+    .filter-select-container{
+        display: block;
+    }
+    .action-controls-container{
+        margin: 10px 0;
+        gap: 0;
+    }
+    .filter-select{
+        width: 100%;
+        border-radius: 4px;
+        height: 40px;
+        padding: 0 10px;
+        font-weight: 600;
+        color: gray;
+    }
+    .nav-list{
+        display: none;
+    }
+    .add-buttons button{
+        border-radius: 4px;
+    }
+    .searchbar-users{
+        border-radius: 4px;
+        flex: 1;
+        height: 40px;
+        width: auto;
+        min-width: 0;
+        box-shadow: none;
+        background: #ececec;
+    }
+    .search-button-users{
+        border-radius: 4px;
+        height: 40px;
+    }
+    .input-button{
+        min-width: 80px;
+    }
+    .profile-container{
+        width: 100%;
+    }
+    .profile-left{
+        width: 100%;
+    }
+    .profile-left h3{
+        font-size: 16px;
+    }
+    .profile-left p{
+        font-size: 10px;
+        font-weight: 600;
+    }
+    .container{
+        width: 100%;
+        padding: 10px 15px;
+    }
+    .container p{
+        width: 100%;
+    }
+    .button-container{ 
+        flex-direction: column;
+        width: 100%;
+    }
+    .container div {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .purpose-input{
+        flex: 1;
+        width: auto !important;
+        min-width: 0;
+    }
+    .button{
+        padding: -12px -60px;
+        background: #195FA0;
+        gap: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 4px 7px rgb(0 0 0 / 10%);
+    }
+    #profile{
+        display: none;
+    }
+    #profile-icon{
+        display: flex;
+    }
+    .view-profile-button{
+        padding: 8px;
+    }
+    .view-profile-button ion-icon {
+        font-size: 16px !important;
+    }
 }

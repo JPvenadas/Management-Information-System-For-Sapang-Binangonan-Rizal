@@ -14,7 +14,15 @@ $administators=""; $staffs=""; $residents="";
         $administators = "underline";
     }
 ?>
-<div class="action-controls-container">
+
+<div class="filter-select-container action-controls-container">
+    <select class="filter-select" onchange="redirectToPage()" id="filter-select">
+        <option <?php if(!isset($_GET['filter']) or $_GET['filter'] !== 'administrators') { echo 'selected'; } ?> value="?filter=administrators">Administrators</option>
+        <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'staffs') { echo 'selected'; } ?> value="?filter=staffs">Staffs</option>
+        <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'residents') { echo 'selected'; } ?> value="?filter=residents">Residents</option>
+    </select>
+</div>
+<div class="filter-nav-container action-controls-container">
     <div class="settings-nav">
         <ul class="nav-list">
             <li><a class="<?php echo $administators?>" href="?">Administrators</a></li>
@@ -40,3 +48,13 @@ $administators=""; $staffs=""; $residents="";
         </button>
     </form>
 </div>
+
+<script>
+function redirectToPage() {
+    var selectElement = document.getElementById("filter-select");
+    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+    if (selectedValue !== "") {
+        window.location.href = selectedValue;
+    }
+}
+</script>

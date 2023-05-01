@@ -16,8 +16,11 @@
                 <input required placeholder="Upload a signiture" id="image-title" class="input" class="signiture-image-name" readonly
                     type="text">
                 <input required id="signiture" name="signiture" hidden type="file">
-                <label class="signiture-button" for="signiture">
+                <label id="upload" class="signiture-button" for="signiture">
                     <p>Upload</p>
+                </label>
+                <label id="upload-icon" class="signiture-button" for="signiture">
+                    <ion-icon name="caret-up"></ion-icon>
                 </label>
             </div>
         </div>
