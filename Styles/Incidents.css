@@ -538,3 +538,169 @@ body{
 .gray-button{
     background: gray !important;
 }
+.filter-select-container{
+    display: none;
+}
+.select-icon, .upload-icon{
+    display: none;
+}
+@media (max-width: 1000px) {
+    .main-content{
+        margin-left: 0;
+    }
+    .nav-list li a {
+        min-width: 0;
+        white-space: nowrap;
+    }
+    .modal-content-container{
+        width: 90%;
+    }
+   
+}
+@media (max-width: 700px) {
+    .main-content{
+        padding: 0 20px;
+    }
+    .filter-select-container{
+        display: flex;
+    }
+    .filter-select{
+        width: 100%;
+        border-radius: 4px;
+        height: 40px;
+        padding: 0 10px;
+        font-weight: 600;
+        color: gray;
+    }
+    .filter-nav-container .events-nav{
+        display: none;
+    }
+    .action-controls-container{
+        margin: 10px 0;
+    }
+    .search-button-container{
+        width: 100%;
+    }
+    .searchbar{
+        padding: 20px 10px; 
+        border-radius: 4px;
+        flex: 1;
+        height: 40px;
+        width: auto;
+        min-width: 0;
+        max-width: 100%;
+        box-shadow: none;
+        background: #ececec;
+    }
+    .search-button{
+        border-radius: 4px;
+        height: 40px;
+    }
+    .record{
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 12px 20px;
+    }
+    .record-info{
+        height: auto;
+    }
+    .left{
+        height: auto;
+    }
+    .add-button-container{
+        right: 30px;
+        bottom: 30px;
+    }
+    .add-button-container .circle{
+        width: 50px;
+        height: 50px;
+    }
+    .circle ion-icon{
+        font-size: 20px;
+    }
+    .modal-content-container{
+        width: 95%;
+        border-radius: 4px;
+        padding: 30px 20px;
+        gap: 10px;
+        position: relative;
+        bottom: 30px;
+    }
+    .modal-title, .blotter-inputs, .button-container{
+        width: 100%;
+    }
+    .label{
+        display: none;
+    }
+    /* Resident Modal */
+    .modal-header{
+        flex-direction: column;
+        padding: 0 10px;
+    }
+    .resident-items-container{
+        padding: 0;
+    }
+    #resident-filter{
+        width: 100%;
+        min-width: 0;
+    }
+    .resident-info *{
+        text-align: left;
+    }
+    .resident-image{
+        width: 40px;
+        height: 40px;
+    }
+    .resident-item-record{
+        height: 70px;
+    }
+    .select, .upload{
+        display: none;
+    }
+    .select-icon, .upload-icon{
+        display: flex;
+        width: auto;
+        padding: 0 20px;
+        border-radius: 4px;
+    }
+    .modal-title p, .modal-title p *{
+        font-size: 10px;
+    }
+    .hearing-container{
+        width: 100%;
+        height: 120px;
+    }
+    .button-container{
+        flex-direction: column-reverse;
+    }
+    .small-button{
+        border-radius: 4px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+        font-size: 11px;
+    }
+    .small-button ion-icon{
+        display: none;
+    }
+    .space-between{
+        justify-content: flex-end;
+    }
+    .long-input{
+        height: 50px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+    .input{
+        border-radius: 4px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+    .information-container{
+        width: 100%;
+    }
+    .curfew-information{
+        width: 100%;
+        line-height: unset;
+    }
+    .curfew-information *{
+        font-size: 12px;
+    }
+}

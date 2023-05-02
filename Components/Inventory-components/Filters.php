@@ -14,8 +14,17 @@ $list=""; $borrowed=""; $returned="";
         $list = "underline";
     }
 ?>
-
-<div class="action-controls-container">
+<div class="filter-select-container action-controls-container">
+    <select class="filter-select" onchange="redirectToPage()" id="filter-select">
+        <option <?php if(!isset($_GET['filter']) or $_GET['filter'] !== 'list') { echo 'selected'; } ?> value="?">Items
+            List</option>
+        <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'borrowed') { echo 'selected'; } ?>
+            value="?filter=borrowed">Currently Borrowed/In use</option>
+        <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'returned') { echo 'selected'; } ?>
+            value="?filter=returned">Returned</option>
+    </select>
+</div>
+<div class="filter-nav-container action-controls-container">
     <div class="settings-nav">
         <ul class="nav-list">
             <li><a class="<?php echo $list?>" href="?">Items List</a></li>
@@ -25,9 +34,8 @@ $list=""; $borrowed=""; $returned="";
     </div>
     <form action="../../Functions/inventory-sql-commands.php" method="post" class="search-button-container">
         <input value="<?php if(isset($_GET['search'])){echo $_GET['search'];}else{echo "";}?>" autocomplete="off"
-            name="search_input" placeholder="Enter the Information here" class="searchbar"
-            type="text">
-        <input type="hidden" name="search_filter" value ="<?php
+            name="search_input" placeholder="Enter the Information here" class="searchbar" type="text">
+        <input type="hidden" name="search_filter" value="<?php
             if(isset($_GET['filter'])){
                 echo $_GET['filter'];
             }
@@ -37,3 +45,12 @@ $list=""; $borrowed=""; $returned="";
         </button>
     </form>
 </div>
+<script>
+function redirectToPage() {
+    var selectElement = document.getElementById("filter-select");
+    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+    if (selectedValue !== "") {
+        window.location.href = selectedValue;
+    }
+}
+</script>

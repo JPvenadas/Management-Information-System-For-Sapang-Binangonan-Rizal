@@ -21,9 +21,10 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
 
 <head>
     <title>Management Information System for Barangay Sapang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="../../Styles/certification.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Certification.css">
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

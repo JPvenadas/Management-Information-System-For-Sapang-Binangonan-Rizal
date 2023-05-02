@@ -12,8 +12,13 @@ $blotters=""; $curfew="";
         $blotters = "underline";
     }
 ?>
-
-<div class="action-controls-container">
+<div class="filter-select-container action-controls-container">
+    <select class="filter-select" onchange="redirectToPage()" id="filter-select">
+        <option <?php if(!isset($_GET['filter']) or $_GET['filter'] !== 'blotter') { echo 'selected'; } ?> value="?">Blotters</option>
+        <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'curfew') { echo 'selected'; } ?> value="?filter=curfew">Curfew</option>
+    </select>
+</div>
+<div class="filter-nav-container action-controls-container">
     <div class="events-nav">
         <ul class="nav-list">
             <li><a class="<?php echo $blotters?>" href="?">Blotters</a></li>
@@ -36,3 +41,12 @@ $blotters=""; $curfew="";
         </button>
     </form>
 </div>
+<script>
+function redirectToPage() {
+    var selectElement = document.getElementById("filter-select");
+    var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+    if (selectedValue !== "") {
+        window.location.href = selectedValue;
+    }
+}
+</script>

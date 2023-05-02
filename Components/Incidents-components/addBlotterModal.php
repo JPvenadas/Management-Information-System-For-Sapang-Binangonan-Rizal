@@ -13,8 +13,11 @@
                 <div class="input-container">
                     <input required placeholder="Select the Complainant" id="complainant-fullName" class="input" readonly type="text">
                     <input required id="complainant-ID" name="complainant" type="hidden">
-                    <div onclick="openResidentModal('complainant')" class="input-button">
+                    <div onclick="openResidentModal('complainant')" class="select input-button">
                         <p>Select</p>
+                    </div>
+                    <div onclick="openResidentModal('complainant')" class="select-icon input-button">
+                        <ion-icon name="ellipsis-horizontal"></ion-icon>
                     </div>
                 </div>
             </div>
@@ -23,8 +26,11 @@
                 <div class="input-container">
                     <input required placeholder="Select the Defendant" id="defendant-fullName" class="input" class="defendant-fullName" readonly type="text">
                     <input required id="defendant-ID" name="defendant" type="hidden">
-                    <div onclick="openResidentModal('defendant')" class="input-button">
+                    <div onclick="openResidentModal('defendant')" class="select input-button">
                         <p>Select</p>
+                    </div>
+                    <div onclick="openResidentModal('defendant')" class="select-icon input-button">
+                        <ion-icon name="ellipsis-horizontal"></ion-icon>
                     </div>
                 </div>
             </div>
@@ -33,8 +39,11 @@
                 <div class="input-container">
                     <input required placeholder="Upload a Narrative Report" id="narrative-report-text" class="input" readonly type="text">
                     <input required id="narrative-report" name="narrativeReport" hidden type="file">
-                    <label class="input-button" for="narrative-report">
+                    <label class="upload input-button" for="narrative-report">
                         <p>Upload</p>
+                    </label>
+                    <label class="upload-icon input-button" for="narrative-report">
+                        <ion-icon name="caret-up"></ion-icon>
                     </label>
                 </div>
             </div>

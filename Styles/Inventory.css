@@ -523,3 +523,128 @@ body{
     background: rgb(209, 209, 209);
     width: 100%;
 }
+.filter-select-container{
+    display: none;
+}
+@media (max-width: 1000px){
+    .main-content{
+        margin-left: 0;
+    }
+    .nav-list{
+        gap: 5px;
+    }
+    .nav-list li a {
+        min-width: 0;
+        white-space: nowrap;
+    }
+    .modal-content-container{
+        max-width: 90%;
+    }
+
+}
+@media (max-width: 700px){
+    .main-content{
+        padding: 0 20px;
+    }
+    .filter-nav-container .settings-nav{
+        display: none;
+    }
+    .filter-select-container{
+        display: block;
+    }
+    .action{
+        display: none;
+    }
+    .filter-select-container{
+        display: flex;
+    }
+    .filter-select{
+        width: 100%;
+        border-radius: 4px;
+        height: 40px;
+        padding: 0 10px;
+        font-weight: 600;
+        color: gray;
+    }
+    .action-controls-container{
+        margin: 10px 0;
+    }
+    .search-button-container{
+        width: 100%;
+    }
+    .searchbar{
+        padding: 20px 10px; 
+        border-radius: 4px;
+        flex: 1;
+        height: 40px;
+        width: auto;
+        min-width: 0;
+        max-width: 100%;
+        box-shadow: none;
+        background: #ececec;
+    }
+    .search-button{
+        border-radius: 4px;
+        height: 40px;
+    }
+    .modal-content-container{
+        max-width: 95%;
+        border-radius: 4px;
+        padding: 40px 20px;
+    }
+    .modal-title{
+        width: 100%;
+    }
+    .modal-title h3{
+        font-size: 17px;
+    }
+    .modal-title p{
+        font-weight: 500;
+    }
+    .inputs-section{
+        width: 100%;
+    }
+    .button-container{
+        width: 100%;
+    }
+    .input .modal-button{
+        border-radius: 4px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+    .add-button-container{
+        right: 30px;
+        bottom: 30px;
+    }
+    .add-button-container .circle{
+        width: 50px;
+        height: 50px;
+    }
+    .circle ion-icon{
+        font-size: 20px;
+    }
+    .item-header{
+        height: auto;
+        margin-top: 40px;
+    }
+    .item-buttons{
+        width: 100%;
+        flex-direction: column-reverse;
+        height: auto;
+    }
+    .item-information-unit{
+        padding: 0 20px;
+    }
+    .item-information-field{
+        white-space: nowrap;
+    }
+    .item-information-value{
+        width: 100%;
+        min-width: 0;
+    }
+    .record-container{
+        max-width: 100%;
+    }
+    .transaction-info *{
+        font-size: 13px;
+    }
+}
