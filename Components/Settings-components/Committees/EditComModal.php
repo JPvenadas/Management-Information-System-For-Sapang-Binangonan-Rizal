@@ -5,11 +5,13 @@
         </div>
         <form action="../../Pages/Settings/Settings.php?page=committees" method="post" class="container">
             <p>Personnel's committee</p>
-            <div>
+            <div class="flex">
                 <input id="committeeID" type="hidden" name="committeeID">
                 <input id="committeeName" type="text" name="committee" required placeholder="committee" class="input">
-                <button class="save" name="edit_committee">Save</button>
-                <button class="save" name="archive_committee">Archive</button>
+                <div>
+                    <button class="save" name="edit_committee">Save</button>
+                    <button class="save" name="archive_committee">Archive</button>
+                </div>
             </div>
         </form>
     </div>

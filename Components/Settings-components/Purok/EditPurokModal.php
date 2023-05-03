@@ -5,7 +5,7 @@
         </div>
         <form action="../../Pages/Settings/Settings.php?page=purok" method="post" class="container">
             <p>Barangay Purok</p>
-            <div>
+            <div class="flex">
                 <input id="purokID" type="hidden" name="purokID">
                 <input id="purokName" name="purokName" type="text" required placeholder="Purok" class="input">
                 <button class="save" name="edit_purok">Save</button>

@@ -21,9 +21,9 @@
   function addSearchFilterBlotters(){
     if(isset($_GET['search'])){
         $search = $_GET['search'];
-        $additionalCommand = " and CONCAT(complainant.firstName,' ', LEFT(complainant.middleName, 1),' ', complainant.lastName ) LIKE '%$search%' 
+        $additionalCommand = " and (CONCAT(complainant.firstName,' ', LEFT(complainant.middleName, 1),' ', complainant.lastName ) LIKE '%$search%' 
                                or CONCAT(defendant.firstName,' ', LEFT(defendant.middleName, 1),' ', defendant.lastName ) LIKE '%$search%' or
-                               `summary` LIKE '%$search%' ";
+                               `summary` LIKE '%$search%')";
         return $additionalCommand;
     }
     return "";

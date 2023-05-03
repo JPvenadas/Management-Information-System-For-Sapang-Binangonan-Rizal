@@ -19,13 +19,13 @@
         value="<?php inputContent('address'); ?>">
 
         <!-- Voter Status -->
-        <label list="voterStatus" class="label" for="voterStatus">Voter Status</label>
-        <input placeholder="Voter's Status" required id="voterStatus" name="voterStatus" class="input" type="text"
+        <label class="label" for="voterStatus">Voter Status</label>
+        <input list="voterStatus" placeholder="Voter's Status" required id="voterStatus" name="voterStatus" class="input" type="text"
         value="<?php inputContent('voterStatus'); ?>">
 
         <!-- Marital Status -->
         <label class="label" for="maritalStatus">Marital Status</label>
-        <input placeholder="Marital Status" required id="maritalStatus" name="maritalStatus" class="input" type="text"
+        <input list="maritalStatus" placeholder="Marital Status" required id="maritalStatus" name="maritalStatus" class="input" type="text"
         value="<?php inputContent('maritalStatus'); ?>">
 
         <!-- Occupation -->

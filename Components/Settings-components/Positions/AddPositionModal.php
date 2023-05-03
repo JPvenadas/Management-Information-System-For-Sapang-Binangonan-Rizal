@@ -5,7 +5,7 @@
         </div>
         <form action="../../Pages/Settings/Settings.php?page=positions" method="post" class="container">
             <p>Add Personnel's Position</p>
-            <div>
+            <div class="flex">
                 <input name="positionName" type="text" required placeholder="Position" class="input">
                 <button class="save" name="add_position">Add</button>
             </div>

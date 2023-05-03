@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="profile-right" id="profile-icon">
-                <a href="../../Pages/Residents/Profile.php?id=" class="view-profile-button">
+                <a href="../../Pages/Residents/Profile.php?id=" id="profile-icon-button" class="view-profile-button">
                     <ion-icon name="person"></ion-icon>
                 </a>
             </div>
@@ -87,6 +87,7 @@ let demoteResident = document.querySelector('.demoteResident');
 let promoteAdmin = document.querySelector('.promoteAdmin');
 let promoteStaff = document.querySelector('.promoteStaff');
 let viewProfile = document.querySelector('.view-profile-button');
+let viewProfileIcon = document.querySelector('#profile-icon-button');
 let residentIDField;
 
 
@@ -105,6 +106,7 @@ function openEditModal(residentID, fullName, username, userType, status) {
     usernameForm2.value = username
     userTypeField.innerHTML = "User type: " + userType
     viewProfile.href = "../../Pages/Residents/Profile.php?id=" + residentID
+    viewProfileIcon.href = "../../Pages/Residents/Profile.php?id=" + residentID  
     residentIDField = residentID
 
     if (userType == "Administrator") {

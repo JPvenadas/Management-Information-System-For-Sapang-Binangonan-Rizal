@@ -6,11 +6,13 @@
         <form action="../../Pages/Settings/Settings.php?page=services" method="post" class="container">
             <p>Service Fee</p>
             <p class="service-title">Barangay Clearance</p>
-            <div>
+            <div class="flex">
                 <input id="serviceID" type="hidden" name="serviceID">
                 <input id="serviceFee" name="serviceFee" type="number" required placeholder="Service Fee" class="input">
-                <button class="save" name="change_amount">Save</button>
-                <button class="save" name="archive_service">Archive</button>
+                <div>
+                    <button class="save" name="change_amount">Save</button>
+                    <button class="save" name="archive_service">Archive</button>
+                </div>
             </div>
         </form>
     </div>

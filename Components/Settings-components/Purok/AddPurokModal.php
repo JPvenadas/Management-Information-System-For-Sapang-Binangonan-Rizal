@@ -5,7 +5,7 @@
         </div>
         <form action="../../Pages/Settings/Settings.php?page=purok" method="post" class="container">
             <p>Add Barangay Purok</p>
-            <div>
+            <div class="flex">
                 <input name="purokName" type="text" required placeholder="Purok" class="input">
                 <button class="save" name="add_purok">Add</button>
             </div>

@@ -585,4 +585,7 @@ body{
     .view-profile-button ion-icon {
         font-size: 16px !important;
     }
+    .access-container{
+        width: 100%;
+    }
 }

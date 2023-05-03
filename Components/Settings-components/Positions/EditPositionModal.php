@@ -5,11 +5,13 @@
         </div>
         <form action="../../Pages/Settings/Settings.php?page=positions" method="post" class="container">
             <p>Personnel's Position</p>
-            <div>
+            <div class="flex">
                 <input id="positionID" type="hidden" name="positionID">
                 <input id="positionName" type="text" name="positionName" required placeholder="Position" class="input">
-                <button class="save" name="edit_position">Save</button>
-                <button class="save" name="archive_position">Archive</button>
+                <div>
+                    <button class="save" name="edit_position">Save</button>
+                    <button class="save" name="archive_position">Archive</button>
+                </div>
             </div>
         </form>
     </div>

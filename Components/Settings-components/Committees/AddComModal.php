@@ -5,7 +5,7 @@
         </div>
         <form action="../../Pages/Settings/Settings.php?page=committees" method="post" class="container">
             <p>Add new Committee</p>
-            <div>
+            <div class="flex">
                 <input name="committee" type="text" required placeholder="committee" class="input">
                 <button class="save" name="add_committee">Add</button>
             </div>

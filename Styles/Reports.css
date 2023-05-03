@@ -86,3 +86,30 @@ body{
 .heading-texts h3{
     font-family: 'Domine';
 }
+@media (max-width: 1000px) {
+    .main-content{
+        margin: 0 0 50px 0;
+    }
+    .action-text{
+        display: none;
+    }
+}
+@media (max-width: 700px) {
+    .main-content{
+        padding: 0 20px;
+        gap: 15px;
+    }
+    .report-info-container{
+        gap: 10px;
+    }
+    .report-image{
+        width: 40px;
+        height: 27px;
+    }
+    .report-name{
+        text-align: left;
+    }
+    .report-item-record{
+        padding: 0 10px;
+    }
+}

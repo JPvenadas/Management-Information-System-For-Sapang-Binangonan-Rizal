@@ -41,10 +41,10 @@
         <div class="limit-width">
 
             <!-- mobile number section -->
-            <label class="label-2" for="sex">Mobile Number (Optional)</label>
+            <label class="label-2" for="sex">Mobile Number</label>
             <p class="text-medium">By providing us your mobile number, you agree to receive SMS notification and
                 messages related from the barangay such as announcements and reminders. </p>
-            <input autocomplete="off" placeholder="Input your Mobile number here" name="mobileNumber" id="image-title-proof" class="input"
+            <input required autocomplete="off" placeholder="Input your Mobile number here" name="mobileNumber" id="image-title-proof" class="input"
                 type="text" value="<?php inputContent('mobileNumber'); ?>" onkeypress="
             //function that will prevent non-numeric char
             return event.charCode >= 48 && event.charCode <= 57" oninput="

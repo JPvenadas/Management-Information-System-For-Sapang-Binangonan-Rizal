@@ -9,7 +9,7 @@
             <ion-icon name="close"></ion-icon>
         </div>
         <div class="modal-header">
-            <h3>Choose a Resident Issuee</h3>
+            <h3>Choose a Resident</h3>
             <input id="resident-filter" type="text" placeholder="Search Resident here" class="searchbar-transactions">
         </div>
         <div id="residents-list" class="resident-items-container">
