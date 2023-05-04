@@ -21,7 +21,7 @@ function addFilters(){
 function addsearchFilter(){
     if(isset($_GET['search'])){
         $search = validate($_GET['search']);
-        $additionalCommand = " and CONCAT(firstName,' ', middleName,' ', lastName ) LIKE '%$search%' and userName  LIKE '%$search%'";
+        $additionalCommand = " and (CONCAT(firstName,' ', middleName,' ', lastName ) LIKE '%$search%' or userName  LIKE '%$search%')";
         return $additionalCommand;
     }else{
         return "";

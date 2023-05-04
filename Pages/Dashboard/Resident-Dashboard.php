@@ -82,6 +82,9 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
             </div>
 
         </div>
+        <div class="barangay-officials">
+            <?php require "../../Components/Dashboard-components/OfficialsList.php"?>
+        </div>
     </div>
 
     <!-- Script for Ionic Icons -->

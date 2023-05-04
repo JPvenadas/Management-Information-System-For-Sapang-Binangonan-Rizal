@@ -342,6 +342,16 @@ td{
     background: #195FA0;
     transition: 0.65s ease;
 }
+.other-report{
+    display: flex;
+    font-size: 15px;
+}
+table{
+    margin-bottom: 20px;
+}
+.other-report .subject{
+    font-weight: 700;
+}
 @media (max-width: 1000px) {
     .side-bar{
         left: -300px;

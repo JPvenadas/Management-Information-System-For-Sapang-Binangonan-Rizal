@@ -67,7 +67,7 @@
                 <p>Upload Reciept</p>
                 <ion-icon class="checkmark" name="checkmark-done-outline"></ion-icon>
                 </label>
-               <input class="payment-proof-input" id="paymentProof" name="paymentProof" type="file">
+               <input accept="image/*" class="payment-proof-input" id="paymentProof" name="paymentProof" type="file">
             </div>
         </div>
         <div class="button-container">

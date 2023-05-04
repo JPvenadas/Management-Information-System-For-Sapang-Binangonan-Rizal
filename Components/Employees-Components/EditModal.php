@@ -16,7 +16,7 @@
             <div class="signiture-container">
                 <input id="image-title-edit" placeholder="Change the signiture" class="input" readonly
                     type="text">
-                <input id="signiture-edit" name="signiture" hidden type="file">
+                <input accept="image/*" id="signiture-edit" name="signiture" hidden type="file">
                 <label id="upload" class="signiture-button" for="signiture-edit">
                     <p>Re-Upload</p>
                 </label>

@@ -25,8 +25,8 @@
  function addSearchFilterTransaction(){
    if(isset($_GET['search'])){
       $search = validate($_GET['search']);
-      $additionalCommand = " and CONCAT(r.firstName,' ', LEFT(r.middleName, 1),' ', r.lastName ) LIKE '%$search%'
-      or i.itemName LIKE '%$search%' or i.itemID LIKE '%$search%'";
+      $additionalCommand = " and (CONCAT(r.firstName,' ', LEFT(r.middleName, 1),' ', r.lastName ) LIKE '%$search%'
+      or i.itemName LIKE '%$search%' or i.itemID LIKE '%$search%')";
       return $additionalCommand;
    }
    return "";

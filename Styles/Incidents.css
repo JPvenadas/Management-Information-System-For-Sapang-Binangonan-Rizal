@@ -65,6 +65,7 @@ body{
      gap: 20px;
  }
  .nav-list li a{
+    white-space: nowrap;
      display: inline-block;
      flex-shrink: 0;
      min-width: 150px;
@@ -544,6 +545,7 @@ body{
 .select-icon, .upload-icon{
     display: none;
 }
+
 @media (max-width: 1000px) {
     .main-content{
         margin-left: 0;
@@ -702,5 +704,13 @@ body{
     }
     .curfew-information *{
         font-size: 12px;
+    }
+    .profile-container{
+        max-width: 95%;
+    }
+    .image-report{
+        max-width: 90%;
+        height: auto;
+        max-height: 90%;
     }
 }

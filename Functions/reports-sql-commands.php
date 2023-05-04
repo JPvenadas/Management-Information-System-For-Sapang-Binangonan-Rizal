@@ -51,6 +51,22 @@ require "insertLogs.php";
         insertLogs("Generated Transactions Report");
         return $transactions;
     }
+    function getRevenues(){
+        $conn = openCon();
+        $command = "SELECT  SUM(`amountPaid`) as `totalRevenue`,  MIN(`paymentDate`) as `oldestPaymentDate` FROM `tbl_transactions` Where transactionStatus != 'Unprocessed'";
+         //apply the filters
+         if(isset($_GET['service'])){
+            $command .= applyFilterIfSet('serviceName', validate($_GET['service']));
+        }
+        if(isset($_GET['start']) and isset($_GET['end']) and !empty($_GET['start']) and !empty($_GET['end'])){
+             $command .= applyDateFilter('paymentDate', $_GET['start'], $_GET['end'] );
+        }
+        $result = mysqli_query($conn, $command);
+        $revenue = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+        mysqli_close($conn);
+        return $revenue[0];
+    }
     function getEmployees(){
         $conn = openCon();
         $command = "SELECT `employeeID`, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, `position`, IF(`committee` = 'N/A', 'none', `committee`) AS `committee` ,DATE_FORMAT(termStart, '%b, %e %Y') as `termStart`, DATE_FORMAT(termEnd, '%b, %e %Y') as `termEnd`, `termStatus` FROM `tbl_employees` e INNER JOIN tbl_residents as r on e.residentID = r.residentID WHERE 1";

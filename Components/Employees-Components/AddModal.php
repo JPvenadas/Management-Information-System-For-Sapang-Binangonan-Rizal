@@ -15,7 +15,7 @@
             <div class="signiture-container">
                 <input required placeholder="Upload a signiture" id="image-title" class="input" class="signiture-image-name" readonly
                     type="text">
-                <input required id="signiture" name="signiture" hidden type="file">
+                <input accept="image/*" required id="signiture" name="signiture" hidden type="file">
                 <label id="upload" class="signiture-button" for="signiture">
                     <p>Upload</p>
                 </label>

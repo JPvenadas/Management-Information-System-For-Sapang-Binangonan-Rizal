@@ -38,7 +38,7 @@
                 <p class="label">Narrative Report (file/image/record)</p>
                 <div class="input-container">
                     <input required placeholder="Upload a Narrative Report" id="narrative-report-text" class="input" readonly type="text">
-                    <input required id="narrative-report" name="narrativeReport" hidden type="file">
+                    <input accept="image/*" required id="narrative-report" name="narrativeReport" hidden type="file">
                     <label class="upload input-button" for="narrative-report">
                         <p>Upload</p>
                     </label>

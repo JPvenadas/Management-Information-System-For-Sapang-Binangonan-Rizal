@@ -212,6 +212,7 @@ button, input{
     top:0;
     left: 0;
     height: 80px;
+    z-index: 8;
 }
 .error{
     padding: 10px 20px;
@@ -221,6 +222,7 @@ button, input{
     color: rgb(255, 255, 255);
     border-radius: 5px;
     animation: fade forwards 3s;
+    max-width: 90%;
 }
 @keyframes fade{
     0%{

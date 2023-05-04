@@ -46,7 +46,7 @@
         </div>
         <div class="divider-2"></div>
         <div class="button-container">
-            <button class="modal-button white-button" type="submit" name="archive_transaction">
+            <button id="archive-button" class="modal-button white-button" type="submit" name="archive_transaction">
                 <ion-icon name="log-in"></ion-icon>
                 <p>Archive</p>
             </button>
@@ -85,6 +85,7 @@
 
     if(status == "Borrowed"){
         document.querySelector("#return-button").style.display = "flex"
+        document.querySelector("#archive-button").style.display = "none"
     }
     else{
         document.querySelector("#return-button").style.display = "none"

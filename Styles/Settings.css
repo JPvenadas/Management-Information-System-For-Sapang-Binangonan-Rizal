@@ -353,7 +353,7 @@ body{
     top:0;
     left: 0;
     height: 80px;
-    z-index: 10;
+    z-index: 8;
 }
 .error{
     padding: 10px 20px;
@@ -363,6 +363,7 @@ body{
     color: rgb(255, 255, 255);
     border-radius: 5px;
     animation: fade forwards 3s;
+    max-width: 90%;
 }
 .notif{
     padding: 10px 20px;
@@ -372,6 +373,7 @@ body{
     color: rgb(255, 255, 255);
     border-radius: 5px;
     animation: fade forwards 3s;
+    max-width: 90%;
 }
 .filter-select-container{
     display: block;

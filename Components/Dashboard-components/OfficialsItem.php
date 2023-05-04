@@ -13,7 +13,13 @@
         //profile Image
         $image = $employee['image'];
         ?>
-        <a href="../../Pages/Residents/Profile.php?id=<?php echo $employee['residentID']?>">
+        <?php
+            if($_SESSION['userType'] == "Resident"){?>
+            
+        <?php }else{ ?>
+            <a href="../../Pages/Residents/Profile.php?id=<?php echo $employee['residentID']?>">
+        <?php }?>
+        
             <button type="submit" name="view_officials_button" class="officials-item-record">
                 <div class="officials-info-container">
                     <div class="officials-image-container">
@@ -36,7 +42,12 @@
                     <p><?php echo $employee['position']?></p>
                 </div>
             </button>
+        <?php
+        if($_SESSION['userType'] == "Resident"){?>
+            
+        <?php }else{ ?>
         </a>
+        <?php }?>
 
 
         <?php }else{ ?>

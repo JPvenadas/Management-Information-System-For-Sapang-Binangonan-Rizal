@@ -27,7 +27,7 @@ function getRequests(){
 function addsearchFilter(){
     if(isset($_GET['search'])){
         $search = validate($_GET['search']);
-        $additionalCommand = " and CONCAT(r.firstName,' ', r.middleName,' ', r.lastName ) LIKE '%$search%' or t.serviceName LIKE '%$search%' ";
+        $additionalCommand = " and (CONCAT(r.firstName,' ', r.middleName,' ', r.lastName ) LIKE '%$search%' or t.serviceName LIKE '%$search%') ";
         return $additionalCommand;
     }else{
         return "";

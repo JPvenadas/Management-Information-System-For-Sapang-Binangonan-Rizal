@@ -49,3 +49,31 @@ body{
     font-size: 18px;
     color: #696767;
 }
+@media (max-width: 1000px) {
+    .main-content{
+        margin-left: 0;
+    }
+}
+@media (max-width: 700px) {
+    .main-content{
+        padding: 50px 30px;
+    }
+    .title{
+        font-size: 35px;
+    }
+    .contacts-container{
+        padding: 20px 0;
+        gap: 10px;
+    }
+    .organization{
+        font-size: 12px;
+    }
+    .contact-item ion-icon{
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+    }
+    .contact-item p{
+        font-size: 12px;
+    }
+}

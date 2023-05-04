@@ -22,3 +22,21 @@
     </tr>
     <?php }?>
 </table>
+<?php
+    $revenue = getRevenues();
+    $total = $revenue['totalRevenue'];
+    $from = $revenue['oldestPaymentDate']
+?>
+
+<div class="other-report">
+    <p class="subject">Total Revenue: </p>
+    <p class="value"><?php echo "$total"?> ₱</p> 
+</div>
+<div class="other-report">
+    <p class="subject">Date: </p>
+    <p class="value"><?php if(isset($_GET['start']) and isset($_GET['end'])){
+        echo " from " . $_GET['start'] . " to " . $_GET['end'];
+    }else{
+        echo "from $from to Present";
+    } ?></p> 
+</div>
