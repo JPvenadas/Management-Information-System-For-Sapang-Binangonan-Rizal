@@ -327,9 +327,57 @@ td{
     font-size: 13px;
     color: #195FA0;
 }
+.ham-menu{
+    position: absolute;
+    z-index: 9;
+    left: 10px;
+    top: 10px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background: #195FA0;
+    transition: 0.65s ease;
+}
 @media (max-width: 1000px) {
-    
+    .side-bar{
+        left: -300px;
+        width: 250px;
+    }
+    .side-bar-open{
+        left: 0 !important;
+    }
+    .ham-menu-open{
+        left: 260px;
+    }
+    .main-content{
+        margin-left: 0;
+    }
+    .certificate-paper{
+        zoom: .8;
+    }
 }
 @media (max-width: 700px) {
-    
+    .certificate-paper{
+        zoom: .45;
+    }
+    .header{
+        padding: 0 20px;
+       justify-content: flex-end;
+       gap: 20px;
+    }
+    .print-button{
+        background: white;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+    .print-button ion-icon{
+        font-size: 24px;
+        color: gray;
+    }
+    .print-button p{
+        color: gray;
+    }
 }

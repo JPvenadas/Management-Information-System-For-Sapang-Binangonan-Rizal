@@ -21,7 +21,7 @@
         <form class="button-container" enctype="multipart/form-data" method="post"
             action="../../Pages/Settings/Settings.php?page=backupRestore">
 
-            <input class="file" required name="backup" type="file">
+            <input accept=".sql" class="file" required name="backup" type="file">
             <button class="add-button" type="submit" name="restore_backup">
                 <ion-icon name="document"></ion-icon>
                 <p>Restore Data</p>

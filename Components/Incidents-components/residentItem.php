@@ -11,6 +11,7 @@ function generateResidentItem($resident){
     function modalAction(ID, name, birthDate){
         if(action === "curfewViolator"){
             openTimeModal(ID,name, birthDate)
+            closeMinorsModal();
         }else if(action === "complainant"){
             document.querySelector('#complainant-ID').value = ID
             document.querySelector('#complainant-fullName').value = name

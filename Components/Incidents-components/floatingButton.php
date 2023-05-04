@@ -8,7 +8,7 @@
         <?php 
             if(isset($_GET['filter']) && $_GET['filter'] == 'curfew'){
         ?>
-                openResidentModal("curfewViolator");
+                openMinorsModal("curfewViolator");
         <?php
             }else{
         ?>

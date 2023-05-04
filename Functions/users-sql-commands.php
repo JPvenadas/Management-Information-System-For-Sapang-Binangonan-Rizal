@@ -59,12 +59,17 @@ function getAccessFields(){
     return $fields;
 }
 function changeUserType($userType){
-    $conn = openCon();
-    $userName = validate($_POST['userName']);
-    $command = "UPDATE `tbl_userAccounts` SET `userType`='$userType' WHERE `userName` = '$userName'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Change the user type of $userName to $userType");
+    if(checkAdminNumber()){
+        $conn = openCon();
+        $userName = validate($_POST['userName']);
+        $command = "UPDATE `tbl_userAccounts` SET `userType`='$userType' WHERE `userName` = '$userName'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+        insertLogs("Change the user type of $userName to $userType");
+    }else{
+        header("Location: ../../Pages/Users/Users.php?error=There must be atleast one Administrator");
+	    exit();
+    }
 }
 if(isset($_POST['changeAccess'])){
     removeExistingAccess();
@@ -122,5 +127,28 @@ if(isset($_POST['change_password'])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
     insertLogs("Change the user password of $userName");
+}
+function checkAdminNumber(){
+    $conn = openCon();
+    $userName = validate($_POST['userName']);
+    $command = "SELECT userType FROM `tbl_userAccounts` WHERE `userName` = '$userName'";
+    $result = mysqli_query($conn, $command);
+    $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    if($user[0]['userType'] == "Administrator"){
+        $conn = openCon();
+        $command = "SELECT userName  FROM `tbl_userAccounts` WHERE `userType` ='Administrator' and `accountStatus` = 'Active'";
+        $result = mysqli_query($conn, $command);
+        if (mysqli_num_rows($result) > 1) {
+            mysqli_close($conn);
+            return true;
+        }else{
+            mysqli_close($conn);
+            return false;
+        }
+    }else{
+        mysqli_close($conn);
+        return true;
+    }
 }
 ?>

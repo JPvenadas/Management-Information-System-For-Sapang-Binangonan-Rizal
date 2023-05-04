@@ -1,14 +1,17 @@
+<div class="ham-menu">
+    <ion-icon name="menu"></ion-icon>
+</div>
 <div class="side-bar">
-        <a href="../../Pages/Reports/Reports.php" class="logo-container">
-            <div class="right">
-                <img class="logo" src="../../Images/logo.png" alt="">
-            </div>
-            <div class="left">
-               <p>Management Information System for Barangay Sapang</p> 
-            </div>
-        </a>
-        <div class="filter-container">
-            <?php switch ($_GET['content']) {
+    <a href="../../Pages/Reports/Reports.php" class="logo-container">
+        <div class="right">
+            <img class="logo" src="../../Images/logo.png" alt="">
+        </div>
+        <div class="left">
+            <p>Management Information System for Barangay Sapang</p>
+        </div>
+    </a>
+    <div class="filter-container">
+        <?php switch ($_GET['content']) {
             case "Users":
                 require "Filters/Users.php";
             break;
@@ -42,5 +45,13 @@
             default:
                 require "Filters/Users.php";
             }?>
-        </div>
     </div>
+</div>
+<script>
+    const menuButton = document.querySelector('.ham-menu');
+    const sidebar = document.querySelector('.side-bar');
+    menuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('side-bar-open');
+        menuButton.classList.toggle('ham-menu-open');
+    });
+</script>

@@ -74,7 +74,7 @@
             <!-- Contact Information -->
             <p class="label">Contact Information</p>
             <div class="resident-info-inputs">
-                <input autocomplete="off" placeholder="Contact Number (Optional)" class="resident-input"
+                <input autocomplete="off" placeholder="Contact Number" required class="resident-input"
                     name="contactNo" type="text" onkeypress="
             //function that will prevent non-numeric char
             return event.charCode >= 48 && event.charCode <= 57" oninput="

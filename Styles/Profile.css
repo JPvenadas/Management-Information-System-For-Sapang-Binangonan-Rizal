@@ -140,7 +140,7 @@ body{
     background: rgba(0, 0, 0, 0.52);
     left: 0;
     top: 0;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     animation: spawn .4s ease forwards;

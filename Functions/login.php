@@ -18,7 +18,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 	}else{
 		$sql = "SELECT u.userName, u.password, u.userType, u.accountStatus, r.residentID, r.firstName,r.middleName, r.lastName, r.extension, r.image, e.signiture
 		from tbl_userAccounts as u INNER JOIN tbl_residents as r on u.residentID = r.residentID
-		INNER JOIN tbl_employees as e on e.residentID = r.residentID
+		LEFT JOIN tbl_employees as e on e.residentID = r.residentID
         WHERE u.userName = '$uname'";
 	
 		$result = mysqli_query($conn, $sql);
@@ -66,7 +66,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 		        exit();
 			}
 		}else{
-			header("Location: ../index.php?error=Incorect Username or Password");
+			header("Location: ../index.php?error=No such Username");
 	        exit();
 		}
 	}

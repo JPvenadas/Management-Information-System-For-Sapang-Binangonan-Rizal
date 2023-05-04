@@ -124,6 +124,7 @@ input, button{
     transform: translateX(50%,-50%);
     padding: 10px 20px;
     width: 500px;
+    max-width: 90%;
     text-align: center;
     background: rgba(255, 0, 0, 0.276);
     color: red;
@@ -248,5 +249,12 @@ input, button{
     .button-white{
         background: #D1D1D1;
     }
-
+    .error-container{
+        z-index: 100;
+    }
+    .error{
+        background: rgba(228, 17, 17, 0.793);
+        color: white;
+        font-size: 12px;
+    }
 }

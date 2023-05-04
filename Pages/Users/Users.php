@@ -34,6 +34,12 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
 </head>
 
 <body>
+        <!-- displaying of error -->
+        <?php if (isset($_GET['error'])) { ?>
+            <div class="error-container">
+                <p class="error"><?php echo $_GET['error']; ?></p>
+            </div>
+        <?php } ?>
         <!-- Attach the navbar -->
         <?php 
         if($_SESSION['userType'] == "Administrator"){

@@ -29,14 +29,17 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 
 <body>
     
-    <div class="error-container">
-        <?php if (isset($_GET['error'])) { ?>
-        <p class="error"><?php echo $_GET['error']; ?></p>
-        <?php } ?>
-        <?php if (isset($_GET['notif'])) { ?>
-        <p class="notif"><?php echo $_GET['notif']; ?></p>
-        <?php } ?>
-    </div>
+    <?php if (isset($_GET['error'])) { ?>
+        <div class="error-container">
+            <p class="error"><?php echo $_GET['error']; ?></p>
+        </div>
+    <?php } ?>
+    <?php if (isset($_GET['notif'])) { ?>
+        <div class="error-container">
+            <p class="notif"><?php echo $_GET['notif']; ?></p>
+        </div>
+    <?php } ?>
+    
     <div class="login-container">
         <div class="login-left">
             <div class="login-title-container">

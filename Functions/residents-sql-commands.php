@@ -98,6 +98,13 @@ if(isset($_POST['archive_resident'])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
     insertLogs("Archived a user with ID: $residentID");
+    DeactivateUser($residentID);
+}
+function DeactivateUser($id){
+    $conn = openCon();
+    $command = "UPDATE `tbl_userAccounts` SET `accountStatus`='Inactive' WHERE `residentID` = '$id'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
 }
 //function to change the registration Status of a resident. either confirmed or rejected
 function changeStatus($status){
