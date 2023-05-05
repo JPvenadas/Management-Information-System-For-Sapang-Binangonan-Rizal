@@ -283,24 +283,30 @@ function CompressImage($residentID){
     $command = "SELECT residentID, image FROM tbl_residents where residentID = $residentID";
     $result = mysqli_query($conn, $command);
 
-        // Compress the images and update the records
-        $quality = 50; // Set the compression quality (0-100)
-        while ($row = mysqli_fetch_assoc($result)) {
-            // Create a GD image from the blob data
-            $source = imagecreatefromstring($row['image']);
+    // Set the maximum image size (in bytes)
+    $max_image_size = 50000; // 50 KB in bytes
 
-            // Compress the image
+    // Compress the images and update the records
+    $quality = 20; // Set the starting compression quality (0-100)
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Create a GD image from the blob data
+        $source = imagecreatefromstring($row['image']);
+
+        // Compress the image
+        do {
             ob_start();
             imagejpeg($source, null, $quality);
             $compressedImage = ob_get_clean();
+            $quality -= 5; // Decrease the quality value by 5 for each iteration
+        } while (strlen($compressedImage) > $max_image_size && $quality >= 5);
 
-            // Update the record with the compressed image
-            $id = $row['residentID'];
-            $command = "UPDATE tbl_residents SET image = ? WHERE residentID = ?";
-            $stmt = mysqli_prepare($conn, $command);
-            mysqli_stmt_bind_param($stmt, "si", $compressedImage, $residentID);
-            mysqli_stmt_execute($stmt);
-        }
+        // Update the record with the compressed image
+        $command = "UPDATE tbl_residents SET image = ? WHERE residentID = ?";
+        $stmt = mysqli_prepare($conn, $command);
+        mysqli_stmt_bind_param($stmt, "si", $compressedImage, $residentID);
+        mysqli_stmt_execute($stmt);
+    }
+
     // Close the database connection
     mysqli_close($conn);
 }

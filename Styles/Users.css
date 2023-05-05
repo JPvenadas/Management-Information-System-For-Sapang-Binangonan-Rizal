@@ -176,6 +176,7 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
+    
 }
 .modal-close-button{
     position: absolute;
@@ -481,6 +482,8 @@ body{
         width: 95%;
         border-radius: 4px;
         padding: 30px 20px;
+        position: relative;
+        bottom: 30px;
     }
     .user-fullname{
         text-align: left;

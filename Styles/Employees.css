@@ -334,6 +334,8 @@ body{
         width: 95%;
         border-radius: 4px;
         padding: 30px;
+        position: relative;
+        bottom: 30px;
     }
     .container div {
         width: 100%;

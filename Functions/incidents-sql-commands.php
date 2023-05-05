@@ -114,6 +114,7 @@ if(isset($_POST['add_blotter'])){
     $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);
     insertLogs("Added a blotter record with ID: $addedID");
+    CompressImage($addedID);
 }
 
 if(isset($_POST['archive_blotter'])){
@@ -174,6 +175,38 @@ if(isset($_POST['back_to_pending'])){
     $blotterID = $_POST['blotterID'];
     $command = "UPDATE `tbl_blotters` SET `caseStatus`='Pending' WHERE blotterID = '$blotterID'";
     mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+function CompressImage($blotterID){
+    $conn = openCon();
+    $command = "SELECT blotterID, narrativeReport FROM tbl_blotters where blotterID = $blotterID";
+    $result = mysqli_query($conn, $command);
+
+    // Set the maximum image size (in bytes)
+    $max_image_size = 50000; // 50 KB in bytes
+
+    // Compress the images and update the records
+    $quality = 20; // Set the starting compression quality (0-100)
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Create a GD image from the blob data
+        $source = imagecreatefromstring($row['narrativeReport']);
+
+        // Compress the image
+        do {
+            ob_start();
+            imagejpeg($source, null, $quality);
+            $compressedImage = ob_get_clean();
+            $quality -= 5; // Decrease the quality value by 5 for each iteration
+        } while (strlen($compressedImage) > $max_image_size && $quality >= 5);
+
+        // Update the record with the compressed image
+        $command = "UPDATE tbl_blotters SET narrativeReport = ? WHERE blotterID = ?";
+        $stmt = mysqli_prepare($conn, $command);
+        mysqli_stmt_bind_param($stmt, "si", $compressedImage, $blotterID);
+        mysqli_stmt_execute($stmt);
+    }
+
+    // Close the database connection
     mysqli_close($conn);
 }
 ?>

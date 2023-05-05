@@ -385,12 +385,15 @@ body{
     .modal-content-container{
         padding: 30px;
         border-radius: 4px;
+        position: relative;
+        bottom: 30px;
     }
     .modal-title{
         width: 100%;
     }
     .button-container{
         width: 100%;
+        flex-flow: row wrap;
     }
     .button-container button{
         border-radius: 4px;
