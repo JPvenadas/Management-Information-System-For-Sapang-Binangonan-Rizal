@@ -4,7 +4,7 @@
             <ion-icon name="close"></ion-icon>
         </div>
         <div class="modal-title">
-            <h3>Barangay employee</h3>
+            <h3>Assigned Role</h3>
         </div>
         <div class="container">
             <p class="modal-title-container">Resident's profile</p>
@@ -16,7 +16,7 @@
             <div class="signiture-container">
                 <input id="image-title-edit" placeholder="Change the signiture" class="input" readonly
                     type="text">
-                <input accept="image/*" id="signiture-edit" name="signiture" hidden type="file">
+                <input accept="image/png" id="signiture-edit" name="signiture" hidden type="file">
                 <label id="upload" class="signiture-button" for="signiture-edit">
                     <p>Re-Upload</p>
                 </label>

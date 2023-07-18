@@ -24,7 +24,7 @@
             <div class="inputs-section">
                 <label class="label" for="quantity">Quantity</label>
                 <div class="input-container">
-                    <input name="quantity" id="quantity" class="input" placeholder="Quantity to be used" type="number">
+                    <input required max="<?php echo $item['totalNumber']?>" name="quantity" id="quantity" class="input" placeholder="Quantity to be used" type="number">
                 </div>
             </div>
             <div class="button-container">

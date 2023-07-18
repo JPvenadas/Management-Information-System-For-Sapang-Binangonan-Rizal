@@ -13,7 +13,7 @@
         <div class="blotter-inputs">
             <div class="blotter-input">
                 <div class="space-between">
-                    <p class="label">Complaint Summary</p>
+                    <p class="label">Complaint Title</p>
                     <div onclick="showNarrativeReport()" class="small-button">
                         <ion-icon name="eye-outline"></ion-icon>
                         View Narrative Report

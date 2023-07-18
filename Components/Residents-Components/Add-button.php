@@ -1,9 +1,9 @@
 <div class="add-button-container">
     <div class="add-buttons">
         <button onclick="openAddResidentModal()">Add a Resident</button>
-        <button onclick="openCSVModal()" type="submit">Add Residents via CSV</button>
+        <button onclick="openCSVModal()" type="submit">Bulk Registration via CSV</button>
         <form method="post" action="../../Functions/ExportCsv.php">
-        <button>Export CSV Format</button>
+        <button>Download CSV Format</button>
         </form>
     </div>
     <button class="circle">

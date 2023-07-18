@@ -9,7 +9,7 @@
             <label for="change_image">
                 <img class="image-preview" src="../../Images/upload_img.png" alt="">
             </label>
-            <input required id="change_image" class="change-image-input" name="change_image_input" type="file">
+            <input accept="image/*" required id="change_image" class="change-image-input" name="change_image_input" type="file">
         </div>
         <div>
             <button name="change_image_button" type="submit" class="modal-button">

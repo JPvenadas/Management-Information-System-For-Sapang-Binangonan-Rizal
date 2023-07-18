@@ -61,9 +61,9 @@ function attachNavbar($page){
          include "../../Components/Navbar/Navbar-Item.php";
          generateNavItem($dashboard, "Dashboard", "home-sharp", "../../Pages/Dashboard/Dashboard.php");
          generateNavItem($residents, "Residents", "people", "../../Pages/Residents/Residents.php");
-         generateNavItem($employees, "Employees", "person", "../../Pages/Employees/Employees.php");
+         generateNavItem($employees, "Assigned Roles", "person", "../../Pages/Employees/Employees.php");
          generateNavItem($attendance, "Attendance", "checkmark-circle", "../../Pages/Attendance/Attendance.php");
-         generateNavItem($users, "Users", "person-circle", "../../Pages/Users/Users.php");
+         generateNavItem($users, "User Accounts", "person-circle", "../../Pages/Users/Users.php");
          generateNavItem($services, "Services", "document", "../../Pages/Services/Services.php");
          generateNavItem($events, "Events", "calendar", "../../Pages/Events/Events.php");
          generateNavItem($announcements, "Announcements", "chatbubble", "../../Pages/Announcements/Announcements.php");

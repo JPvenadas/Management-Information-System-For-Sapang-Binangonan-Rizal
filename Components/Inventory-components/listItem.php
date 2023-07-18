@@ -5,7 +5,7 @@ function generateItem($item){
     <div class="left">
         <div class="record-info">
             <h3><?php echo $item['itemName']?></p>
-            <p>Quantity Availabale: <?php echo $item['totalNumber']?></p>
+            <p>Quantity Available: <?php echo $item['totalNumber']?></p>
         </div>
     </div>
     <div class="action">

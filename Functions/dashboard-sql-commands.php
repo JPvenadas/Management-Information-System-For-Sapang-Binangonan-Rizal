@@ -43,7 +43,7 @@ function getNumberofEmployees(){
 }
 function getTotalVoters($status){
     $conn = openCon();
-    $command = "SELECT COUNT(*) as 'number' from tbl_residents where `voterStatus` = '$status' and `archive` = 'false' ";
+    $command = "SELECT COUNT(*) as 'number' from tbl_residents where `voterStatus` = '$status' and registrationStatus = 'Verified' and `archive` = 'false' ";
     $result = mysqli_query($conn, $command);
     $Total = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_close($conn);

@@ -155,6 +155,14 @@ input, button{
     font-size: 12px;
     font-weight: 700;
 }
+.show-password{
+    display: flex;
+    gap: 20px;
+}
+.gray{
+    color: gray !important;
+    font-weight: normal;
+}
 @keyframes fade{
     0%{
         opacity: 1;

@@ -78,8 +78,11 @@ function existingRole(){
     if($position == "Barangay Kagawad"){
         $command = "SELECT residentID from tbl_employees WHERE `position` = '$position' and `committee` = '$committee' and `termStatus` = 'Active'";
     }
-    else{
+    elseif($position == "Barangay Captain" || $position == "Barangay Secretary" || $position == "Barangay Treasurer"){
         $command = "SELECT residentID from tbl_employees WHERE `position` = '$position' and `termStatus` = 'Active'";
+    }else{
+        mysqli_close($conn);
+        return true;
     }
     $result = mysqli_query($conn, $command);
     if(mysqli_num_rows($result) === 1){

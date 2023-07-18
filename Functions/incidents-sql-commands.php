@@ -4,7 +4,12 @@
 
   function getBlotters(){
         $conn = openCon();
-        $command = "SELECT `blotterID` ,`summary`, `narrativeReport`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `caseStatus`, hearing1, hearing2, hearing3, RIGHT(complainant.contactNo, 9) as `complainantContact`, RIGHT(defendant.contactNo, 9) as  `defendantContact`, COALESCE(hearing3, hearing2, hearing1) AS latestHearing,
+        $command = "SELECT `blotterID` ,`summary`, `narrativeReport`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `caseStatus`, hearing1, hearing2, hearing3, RIGHT(complainant.contactNo, 9) as `complainantContact`, RIGHT(defendant.contactNo, 9) as  `defendantContact`, 
+                    CASE 
+                        WHEN hearing3 != '0000-00-00' THEN hearing3 
+    					WHEN hearing2 != '0000-00-00' THEN hearing2 
+    					ELSE hearing1 
+                    END AS latestHearing,
                     ((hearing1 IS NOT NULL) + 
                     (hearing2 IS NOT NULL) + 
                     (hearing3 IS NOT NULL)) as totalHearing, 

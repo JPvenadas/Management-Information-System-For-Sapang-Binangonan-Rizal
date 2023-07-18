@@ -2,7 +2,7 @@
     <div class="add-button-container">
         <button onclick="openAddModal()" class="add-employee-button">
             <ion-icon name="add-sharp"></ion-icon>
-            <p>Add employee</p>
+            <p>Assign Role</p>
         </button>
     </div>
     <form action="../../Functions/employees-sql-commands.php" method="post" class="search-button-container">

@@ -16,7 +16,7 @@ function getRequests(){
     $command = "SELECT `transactionID`,t.residentID, CONCAT(r.firstName,' ', r.middleName,' ', r.lastName, ' ' ,r.extension) as `fullName`, t.serviceName, s.serviceFee, s.serviceType, `transactionStatus`, `purpose`,`dateRequested`,paymentProof
                 FROM `tbl_transactions` as t inner JOIN tbl_residents as r
                 on r.residentID = t.residentID inner join tbl_services as s
-                on s.serviceName = t.serviceName WHERE `transactionStatus` = 'Unprocessed'";
+                on s.serviceName = t.serviceName WHERE `transactionStatus` = 'Unprocessed' ORDER BY dateRequested DESC";
     $result = mysqli_query($conn, $command);
     $requests = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);
@@ -193,39 +193,5 @@ if(isset($_POST['submit_request'])){
     $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);
     insertLogs("submitted a service request with Transaction ID: $addedID");
-    CompressImage($addedID);
-}
-
-function CompressImage($transactionID){
-    $conn = openCon();
-    $command = "SELECT transactionID, paymentProof FROM tbl_transactions where transactionID = $transactionID";
-    $result = mysqli_query($conn, $command);
-
-    // Set the maximum image size (in bytes)
-    $max_image_size = 50000; // 50 KB in bytes
-
-    // Compress the images and update the records
-    $quality = 20; // Set the starting compression quality (0-100)
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Create a GD image from the blob data
-        $source = imagecreatefromstring($row['paymentProof']);
-
-        // Compress the image
-        do {
-            ob_start();
-            imagejpeg($source, null, $quality);
-            $compressedImage = ob_get_clean();
-            $quality -= 5; // Decrease the quality value by 5 for each iteration
-        } while (strlen($compressedImage) > $max_image_size && $quality >= 5);
-
-        // Update the record with the compressed image
-        $command = "UPDATE tbl_transactions SET paymentProof = ? WHERE transactionID = ?";
-        $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "si", $compressedImage, $transactionID);
-        mysqli_stmt_execute($stmt);
-    }
-
-    // Close the database connection
-    mysqli_close($conn);
 }
 ?>

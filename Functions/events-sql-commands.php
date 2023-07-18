@@ -73,7 +73,7 @@ require "insertLogs.php";
         $end = $_POST['end'];
         $description = $_POST['eventDescription'];
         $name = $_POST['eventName'];
-        $message = "Good Day Kabarangay! our Barangay will be having $name starting this $start, '$description'";
+        $message = "Good Day Kabarangay! our Barangay will be having $name starting this $start, ($description)";
         header("Location: ../../Pages/Announcements/Announcements.php?message=$message");
         exit();
     }

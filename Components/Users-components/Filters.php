@@ -26,7 +26,7 @@ $administators=""; $staffs=""; $residents="";
     <div class="settings-nav">
         <ul class="nav-list">
             <li><a class="<?php echo $administators?>" href="?">Administrators</a></li>
-            <li><a class="<?php echo $staffs?>" href="?filter=staffs">Staffs</a></li>
+            <li><a class="<?php echo $staffs?>" href="?filter=staffs">Staff</a></li>
             <li><a class="<?php echo $residents?>" href="?filter=residents">Residents</a></li>
         </ul>
     </div>

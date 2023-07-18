@@ -10,7 +10,7 @@
         </div>
         <div class="inputs-section">
             <div class="input-container">
-                <input name="quantity" class="input" placeholder="Quantity to be added" type="number">
+                <input required min="1" name="quantity" class="input" placeholder="Quantity to be added" type="number">
             </div>
         </div>
         <div class="button-container">

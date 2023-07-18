@@ -25,14 +25,18 @@
             if(isset($_GET['filter'])){
                 echo "filter=" . $_GET['filter'];
             }?>
-            " method="post"
-            class="container">
+            " method="post" class="container">
             <p>Change Password</p>
             <div>
                 <input id="username-form1" type="hidden" name="userName">
                 <input id="password" name="password" type="password" required placeholder="Password"
                     class="purpose-input">
                 <button class="save" name="change_password">Save</button>
+            </div>
+            <!-- Show Password-->
+            <div class="show-password">
+                <input id="show" type="checkbox">
+                <label class="label gray" for="show">Show Password</label>
             </div>
         </form>
         <form action="../../Pages/Users/Users.php?<?php 
@@ -51,19 +55,19 @@
             </button>
             <div class="button demoteStaff demote">
                 <ion-icon name="settings"></ion-icon>
-                <p>Demote to Staff</p>
+                <p>Change to Staff</p>
             </div>
             <button type="submit" class="button demoteResident demote" name="changeToResident">
                 <ion-icon name="settings"></ion-icon>
-                <p>Demote to Resident</p>
+                <p>Change to Resident</p>
             </button>
             <button type="submit" class="button promoteAdmin promote" name="changeToAdmin">
                 <ion-icon name="settings"></ion-icon>
-                <p>Promote to Admin</p>
+                <p>Change to Admin</p>
             </button>
             <div type="submit" class="button promoteStaff promote">
                 <ion-icon name="settings"></ion-icon>
-                <p>Promote to Staff</p>
+                <p>Change to Staff</p>
             </div>
         </form>
     </div>
@@ -106,7 +110,7 @@ function openEditModal(residentID, fullName, username, userType, status) {
     usernameForm2.value = username
     userTypeField.innerHTML = "User type: " + userType
     viewProfile.href = "../../Pages/Residents/Profile.php?id=" + residentID
-    viewProfileIcon.href = "../../Pages/Residents/Profile.php?id=" + residentID  
+    viewProfileIcon.href = "../../Pages/Residents/Profile.php?id=" + residentID
     residentIDField = residentID
 
     if (userType == "Administrator") {
@@ -125,18 +129,29 @@ function openEditModal(residentID, fullName, username, userType, status) {
         promoteAdmin.style.display = 'flex'
         promoteStaff.style.display = 'flex'
     }
-    if(status == "Active"){
+    if (status == "Active") {
         activateButton.style.display = 'none';
         deactivateButton.style.display = 'flex';
-    }else{
+    } else {
         activateButton.style.display = 'flex';
         deactivateButton.style.display = 'none';
     }
 }
-demoteStaff.addEventListener('click', ()=>{
+demoteStaff.addEventListener('click', () => {
     openAccessModal(usernameForm1.value)
 })
-promoteStaff.addEventListener('click', ()=>{
+promoteStaff.addEventListener('click', () => {
     openAccessModal(usernameForm1.value)
 })
+
+const showPasswordCheckbox = document.getElementById('show');
+    const passwordInput = document.getElementById('password');
+
+    showPasswordCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+});
 </script>

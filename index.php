@@ -30,18 +30,20 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 </head>
 
 <body>
-    
+    <!-- error and notifications alert -->
     <?php if (isset($_GET['error'])) { ?>
-        <div class="error-container">
-            <p class="error"><?php echo $_GET['error']; ?></p>
-        </div>
+    <!-- error alert -->
+    <div class="error-container">
+        <p class="error"><?php echo $_GET['error']; ?></p>
+    </div>
     <?php } ?>
     <?php if (isset($_GET['notif'])) { ?>
-        <div class="error-container">
-            <p class="notif"><?php echo $_GET['notif']; ?></p>
-        </div>
+    <!-- notification alert -->
+    <div class="error-container">
+        <p class="notif"><?php echo $_GET['notif']; ?></p>
+    </div>
     <?php } ?>
-    
+
     <div class="login-container">
         <div class="login-left">
             <div class="login-title-container">
@@ -50,25 +52,44 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
             </div>
             <h2 class="greeting">WELCOME KABARANGAY!</h2>
             <form class="login-form" action="Functions/login.php" method="POST">
+                <!-- username here -->
                 <p class="label">Username</p>
                 <input class="text-1" required type="text" name="uname" placeholder="Username">
+                 <!-- password here -->
                 <p class="label">Password</p>
-                <input class="text-1" required type="password" name="password" placeholder="Password">
+                <input class="text-1" id="password" required type="password" name="password" placeholder="Password">
+                 <!-- Show Password-->
+                <div class="show-password">
+                    <input id="show" type="checkbox">
+                    <label class="label gray" for="show">Show Password</label>
+                </div>
+                 <!-- Login button -->
                 <button class="login-button" type="submit">Login</button>
                 <a class="login-button button-white" href="Pages/Register/RegistrationForm.php?step=1">
-                <div>Create an Account</div>
+                    <div>Create an Account</div>
                 </a>
                 <a class="forgot-password" href="Pages/Recovery/AccountRecovery.php">Forgot your Password?</a>
             </form>
         </div>
         <div class="login-right">
-             <div class="login-figure">
-
-			 </div>
+            <div class="login-figure">
+            </div>
         </div>
     </div>
+    <script>
+    const showPasswordCheckbox = document.getElementById('show');
+    const passwordInput = document.getElementById('password');
 
+    showPasswordCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+    </script>
 </body>
+
 </html>
 <?php
 }

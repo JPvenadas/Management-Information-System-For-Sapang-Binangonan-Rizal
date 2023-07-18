@@ -252,7 +252,6 @@ if(isset($_POST['submit_csv'])){
                 }else{
                     //register the resident in tbl_residents
                     $result = $conn->query($command);
-                    mysqli_query($conn, $command);
                     
                     //create an account
                     $residentID = mysqli_insert_id($conn);

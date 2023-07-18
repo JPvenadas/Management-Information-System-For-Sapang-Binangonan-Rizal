@@ -30,7 +30,7 @@
                 <?php include "Datalists.php"?>
                 <input required autocomplete="off" placeholder="First Name" class="resident-input" name="firstName"
                     type="text">
-                <input required autocomplete="off" placeholder="Middle Name" class="resident-input" name="middleName"
+                <input autocomplete="off" placeholder="Middle Name" class="resident-input" name="middleName"
                     type="text">
                 <input required autocomplete="off" placeholder="Last Name" class="resident-input" name="lastName"
                     type="text">
@@ -58,11 +58,11 @@
                 <p class="label">Head of the family</p>
                 <div class="choices">
                     <div>
-                        <input onchange="showMemberInput()" type="radio" id="familyHead" name="familyHead" value="Yes">
+                        <input required onchange="showMemberInput()" type="radio" id="familyHead" name="familyHead" value="Yes">
                         <label class="text-small" for="familyHead">Yes</label>
                     </div>
                     <div>
-                        <input onchange="showMemberInput()" type="radio" id="notFamilyHead" name="familyHead" value="No">
+                        <input required onchange="showMemberInput()" type="radio" id="notFamilyHead" name="familyHead" value="No">
                         <label class="text-small" for="notFamilyHead">No</label>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
     </div>
     <div class="container">
         <div class="limit-width">
-            <label class="label-2" for="sex">Profile Picture</label>
+            <label class="label-2" for="sex">Profile Picture *</label>
             <p class="text-medium">(1x1 picture, with white background and clear resolution)</p>
 
             <!-- profile picture upload section -->
@@ -22,8 +22,8 @@
     </div>
     <div class="container">
         <div class="limit-width">
-            <label class="label-2" for="sex">Proof of Residence</label>
-            <p class="text-medium">Upload a Barangay Document as a proof of your residence</p>
+            <label class="label-2" for="sex">Proof of Residence *</label>
+            <p class="text-medium">Upload a Barangay ID as a proof of your residence</p>
             <div class="input-upload-container">
 
                 <!-- Proof of residence upload section -->
@@ -41,15 +41,18 @@
         <div class="limit-width">
 
             <!-- mobile number section -->
-            <label class="label-2" for="sex">Mobile Number</label>
+            <label class="label-2" for="sex">Mobile Number *</label>
             <p class="text-medium">By providing us your mobile number, you agree to receive SMS notification and
                 messages related from the barangay such as announcements and reminders. </p>
-            <input required autocomplete="off" placeholder="Input your Mobile number here" name="mobileNumber" id="image-title-proof" class="input"
-                type="text" value="<?php inputContent('mobileNumber'); ?>" onkeypress="
-            //function that will prevent non-numeric char
-            return event.charCode >= 48 && event.charCode <= 57" oninput="
-            //function that will prevent user from typing more than 6 digit
-            this.value = this.value.slice(0, 11)">
+           <div style="display: flex; align-items: center; gap: 10px;">
+            <p>+639</p>
+            <input required autocomplete="off" placeholder="00-000-0000" name="mobileNumber" id="image-title-proof" class="input"
+                    type="text" value="<?php inputContent('mobileNumber'); ?>" onkeypress="
+                //function that will prevent non-numeric char
+                return event.charCode >= 48 && event.charCode <= 57" oninput="
+                //function that will prevent user from typing more than 9 digit
+                this.value = this.value.slice(0, 9)">
+           </div>
         </div>
     </div>
     <div class="button-group">

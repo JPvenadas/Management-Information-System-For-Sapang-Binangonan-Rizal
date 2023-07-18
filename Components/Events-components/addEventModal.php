@@ -9,7 +9,7 @@
             <div class="inputs">
                 <div>
                     <p class="label">Event Title</p>
-                    <input required class="input" name="eventName" type="text" placeholder="Event Name">
+                    <input autocomplete="off" required class="input" name="eventName" type="text" placeholder="Event Name">
                 </div>
                 <div>
                     <p class="label">Date Start</p>

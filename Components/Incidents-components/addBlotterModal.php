@@ -8,6 +8,10 @@
             <p>Fill the necessary information below</p>
         </div>
         <div class="blotter-inputs">
+             <div class="blotter-input">
+                <p class="label">Complaint Title</p>
+                <textarea placeholder="Type here the title of the case" name="summary" id="" class="long-input"></textarea>
+            </div>
             <div class="blotter-input">
                 <p class="label">Complainant</p>
                 <div class="input-container">
@@ -47,10 +51,7 @@
                     </label>
                 </div>
             </div>
-            <div class="blotter-input">
-                <p class="label">Complaint Summary</p>
-                <textarea placeholder="Type here the summary of the case" name="summary" id="" class="long-input"></textarea>
-            </div>
+           
             <div class="blotter-input">
                 <p class="label">Hearing Schedule</p>
                 <input onfocus="(this.type = 'date')" min="<?php echo date('Y-m-d');?>" class="input" placeholder="Enter the Date of the hearing here" type="text" name="schedule" required>

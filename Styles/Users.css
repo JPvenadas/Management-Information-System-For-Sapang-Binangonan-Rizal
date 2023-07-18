@@ -413,6 +413,17 @@ body{
 .filter-select-container{
     display: none;
 }
+.show-password{
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start !important;
+}
+.gray{
+    font-size: 13px;
+    font-weight: bold;
+    color: gray !important;
+    font-weight: normal;
+}
 @keyframes fade{
     0%{
         opacity: 1;

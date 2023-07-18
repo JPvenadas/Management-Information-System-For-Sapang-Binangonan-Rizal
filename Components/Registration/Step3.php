@@ -4,49 +4,45 @@
         <p class="text">Please fill the necessary information below</p>
 
         <!-- FirstName input -->
-        <label class="label" for="sex">Sex</label>
+        <label class="label" for="sex">Sex *</label>
         <input list="sex" required required placeholder="Sex" name="sex" id="sex" class="input" type="text"
         value="<?php inputContent('sex'); ?>">
 
         <!-- Purok -->
-        <label class="label" for="purok">Purok</label>
+        <label class="label" for="purok">Purok *</label>
         <input autocomplete="off" list="purok" required placeholder="Purok" id="purok" name="purok" class="input" type="text"
         value="<?php inputContent('purok'); ?>">
 
         <!-- Street -->
-        <label class="label" for="address">Address</label>
+        <label class="label" for="address">Address *</label>
         <input autocomplete="off" placeholder="Exact Address (ex. Street, Home no.)" required id="address" name="address" class="input" type="text"
         value="<?php inputContent('address'); ?>">
 
         <!-- Voter Status -->
-        <label class="label" for="voterStatus">Voter Status</label>
+        <label class="label" for="voterStatus">Voter Status *</label>
         <input list="voterStatus" placeholder="Voter's Status" required id="voterStatus" name="voterStatus" class="input" type="text"
         value="<?php inputContent('voterStatus'); ?>">
 
         <!-- Marital Status -->
-        <label class="label" for="maritalStatus">Marital Status</label>
+        <label class="label" for="maritalStatus">Marital Status *</label>
         <input list="maritalStatus" placeholder="Marital Status" required id="maritalStatus" name="maritalStatus" class="input" type="text"
         value="<?php inputContent('maritalStatus'); ?>">
 
         <!-- Occupation -->
-        <label class="label" for="occupation">Occupation</label>
+        <label class="label" for="occupation">Occupation *</label>
         <input autocomplete="off" placeholder="Occupation" required id="occupation" name="occupation" class="input" type="text"
         value="<?php inputContent('occupation'); ?>">
-
-        <!-- Resident Categories -->
-        <input list="residentCategory" placeholder="Other Categories (ex. PWD, Indigent, etc)" id="residentCategory" name="residentCategory" class="input" type="hidden"
-        value="<?php inputContent('residentCategory'); ?>">
 
         <div class="multiple-choice-container">
             <p class="label">Head of the family</p>
             <div class="choices">
                 <div>
-                    <input onchange="showMemberInput()" type="radio" id="familyHead" name="familyHead" value="Yes"
+                    <input required onchange="showMemberInput()" type="radio" id="familyHead" name="familyHead" value="Yes"
                     <?php checkradio("Yes") ?>>
                     <label class="text-small" for="familyHead">Yes</label>
                 </div>
                 <div>
-                    <input onchange="showMemberInput()" type="radio" id="notFamilyHead" name="familyHead" value="No"
+                    <input required onchange="showMemberInput()" type="radio" id="notFamilyHead" name="familyHead" value="No"
                     <?php checkradio("No") ?>>
                     <label class="text-small" for="notFamilyHead">No</label>
                 </div>

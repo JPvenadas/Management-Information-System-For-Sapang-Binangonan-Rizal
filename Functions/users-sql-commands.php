@@ -72,23 +72,28 @@ function changeUserType($userType){
     }
 }
 if(isset($_POST['changeAccess'])){
-    removeExistingAccess();
-    $conn = openCon();
-    $userName = $_POST['userName'];
-    $residents = $_POST['residents'];
-    $employees = $_POST['employees'];
-    $services = $_POST['services'];
-    $inventory = $_POST['inventory'];
-    $events = $_POST['events'];
-    $announcements = $_POST['announcements'];
-    $incidents = $_POST['incidents'];
-    $attendance = $_POST['attendance'];
-    $reports = $_POST['reports'];
-    $command = "INSERT INTO `tbl_accessControl`(`userName`, `residents`, `employees`, `services`, `inventory`, `events`, `announcements`, `incidents`, `attendance`, `reports`) 
-                                        VALUES ('$userName','$residents','$employees','$services','$inventory','$events','$announcements','$incidents','$attendance','$reports')";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    changeUserType('Staff');
+    if(checkIfEmployee()){
+        removeExistingAccess();
+        $conn = openCon();
+        $userName = $_POST['userName'];
+        $residents = $_POST['residents'];
+        $employees = $_POST['employees'];
+        $services = $_POST['services'];
+        $inventory = $_POST['inventory'];
+        $events = $_POST['events'];
+        $announcements = $_POST['announcements'];
+        $incidents = $_POST['incidents'];
+        $attendance = $_POST['attendance'];
+        $reports = $_POST['reports'];
+        $command = "INSERT INTO `tbl_accessControl`(`userName`, `residents`, `employees`, `services`, `inventory`, `events`, `announcements`, `incidents`, `attendance`, `reports`) 
+                                            VALUES ('$userName','$residents','$employees','$services','$inventory','$events','$announcements','$incidents','$attendance','$reports')";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+        changeUserType('Staff');
+    }else{
+        header("Location: ../../Pages/Users/Users.php?error=The resident is not an employee");
+	    exit();
+    }
 }
 function removeExistingAccess(){
     $conn = openCon();
@@ -103,7 +108,12 @@ if(isset($_POST['changeToResident'])){
 }
 if(isset($_POST['changeToAdmin'])){
     removeExistingAccess();
-    changeUserType('Administrator');
+    if(checkIfEmployee()){
+        changeUserType('Administrator');
+    }else{
+        header("Location: ../../Pages/Users/Users.php?error=The resident is not an employee");
+	    exit();
+    }
 }
 if(isset($_POST['deactivate'])){
    changeAccountStatus('Inactive');
@@ -127,6 +137,23 @@ if(isset($_POST['change_password'])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
     insertLogs("Change the user password of $userName");
+}
+function checkIfEmployee(){
+    $conn = openCon();
+    $userName = validate($_POST['userName']);
+    $command = "SELECT e.residentID FROM `tbl_employees` as e INNER JOIN tbl_userAccounts as u on u.residentID = e.residentID WHERE u.userName = '$userName'";
+    $result = mysqli_query($conn, $command);
+    if (mysqli_num_rows($result) > 0) {
+        // User is present in the table
+        mysqli_close($conn);
+        return true;
+      } else {
+        // User is not present in the table
+        mysqli_close($conn);
+        return false;
+      }
+      
+      // Close the database connection
 }
 function checkAdminNumber(){
     $conn = openCon();

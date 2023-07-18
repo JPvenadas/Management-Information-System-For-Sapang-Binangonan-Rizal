@@ -16,6 +16,8 @@ if(isset($_POST['send_message'])){
     $conn = openCon();
     $message = validate($_POST['message']);
     $postedBy = validate($_SESSION['residentID']);
+    date_default_timezone_set('Asia/Manila');
+    $date = date('Y-m-d H:i:s');
     $recepients = "";
 
     //if the filter is in custom, 
@@ -33,8 +35,8 @@ if(isset($_POST['send_message'])){
     }else{
         $recepients = validate($_POST['filter_value']);
     }
-    $command = "INSERT INTO `tbl_announcements`(`message`, `postedBy`, `recepients`) 
-                                        VALUES ('$message','$postedBy','$recepients')";
+    $command = "INSERT INTO `tbl_announcements`(`message`, `postedBy`, `recepients`, `datePosted`) 
+                                        VALUES ('$message','$postedBy','$recepients', '$date')";
     mysqli_query($conn, $command);
     $addedPersonnelID = mysqli_insert_id($conn);
     mysqli_close($conn);

@@ -5,7 +5,7 @@
             <ion-icon name="close"></ion-icon>
         </div>
         <div class="modal-title">
-            <h3>Add an Employee</h3>
+            <h3>Assign Role</h3>
             <p>Fill the necessary information below</p>
         </div>
         <div class="container">
@@ -15,7 +15,7 @@
             <div class="signiture-container">
                 <input required placeholder="Upload a signiture" id="image-title" class="input" class="signiture-image-name" readonly
                     type="text">
-                <input accept="image/*" required id="signiture" name="signiture" hidden type="file">
+                <input accept="image/png" required id="signiture" name="signiture" hidden type="file">
                 <label id="upload" class="signiture-button" for="signiture">
                     <p>Upload</p>
                 </label>

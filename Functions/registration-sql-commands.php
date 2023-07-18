@@ -89,7 +89,7 @@ if(isset($_POST['signup'])){
     $familyMembers = $_SESSION['registration-familyMembers'];
     $archive = "false";
     $registrationStatus = 'Unverified';
-    $mobileNumber = validate($_SESSION['registration-mobileNumber']);
+    $mobileNumber = '09' . validate($_SESSION['registration-mobileNumber']);
     $residenceProof = $_SESSION['registration-residenceProof'];
     $userName = "@$firstName$middleName$lastName$extension";
     $userName = str_replace(' ', '', $userName);
