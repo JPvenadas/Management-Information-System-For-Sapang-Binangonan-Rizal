@@ -43,20 +43,19 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
             require "../../Components/Navbar/Staff-Navbar.php";
             attachNavbar("announcements");
         }?>
-
         <!-- main content of the page -->
         <main class="main-content">
             <?php require "../../Components/Tab-title.php";
             attachTabTitle("Announcements");
 
-
+            include "../../Components/Announcements-components/newMessagebutton.php";
+            //Include the filtering section
+            include "../../Components/Announcements-components/Filtering.php";            
             //include the list of announcements
             require "../../Components/Announcements-components/MessageList.php";
 
-            //include the new message section
-            require "../../Components/Announcements-components/NewMessage.php";
+            require "../../Components/Announcements-components/newMessageModal.php";
             ?>
-           
         </main>
       
        <!-- Script for Ionic Icons -->

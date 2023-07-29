@@ -10,6 +10,10 @@
         <div class="information-container">
             <div class="name-container">
                 <p class="resident-name"> <span>Full Name:</span> <?php echo $resident['fullName']?> </p>
+
+                <?php if($resident['archive'] == "true"){?>
+                        <p class="resident-name"> <span>(Archived) </span>Reason:  <?php echo $resident['archiveReason']?> </p> 
+                <?php }?>
             </div>
             <div class="other-info">
                 <div class="left">

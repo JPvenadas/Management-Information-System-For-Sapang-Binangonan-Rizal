@@ -5,7 +5,7 @@
             //include the filter modal 
             include "FilterOptions.php"
         ?>
-        <div onclick= "openFilter()" class="filter-button">
+        <div onclick= "openFilter()" class="combo-box-input">
             <input readonly id="filter-value" name="filter_value" type="text" value="All Residents">
             <ion-icon id="filter-icon" name="chevron-up-sharp"></ion-icon>
         </div>
@@ -38,23 +38,4 @@
     
    <?php } ?>
 
-   //detect if the window width is less than 700px
-   const mediaQuery = window.matchMedia('(max-width: 700px)');
-   function changeButtonContent(mediaQuery) {
-
-        //get the needed elements
-        let filterValue = document.querySelector("#filter-value");
-        let filterIcon = document.querySelector("#filter-icon");
-
-        if (mediaQuery.matches) {
-            //if so just show the filter icon not the texts to reduce space
-            filterValue.type = "hidden"
-            filterIcon.name = "menu"
-        } else {
-            filterValue.type = "text"
-            filterIcon.name = "chevron-up-sharp"
-        }
-    }
-    mediaQuery.addListener(changeButtonContent);
-    changeButtonContent(mediaQuery);
 </script>

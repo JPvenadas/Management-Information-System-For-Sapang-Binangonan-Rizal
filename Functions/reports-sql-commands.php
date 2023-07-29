@@ -196,8 +196,8 @@ require "insertLogs.php";
 
     function getResidents(){
         $conn = openCon();
-        $command = "SELECT `residentID`, CONCAT(`firstName`, ' ',`middleName`, ' ', `lastName`, ' ', `extension`) as `fullName`, DATE_FORMAT(birthDate, '%b, %e %Y') as `birthDate`,`image`,`purok`,`exactAddress`,`voterStatus`,`sex`,`maritalStatus`, `occupation`,`contactNo`,`familyHead`
-        FROM `tbl_residents` WHERE `archive`='false' and `registrationStatus` = 'Verified'";
+        $command = "SELECT `residentID`, CONCAT(`firstName`, ' ',`middleName`, ' ', `lastName`, ' ', `extension`) as `fullName`, DATE_FORMAT(birthDate, '%b, %e %Y') as `birthDate`,`image`,`purok`,`exactAddress`,`voterStatus`,`sex`,`maritalStatus`, `occupation`,`contactNo`,`familyHead`,`archive`, `archiveReason`
+        FROM `tbl_residents` WHERE `registrationStatus` = 'Verified'";
 
         //apply the filters. if set
         if(isset($_GET['sex'])){

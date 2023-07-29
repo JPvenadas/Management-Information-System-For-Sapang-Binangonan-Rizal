@@ -90,11 +90,19 @@ if(isset($_POST['confirm'])){
     changeStatus('Verified');
     activate();
 }
-//function to archive a resident
+// Function to archive a resident
 if(isset($_POST['archive_resident'])){
     $conn = openCon();
     $residentID = $_POST['residentID'];
-    $command = "UPDATE `tbl_residents` SET `archive` = 'true' WHERE `residentID` = '$residentID'";
+
+    //check if the other reason is inputted
+    if($_POST['reason'] === 'others'){
+        $reason = validate($_POST['otherReason']);
+    } else {
+        $reason = validate($_POST['reason']);
+    }
+
+    $command = "UPDATE `tbl_residents` SET `archive` = 'true', `archiveReason` = '$reason' WHERE `residentID` = '$residentID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
     insertLogs("Archived a user with ID: $residentID");

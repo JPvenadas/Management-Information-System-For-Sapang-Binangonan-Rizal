@@ -4,18 +4,38 @@ require "insertLogs.php";
 
 function getAnnouncements(){
     $conn = openCon();
-    $command = "SELECT CONCAT(r.firstName, ' ', LEFT(r.middleName, 1),' ', r.lastName, ' ', r.extension) as `fullName`, `message`, `datePosted`, `postedBy`, `recepients` 
-    FROM `tbl_announcements` as a inner JOIN tbl_residents as r on r.residentID = postedBy ";
+    $command = "SELECT announcementID, CONCAT(r.firstName, ' ', LEFT(r.middleName, 1), ' ', r.lastName, ' ', r.extension) AS `fullName`, r.image AS `image`, `announcementType`, `message`, `datePosted`, `postedBy`, `recepients` 
+    FROM `tbl_announcements` AS a
+    INNER JOIN tbl_residents AS r ON r.residentID = postedBy " . addFilters() . " ORDER BY `datePosted` DESC";
     $result = mysqli_query($conn, $command);
     $announcements = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);
     mysqli_close($conn);
     return $announcements;
 }
+function addFilters(){
+    if(!isset($_GET['filter']) || $_GET['filter'] == "recent"){
+        $command = "";
+    }elseif($_GET['filter'] == "today"){
+        $filter = $_GET['filter'];
+        $command = " where DATE(`datePosted`) = CURDATE() ";
+    }elseif($_GET['filter'] == "yesterday"){
+        $filter = $_GET['filter'];
+        $command = " where DATE(`datePosted`) = DATE(CURDATE() + INTERVAL 1 DAY) ";
+    }
+    else{
+        $filter = $_GET['filter'];
+        $formattedDate = date('Y-m-d', strtotime($filter));
+        $command = " where DATE(`datePosted`) = '$formattedDate' ";
+    }
+    return $command;
+}
+
 if(isset($_POST['send_message'])){
     $conn = openCon();
     $message = validate($_POST['message']);
     $postedBy = validate($_SESSION['residentID']);
+    $type = validate($_POST['type']);
     date_default_timezone_set('Asia/Manila');
     $date = date('Y-m-d H:i:s');
     $recepients = "";
@@ -35,8 +55,8 @@ if(isset($_POST['send_message'])){
     }else{
         $recepients = validate($_POST['filter_value']);
     }
-    $command = "INSERT INTO `tbl_announcements`(`message`, `postedBy`, `recepients`, `datePosted`) 
-                                        VALUES ('$message','$postedBy','$recepients', '$date')";
+    $command = "INSERT INTO `tbl_announcements`(`message`,`announcementType`, `postedBy`, `recepients`, `datePosted`) 
+                                        VALUES ('$message','$type','$postedBy','$recepients', '$date')";
     mysqli_query($conn, $command);
     $addedPersonnelID = mysqli_insert_id($conn);
     mysqli_close($conn);
@@ -131,7 +151,7 @@ function getAnnouncementsResident(){
     $user = getResidentUser();
     $sex = validate($user['sex']);
     $age = validate($user['age']);
-    $command = "SELECT CONCAT(r.firstName, ' ', LEFT(r.middleName, 1),' ', r.lastName, ' ', r.extension) as `fullName`, `message`, `datePosted`, `postedBy`, `recepients`
+    $command = "SELECT announcementID, CONCAT(r.firstName, ' ', LEFT(r.middleName, 1), ' ', r.lastName, ' ', r.extension) AS `fullName`, r.image AS `image`, `announcementType`, `message`, `datePosted`, `postedBy`, `recepients`
      FROM `tbl_announcements` as a inner join `tbl_residents` as r on a.postedBy = r.residentID WHERE `recepients` LIKE '%All Residents%' or `recepients` LIKE '%$sex%' or `recepients` LIKE '%$age%'";
     if($user['is_employee'] == true){
         $command = $command . " or `recepients` LIKE '%All Employees%'";
@@ -139,6 +159,7 @@ function getAnnouncementsResident(){
     if($user['familyHead'] == true){
         $command = $command . " or `recepients` LIKE '%Family Heads%'";
     }
+    $command = $command . "  ORDER BY `datePosted` DESC";
     $result = mysqli_query($conn, $command);
     $announcements = mysqli_fetch_all($result, MYSQLI_ASSOC);
     mysqli_free_result($result);

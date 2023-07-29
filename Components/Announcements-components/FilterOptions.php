@@ -52,10 +52,13 @@
 
                 if(residentsRadio.checked){
                 document.querySelector('#filter-value').value = "All Residents"
+                openFilter()
                 }else if(employeesRadio.checked){
                     document.querySelector('#filter-value').value = "All Employees"
+                    openFilter()
                 }else if(heads.checked){
                     document.querySelector('#filter-value').value = "Family Heads"
+                    openFilter()
                 }
             }
     });

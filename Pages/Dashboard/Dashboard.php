@@ -45,9 +45,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && ($_SESSION['
 
     <div class="dashboard-content">
         <!-- Attach the Tab title/header -->
-        <?php require "../../Components/Tab-title.php";
-        $firstname = $_SESSION['firstName'];
-        attachTabTitle("Hello $firstname! Welcome to your Dashboard")?>
+        <?php require "../../Components/Dashboard-components/DashboardHeader.php";?>
 
         <div class="system-stat">
             <div class="left">

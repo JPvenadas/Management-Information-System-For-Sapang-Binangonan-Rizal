@@ -1,0 +1,25 @@
+<datalist id="announcementList">
+  <option value="Severe Weather Condition"></option>
+  <option value="Seminar Announcements"></option>
+  <option value="Vaccination Program"></option>
+  <option value="Community Cleanup Drive"></option>
+  <option value="Free Health Check-up Event"></option>
+  <option value="Senior Citizens Assistance Program"></option>
+  <option value="Youth Sports Tournament"></option>
+  <option value="Neighborhood Watch Program"></option>
+  <option value="Educational Scholarships Available"></option>
+  <option value="Cultural Arts and Crafts Fair"></option>
+  <option value="Recycling Awareness Campaign"></option>
+  <option value="Women Empowerment Seminar"></option>
+  <option value="Blood Donation Drive"></option>
+  <option value="Road Safety Awareness Program"></option>
+  <option value="Job Fair and Employment Opportunities"></option>
+  <option value="Children's Talent Show"></option>
+  <option value="Environmental Conservation Workshop"></option>
+  <option value="Family Fun Day Event"></option>
+  <option value="Skill Development Workshops"></option>
+  <option value="Local Market Day Promotion"></option>
+  <option value="Emergency Preparedness Training"></option>
+  <option value="Parenting and Family Counseling"></option>
+  <option value="Music and Dance Festival"></option>
+</datalist>

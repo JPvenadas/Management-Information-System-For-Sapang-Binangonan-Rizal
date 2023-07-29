@@ -1,24 +1,18 @@
 <?php
- function attachTabTitle($title){
-?>
-<div class="tab-header">
-    <div>
-        <img src="../../Images/logo.png" class="logo" alt="">
-        <h1 class="system-title">Management Information System for Barangay Sapang</h1>
+ function attachTabTitle($title){?>
+ <div class="bar">
+    <div class="left">
+        <div>
+            <img class="logo2" src="../../Images/logo.png" alt="logo">
+        </div>
+        <div>
+            <h1 class="name">Barangay Sapang</h1>
+            <h2 class="sub">Management Information System</h2>
+        </div>
     </div>
-    <p class="date"></p>
+    <div class="tab-title"><?php echo $title?></div>
+ </div>
+<div class="space">
 
-    <script>
-    function setDate() {
-        let datetext = document.querySelector(".date")
-        let date = new Date()
-        datetext.innerHTML = date.toDateString() + " " + date.toLocaleTimeString();
-    }
-    setDate()
-    setInterval(() => {
-        setDate()
-    }, 1000);
-    </script>
-    <h2 class="tab-title"><?php echo $title?></h2>
 </div>
 <?php }?>

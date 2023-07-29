@@ -10,50 +10,81 @@ body{
     display: flex;
     color: #2E2E2E;
     overflow-x: hidden;
-    background: white;
+    background: #e3e3e3;
 }
 .main-content{
    padding: 0 50px 0 40px;
    width: 100%;
    margin-left: 300px;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
 }
 .messages-container{
     width: 100%;
-    max-height: 380px;
-    height: 80%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    max-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
     background: #e3e3e3;
     border-radius: 10px;
-    margin: 30px 0;
     overflow-y: scroll;
-    padding: 25px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+.messages-container::-webkit-scrollbar {
+    display: none;
+  }
 .height-450{
     max-height: 460px;
 }
 .new-message-container{
-    width: 100%;
+    width: calc(100vw - 300px);
+    margin: -10px -50px 0px -40px;
+    padding: 0 50px 0 40px;
+    background: white;
     display: flex;
     gap: 13px;
+    height: 80px;
     align-items: center;
 }
+.write-post{
+    width: 90%;
+    background: rgb(234, 234, 234);
+    height: 40px;
+    border-radius: 5px;
+    text-align: left;
+    padding: 0 20px;
+    color: gray;
+    border: .5px solid rgb(204, 204, 204);
+}
+.write-post:hover{
+    background: rgb(215, 215, 215);
+}
+/* *************************************message item */
 .message{
     background: white;
-    width: 90%;
+    width: 95%;
     border-radius: 10px;
-    padding: 30px;
+    padding: 20px 30px;
     display: flex;
     flex-direction: column;
+    gap: 15px;
+}
+.image{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+.message .top{
+    display: flex;
     gap: 20px;
 }
 .text{
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 16px;
     color: #2E2E2E;
+    line-height: 18px;
 }
 .bold-text{
     font-weight: 700;
@@ -65,6 +96,30 @@ body{
     font-size: 12px;
     line-height: 15px;
     color: #7C7C7C;
+}.messageType{
+    color: #383838;
+    font-size: 16px;
+    font-weight: 400;
+}
+.full-text{
+    display: none;
+}
+.bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.see-more-btn {
+    background: none;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #2E2E2E;
+  }
+.divider{
+    height: 2px;
+    background: #D9D9D9;
 }
 .message-input{
     flex: 1;
@@ -97,7 +152,7 @@ body{
 .filter-options{
     display: none;
     position: absolute;
-    width: 250px;
+    width: 100%;
     bottom: 60px;
     background: white;
     border-radius: 5px;
@@ -112,17 +167,16 @@ body{
     justify-content: flex-end;
     padding: 15px 25px;
     gap: 20px;
+    border-bottom: .5px solid rgb(171, 171, 171);
 }
 .send-button{
-    width: 66px;
-    height: 43px;
+    height: 40px;
     background: #195FA0;
     border-radius: 5px;
-}
-.send-button ion-icon{
+    font-weight: bold;
     color: white;
-    font-size: 20px;
 }
+
 .custom-filter{
     display: none;
     flex-direction: column;
@@ -134,14 +188,153 @@ body{
     justify-content: flex-end;
 }
 .combo{
-    width: 200px;
+    width: 100%;
     padding: 10px 20px;
+}
+/* ************************************* create announcement modal */
+.background-blur{
+    position: fixed;
+    z-index: 10;
+    width: calc(100% - 300px) ;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.52);
+    left: 300px;
+    top: 0;
+    display: none;
+    align-items: flex-end;
+    overflow: hidden;
+    animation: spawn .4s ease forwards;
+}
+.form{
+    width: 100%;
+    height: 480px;
+    background: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    animation: slide-up .4s ease forwards;
+}
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+}
+.vertical-center{
+    align-items: center;
+}
+.form .header{
+    padding: 0 20px;
+    height: 60px;
+    border-bottom: solid 1px rgb(173, 173, 173);
+}
+.close{
+    font-size: 20px;
+}
+.form .content{
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+.input{
+    width: 90%;
+    background: rgb(234, 234, 234);
+    height: 40px;
+    border-radius: 5px;
+    text-align: left;
+    padding: 0 20px;
+    color: rgb(39, 39, 39);
+    border: .5px solid rgb(204, 204, 204);
+}
+.long-input{
+    width: 90%;
+    background: rgb(234, 234, 234);
+    height: 200px;
+    border-radius: 5px;
+    text-align: left;
+    padding: 10px 20px;
+    color: rgb(39, 39, 39);
+    border: .5px solid rgb(204, 204, 204);
+}
+.combo-box-input{
+    width: 100%;
+    background: rgb(234, 234, 234);
+    height: 40px;
+    border-radius: 5px;
+    border: .5px solid rgb(204, 204, 204);
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.combo-box-input *{
+    color: gray;
+    cursor: pointer;
+}
+.width90{
+    width: 90%;
+}
+/* ***************************** filtering options */
+.filtering{
+    display: flex;
+    gap: 10px;
+}
+.filter-item{
+   padding: 8px 16px;
+   background: rgb(204, 204, 204);
+   border-radius: 5px;
+   font-size: 14px;
+   color: rgb(97, 97, 97);
+   cursor: pointer;
+}
+.gray-highlight{
+    background: gray;
+    color: white
+}
+.filter-item:hover{
+    background: rgb(181, 181, 181);
+}
+
+.filter-input input{
+    background: rgb(204, 204, 204);
+    color: rgb(97, 97, 97);
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    min-width: 180px;
+}
+.filter-input label{
+    margin-right: 10px;
+}
+.filter-input button{
+    padding: 8px 20px;
+    background: #195FA0;
+    color: white;
+    border-radius: 5px;
+}
+@keyframes spawn{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+@keyframes slide-up{
+    from{bottom: -500px;}
+    to{bottom: 0;}
 }
 @media (max-width: 1000px){
     .main-content{
         margin-left: 0px;
         max-height: 100vh;
         margin-bottom: 50px;
+        padding: 0 20px 0 20px;
+    }
+    .new-message-container{
+        margin: 10px -20px 0px -20px;
+        width: 100vw;
+    }
+    .background-blur{
+        left: 0;
+        width: 100%;
     }
 }
 @media (max-width: 700px){
@@ -187,5 +380,17 @@ body{
         border-radius: 4px;
         box-shadow: 0px 2px 2px rgb(0, 0, 0, 0.1);
     }
-    
+    .new-message-container{
+        margin: -10px -20px 0px -20px;
+    }
+    .flex-between{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .vertical-center{
+        flex-direction: row;
+    }
+    .form{
+        height: 550px;
+    }
 }
