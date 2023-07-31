@@ -14,9 +14,11 @@ body{
     margin-top: 0 !important;
 }
 .main-content{
-   padding: 0 50px 0 50px;
+   padding: 0 50px 0 40px;
    width: 100%;
    margin-left: 300px;
+   display: flex;
+   flex-direction: column;
 }
 .action-controls-container{
     display: flex;
@@ -83,26 +85,31 @@ body{
 .events-container{
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 .event-record{
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    height: 75px;
+    flex-direction: column;
     border: 1px solid #EAE9E9;
     background: rgb(255, 255, 255);
     border-radius: 5px;
-    padding: 0 20px;
-    align-items: center;
     transition: .3s ease;
+    color: rgb(73, 73, 73);
+}
+.event-record .info{
+    padding: 20px;
 }
 .event-record:hover{
     background: rgb(240, 240, 240);
 }
-.left{
-    display: flex;
-    height: 100%;
-    gap: 22px;
+.cover{
+    background-size: cover !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 150px;
+    background:linear-gradient(rgb(228, 228, 228), rgb(170, 170, 170)) ;
+    width: 100%;
 }
 .event-name{
     font-weight: 700;
@@ -114,25 +121,7 @@ body{
     font-size: 10px;
     color: #2E2E2E
 }
-.record-info{
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100%;
-}
-.action{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.action p{
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 19px;
-    color: #2E2E2E;
-}
+
 /* ****************************add button***** */
 .add-button-container{
     position: fixed;
@@ -200,6 +189,7 @@ body{
     position: relative;
 }
 .modal-close-button{
+    font-size: 20px;
     position: absolute;
     right: 30px;
     top: 20px;
@@ -313,6 +303,90 @@ body{
 }
 #announce{
     display: none;
+}
+
+/* ****************************************** event viewing */
+.cover-large{
+    height: 300px;
+    background:linear-gradient(rgb(228, 228, 228), rgb(170, 170, 170)) ;
+    width: calc(100% + 90px);
+    margin: 0 -50px 0 -40px;
+    background-size: cover !important;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+.event-page-info{
+    display: flex;
+    margin: 0 -50px 0 -40px;
+    padding: 20px 50px 20px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.event-page-description{
+    margin: 0 -50px 0 -40px;
+    padding: 0px 20px;
+}
+.event-page-date{
+    font-weight: normal;
+    font-size: 16px;
+    color: rgb(59, 59, 59);
+}
+.event-page-title{
+    font-size: 25px;
+    color: rgb(59, 59, 59);
+}
+.ellipsis-button{
+    color: rgb(92, 92, 92);
+    font-weight: bold;
+    font-size: 25px;
+    cursor: pointer;
+    position: relative;
+}
+.settings{
+    position: absolute;
+    display: none;
+    bottom: 50px;
+    right: 0;
+    background: white;
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.73);
+}
+.update-button{
+    padding: 10px 20px;
+    font-size: 15px;
+    color: rgb(92, 92, 92);
+    width: 300px;
+    background: white;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+}
+.update-button:hover{
+    background: rgb(231, 231, 231);
+}
+.edit-button:hover{
+    color: rgb(51, 51, 51);
+}
+.gap-15{
+    gap: 15px;
+}
+.gallery-title{
+    font-size: 20px;
+    padding: 20px;
+    color: rgb(59, 59, 59);
+}
+.divider{
+    height: 2px;
+    width: 100%;
+    background: gray;
+}
+.gallery{
+    width: calc(100% + 90px);
+    margin: 0 -50px 0 -40px;
+}
+.photos-container{
+    min-height: 200px;
+    background: rgb(228, 228, 228);
 }
 @media (max-width: 1000px){
     .main-content{

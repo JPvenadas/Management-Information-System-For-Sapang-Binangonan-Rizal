@@ -1,5 +1,5 @@
 <div id="edit-modal" class="modal-background-blur">
-    <form  enctype="multipart/form-data" action="?" method="post" class="modal-content-container">
+    <form  enctype="multipart/form-data" method="post" class="modal-content-container">
         <div onclick="closeEditModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>
         </div>
@@ -7,32 +7,28 @@
             <h3>Barangay Event</h3>
             <p>You can view or edit the information below</p>
             <div class="inputs">
-                <input type="hidden" id="event-id" name="eventID">
+                <input type="hidden" value="<?php echo $event['eventID']?>" id="event-id" name="eventID">
                 <div>
                     <p class="label">Event Title</p>
-                    <input class="input" name="eventName" id="event-name" type="text" placeholder="Event Name">
+                    <input value="<?php echo $event['eventName']?>" class="input" name="eventName" id="event-name" type="text" placeholder="Event Name">
                 </div>
                 <div>
                     <p class="label">Date Start</p>
-                    <input id="start" class="input" min="<?php echo date('Y-m-d');?>" name="start" type="text" onfocus="(this.type = 'date')" placeholder="Date and Time of Event">
+                    <input value="<?php echo $event['start']?>" id="start" class="input" min="<?php echo date('Y-m-d');?>" name="start" type="text" onfocus="(this.type = 'date')" placeholder="Date and Time of Event">
                 </div>
                 <div>
                     <p class="label">Date End</p>
-                    <input id="end" class="input" min="<?php echo date('Y-m-d');?>" name="end" type="text" onfocus="(this.type = 'date')" placeholder="Date and Time of Event">
+                    <input value="<?php echo $event['end']?>" id="end" class="input" min="<?php echo date('Y-m-d');?>" name="end" type="text" onfocus="(this.type = 'date')" placeholder="Date and Time of Event">
                 </div>
                 <div>
                     <p class="label">Event Description</p>
-                    <textarea onkeydown="if (event.keyCode == 13) {event.preventDefault();}" id="event-description" class="long-input" name="eventDescription" placeholder="Event Description"></textarea>
+                    <textarea onkeydown="if (event.keyCode == 13) {event.preventDefault();}" id="event-description" class="long-input" name="eventDescription" placeholder="Event Description"><?php echo $event['eventDescription']?></textarea>
                 </div>
             </div>
             <div class="button-container">
                 <button class="archive" type="submit" name="archive_event">
                     <ion-icon name="archive"></ion-icon>
                     <p>Archive</p>
-                </button>
-                <button type="submit" id="announce" name="announce_event">
-                    <ion-icon name="chatbubble"></ion-icon>
-                    <p>Announce</p>
                 </button>
                 <button type="submit" name="save_event">
                     <ion-icon name="settings"></ion-icon>
@@ -45,34 +41,14 @@
 
 <script>
     let editModal =  document.querySelector('#edit-modal');
+    let body =document.querySelector('body');
 
     function closeEditModal() {
         editModal.style.display = "none"
         body.style.overflowY = "auto"
     }
-    function openEditModal(id, name, description, start, end) {
-        let eventID = document.querySelector("#event-id");
-        let eventName = document.querySelector("#event-name");
-        let eventDescription = document.querySelector("#event-description");
-        let startDate = document.querySelector("#start");
-        let endDate = document.querySelector("#end");
-
-        eventID.value = id;
-        eventName.value = name;
-        eventDescription.value = description;
-        startDate.value = start;
-        endDate.value = end;
-
+    function openEditModal() {
         editModal.style.display = "flex"
         body.style.overflowY = "hidden"
-       
-        calendar.style.display = 'none'
-        calendarStatus = !calendarStatus
-
-        if(new Date(start) > new Date()){
-            document.querySelector("#announce").style.display = 'flex';
-        }else{
-            document.querySelector("#announce").style.display = 'none';
-        }
     }
 </script>

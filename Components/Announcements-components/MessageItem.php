@@ -16,8 +16,16 @@
         <p class="messageType"><?php echo $announcement['announcementType']?></p>
         <div class="message-content">
           <p class="text" id="messageContent_<?php echo $announcement['announcementID']; ?>">
-            "<?php echo substr($announcement['message'], 0, 100); ?>... 
-            <button class="see-more-btn" onclick="toggleMessage('<?php echo $announcement['announcementID']; ?>')">See More</button>
+            <?php 
+            
+            echo '"' . substr($announcement['message'], 0, 100); 
+            if(strlen($announcement['message']) >=100){
+                echo '... ';
+            ?>
+                <button class="see-more-btn" onclick="toggleMessage('<?php echo $announcement['announcementID']; ?>')">See More</button>
+            <?php }else{
+                echo '"';
+            }?>
           </p>
           <p class="text full-text" id="fullMessageContent_<?php echo $announcement['announcementID']; ?>">"<?php echo $announcement['message']; ?>"</p>
         </div>

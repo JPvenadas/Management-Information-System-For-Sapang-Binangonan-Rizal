@@ -67,6 +67,8 @@ require "insertLogs.php";
         mysqli_query($conn, $command);
         mysqli_close($conn);
         insertLogs("Archived an event with ID: $eventID");
+        header("Location: ../../Pages/Events/Events.php");
+        
     }
     if(isset($_POST['announce_event'])){
         $start = date("F, d", strtotime($_POST['start']));
@@ -76,5 +78,15 @@ require "insertLogs.php";
         $message = "Good Day Kabarangay! our Barangay will be having $name starting this $start, ($description)";
         header("Location: ../../Pages/Announcements/Announcements.php?message=$message");
         exit();
+    }
+    if(isset($_FILES['coverPhoto'])){
+        $conn = openCon();
+        $coverPhoto = $_FILES['coverPhoto'];
+        $id = $_GET['id'];
+        $image = $_FILES["coverPhoto"]["tmp_name"];
+        $imageContent = addslashes(file_get_contents($image));
+        $command = "UPDATE `tbl_events` SET `coverPhoto`='$imageContent' WHERE `eventID` = '$id'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
     }
 ?>
