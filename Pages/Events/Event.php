@@ -34,6 +34,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Events.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
+    <link rel="stylesheet" href="../../lightbox2-2.11.4/dist/css/lightbox.min.css">
 
     <!-- a script to prevent the "confirm resubmission" alert -->
     <script>
@@ -79,6 +80,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
     <!-- Script for Ionic Icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../../lightbox2-2.11.4/dist/js/lightbox-plus-jquery.min.js"></script>
 </body>
 
 </html>

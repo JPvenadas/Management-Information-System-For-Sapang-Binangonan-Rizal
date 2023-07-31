@@ -4,7 +4,10 @@
     $base64_image = ($coverPhoto !== null) ? base64_encode($coverPhoto) : ''; // Convert the blob data to base64
     $coverStyle = ($base64_image !== '') ? 'style="background-image: url(data:image/jpeg;base64,' . $base64_image . ')"' : '';
 ?>
-<div class="cover-large" <?php echo $coverStyle; ?>></div>
+<a href="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($event['coverPhoto']); ?>" data-lightbox="cover"
+    data-title="<?php echo $event['eventName']?> (Cover-Photo)">
+    <div class="cover-large" <?php echo $coverStyle; ?>></div>
+</a>
 <div class="event-page-info">
     <div class="left">
         <h2 class="event-page-title"><?php echo $event['eventName']?></h2>
@@ -29,26 +32,26 @@
 </div>
 <p class="event-page-description">"
     <?php echo $event['eventDescription']?>
-"</p>
+    "</p>
 
 <script>
-    let moreButton = document.querySelector('.ellipsis-button');
-    let settings = document.querySelector('.settings');
+let moreButton = document.querySelector('.ellipsis-button');
+let settings = document.querySelector('.settings');
 
-    moreButton.addEventListener('click', ()=>{
-        settings.style.display = 'inline-block';
-    })
-    document.addEventListener("click", function (event) {
-        // Check if the clicked element is the modal or one of its children
-        if (!moreButton.contains(event.target)) {
-            settings.style.display = 'none';
-        }
-    });
+moreButton.addEventListener('click', () => {
+    settings.style.display = 'inline-block';
+})
+document.addEventListener("click", function(event) {
+    // Check if the clicked element is the modal or one of its children
+    if (!moreButton.contains(event.target)) {
+        settings.style.display = 'none';
+    }
+});
 
-    let coverPhotoInput =document.getElementById('cover');
-    let changeCoverForm = document.getElementById('form');
+let coverPhotoInput = document.getElementById('cover');
+let changeCoverForm = document.getElementById('form');
 
-    coverPhotoInput.addEventListener('change', ()=>{
-        changeCoverForm.submit();
-    })
+coverPhotoInput.addEventListener('change', () => {
+    changeCoverForm.submit();
+})
 </script>
