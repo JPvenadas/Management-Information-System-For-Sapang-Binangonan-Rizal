@@ -77,7 +77,6 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
     <?php
         // add modal
         require "../../Components/Events-components/addEventModal.php";
-        require "../../Components/Events-components/editEventModal.php";
     ?>
 
     <!-- Script for Ionic Icons -->

@@ -2,9 +2,9 @@
 // get the picture and attach it as a background image for the cover div
     $coverPhoto = $event['coverPhoto'];
     $base64_image = ($coverPhoto !== null) ? base64_encode($coverPhoto) : ''; // Convert the blob data to base64
-    $style = ($base64_image !== '') ? 'style="background-image: url(data:image/jpeg;base64,' . $base64_image . ')"' : '';
+    $coverStyle = ($base64_image !== '') ? 'style="background-image: url(data:image/jpeg;base64,' . $base64_image . ')"' : '';
 ?>
-<div class="cover-large" <?php echo $style; ?>></div>
+<div class="cover-large" <?php echo $coverStyle; ?>></div>
 <div class="event-page-info">
     <div class="left">
         <h2 class="event-page-title"><?php echo $event['eventName']?></h2>
@@ -16,7 +16,7 @@
         <div class="ellipsis-button">
             <div class="settings">
                 <form enctype="multipart/form-data" id="form" action="" method="post">
-                    <input id="cover" type="file" name="coverPhoto" style="display:none">
+                    <input accept="image/*" id="cover" type="file" name="coverPhoto" style="display:none">
                     <label for="cover" class="update-button" for="">Update cover-photo</label>
                 </form>
                 <button onclick="openEditModal()" class="update-button">
