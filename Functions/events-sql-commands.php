@@ -89,4 +89,11 @@ require "insertLogs.php";
         mysqli_query($conn, $command);
         mysqli_close($conn);
     }
+    if(isset($_POST['delete_photo'])){
+        $conn = openCon();
+        $id = $_POST['photo_id'];
+        $command = "DELETE FROM `tbl_eventGallery` WHERE `ID` = '$id'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+    }
 ?>

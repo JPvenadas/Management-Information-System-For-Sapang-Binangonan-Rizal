@@ -88,7 +88,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
                     <div class="photo" <?php echo $divStyle?>>
                         <form method='post' action="">
                             <input name="photo_id" type="hidden" value ="<?php echo $photo['ID']?>">
-                            <button type="submit" class="delete-photo">
+                            <button name="delete_photo" type="submit" class="delete-photo">
                                 <ion-icon name="remove-circle"></ion-icon>
                             </button>
                         </form>
