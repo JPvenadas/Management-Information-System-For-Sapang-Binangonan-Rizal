@@ -46,9 +46,9 @@
     });
 
     let coverPhotoInput =document.getElementById('cover');
-    let form = document.getElementById('form');
+    let changeCoverForm = document.getElementById('form');
 
     coverPhotoInput.addEventListener('change', ()=>{
-        form.submit();
+        changeCoverForm.submit();
     })
 </script>

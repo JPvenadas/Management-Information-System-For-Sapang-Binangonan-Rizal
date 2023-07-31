@@ -81,7 +81,6 @@ require "insertLogs.php";
     }
     if(isset($_FILES['coverPhoto'])){
         $conn = openCon();
-        $coverPhoto = $_FILES['coverPhoto'];
         $id = $_GET['id'];
         $image = $_FILES["coverPhoto"]["tmp_name"];
         $imageContent = addslashes(file_get_contents($image));
@@ -93,6 +92,15 @@ require "insertLogs.php";
         $conn = openCon();
         $id = $_POST['photo_id'];
         $command = "DELETE FROM `tbl_eventGallery` WHERE `ID` = '$id'";
+        mysqli_query($conn, $command);
+        mysqli_close($conn);
+    }
+    if(isset($_FILES['uploaded_photo'])){
+        $conn = openCon();
+        $id = $_POST['event_id'];
+        $image = $_FILES["uploaded_photo"]["tmp_name"];
+        $imageContent = addslashes(file_get_contents($image));
+        $command = "INSERT INTO `tbl_eventGallery` (`eventID`, `Picture`) VALUES ('$id','$imageContent')";
         mysqli_query($conn, $command);
         mysqli_close($conn);
     }
