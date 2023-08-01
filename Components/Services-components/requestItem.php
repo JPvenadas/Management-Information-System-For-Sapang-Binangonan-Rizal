@@ -1,7 +1,10 @@
 <?php
+
+//use the generateRequest to render each request
 function generateRequest($transaction){
     $formattedFee =  str_pad(number_format($transaction['serviceFee'], 2),4,'0',STR_PAD_LEFT);
 ?>
+<!-- every each request item is a button. onclick it will open the transaction modal and will pass the arguments as values -->
 <button onclick="openEditTransactionModal('<?php echo $transaction['transactionID']?>',
                                           '<?php echo $transaction['transactionStatus']?>',
                                           '<?php echo $transaction['serviceName']?>',
@@ -13,7 +16,7 @@ function generateRequest($transaction){
                                           '<?php echo !empty($transaction['paymentProof'])?>')" type="submit" name="view_resident_button" class="transaction-record">
     <div class="left">
     <?php if(!empty($transaction['paymentProof'])){?>
-        <img class="payment-image" id="payment-image-<?php echo $transaction['transactionID']?>" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($transaction['paymentProof']); ?>" alt="">
+        <img loading="lazy" class="payment-image" id="payment-image-<?php echo $transaction['transactionID']?>" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($transaction['paymentProof']); ?>" alt="">
     <?php }?>
         <div class="record-info">
             <p class="certificate"><?php echo $transaction['serviceName']?></p>

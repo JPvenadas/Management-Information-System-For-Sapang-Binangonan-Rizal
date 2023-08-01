@@ -12,7 +12,7 @@ function generateEmployeeItem($employee){
                                                          '<?php echo $employee['termEnd']?>')">
             <div class="employee-info-container">
                 <div class="employee-image-container">
-                    <img class="employee-image"
+                    <img loading="lazy" class="employee-image"
                         src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($image); ?>" alt="">
                 </div>
                 <div class="employee-info">

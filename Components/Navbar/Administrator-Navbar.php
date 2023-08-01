@@ -48,7 +48,7 @@ function attachNavbar($page){
 <nav class="sidebar">
     <a href="../../Pages/Residents/Profile.php?id=<?php echo $_SESSION['residentID']?>" class="profile">
         <div class="profile-picture">
-            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($_SESSION['image']); ?>"
+            <img loading="lazy" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($_SESSION['image']); ?>"
                 alt="Profile Picture">
         </div>
         <div class="profile-info">

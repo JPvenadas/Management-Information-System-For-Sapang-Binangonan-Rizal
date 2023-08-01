@@ -11,7 +11,7 @@ function generateItem($blotter){
                                       '<?php echo $blotter['latestHearing']?>',
                                       '<?php echo $blotter['caseStatus']?>')" type="submit" class="record">
     <div class="left">
-        <img id="image-blotter-<?php echo $blotter['blotterID']?>" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($blotter['narrativeReport']); ?>" style="display: none;" alt="">
+        <img loading="lazy" id="image-blotter-<?php echo $blotter['blotterID']?>" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($blotter['narrativeReport']); ?>" style="display: none;" alt="">
         <div class="record-info">
             <h3><?php echo $blotter['summary']?></p>
             <p><?php echo $blotter['complainant'] . " - " . $blotter['defendant']?></p>

@@ -2,7 +2,7 @@
     <button onclick="closeProofModal()" class="modal-close-button-2">
         <ion-icon name="close"></ion-icon>
     </button>
-    <img class="proof-image" src="" alt="">
+    <img class="proof-image" loading="lazy" alt="">
 </div>
  <script>
     let proofModal = document.querySelector('#proof-modal')

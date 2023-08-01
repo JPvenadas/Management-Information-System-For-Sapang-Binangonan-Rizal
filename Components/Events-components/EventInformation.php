@@ -6,7 +6,7 @@
 ?>
 <a href="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($event['coverPhoto']); ?>" data-lightbox="cover"
     data-title="<?php echo $event['eventName']?> (Cover-Photo)">
-    <div class="cover-large" <?php echo $coverStyle; ?>></div>
+    <div class="cover-large lazy-load" <?php echo $coverStyle; ?>></div>
 </a>
 <div class="event-page-info">
     <div class="left">

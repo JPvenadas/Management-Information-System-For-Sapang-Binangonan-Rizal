@@ -16,7 +16,7 @@
                     foreach($gallery as $photo){
                     $galleryPhoto = $photo['Picture'];
                     $base64_pic = ($galleryPhoto !== null) ? base64_encode($galleryPhoto) : ''; // Convert the blob data to base64
-                    $divStyle = ($base64_image !== '') ? 'style="background-image: url(data:image/jpeg;base64,' . $base64_pic . ')"' : '';
+                    $divStyle = ($base64_pic !== '') ? 'style="background-image: url(data:image/jpg;charset=utf8;base64,' . $base64_pic . ')"' : '';
                 ?>
 
         <div style="position: relative">
@@ -28,8 +28,7 @@
             </form>
             <a href="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($photo['Picture']); ?>"
                 data-lightbox="gallery" data-title="<?php echo $event['eventName']?>">
-                <div class="photo" <?php echo $divStyle?>>
-                </div>
+                <div class="photo lazy-load" <?php echo $divStyle?> data-src="<?php echo 'data:image/jpg;charset=utf8;base64,' . $base64_pic; ?>"></div>
             </a>
         </div>
         <?php
@@ -52,4 +51,18 @@ let addPhotoForm = document.getElementById('add-photo-form');
 photoInput.addEventListener('change', () => {
     addPhotoForm.submit();
 })
+
+const lazyPhotos = document.querySelectorAll('.lazy-load');
+
+function lazyLoad() {
+    lazyPhotos.forEach(photo => {
+        if (photo.getBoundingClientRect().top <= window.innerHeight && photo.getBoundingClientRect().bottom >= 0 && getComputedStyle(photo).display !== 'none') {
+            const imageSrc = photo.getAttribute('data-src');
+            photo.style.backgroundImage = `url('${imageSrc}')`;
+        }
+    });
+}
+
+// Attach the lazyLoad function to the scroll event
+window.addEventListener('scroll', lazyLoad);
 </script>

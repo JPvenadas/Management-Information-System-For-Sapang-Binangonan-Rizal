@@ -416,17 +416,6 @@ body{
     text-align: center;
     overflow: hidden;
 }
-.photo img{
-    width: auto;
-    height: auto;
-    min-width: 300px;
-    min-height: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* Optional: If you want the image to preserve its aspect ratio, add these styles */
-}
 /* Darkening overlay on hover */
 .photo::before {
     content: "click to view";

@@ -30,7 +30,7 @@ function generateResidentItem($resident){
                                '<?php echo solveAge($resident['birthDate'])?>')" type="submit" name="view_resident_button" class="resident-item-record">
     <div class="resident-info-container">
         <div class="resident-image-container">
-            <img id="image-<?php echo $resident['residentID']?>" class="resident-image"
+            <img loading="lazy" id="image-<?php echo $resident['residentID']?>" class="resident-image"
                 src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($resident['image']); ?>" alt="">
         </div>
         <div class="resident-info">

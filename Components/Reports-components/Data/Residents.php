@@ -5,7 +5,7 @@
     ?>
     <div class="list-item">
         <div class="picture-container">
-            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($resident['image'])?>" alt="">
+            <img loading="lazy" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($resident['image'])?>" alt="">
         </div>
         <div class="information-container">
             <div class="name-container">

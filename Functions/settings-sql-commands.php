@@ -168,7 +168,7 @@ if(isset($_POST['archive_committee'])){
 //create backup
 if(isset($_POST['create_backup'])){
     insertLogs("Generated a backup file");
-    EXPORT_DATABASE('localhost','id20695988_root','-I=cKF^|&6+|pB}2','id20695988_db_sapangmis'); 
+    EXPORT_DATABASE('localhost','root','','db_SapangMIS'); 
     
 }
 if(isset($_POST['restore_backup'])){
@@ -202,7 +202,7 @@ function EXPORT_DATABASE($host,$user,$pass,$name,       $tables=false, $backup_n
 }
 function DropTables(){
     $conn = openCon();
-    $command = "DROP TABLE IF EXISTS tbl_accessControl, tbl_attendance, tbl_committee, tbl_contacts, tbl_employees, tbl_events, tbl_inventoryList, tbl_positions, tbl_purok, tbl_residents, tbl_services, tbl_transactions, tbl_userAccounts, tbl_announcements, tbl_curfewViolators, tbl_hearings, tbl_blotters, tbl_activityLogs, tbl_addedStocks, tbl_inventoryTransaction";
+    $command = "DROP TABLE IF EXISTS tbl_accessControl, tbl_attendance, tbl_committee, tbl_contacts, tbl_employees, tbl_events, tbl_inventoryList, tbl_eventGallery, tbl_positions, tbl_purok, tbl_residents, tbl_services, tbl_transactions, tbl_userAccounts, tbl_announcements, tbl_curfewViolators, tbl_hearings, tbl_blotters, tbl_activityLogs, tbl_addedStocks, tbl_inventoryTransaction";
     mysqli_query($conn, $command);
 }
 function restoreMysqlDB($filePath, $conn)

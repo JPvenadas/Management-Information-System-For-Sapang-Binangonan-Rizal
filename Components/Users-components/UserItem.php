@@ -12,7 +12,7 @@
     <div class="user-info-container">
         <div class="user-image-container">
             <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($user['image']); ?>"
-                class="user-image" src="" alt="">
+                class="user-image" src="" loading="lazy" alt="">
         </div>
         <div class="user-info">
             <p class="user-fullname"><?php echo $userFullname?></p>
