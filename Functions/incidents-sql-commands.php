@@ -245,7 +245,7 @@ function getHearings(){
 }
 if(isset($_POST['delete_doc_photo'])){
     $conn = openCon();
-    $hearingID = $_POST['$hearingID'];
+    $hearingID = $_POST['hearingID'];
     $field = $_POST['field'];
     $command = "UPDATE `tbl_hearing` SET `$field` = NULL WHERE `hearingID` = '$hearingID'";
     mysqli_query($conn, $command);

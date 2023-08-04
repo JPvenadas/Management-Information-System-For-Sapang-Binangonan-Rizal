@@ -285,6 +285,7 @@ body{
     justify-content: center;
     align-items: center;
     font-size: 12px;
+    z-index: 1;
 }
   
 /* Show the darkening overlay on hover */
@@ -299,6 +300,7 @@ body{
     right: 10px;
     font-size: 25px;
     cursor: pointer;
+    z-index: 2;
 }
 .delete-doc:hover{
     color: red;
