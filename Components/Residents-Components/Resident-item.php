@@ -4,7 +4,7 @@ function solveAge($birthDate){
     $diff = date_diff(date_create($birthDate), date_create($today));
     return $diff->format('%y') . " years old";
 }
-function generateResidentItem($resident){
+function generateResidentItem($resident, $text){
 
 ?>
 <form action="../../Functions/residents-sql-commands.php" method="post">
@@ -22,7 +22,7 @@ function generateResidentItem($resident){
         </div>
     </div>
     <div class="action-text">
-        <p>Click to see Profile</p>
+        <p><?php echo $text?></p>
     </div>
 </button>
 </form>

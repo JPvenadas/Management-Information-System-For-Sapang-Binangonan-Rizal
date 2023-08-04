@@ -39,6 +39,19 @@
                 </div>
             </div>
             <div class="blotter-input">
+                <p class="label">Baranggay Mediator</p>
+                <div class="input-container">
+                    <input required placeholder="Select the Mediator" id="mediator-fullName" class="input" readonly type="text">
+                    <input required id="mediator-ID" name="mediator" type="hidden">
+                    <div onclick="openResidentModal('mediator')" class="select input-button">
+                        <p>Select</p>
+                    </div>
+                    <div onclick="openResidentModal('mediator')" class="select-icon input-button">
+                        <ion-icon name="ellipsis-horizontal"></ion-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="blotter-input">
                 <p class="label">Narrative Report (file/image/record)</p>
                 <div class="input-container">
                     <input required placeholder="Upload a Narrative Report" id="narrative-report-text" class="input" readonly type="text">
@@ -69,18 +82,20 @@
 <script>
 let addBlotterModal = document.querySelector("#add-blotter-modal");
 
+//function to open the modal
 function openAddBlotterModal() {
     addBlotterModal.style.display = "flex";
     body.style.overflow = "hidden"
 }
 
+//function to close the modal
 function closeAddBlotterModal() {
     addBlotterModal.style.display = "none";
     body.style.overflow = "auto"
 }
 
+//function that will show the name of the file/image uploaded
 let narrativeReport = document.querySelector("#narrative-report");
-
 narrativeReport.addEventListener('change', (event) => {
             let narrativeReportText = document.querySelector("#narrative-report-text")
             var image = event.target.files[0]

@@ -14,6 +14,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
     <link rel="shortcut icon" href="../../Images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../../Images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../../Styles/ColorCoding.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Settings.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">

@@ -21,6 +21,8 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../Styles/ColorCoding.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Incidents.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
@@ -70,7 +72,6 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
         include "../../Components/Incidents-components/timeModal.php";
         include "../../Components/Incidents-components/editCurfewModal.php";
         include "../../Components/Incidents-components/addBlotterModal.php";
-        include "../../Components/Incidents-components/editBlotterModal.php";
         include "../../Components/Incidents-components/NarrativeReportView.php";
         include "../../Components/Incidents-components/nextHearingModal.php";
         include "../../Components/Incidents-components/minorModal.php";

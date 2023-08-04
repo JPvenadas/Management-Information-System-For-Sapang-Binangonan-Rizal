@@ -9,7 +9,6 @@ function generateItem($event){
 
 <a href="../../Pages/Events/Event.php?id=<?php echo $id?>" class="event-record">
     <div class="cover" <?php echo $style; ?>>
-
     </div>
     <div class="info">
         <h3 class="event-name"><?php echo $event['eventName']?></h3>

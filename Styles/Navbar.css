@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 .sidebar *{
-    color: white;
+    color: var(--text-complement);
 }
 .sidebar{
     width: 300px;
@@ -13,7 +13,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background: #195FA0;
+    background: var(--color-primary);
     overflow-y: scroll;
     overflow-x: hidden;
     transition: 0.5s ease;
@@ -21,7 +21,7 @@
 }
 .profile{
     display: flex;
-    background: #16538B;
+    background: var(--color-primary-darker);
     height: 90px;
     width: 100%;
     align-items: center;
@@ -40,7 +40,7 @@
 }
 .username, .usertype, .sidebar-item-text{
     font-weight: 700;
-    color: #FFFFFF;
+    color: var(--text-complement);
 }
 .username{
     font-size: 15px;
@@ -62,14 +62,14 @@
     font-size: 20px;
 }
 .sidebar-item a:hover{
-    background: #2B6CA8;
+    background: var(--color-primary-hover);
     transition: 0.3s ease;
 }
 .sidebar-item-text{
     font-size: 15px;
 }
 .highlight{
-    background: #548DC2 !important;
+    background: var(--color-primary-lightest) !important;
 }
 .navigation-container{
     position: relative;
@@ -78,7 +78,7 @@
 .sidebar-circle{
     width: 315px;
     height: 235px;
-    background: #1466B1;
+    background: var(--color-primary-lighter);
     border-radius: 100%;
     position: absolute;
     z-index: 1;
@@ -86,21 +86,21 @@
     right: -130px
 }
 .logout{
-    background: #16538B;
+    background: var(--color-primary-darker);
 }
 .ham-menu{
     position: fixed;
     z-index: 9;
     left: 10px;
     top: 10px;
-    color: white;
+    color: var(--text-complement);
     width: 40px;
     height: 40px;
     display: none;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    background: #195FA0;
+    background: var(--color-primary);
     transition: 0.65s ease;
 }
 @media (max-width: 1000px){

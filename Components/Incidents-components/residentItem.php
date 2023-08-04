@@ -22,6 +22,11 @@ function generateResidentItem($resident){
             document.querySelector('#defendant-fullName').value = name
             openAddBlotterModal()
             closeResidentModal()
+        }else if(action === "mediator"){
+            document.querySelector('#mediator-ID').value = ID
+            document.querySelector('#mediator-fullName').value = name
+            openAddBlotterModal()
+            closeResidentModal()
         }
     }
 </script>

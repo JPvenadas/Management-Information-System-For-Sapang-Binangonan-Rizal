@@ -1,0 +1,18 @@
+
+ :root {
+    --text-primary: rgb(59, 59, 59);
+    --text-secondary: #2E2E2E ;
+    --text-primary-light: rgb(99, 99, 99) ;
+    --text-complement: white;
+    --text-highlight: #002C4B;
+    --color-primary: #195FA0;
+    --color-primary-hover: #2B6CA8;
+    --color-primary-lighter: #1466B1;
+    --color-primary-darker: #16538B;
+    --color-primary-lightest: #548DC2;
+    --color-primary-darkest: #002C4B;
+    --color-secondary: white;
+    --color-secondary-hover: ;
+    --color-secondary-darker: rgb(204, 204, 204);
+    
+}

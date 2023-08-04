@@ -26,13 +26,13 @@
                 </div>
             </div>
             <div class="button-container">
-                <button class="archive" type="submit" name="archive_event">
-                    <ion-icon name="archive"></ion-icon>
-                    <p>Archive</p>
-                </button>
                 <button type="submit" name="save_event">
                     <ion-icon name="settings"></ion-icon>
                     <p>Save</p>
+                </button>
+                <button class="archive" type="submit" name="archive_event">
+                    <ion-icon name="archive"></ion-icon>
+                    <p>Archive</p>
                 </button>
             </div>
         </div>

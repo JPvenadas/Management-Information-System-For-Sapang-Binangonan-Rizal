@@ -4,16 +4,8 @@
 
   function getBlotters(){
         $conn = openCon();
-        $command = "SELECT `blotterID` ,`summary`, `narrativeReport`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `caseStatus`, hearing1, hearing2, hearing3, RIGHT(complainant.contactNo, 9) as `complainantContact`, RIGHT(defendant.contactNo, 9) as  `defendantContact`, 
-                    CASE 
-                        WHEN hearing3 != '0000-00-00' THEN hearing3 
-    					WHEN hearing2 != '0000-00-00' THEN hearing2 
-    					ELSE hearing1 
-                    END AS latestHearing,
-                    ((hearing1 IS NOT NULL) + 
-                    (hearing2 IS NOT NULL) + 
-                    (hearing3 IS NOT NULL)) as totalHearing, 
-                    `caseStatus`   FROM `tbl_blotters` as b 
+        $command = "SELECT `blotterID` ,`summary`, `narrativeReport`, CONCAT(complainant.firstName,' ', LEFT(complainant.middleName,1), '. ', complainant.lastName, ' ', complainant.extension) as `complainant`, CONCAT(defendant.firstName,' ', LEFT(defendant.middleName,1), '. ', defendant.lastName, ' ', defendant.extension) as `defendant`, `caseStatus`
+                    FROM `tbl_blotters` as b 
                     INNER JOIN tbl_residents as complainant on complainant.residentID = b.complainant 
                     INNER JOIN tbl_residents as defendant on defendant.residentID = b.defendant WHERE b.archive = 'false'";
         $command = $command . addSearchFilterBlotters();
@@ -109,17 +101,24 @@ if(isset($_POST['add_blotter'])){
     $conn = openCon();
     $complainant = validate($_POST['complainant']);
     $defendant = validate($_POST['defendant']);
+    $mediator = validate($_POST['mediator']);
     $summary = validate($_POST['summary']);
     $schedule = $_POST['schedule'];
     $narrativeReport = $_FILES["narrativeReport"]["tmp_name"];
     $narrativeReportFile = addslashes(file_get_contents($narrativeReport));
-    $command = "INSERT INTO `tbl_blotters`(`summary`, `complainant`, `defendant`, `narrativeReport`, `hearing1`, `caseStatus`, `archive`) 
-                                   VALUES ('$summary','$complainant','$defendant','$narrativeReportFile','$schedule','Pending','false')";
+    $command = "INSERT INTO `tbl_blotters`(`summary`, `complainant`, `defendant`, `mediator`, `narrativeReport`, `caseStatus`, `archive`) 
+                                   VALUES ('$summary','$complainant','$defendant','$mediator','$narrativeReportFile','Pending','false')";
     mysqli_query($conn, $command);
     $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);
     insertLogs("Added a blotter record with ID: $addedID");
     CompressImage($addedID);
+
+    //add the hearing
+    $conn = openCon();
+    $command = "INSERT INTO `tbl_hearing`(`blotterID`, `date`,`hearingResult`) 
+                                  VALUES ('$addedID','$schedule','Pending')";
+    mysqli_query($conn, $command);
 }
 
 if(isset($_POST['archive_blotter'])){
@@ -212,6 +211,44 @@ function CompressImage($blotterID){
     }
 
     // Close the database connection
+    mysqli_close($conn);
+}
+function getSingleBlotter(){
+    //get the data about the blotter
+    $blotterID = $_GET['id'];
+    $conn = openCon();
+    $command = "SELECT * FROM `tbl_blotters` WHERE `blotterID` = '$blotterID'";
+    $result = mysqli_query($conn, $command);
+    $blotter = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $blotter;
+}
+function getSingleResident($id){
+    $conn = openCon();
+    $command = "SELECT `residentID`, CONCAT(`firstName`,' ', LEFT(`middleName`, 1),' ' ,`lastName`,' ',`extension`) as 'fullName', `birthDate`,`image`, `purok` FROM `tbl_residents` WHERE `residentID` = '$id';";
+    $result = mysqli_query($conn, $command);
+    $resident = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $resident;
+}
+function getHearings(){
+    $conn = openCon();
+    $id = $_GET['id'];
+    $command = "SELECT  *, (ROW_NUMBER() OVER (ORDER BY `date`)) as number FROM `tbl_hearing` WHERE `blotterID` = '$id' ORDER BY `date` LIMIT 3;";
+    $result = mysqli_query($conn, $command);
+    $hearings = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $hearings;
+}
+if(isset($_POST['delete_doc_photo'])){
+    $conn = openCon();
+    $hearingID = $_POST['$hearingID'];
+    $field = $_POST['field'];
+    $command = "UPDATE `tbl_hearing` SET `$field` = NULL WHERE `hearingID` = '$hearingID'";
+    mysqli_query($conn, $command);
     mysqli_close($conn);
 }
 ?>

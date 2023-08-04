@@ -14,7 +14,7 @@ body{
     margin-top: 0 !important;
 }
 .main-content{
-   padding: 0 50px 0 50px;
+   padding: 0 50px 0 40px;
    width: 100%;
    margin-left: 300px;
 }
@@ -132,6 +132,7 @@ body{
     padding: 0 20px;
     align-items: center;
     transition: .3s ease;
+    cursor: pointer;
 }
 .record:hover{
     background: rgb(240, 240, 240);
@@ -191,7 +192,6 @@ body{
     width: 720px;
     padding: 30px 0;
     background: white;
-    border-radius: 10px;
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -212,6 +212,7 @@ body{
     position: absolute;
     right: 30px;
     top: 20px;
+    font-size: 25px;
     background: white;
 }
 .modal-title{
@@ -261,6 +262,7 @@ body{
     padding: 0 20px;
     align-items: center;
     transition: .3s ease;
+    cursor: pointer;
 }
 .resident-item-record:hover{
     background: rgb(240, 240, 240);
@@ -438,16 +440,14 @@ body{
     height: 43px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
-    border-radius: 5px;
     padding: 0 20px;
 }
 .long-input{
-    height: 80px;
+    height: 60px;
     width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
-    border-radius: 5px;
-    padding: 0 20px;
+    padding: 10px 20px;
 }
 .input-container p{
     font-weight: 700;
@@ -467,9 +467,16 @@ body{
     text-align: center;
     background: #D9D9D9;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 6%);
-    border-radius: 5px;
     width: 120px;
     height: 43px;
+    cursor: pointer;
+}
+.input-button:hover{
+    background: #c7c7c7;
+}
+.long-input:focus, .input:focus{
+    background: rgb(235, 235, 235);
+    cursor: text;
 }
 .label{
     font-weight: 700;

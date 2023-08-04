@@ -22,7 +22,10 @@ function solveAge($birthDate){
 ?>
 <div class="resident-profile-header">
     <div class="resident-profile-image">
-        <img class="resident-profile-image-preview" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($image); ?>" alt="">
+        <a href="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($image); ?>" data-lightbox="profile" data-title="<?php echo "$firstName $lastName profile" ?>">
+            <img class="resident-profile-image-preview"
+                src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($image); ?>" alt="">
+        </a>
         <div onclick="openChangeImageModal()" class="resident-upload-button">
             <ion-icon name="arrow-up-circle"></ion-icon>
         </div>
@@ -33,9 +36,10 @@ function solveAge($birthDate){
             <div class="resident-profile-ID"><?php echo "ID: #$residentID";?></div>
         </div>
         <div class="resident-profile-age"><?php echo $age?></div>
-        <div class="resident-profile-location"><?php echo "Living in $address, $purok Sapang, Binangonan, Rizal";?></div>
+        <div class="resident-profile-location"><?php echo "Living in $address, $purok Sapang, Binangonan, Rizal";?>
+        </div>
         <div class="resident-profile-actions">
-            
+
             <?php if($resident['registrationStatus'] == "Unverified"){
             ?>
             <form method="post" action="../../Pages/Residents/Residents.php" class="resident-profile-archive-button">
@@ -57,12 +61,12 @@ function solveAge($birthDate){
                 //if the user is a resident dont show the archive button
                 if($_SESSION['userType'] != "Resident"){
             ?>
-                <div class="resident-profile-archive-button">
+            <div class="resident-profile-archive-button">
                 <button onclick="openArchiveModal()" class="archive-resident-button">
                     <ion-icon name="archive"></ion-icon>
                     <p>Archive</p>
                 </button>
-                </div>
+            </div>
             <?php
                 }
             }
