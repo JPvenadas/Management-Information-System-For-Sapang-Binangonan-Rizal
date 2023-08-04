@@ -251,4 +251,14 @@ if(isset($_POST['delete_doc_photo'])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }
+if(isset($_FILES['photo_input'])){
+    $conn = openCon();
+    $hearingID = $_POST['hearingID'];
+    $field = $_POST['field'];
+    $image = $_FILES["photo_input"]["tmp_name"];
+    $imageContent = addslashes(file_get_contents($image));
+    $command = "UPDATE `tbl_hearing` SET `$field` = '$imageContent' WHERE `hearingID` = '$hearingID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
 ?>
