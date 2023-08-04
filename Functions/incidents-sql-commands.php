@@ -156,23 +156,6 @@ if(isset($_POST['resched'])){
     $ID = $_POST['blotterID'];
     insertLogs("Reschedule the hearing of a blotter with ID: $ID");
 }
-if(isset($_POST["add_next_hearing"])){
-    if($_POST['totalHearing'] == 1){
-        changeSched('hearing2',$_POST['date']);
-    }elseif($_POST['totalHearing'] == 2){
-        changeSched('hearing3',$_POST['date']);
-    }
-    $ID = $_POST['blotterID'];
-    insertLogs("Add another hearing to a blotter with ID: $ID");
-}
-
-function changeSched($hearing, $value){
-    $conn = openCon();
-    $blotterID = $_POST['blotterID'];
-    $command = "UPDATE `tbl_blotters` SET `$hearing`='$value' WHERE blotterID = '$blotterID'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-}
 
 if(isset($_POST['back_to_pending'])){
     $conn = openCon();
@@ -258,6 +241,23 @@ if(isset($_FILES['photo_input'])){
     $image = $_FILES["photo_input"]["tmp_name"];
     $imageContent = addslashes(file_get_contents($image));
     $command = "UPDATE `tbl_hearing` SET `$field` = '$imageContent' WHERE `hearingID` = '$hearingID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
+if(isset($_POST["add_next_hearing"])){
+    $ID = $_GET['id'];
+    $conn = openCon();
+    $date = $_POST['date'];
+    $command = "INSERT INTO `tbl_hearing`(`blotterID`, `date`, `hearingResult`) VALUES ('$ID','$date','Pending')";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+    insertLogs("Add another hearing to a blotter with ID: $ID");
+}
+if(isset($_POST["edit_hearing"])){
+    $date = $_POST['date'];
+    $hearingID = $_POST['hearingID'];
+    $conn = openCon();
+    $command = "UPDATE `tbl_hearing` SET `date` = '$date' WHERE `hearingID` = '$hearingID'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }

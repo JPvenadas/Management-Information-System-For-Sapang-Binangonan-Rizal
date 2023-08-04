@@ -1,9 +1,11 @@
 <div class="header">
     <h3 class="title">Hearings</h3>
-    <button class="underlined-button">
-        <ion-icon name="add"></ion-icon>
-        <p>Add another Hearing</p>
-    </button>
+    <?php if(count($hearings) < 3){?>
+        <button onclick="openNextHearingModal()" class="underlined-button">
+            <ion-icon name="add"></ion-icon>
+            <p>Add another Hearing</p>
+        </button>
+    <?php }?>
 </div>
 <div class="hearings-container">
     <?php

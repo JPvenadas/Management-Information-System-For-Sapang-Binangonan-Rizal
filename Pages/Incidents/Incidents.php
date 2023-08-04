@@ -73,7 +73,6 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
         include "../../Components/Incidents-components/editCurfewModal.php";
         include "../../Components/Incidents-components/addBlotterModal.php";
         include "../../Components/Incidents-components/NarrativeReportView.php";
-        include "../../Components/Incidents-components/nextHearingModal.php";
         include "../../Components/Incidents-components/minorModal.php";
         ?>
     </main>

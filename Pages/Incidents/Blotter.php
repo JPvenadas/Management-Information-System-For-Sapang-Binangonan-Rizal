@@ -75,6 +75,11 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
         </div>
     </main>
 
+    <!-- modals -->
+    <?php include "../../Components/Blotter-page-components/nextHearingModal.php"?>
+    <?php include "../../Components/Blotter-page-components/editHearingModal.php"?>
+
+    <!-- lightbox script -->
     <script src="../../lightbox2-2.11.4/dist/js/lightbox-plus-jquery.min.js"></script>
 
     <!-- Script for Ionic Icons -->

@@ -11,7 +11,8 @@
                         echo $dateTime->format('F, j, Y');
                     ?>
                 </p>
-                <button>
+                <button onclick="openEditHearingModal('<?php echo $hearing['date']?>',
+                                                     '<?php echo $hearing['hearingID']?>')">
                     edit
                 </button>
             </div>
