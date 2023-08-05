@@ -261,4 +261,12 @@ if(isset($_POST["edit_hearing"])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }
+if(isset($_POST['edit_conflict'])){
+    $ID = $_GET['id'];
+    $conn = openCon();
+    $conflict = $_POST['conflict'];
+    $command = "UPDATE `tbl_blotters` SET `summary`= '$conflict' WHERE `blotterID` = '$ID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
 ?>
