@@ -269,4 +269,13 @@ if(isset($_POST['edit_conflict'])){
     mysqli_query($conn, $command);
     mysqli_close($conn);
 }
+if(isset($_POST['change_participants'])){
+    $id = $_GET['id'];
+    $field = $_POST['field'];
+    $residentID = $_POST['residentID'];
+    $conn = openCon();
+    $command = "UPDATE `tbl_blotters` SET `$field`= '$residentID' WHERE `blotterID` = '$id'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+}
 ?>

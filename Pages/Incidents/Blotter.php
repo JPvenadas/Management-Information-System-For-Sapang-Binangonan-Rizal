@@ -6,6 +6,7 @@ require "../../Functions/incidents-sql-commands.php";
 
 $blotter = getSingleBlotter();
 $hearings = getHearings();
+$residents = getResidents();
 
 //if the user is logged in direct them to their dashboard.
 //if the user wants to go to the registration page(which is here) they must log out first 
@@ -76,8 +77,11 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
     </main>
 
     <!-- modals -->
-    <?php include "../../Components/Blotter-page-components/nextHearingModal.php"?>
-    <?php include "../../Components/Blotter-page-components/editHearingModal.php"?>
+    <?php 
+    include "../../Components/Blotter-page-components/nextHearingModal.php";
+    include "../../Components/Blotter-page-components/editHearingModal.php";
+    include "../../Components/Blotter-page-components/residentsModal.php";
+    ?>
 
     <!-- lightbox script -->
     <script src="../../lightbox2-2.11.4/dist/js/lightbox-plus-jquery.min.js"></script>

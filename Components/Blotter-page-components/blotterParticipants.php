@@ -8,7 +8,7 @@
             generateResidentItem($complainant, 'Complainant');
             ?>
         </div>
-        <div class="change-button">
+        <div onclick="openResidentModal('complainant')" class="change-button">
             <ion-icon name="ellipsis-horizontal"></ion-icon>
         </div>
     </div>
@@ -19,7 +19,7 @@
                 generateResidentItem($defendant, 'Defendant');
             ?>
         </div>
-        <div class="change-button">
+        <div onclick="openResidentModal('defender')" class="change-button">
             <ion-icon title="Change" name="ellipsis-horizontal"></ion-icon>
         </div>
     </div>
@@ -30,7 +30,7 @@
                 generateResidentItem($mediator, 'Assigned Mediator');
             ?>
         </div>
-        <div class="change-button">
+        <div onclick="openResidentModal('mediator')" class="change-button">
             <ion-icon title="Change" name="ellipsis-horizontal"></ion-icon>
         </div>
     </div>
