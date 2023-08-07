@@ -121,49 +121,6 @@ if(isset($_POST['add_blotter'])){
     mysqli_query($conn, $command);
 }
 
-if(isset($_POST['archive_blotter'])){
-    $conn = openCon();
-    $blotterID = $_POST['blotterID'];
-    $command = "UPDATE `tbl_blotters` SET `archive`='true' WHERE blotterID = '$blotterID'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Archived a blotter record with ID: $blotterID");
-}
-if(isset($_POST['endorse_blotter'])){
-    $conn = openCon();
-    $blotterID = $_POST['blotterID'];
-    $command = "UPDATE `tbl_blotters` SET `caseStatus`='Endorsed to the court' WHERE blotterID = '$blotterID'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Mark the blotter with ID: $blotterID as something that is endorsed in the court");
-}
-if(isset($_POST['solve_blotter'])){
-    $conn = openCon();
-    $blotterID = $_POST['blotterID'];
-    $command = "UPDATE `tbl_blotters` SET `caseStatus`='Solved' WHERE blotterID = '$blotterID'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-    insertLogs("Mark the blotter wiht ID: $blotterID as solved");
-}
-if(isset($_POST['resched'])){
-    if(isset($_POST['date_3'])){
-        changeSched('hearing3',$_POST['date_3']);
-    }elseif(isset($_POST['date_2'])){
-        changeSched('hearing2',$_POST['date_2']);
-    }else{
-        changeSched('hearing1',$_POST['date_1']);
-    }
-    $ID = $_POST['blotterID'];
-    insertLogs("Reschedule the hearing of a blotter with ID: $ID");
-}
-
-if(isset($_POST['back_to_pending'])){
-    $conn = openCon();
-    $blotterID = $_POST['blotterID'];
-    $command = "UPDATE `tbl_blotters` SET `caseStatus`='Pending' WHERE blotterID = '$blotterID'";
-    mysqli_query($conn, $command);
-    mysqli_close($conn);
-}
 function CompressImage($blotterID){
     $conn = openCon();
     $command = "SELECT blotterID, narrativeReport FROM tbl_blotters where blotterID = $blotterID";
@@ -200,7 +157,12 @@ function getSingleBlotter(){
     //get the data about the blotter
     $blotterID = $_GET['id'];
     $conn = openCon();
-    $command = "SELECT * FROM `tbl_blotters` WHERE `blotterID` = '$blotterID'";
+    $command = "SELECT b.*, JSON_ARRAY(SUBSTRING(comp.contactNo, 3), SUBSTRING(def.contactNo, 3), SUBSTRING(med.contactNo, 3)) as `contacts`, MIN(h.date) AS `latestHearing` FROM `tbl_blotters` as b 
+                INNER JOIN tbl_residents as comp on comp.residentID = b.complainant
+                INNER JOIN tbl_residents as def on def.residentID = b.defendant
+                INNER JOIN tbl_residents as med on med.residentID = b.mediator
+                LEFT JOIN tbl_hearing as h on h.blotterID = b.blotterID
+                WHERE b.blotterID = '$blotterID'";
     $result = mysqli_query($conn, $command);
     $blotter = mysqli_fetch_assoc($result);
     mysqli_free_result($result);
@@ -277,5 +239,31 @@ if(isset($_POST['change_participants'])){
     $command = "UPDATE `tbl_blotters` SET `$field`= '$residentID' WHERE `blotterID` = '$id'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
+}
+
+if(isset($_POST['archive_blotter'])){
+    $conn = openCon();
+    $blotterID = $_POST['id'];
+    $command = "UPDATE `tbl_blotters` SET `archive`='true' WHERE blotterID = '$blotterID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+    insertLogs("Archived a blotter record with ID: $blotterID");
+}
+function changeBlotterStatus($status){
+    $conn = openCon();
+    $blotterID = $_GET['id'];
+    $command = "UPDATE `tbl_blotters` SET `caseStatus`='$status' WHERE blotterID = '$blotterID'";
+    mysqli_query($conn, $command);
+    mysqli_close($conn);
+    insertLogs("Change the Status of a blotter with ID: $blotterID to ($status)");
+}
+if(isset($_POST['pending_blotter'])){
+    changeBlotterStatus('Pending');
+}
+if(isset($_POST['endorse_blotter'])){
+    changeBlotterStatus('Endorsed to the Court');
+}
+if(isset($_POST['solve_blotter'])){
+    changeBlotterStatus('Solved');
 }
 ?>

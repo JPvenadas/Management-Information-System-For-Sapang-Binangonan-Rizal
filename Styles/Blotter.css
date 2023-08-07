@@ -97,13 +97,6 @@ body{
     font-size: 20px;
     color: var(--text-highlight);
 }
-.ellypsis{
-    color: var(--text-primary-light);
-    font-weight: bold;
-    font-size: 22px;
-    cursor: pointer;
-    background: none;
-}
 .divider{
     width: 100%;
     height: 4px;
@@ -512,4 +505,74 @@ body{
 }
 .hide{
     display: none;
+}
+/* ******************** settings */
+.settings-container{
+    position: relative;
+}
+.settings-icon{
+    color: var(--text-primary-light);
+    font-weight: bold;
+    font-size: 22px;
+    cursor: pointer;
+    background: none;
+}
+.settings{
+    position: absolute;
+    display: none;
+    top: 30px;
+    right: -10px;
+    background: white;
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.73);
+    z-index: 5;
+}
+.update-button{
+    padding: 10px 20px;
+    font-size: 15px;
+    color: rgb(92, 92, 92);
+    width: 300px;
+    background: white;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+}
+.update-button:hover{
+    background: rgb(231, 231, 231);
+}
+
+/****************** error container */
+.notif-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 80px;
+    z-index: 8;
+}
+.notif{
+    padding: 10px 20px;
+    width: 500px;
+    text-align: center;
+    background: rgba(7, 90, 169, 0.71);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    animation: fade forwards 3s;
+    max-width: 80%;
+}
+@keyframes fade{
+    0%{
+        opacity: 1;
+        display: block;
+    }
+    80%{
+        opacity: 1;
+        display: block
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
 }

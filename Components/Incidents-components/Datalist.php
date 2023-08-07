@@ -1,0 +1,22 @@
+<datalist id="blotterTopics">
+  <option value="Altercation Over Property Boundary"></option>
+  <option value="Dispute Regarding Unsettled Debt"></option>
+  <option value="Disturbance Due to Excessive Noise"></option>
+  <option value="Harassment and Threats Allegations"></option>
+  <option value="Intoxication and Disorderly Conduct"></option>
+  <option value="Vandalism and Property Damage"></option>
+  <option value="Domestic Conflict Involving Family"></option>
+  <option value="Theft and Robbery Incident Report"></option>
+  <option value="Complaint about Persistent Loud Noise"></option>
+  <option value="Alleged Threats and Aggressive Behavior"></option>
+  <option value="Violation of Curfew Regulations"></option>
+  <option value="Neighborhood Feud and Disagreement"></option>
+  <option value="Nuisance Complaint for Barking Dogs"></option>
+  <option value="Unauthorized Parking Violation"></option>
+  <option value="Complaint Regarding Public Indecency"></option>
+  <option value="Trespassing Incident on Private Property"></option>
+  <option value="Drug-Related Activity Concerns"></option>
+  <option value="Physical Assault and Personal Injury"></option>
+  <option value="Report of Unresolved Business Dispute"></option>
+  <option value="Report of a Missing Individual"></option>
+</datalist>

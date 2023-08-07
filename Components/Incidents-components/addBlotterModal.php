@@ -10,8 +10,9 @@
         <div class="blotter-inputs">
              <div class="blotter-input">
                 <p class="label">Complaint Title</p>
-                <textarea placeholder="Type here the title of the case" name="summary" id="" class="long-input"></textarea>
+                <input list="blotterTopics" placeholder="Type here the title of the case" name="summary" id="" class="long-input" type="text">
             </div>
+            <?php include "Datalist.php"?>
             <div class="blotter-input">
                 <p class="label">Complainant</p>
                 <div class="input-container">

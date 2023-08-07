@@ -40,9 +40,9 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
 </head>
 
 <body>
-    <div class="error-container">
-        <?php if (isset($_GET['error'])) { ?>
-        <p class="error"><?php echo $_GET['error']; ?></p>
+    <div class="notif-container">
+        <?php if (isset($_GET['notif'])) { ?>
+        <p class="notif"><?php echo $_GET['notif']; ?></p>
         <?php } ?>
     </div>
 
