@@ -3,7 +3,7 @@
  <div class="bar">
     <div class="left">
         <div>
-            <img class="logo2" src="../../Images/logo.png" alt="logo">
+            <img class="logo" class="logo2" src="../../Images/logo.png" alt="logo">
         </div>
         <div>
             <h1 class="name">Barangay Sapang</h1>

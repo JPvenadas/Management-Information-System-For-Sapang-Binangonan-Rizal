@@ -14,5 +14,15 @@
     --color-secondary: white;
     --color-secondary-hover: ;
     --color-secondary-darker: rgb(204, 204, 204);
-    
+
+    /* **********************************login colors */
+    --login-background-primary: white;
+    --login-background-secondary: rgb(249, 249, 249);
+    --login-background-tertiary: rgb(244, 244, 244);
+    --login-text-highlight: #2D314D;
+    --login-text-primary: #233;
+    --login-text-secondary: rgb(132, 132, 132);
+    --login-text-tertiary: #9d9d9d;
+    --login-background-footer: #555;
+    --login-button-background: linear-gradient(90deg, #195FA0 0%, #24B8E7 100%);
 }

@@ -150,7 +150,6 @@ body{
     justify-content: center;
     align-items: center;
     animation: spawn .4s ease forwards;
-    transform: scale(.98);
 }
 .modal-content-container{
     width: 720px;
