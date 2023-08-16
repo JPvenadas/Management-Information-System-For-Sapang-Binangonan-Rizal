@@ -9,7 +9,8 @@ function generateEmployeeItem($employee){
                                                          '<?php echo $employee['position']?>',
                                                          '<?php echo $employee['committee']?>',
                                                          '<?php echo $employee['termStart']?>',
-                                                         '<?php echo $employee['termEnd']?>')">
+                                                         '<?php echo $employee['termEnd']?>',
+                                                         '<?php echo $employee['schedule']?>')">
             <div class="employee-info-container">
                 <div class="employee-image-container">
                     <img loading="lazy" class="employee-image"

@@ -155,7 +155,6 @@ body{
     width: 720px;
     padding: 40px 0;
     background: white;
-    border-radius: 10px;
     display: flex;
     gap: 10px;
     flex-direction: column;
@@ -169,9 +168,44 @@ body{
     top: 20px;
     background: white;
 }
-
 .modal-title{
+    
+}
+.input-container-flex-2{
+    display: flex;
+    gap: 10px;
+}
+.input-container, .input-container-flex-2 div{
+    display: flex;
+    flex-direction: column;
+}
+.input-container-flex-2 div{
+    flex: 1;
+    flex-basis: 50%;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+label{
+    font-size: 12px;
+    color: var(--text-primary-light);
+}
+.input{
+    width: 100%;
+    padding: 15px 20px;
+    background: #F4F4F4;
+    color: var(--text-primary-light)
+}
+.input:focus{
+    background: #d5e8ed;
+}
+.container{
     width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .modal-title h3{
     font-weight: 700;
@@ -188,37 +222,7 @@ body{
     from{opacity: 0; transform: scale(.98);}
     to{opacity: 1; transform: scale(1);}
 }
-.container{
-    width: 560px;
-    padding: 20px 0;
-    background: #E9F2F9;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 12px;
-}
-.container div{
-    width: 90%;
-}
-.input{
-    width: 499px;
-    height: 43px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
-    border-radius: 5px;
-    padding: 0 20px;
-}
-.container p{
-    width: 499px;
-    font-weight: 700;
-    font-size: 15px;
-    color: #002C4B;
-}
-::placeholder{
-    color: #A0AAB1;
-}
+
 .signiture-container{
     display: flex;
 }
@@ -229,7 +233,6 @@ body{
     text-align: center;
     background: #D9D9D9;
     box-shadow: 0px 4px 4px rgb(0 0 0 / 6%);
-    border-radius: 5px;
     width: 120px;
     height: 43px;
 }
@@ -336,9 +339,6 @@ body{
         position: relative;
         bottom: 30px;
     }
-    .container div {
-        width: 100%;
-    }
     .signiture-image-name {
         margin-top: 10px;
     }
@@ -356,13 +356,6 @@ body{
     }
     .modal-title h3{
         font-size: 20px;
-    }
-    .container {
-       padding: 0;
-       margin: 0;
-       background: white;
-       width: 100%;
-       gap: 7px;
     }
     p.modal-title-container, input.input {
         width: 100%;

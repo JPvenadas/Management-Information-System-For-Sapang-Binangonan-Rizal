@@ -5,7 +5,7 @@ require "insertLogs.php";
 // function to get the employees list and display it on the screen
 function getEmployees(){
     $conn = openCon();
-    $command =  "SELECT CONCAT(r.firstName, ' ', r.middleName, ' ', r.lastName) as fullName, e.employeeID, r.image, r.residentID, `position`, `committee`, `termStart`, `termEnd`, `termStatus` 
+    $command =  "SELECT CONCAT(r.firstName, ' ', r.middleName, ' ', r.lastName) as fullName, e.employeeID, r.image, r.residentID, `position`, `committee`,schedule, `termStart`, `termEnd`, `termStatus` 
     FROM `tbl_employees` as e INNER JOIN tbl_residents as r on e.residentID = r.residentID
     WHERE e.archive = 'false' and termStatus = 'Active'";
 
@@ -101,12 +101,13 @@ if(isset($_POST['add_employee'])){
             $position = validate($_POST['position']);
             $termstart = $_POST['termstart'];
             $committee = validate($_POST['committee']);
+            $schedule = $_POST['schedule'];
             $termend = $_POST['termend'];
             $termStatus = 'Active';
             $signiture = $_FILES["signiture"]["tmp_name"];
             $signitureContent = addslashes(file_get_contents($signiture));
-            $command = "INSERT INTO tbl_employees (`residentID`, `position`, `committee`, `termstart`, `termend`, `termStatus`, `Signiture`, `archive`) 
-                                        VALUES ('$residentID','$position', '$committee','$termstart','$termend','$termStatus','$signitureContent', 'false')";
+            $command = "INSERT INTO tbl_employees (`residentID`, `position`, `committee`, `termstart`, `termend`, `termStatus`, schedule,`Signiture`, `archive`) 
+                                        VALUES ('$residentID','$position', '$committee','$termstart','$termend','$termStatus','$schedule','$signitureContent', 'false')";
             mysqli_query($conn, $command);
             $addedemployeeID = mysqli_insert_id($conn);
             mysqli_close($conn);

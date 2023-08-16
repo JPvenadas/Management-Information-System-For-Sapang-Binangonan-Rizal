@@ -3,35 +3,55 @@
         <div onclick="closeEditModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>
         </div>
-        <div class="modal-title">
-            <h3>Assigned Role</h3>
-        </div>
         <div class="container">
-            <p class="modal-title-container">Resident's profile</p>
-            <input list="residents" id="residentID" name="residentID" autocomplete="off" type="text" required placeholder="choose the resident's profile here"
-                class="input">
-            <input required type="hidden" id="employeeID" name="employeeID">
-            <datalist id="employees">
-            </datalist>
-            <div class="signiture-container">
-                <input id="image-title-edit" placeholder="Change the signiture" class="input" readonly
-                    type="text">
-                <input accept="image/png" id="signiture-edit" name="signiture" hidden type="file">
-                <label id="upload" class="signiture-button" for="signiture-edit">
-                    <p>Re-Upload</p>
-                </label>
-                <label id="upload-icon" class="signiture-button" for="signiture-edit">
-                    <ion-icon name="caret-up"></ion-icon>
-                </label>
+            <div class="modal-title">
+                <h3>Assign Role</h3>
+                <p>Fill the necessary information below</p>
             </div>
-        </div>
-        <div class="container">
-            <p class="modal-title-container">Assigned Role</p>
-            <input list="positions" name="position" id="position" class="input" type="text" placeholder="Employee's position">
-            <input list="committee" name="committee" id="committeeField" class="input" type="text" placeholder="Committee">
-            <div class="term-container">
-                <input id="termstart" name="termstart" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Start of Term">
-                <input id="termend" name="termend" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Expected end of Term">
+            <div class="inputs">
+                <input required type="hidden" id="employeeID" name="employeeID">
+                <div class="input-container">
+                    <label for="residentID">resident ID</label>
+                    <input autocomplete="off" type="text" id="residentID" name="residentID" list="residents" required
+                        placeholder="choose the resident's profile here" class="input">
+                </div>
+                <div class="input-container">
+                    <label for="position">Position</label>
+                    <input list="positions" name="position" id="position" class="input" type="text" placeholder="Employee's position">
+                </div>
+                <div class="input-container">
+                    <label for="committeeField">Committee</label>
+                    <input list="committee" name="committee" id="committeeField" class="input" type="text" placeholder="Committee">
+                </div>
+                <div class="input-container">
+                    <label for="schedule">Daily Schedule(optional)</label>
+                    <input id="schedule" autocomplete="off" class="input" name="schedule" type="text"
+                        list="days" placeholder="Schedule">
+                </div>
+                <div class="input-container-flex-2">
+                    <div class="left">
+                        <label for="termstart">Start of Term</label>
+                        <input id="termstart" name="termstart" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Start of Term">
+                    </div>
+                    <div class="right">
+                        <label for="termend">End of Term</label>
+                        <input id="termend" name="termend" class="input" onfocus="(this.type = 'date')" type="text" placeholder="Expected end of Term">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="">E-signiture</label>
+                    <div class="signiture-container">
+                        <input id="image-title-edit" placeholder="Change the signiture" class="input" readonly
+                            type="text">
+                        <input accept="image/png" id="signiture-edit" name="signiture" hidden type="file">
+                        <label id="upload" class="signiture-button" for="signiture-edit">
+                            <p>Re-Upload</p>
+                        </label>
+                        <label id="upload-icon" class="signiture-button" for="signiture-edit">
+                            <ion-icon name="caret-up"></ion-icon>
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- include the datalists -->
@@ -54,9 +74,9 @@ let signitureEdit = document.querySelector('#signiture-edit');
 editModal.style.display = 'none'
 
 signitureEdit.addEventListener('change', (event) => {
-            imageTitleField = document.querySelector('#image-title-edit')
-            var image = event.target.files[0]
-            imageTitleField.value = image.name
+    imageTitleField = document.querySelector('#image-title-edit')
+    var image = event.target.files[0]
+    imageTitleField.value = image.name
 })
 
 function closeEditModal() {
@@ -64,7 +84,7 @@ function closeEditModal() {
     body.style.overflowY = "auto"
 }
 
-function openEditModal(employeeID, residentsID, positionID, committee, termstart, termend){
+function openEditModal(employeeID, residentsID, positionID, committee, termstart, termend, schedule) {
     editModal.style.display = "flex"
     body.style.overflowY = "hidden"
 
@@ -74,13 +94,21 @@ function openEditModal(employeeID, residentsID, positionID, committee, termstart
     let committeeField = document.querySelector("#committeeField")
     let termstartField = document.querySelector("#termstart")
     let termendField = document.querySelector("#termend")
-
+    let scheduleField = document.querySelector("#schedule")
     
+
     residentIDField.value = residentsID
     employeeIDField.value = employeeID
     positionField.value = positionID
     committeeField.value = committee
     termstartField.value = termstart
     termendField.value = termend
+    if(schedule){
+        scheduleField.value = schedule
+    }else{
+        scheduleField.value = 'No fixed Schedule'
+    }
+    
+    
 }
 </script>
