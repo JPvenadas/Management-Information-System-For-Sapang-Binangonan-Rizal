@@ -41,4 +41,13 @@ function getImages(){
     mysqli_close($conn);
     return $images;
 }
+function getContacts(){
+    $conn = openCon();
+    $command = "SELECT * FROM `tbl_contacts` WHERE 1";
+    $result = mysqli_query($conn, $command);
+    $contacts = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    return $contacts;
+}
 ?>

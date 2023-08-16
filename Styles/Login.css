@@ -14,7 +14,7 @@ body{
 a{
     text-decoration: none;
 }
-button, input{
+button, input, textarea{
     border-style: none;
     outline: none;
 }
@@ -22,6 +22,11 @@ button, input{
 .text-17px-navy{
     font-weight: 400;
     font-size: 17px;
+    color: var(--login-text-highlight);
+}
+.text-20px-navy{
+    font-weight: 400;
+    font-size: 20px;
     color: var(--login-text-highlight);
 }
 .text-25px-navy{
@@ -49,16 +54,17 @@ button, input{
     font-size: 16px;
     color: var(--login-text-tertiary);
 }
+.text-16px-gray-2{
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--login-text-secondary);
+}
 .text-13px-gray{
     font-size: 13px;
     font-weight: 300;
     color: var(--login-text-tertiary);
 }
-.privacy-policy, .help-and-support{
-    width: 100vw;
-    background: var(--login-background-tertiary);
-    padding-bottom: 80px;
-}
+
 .text-14px-blue-underline{
     text-decoration: underline;
     color: var(--color-primary);
@@ -367,6 +373,7 @@ footer{
 .white{
     color: white;
 }
+
 .footer-container .left{
     height: 100%;
     gap: 30px;
@@ -501,7 +508,7 @@ footer{
     gap: 12px;
     width: 370px;
 }
-.input{
+.input, .long-input{
     background: #F4F4F4;
     height: 45px;
     width: 100%;
@@ -509,10 +516,14 @@ footer{
     font-size: 15px;
     color: var(--text-primary-light)
 }
-input::placeholder{
+.long-input{
+   height: 150px;
+   padding: 20px;
+}
+input::placeholder textarea::placeholder{
     color: var(--login-text-tertiary);
 }
-input:focus{
+input:focus, textarea:focus{
     background: #d5e8ed;
 }
 .button-fill{
@@ -627,4 +638,19 @@ input:focus{
         height: 0;
     }
 }
+.privacy-policy, .help-and-support, .about-us, .contact-us{
+    width: 100vw;
+    background: var(--login-background-secondary);
+    padding: 20px 0 80px 0;
+}
+.contact-us form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.background-white{
+    background: white;
+    border: 1px rgb(215, 215, 215) solid;
+}
+
 

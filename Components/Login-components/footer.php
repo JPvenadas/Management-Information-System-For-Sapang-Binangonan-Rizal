@@ -11,10 +11,9 @@
         </div>
         <div class="footer-contacts">
             <div class="contacts">
-                <a href=""><img src="Images/icon-mail-white.png" alt=""></a>
-                <a href=""><img src="Images/icon-fb-white.png" alt=""></a>
-                <a href=""><img src="Images/icon-twitter-white.png" alt=""></a>
-                <a href=""><img src="Images/icon-tele-white.png" alt=""></a>
+                <a target="_blank" href="mailto:<?php echo $contacts['email']?>"><img src="Images/icon-mail-white.png" alt=""></a>
+                <a target="_blank" href="https://<?php echo $contacts['facebook']?>"><img src="Images/icon-fb-white.png" alt=""></a>
+                <a target="_blank" href=""><img src="Images/icon-tele-white.png" alt=""></a>
             </div>
             <div class="number">
                 +639-30-393-8492

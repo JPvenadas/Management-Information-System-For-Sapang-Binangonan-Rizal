@@ -1,13 +1,13 @@
 <div class="help-and-support">
     <div class="container">
         <h1 class="text-33px-navy">Help and Support</h1>
-        <p class="text-18px-gray">Welcome to the support page of the Web-Based Barangay Management System for Sapang. We
+        <p class="text-16px-gray-2">Welcome to the support page of the Web-Based Barangay Management System for Sapang. We
             are dedicated to providing you with the assistance you need to make the most of our platform. Whether you
             have questions, need troubleshooting help, or want to connect with our support team, this page is your
             resource for all things related to getting support.</p>
 
         <h2 class="text-25px-navy">1. Frequently Asked Questions (FAQs)</h2>
-        <p class="text-18px-gray">Before reaching out for support, check our comprehensive list of Frequently Asked
+        <p class="text-16px-gray-2">Before reaching out for support, check our comprehensive list of Frequently Asked
             Questions (FAQs). We have meticulously compiled answers to common queries to help you quickly find solutions
             and answers to your questions.</p>
 
@@ -140,11 +140,11 @@
             </div>
         </div>
         <h2 class="text-25px-navy">2. Contact Support</h2>
-        <p class="text-18px-gray">If your question or concern isn't covered in the FAQs, our support team is here to assist you. Reach out to us through our Contact us page:</p>
+        <p class="text-16px-gray-2">If your question or concern isn't covered in the FAQs, our support team is here to assist you. Reach out to us through our Contact us page:</p>
         <a class="text-18px-blue-underline" href="?page=contacts">Visit Contacts page</a>
 
         <h2 class="text-25px-navy">3. Feedback and Suggestions</h2>
-        <p class="text-18px-gray">Your feedback matters! If you have ideas for enhancing the system, features you'd like to see, or general comments, we'd love to hear from you. Your insights help us continually improve and deliver the best experience possible.</p>
+        <p class="text-16px-gray-2">Your feedback matters! If you have ideas for enhancing the system, features you'd like to see, or general comments, we'd love to hear from you. Your insights help us continually improve and deliver the best experience possible.</p>
         <a class="text-18px-blue-underline" href="?">Fill out a Feedback form</a>
     </div>
 </div>

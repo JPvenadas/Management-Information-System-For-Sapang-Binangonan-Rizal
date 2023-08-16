@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include "Functions/Index-sql-commands.php";
+$contacts = getContacts();
 
 if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
 	if($_SESSION['userType'] == "Resident"){
@@ -86,10 +87,19 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username'])) {
         }   
         
         elseif(isset($_GET['page']) and $_GET['page'] == "support"){
-            //include the privacy policy section
+            //include the help and support section
             include "Components/Login-components/helpAndSupport.php";
         }   
-           
+          
+        elseif(isset($_GET['page']) and $_GET['page'] == "about"){
+            //include the about section
+            include "Components/Login-components/AboutUs.php";
+        }  
+
+        elseif(isset($_GET['page']) and $_GET['page'] == "contacts"){
+            //include the contact us section
+            include "Components/Login-components/ContactUs.php";
+        }  
         ?>
     </main>
     <footer>
