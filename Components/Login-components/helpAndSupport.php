@@ -141,7 +141,7 @@
         </div>
         <h2 class="text-25px-navy">2. Contact Support</h2>
         <p class="text-16px-gray-2">If your question or concern isn't covered in the FAQs, our support team is here to assist you. Reach out to us through our Contact us page:</p>
-        <a class="text-18px-blue-underline" href="?page=contacts">Visit Contacts page</a>
+        <a class="text-18px-blue-underline" href="?page=contacts">Visit our "Contact us" page</a>
 
         <h2 class="text-25px-navy">3. Feedback and Suggestions</h2>
         <p class="text-16px-gray-2">Your feedback matters! If you have ideas for enhancing the system, features you'd like to see, or general comments, we'd love to hear from you. Your insights help us continually improve and deliver the best experience possible.</p>

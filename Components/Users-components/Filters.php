@@ -18,7 +18,7 @@ $administators=""; $staffs=""; $residents="";
 <div class="filter-select-container action-controls-container">
     <select class="filter-select" onchange="redirectToPage()" id="filter-select">
         <option <?php if(!isset($_GET['filter']) or $_GET['filter'] !== 'administrators') { echo 'selected'; } ?> value="?filter=administrators">Administrators</option>
-        <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'staffs') { echo 'selected'; } ?> value="?filter=staffs">Staffs</option>
+        <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'staffs') { echo 'selected'; } ?> value="?filter=staffs">Employees</option>
         <option <?php if(isset($_GET['filter']) and $_GET['filter'] === 'residents') { echo 'selected'; } ?> value="?filter=residents">Residents</option>
     </select>
 </div>
@@ -26,7 +26,7 @@ $administators=""; $staffs=""; $residents="";
     <div class="settings-nav">
         <ul class="nav-list">
             <li><a class="<?php echo $administators?>" href="?">Administrators</a></li>
-            <li><a class="<?php echo $staffs?>" href="?filter=staffs">Staff</a></li>
+            <li><a class="<?php echo $staffs?>" href="?filter=staffs">Employees</a></li>
             <li><a class="<?php echo $residents?>" href="?filter=residents">Residents</a></li>
         </ul>
     </div>

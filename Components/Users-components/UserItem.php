@@ -17,7 +17,13 @@
         <div class="user-info">
             <p class="user-fullname"><?php echo $userFullname?></p>
             <p class="user-age">Username: <?php echo $user['userName']?></p>
-            <p class="user-purok">Type: <?php echo $user['userType']?></p>
+            <p class="user-purok">Type: <?php
+            if($user['userType'] == "Staff"){
+                echo "Employee";
+            }else{
+                echo $user['userType'];
+            }
+            ?></p>
         </div>
     </div>
 

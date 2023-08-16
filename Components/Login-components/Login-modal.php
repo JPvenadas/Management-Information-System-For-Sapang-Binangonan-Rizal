@@ -35,11 +35,11 @@
                 </div>
 
                 <button class="button-fill" type="submit" >Login</button>
-                <a class="href" href="Pages/Recovery/AccountRecovery.php">Forgot Password</a>
+                <a class="text-14px-blue-underline" href="Pages/Recovery/AccountRecovery.php">Forgot Password</a>
             </form>
             <div>
                 <span class="text-16px-gray">Doesn't have an account?</span>
-                <a class="href" href="Pages/Register/RegistrationForm.php?step=1"> Register now</a>
+                <a class="text-14px-blue-underline" href="Pages/Register/RegistrationForm.php?step=1"> Register now</a>
             </div>
         </div>
     </div>

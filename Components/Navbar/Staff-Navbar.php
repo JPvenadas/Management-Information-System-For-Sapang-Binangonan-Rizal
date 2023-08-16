@@ -53,7 +53,7 @@ function attachNavbar($page){
         </div>
         <div class="profile-info">
             <p class="username"><?php print_r($_SESSION['firstName']); echo " "; print_r($_SESSION['lastName'])?></p>
-            <p class="usertype"><?php print_r($_SESSION['userType'])?></p>
+            <p class="usertype">Employee</p>
         </div>
     </a>
     <ul class="navigation-container">

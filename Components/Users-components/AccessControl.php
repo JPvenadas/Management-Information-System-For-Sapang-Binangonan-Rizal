@@ -9,7 +9,7 @@
         </div>
         <div class="access-container">
             <div class="access-header">
-                <h3 class="h3">Configure Access for Staff</h3>
+                <h3 class="h3">Configure Access for Employee</h3>
                 <p class="instructions">Check all the Functions Accessible for this User</p>
             </div>
             <div class="access-items">

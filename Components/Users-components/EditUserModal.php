@@ -55,7 +55,7 @@
             </button>
             <div class="button demoteStaff demote">
                 <ion-icon name="settings"></ion-icon>
-                <p>Change to Staff</p>
+                <p>Change to Employee</p>
             </div>
             <button type="submit" class="button demoteResident demote" name="changeToResident">
                 <ion-icon name="settings"></ion-icon>
@@ -67,7 +67,7 @@
             </button>
             <div type="submit" class="button promoteStaff promote">
                 <ion-icon name="settings"></ion-icon>
-                <p>Change to Staff</p>
+                <p>Change to Employee</p>
             </div>
         </form>
     </div>
