@@ -521,6 +521,47 @@ a{
 .filter-select-container{
     display: none;
 }
+/* ***************************** modal */
+.input-container-flex-2{
+    display: flex;
+    gap: 10px;
+}
+.input-container, .input-container-flex-2 div{
+    display: flex;
+    flex-direction: column;
+}
+.input-container-flex-2 div{
+    flex: 1;
+    flex-basis: 50%;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 560px;
+}
+.input-container-flex-2 div{
+    gap: 0;
+}
+label{
+    font-size: 12px;
+    color: var(--text-primary-light);
+}
+.input{
+    width: 100%;
+    padding: 15px 20px;
+    background: #F4F4F4;
+    color: var(--text-primary-light)
+}
+.input:focus{
+    background: #d5e8ed;
+}
+.container{
+    width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 @media (max-width: 1000px){
     .main-content{
         margin-left: 0;

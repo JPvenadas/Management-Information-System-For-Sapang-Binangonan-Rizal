@@ -2,6 +2,9 @@
     let selectedService
     let selectedServiceFee 
     let selectedServiceType
+    let selectedResidentID
+    let selectedresidentName
+    let purpose
 </script>
 <div id="residents-modal" class="modal-background-blur">
     <div class="modal-content-container">

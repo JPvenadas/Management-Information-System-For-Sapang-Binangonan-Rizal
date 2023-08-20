@@ -63,6 +63,8 @@ function getResidents(){
 //registration of new transaction
 if(isset($_POST['add_transaction'])){
     $conn = openCon();
+    $paymentMode = validate($_POST['paymentMode']);
+    $change = validate($_POST['change']);
     $serviceName = validate($_POST['serviceName']);
     $residentID = validate($_POST['residentID']);
     $purpose = validate($_POST['purpose']);
@@ -70,6 +72,15 @@ if(isset($_POST['add_transaction'])){
     $paymentDate = date('y/m/d');
     $amountPaid = validate($_POST['serviceFee']);
     $serviceType = validate($_POST['serviceType']);
+    if($paymentMode == "others"){
+        $paymentMode = validate($_POST['customPaymentMode']);
+    }
+    $GcashRefNo = "0";
+    if($paymentMode == "gcash"){
+        $GcashRefNo = validate($_POST['refNo']);
+    }
+    $fullPayment = validate($_POST['payment']);
+
     if($serviceType == "Document"){
         $transactionStatus = "Processed";
     }else{
@@ -77,8 +88,8 @@ if(isset($_POST['add_transaction'])){
     }
     $archive = 'false';
     $assistedBy = validate($_SESSION['residentID']);
-    $command = "INSERT INTO `tbl_transactions`(`serviceName`, `residentID`, `purpose`, `dateRequested`, `paymentDate`, `amountPaid`, `transactionStatus`, `archive`, `assistedBy`)  
-                                              VALUES ('$serviceName','$residentID','$purpose','$dateRequested','$paymentDate','$amountPaid','$transactionStatus','$archive','$assistedBy')";
+    $command = "INSERT INTO `tbl_transactions`(`serviceName`, `residentID`, `purpose`, `dateRequested`, `paymentDate`, `amountPaid`, `transactionStatus`, `archive`, `assistedBy`, `fullPayment`, `paymentMode`, `Change`, `GcashRefNo`)  
+                                              VALUES ('$serviceName','$residentID','$purpose','$dateRequested','$paymentDate','$amountPaid','$transactionStatus','$archive','$assistedBy', '$fullPayment', '$paymentMode', '$change', '$GcashRefNo')";
     mysqli_query($conn, $command);
     $addedID = mysqli_insert_id($conn);
     mysqli_close($conn);

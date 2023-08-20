@@ -65,7 +65,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
             include "../../Components/Services-components/residentsModal.php";
             include "../../Components/Services-components/AddTransactionModal.php";
             include "../../Components/Services-components/EditTransactionModal.php";
-            include "../../Components/Services-components/paymentProofView.php";
+            include "../../Components/Services-components/PaymentModal.php";
             ?>
 
             

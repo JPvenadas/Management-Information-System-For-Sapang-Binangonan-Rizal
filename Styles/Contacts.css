@@ -22,7 +22,7 @@ body{
 }
 .title{
     font-weight: 700;
-    font-size: 64px;
+    font-size: 45px;
     color: #002C4B;
 }
 .organization{
@@ -45,8 +45,8 @@ body{
     color: #696767;
 }
 .contact-item p{
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 15px;
     color: #696767;
 }
 @media (max-width: 1000px) {

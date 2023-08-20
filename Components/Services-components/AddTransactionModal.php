@@ -1,13 +1,10 @@
 <div id="add-transaction-modal" class="modal-background-blur">
-    <form
-        action="../../Pages/Services/Services.php";
-        method="post" class="modal-content-container">
+    <div class="modal-content-container">
         <div onclick="closeTransactionModal()" class="modal-close-button">
             <ion-icon name="close"></ion-icon>
         </div>
         <div class="modal-title">
             <p>Transaction Record</p>
-            <input type="hidden" name="serviceType" id="serviceType">
         </div>
         <div class="record-container">
             <div class="record">
@@ -15,7 +12,7 @@
                     <p>Service:</p>
                 </div>
                 <div class="value">
-                    <input type="text" id="serviceName" name="serviceName">
+                    <p id="serviceName_display"></p>
                 </div>
             </div>
             <div class="record">
@@ -23,7 +20,7 @@
                     <p>Amount:</p>
                 </div>
                 <div class="value">
-                <input type="text" id="serviceFee" name="serviceFee">
+                    <p id="serviceFee_display"></p>
                 </div>
             </div>
             <div class="record">
@@ -31,8 +28,7 @@
                     <p>for:</p>
                 </div>
                 <div class="value">
-                    <input type="hidden" name="residentID" id="residentID">
-                    <input type="text" id="issuer" name="fullName">
+                    <p id="issuer_display"></p>
                 </div>
             </div>
             <div class="record">
@@ -40,7 +36,7 @@
                     <p>issued at:</p>
                 </div>
                 <div class="value">
-                    <input type="text" id="dateRequested" name="dateRequested" value="<?php echo date('F d, Y')?>">   
+                    <p id="dateRequested"><?php echo date('F d, Y')?></p>
                 </div>
             </div>
             <div class="record">
@@ -48,21 +44,22 @@
                     <p>Assisted by:</p>
                 </div>
                 <div class="value">
-                    <input type="text" id="user" name="assistedBy" value="<?php echo $_SESSION['firstName'] . ' ' . $_SESSION['middleName'][0] . '.' . ' ' . $_SESSION['lastName']?>"> 
+                    <p id="user"><?php echo $_SESSION['firstName'] . ' ' . $_SESSION['middleName'][0] . '.' . ' ' . $_SESSION['lastName']?></p>
                 </div>
             </div>
         </div>
         <div class="purpose-container">
             <p>Purposes</p>
-            <input id="purpose" type="text" required name="purpose" placeholder="Purpose of issued document" class="purpose-input">
+            <input id="purpose" type="text" required name="purpose" placeholder="Purpose of issued document"
+                class="purpose-input">
         </div>
         <div class="button-container">
-            <button class="blue-button" type="submit" name="add_transaction">
+            <button id="proceed-button" class="blue-button" type="submit">
                 <ion-icon name="card"></ion-icon>
-                <p>Confirm Payment</p>
+                <p>Proceed</p>
             </button>
         </div>
-    </form>
+    </div>
 </div>
 
 <script>
@@ -70,11 +67,10 @@ let transactionModal = document.getElementById('add-transaction-modal')
 transactionModal.style.display = "none";
 
 //fields
-let serviceType = document.getElementById('serviceType')
-let residentIDField = document.getElementById('residentID')
-let serviceName = document.getElementById('serviceName')
-let serviceFee = document.getElementById('serviceFee')
-let issuerField = document.getElementById('issuer')
+let serviceName_display = document.getElementById('serviceName_display')
+let serviceFee_display = document.getElementById('serviceFee_display')
+let issuer_displayField = document.getElementById('issuer_display')
+let purposeInput = document.getElementById('purpose')
 
 //close the modal
 function closeTransactionModal() {
@@ -87,11 +83,22 @@ function openTransactionModal(residentID, issuer) {
     transactionModal.style.display = "flex";
     body.style.overflowY = "hidden";
 
-    serviceType.value = selectedServiceType
-    serviceName.value = selectedService
-    serviceFee.value = selectedServiceFee
-    issuerField.value = issuer
-    residentIDField.value = residentID
+    //set for display
+    serviceName_display.innerHTML = selectedService
+    serviceFee_display.innerHTML = selectedServiceFee
+    issuer_displayField.innerHTML = issuer
+
+    //set for reference
+    selectedResidentID = residentID
+    selectedResidentName = issuer
 
 }
+
+let proceedButton = document.querySelector('#proceed-button');
+proceedButton.addEventListener("click",()=>{
+    purpose = purposeInput.value
+
+    closeTransactionModal();
+    openPaymentModal();
+})
 </script>
