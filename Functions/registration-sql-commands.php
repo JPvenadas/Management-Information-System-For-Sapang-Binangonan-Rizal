@@ -59,17 +59,58 @@ if(isset($_POST['next3'])){
     $_SESSION['registration-familyMembers'] = $_POST['familyMembers'];
 }
 if(isset($_POST['next4'])){
-    setFileContent('profilePicture');
-    $_SESSION['registration-profilePictureTitle'] = $_POST['profilePictureTitle'];
-    setFileContent('residenceProof');
-    $_SESSION['registration-residenceProofTitle'] = $_POST['residenceProofTitle'];
+    //save the profile picture
+    $profilePicture = saveImage($_FILES['profilePicture']);
+    if($profilePicture['saved']){
+        $_SESSION['registration-profilePicture'] = $profilePicture['result'];
+    }else{
+        //if there is an error show it
+        $error = $profilePicture['result'];
+        header("Location: ?step=4&error=$error");
+        exit();
+    }
+    //save the residence proof
+    $residenceProof = saveImage($_FILES['residenceProof']);
+    if($residenceProof['saved']){
+        $_SESSION['registration-residenceProof'] = $residenceProof['result'];
+    }else{
+         //if there is an error show it
+        $error = $residenceProof['result'];
+        header("Location: ?step=4&error=$error");
+        exit();
+    }
+    
+    //save the mobile number
     $_SESSION['registration-mobileNumber'] = $_POST['mobileNumber'];
 }
-function setFileContent($content){
-    if("" != trim($_FILES["$content"]["tmp_name"])){
-        $file = $_FILES["$content"]["tmp_name"];
-        $_SESSION["registration-$content"] = addslashes(file_get_contents($file));
+function saveImage($file) {
+    $uploadDir = '../../Upload-img/';  // Directory to upload images
+    $uniqueName = uniqid() . '_' . basename($file['name']); // Generate a unique name for the image
+
+    $targetPath = $uploadDir . $uniqueName; // Path to save the image
+
+    $response = array(); // Initialize the response array
+
+    // Check if the file is an image
+    $imageFileType = strtolower(pathinfo($targetPath, PATHINFO_EXTENSION));
+    $allowedTypes = array('jpg', 'jpeg', 'png', 'gif');
+    
+    if (!in_array($imageFileType, $allowedTypes)) {
+        $response['saved'] = false;
+        $response['result'] = "Invalid image file type.";
+        return $response;
     }
+
+    // Move the uploaded file to the target path
+    if (move_uploaded_file($file['tmp_name'], $targetPath)) {
+        $response['saved'] = true;
+        $response['result'] = $uniqueName;
+    } else {
+        $response['saved'] = false;
+        $response['result'] = "Error saving image.";
+    }
+    
+    return $response; // Return the response array
 }
 if(isset($_POST['signup'])){
     $conn = openCon();
@@ -110,43 +151,9 @@ if(isset($_POST['signup'])){
                 VALUES ('$userName','$residentID','$password','$userType','$accountStatus')" ;
     mysqli_query($conn, $command);
     mysqli_close($conn);
-    CompressImage($residentID);
     session_unset();
     header("Location: ?step=done&username=$userName");
     exit();
-}
-
-function CompressImage($residentID){
-    $conn = openCon();
-    $command = "SELECT residentID, image FROM tbl_residents where residentID = $residentID";
-    $result = mysqli_query($conn, $command);
-
-    // Set the maximum image size (in bytes)
-    $max_image_size = 50000; // 50 KB in bytes
-
-    // Compress the images and update the records
-    $quality = 20; // Set the starting compression quality (0-100)
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Create a GD image from the blob data
-        $source = imagecreatefromstring($row['image']);
-
-        // Compress the image
-        do {
-            ob_start();
-            imagejpeg($source, null, $quality);
-            $compressedImage = ob_get_clean();
-            $quality -= 5; // Decrease the quality value by 5 for each iteration
-        } while (strlen($compressedImage) > $max_image_size && $quality >= 5);
-
-        // Update the record with the compressed image
-        $command = "UPDATE tbl_residents SET image = ? WHERE residentID = ?";
-        $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "si", $compressedImage, $residentID);
-        mysqli_stmt_execute($stmt);
-    }
-
-    // Close the database connection
-    mysqli_close($conn);
 }
 
 function checkExistingResidents($userName){
