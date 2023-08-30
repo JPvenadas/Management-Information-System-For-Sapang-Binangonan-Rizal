@@ -12,7 +12,7 @@
             <div class="input-upload-container">
                 <input required placeholder="Upload your Profile picture" name="profilePictureTitle"
                     id="image-title-profile" class="input" readonly type="text"
-                    value="<?php inputContent('profilePictureTitle'); ?>">
+                    value="<?php inputContent('profilePicture'); ?>">
                 <input id="profilePicture" name="profilePicture" hidden type="file">
                 <label class="upload-button" for="profilePicture">
                     <p>Upload</p>
@@ -29,7 +29,7 @@
                 <!-- Proof of residence upload section -->
                 <input required placeholder="Upload your proof of residence" name="residenceProofTitle"
                     id="image-title-proof" class="input" readonly type="text"
-                    value="<?php inputContent('residenceProofTitle'); ?>">
+                    value="<?php inputContent('residenceProof'); ?>">
                 <input id="residenceProof" name="residenceProof" hidden type="file">
                 <label class="upload-button" for="residenceProof">
                     <p>Upload</p>

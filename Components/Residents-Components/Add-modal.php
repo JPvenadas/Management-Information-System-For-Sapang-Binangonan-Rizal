@@ -11,7 +11,9 @@
             <div class="modal-header-container">
                 <div class="modal-Image-upload-container">
                     <label for="upload-residendt">
-                    <img class="resident-image-preview" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="">
+                        <img class="resident-image-preview"
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                            alt="">
                     </label>
                     <label class="resident-upload-button" for="upload-resident">
                         <ion-icon name="arrow-up-circle"></ion-icon>
@@ -25,62 +27,94 @@
                 </div>
             </div>
             <!-- Name Inputs -->
-            <p class="label">Resident's Full Name</p>
-            <div class="resident-info-inputs">
+            <div class="inputs">
                 <?php include "Datalists.php"?>
-                <input required autocomplete="off" placeholder="First Name" class="resident-input" name="firstName"
-                    type="text">
-                <input autocomplete="off" placeholder="Middle Name" class="resident-input" name="middleName"
-                    type="text">
-                <input required autocomplete="off" placeholder="Last Name" class="resident-input" name="lastName"
-                    type="text">
-                <input autocomplete="off" placeholder="Name Extension" class="resident-input" name="extension"
-                    type="text">
-            </div>
-            <!-- Other Informtion Inputs -->
-            <p class="label">Other Information</p>
-            <div class="resident-info-inputs">
-                <input required autocomplete="off" placeholder="Birth Date" max="<?php echo date('Y-m-d');?>" onfocus="(this.type = 'date')"
-                    class="resident-input" name="birthDate" type="text">
-                <input  autocomplete="off"required list="purok" placeholder="Purok" class="resident-input" name="purok" type="text">
-                <input required autocomplete="off" placeholder="Exact Address" class="resident-input" name="address"
-                    type="text">
-                <input required list="sex" placeholder="Sex" class="resident-input" name="sex" type="text">
-                <input required list="voterStatus" placeholder="Voter Status" class="resident-input" name="voterStatus"
-                    type="text">
-                <input required list="maritalStatus" placeholder="Marital Status" class="resident-input"
-                    name="maritalStatus" type="text">
-                <input required autocomplete="off" placeholder="Occupation" class="resident-input" name="occupation"
-                    type="text">
-            </div>
-            <!-- Head of the family field -->
-            <div class="multiple-choice-container">
-                <p class="label">Head of the family</p>
-                <div class="choices">
-                    <div>
-                        <input required onchange="showMemberInput()" type="radio" id="familyHead" name="familyHead" value="Yes">
-                        <label class="text-small" for="familyHead">Yes</label>
-                    </div>
-                    <div>
-                        <input required onchange="showMemberInput()" type="radio" id="notFamilyHead" name="familyHead" value="No">
-                        <label class="text-small" for="notFamilyHead">No</label>
+                <div class="input-container">
+                    <label for="firstName">First Name *</label>
+                    <input required autocomplete="off" placeholder="First Name" class="input" name="firstName"
+                        id="firstName" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="middleName">Middle Name</label>
+                    <input autocomplete="off" placeholder="Middle Name (optional)" class="input" name="middleName"
+                        id="middleName" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="lastName">Last Name *</label>
+                    <input required autocomplete="off" placeholder="Last Name" class="input" name="lastName"
+                        id="lastName" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="extension">Name Extension</label>
+                    <input autocomplete="off" placeholder="Name Extension (optional)" class="input" name="extension"
+                        id="extension" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="birthDate">Birth Date</label>
+                    <input required autocomplete="off" placeholder="Birth Date" max="<?php echo date('Y-m-d');?>"
+                        onfocus="(this.type = 'date')" class="input" id="birthDate" name="birthDate" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="purok">Purok</label>
+                    <input autocomplete="off" required list="purok" placeholder="Purok (choose from the choices)"
+                        class="input" name="purok" id="purok" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="address">Exact Address</label>
+                    <input required autocomplete="off" placeholder="House Number, Street (ex: lot 123, Gitna Street)"
+                        class="input" name="address" id="address" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="sex">Sex</label>
+                    <input required list="sex" placeholder="Sex (choose from the choices)" class="input" name="sex"
+                        id="sex" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="maritalStatus">Marital Status</label>
+                    <input required list="maritalStatus" placeholder="Marital Status (choose from the choices)"
+                        class="input" id="maritalStatus" name="maritalStatus" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="voterStatus">Voter Status</label>
+                    <input required list="voterStatus" placeholder="Voter Status (choose from the choices)"
+                        class="input" name="voterStatus" id="voterStatus" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="occupation">Occupation</label>
+                    <input required autocomplete="off" placeholder="Occupation" class="input" name="occupation"
+                        id="occupation" type="text">
+                </div>
+                <div class="input-container">
+                    <label for="occupation">Head of the family</label>
+                    <div class="choices">
+                        <div>
+                            <input required onchange="showMemberInput()" type="radio" id="familyHead" name="familyHead"
+                                value="Yes">
+                            <label class="text-small" for="familyHead">Yes</label>
+                        </div>
+                        <div>
+                            <input required onchange="showMemberInput()" type="radio" id="notFamilyHead"
+                                name="familyHead" value="No">
+                            <label class="text-small" for="notFamilyHead">No</label>
+                        </div>
                     </div>
                 </div>
-                <div id="familyMembersContainer" class="resident-info-inputs">
-                    <input placeholder="Number of Family Members" min="1" id="familyMembers" name="familyMembers"
-                        class="resident-input" type="number">
+                <div class="input-container" id="familyMembers">
+                    <label for="familyMembersInput">Number of Family Members</label>
+                    <input placeholder="Number of Family Members" min="1" id="familyMembersInput" name="familyMembers"
+                        class="input" type="number">
+                </div>
+                <div class="input-container">
+                    <label for="contactNumber">Contact Number</label>
+                    <input autocomplete="off" placeholder="Contact Number" required class="input" name="contactNo"
+                        type="text" onkeypress="
+                        //function that will prevent non-numeric char
+                        return event.charCode >= 48 && event.charCode <= 57" oninput="
+                        //function that will prevent user from typing more than 6 digit
+                        this.value = this.value.slice(0, 11)">
                 </div>
             </div>
-            <!-- Contact Information -->
-            <p class="label">Contact Information</p>
-            <div class="resident-info-inputs">
-                <input autocomplete="off" placeholder="Contact Number" required class="resident-input"
-                    name="contactNo" type="text" onkeypress="
-            //function that will prevent non-numeric char
-            return event.charCode >= 48 && event.charCode <= 57" oninput="
-            //function that will prevent user from typing more than 6 digit
-            this.value = this.value.slice(0, 11)">
-            </div>
+
             <div class="submit-button-container">
                 <button class="add-resident-button" name="add_resident_button" type="submit">
                     <ion-icon name="add-sharp"></ion-icon>

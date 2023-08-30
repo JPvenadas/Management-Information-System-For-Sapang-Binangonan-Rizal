@@ -1,6 +1,7 @@
 <?php
 require "db_conn.php";
 require "insertLogs.php";
+require "upload-image.php";
 
 // add condition to filter verified to non-verified residents
 function addFilters(){
@@ -176,10 +177,6 @@ if(isset($_POST['add_resident_button'])){
     $address =  validate($_POST['address']);
     $birthDate =  $_POST['birthDate'];
 
-    //get the image contents
-    $image = $_FILES["image"]["tmp_name"];
-    $imageContent = addslashes(file_get_contents($image));
-
     $purok =  validate($_POST['purok']);
     $voterStatus =  validate($_POST['voterStatus']);
     $sex =  validate($_POST['sex']);
@@ -191,6 +188,17 @@ if(isset($_POST['add_resident_button'])){
     $archive = "false";
     $registrationStatus = "Verified";
 
+    //save the profile picture
+    $profilePicture = saveImage($_FILES['image'], "../../Upload-img/");
+    if($profilePicture['saved']){
+        $imageName = $profilePicture['result'];
+    }else{
+        //if there is an error show it
+        $error = $profilePicture['result'];
+        header("Location: ?error=$error");
+        exit();
+    }
+
     //concat the username then remove spaces
     $userName = "$firstName$middleName$lastName$extension";
     $userName = str_replace(' ', '', $userName);
@@ -201,7 +209,7 @@ if(isset($_POST['add_resident_button'])){
         exit();
     }else{
         $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `image`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `occupation`, `familyHead`, `familyMembers`, `archive`, `contactNo`, `registrationStatus`) 
-        VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$imageContent','$purok','$address','$voterStatus','$sex','$maritalStatus','$occupation','$familyHead','$familyMembers','$archive','$contactNo','$registrationStatus')";
+        VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$imageName','$purok','$address','$voterStatus','$sex','$maritalStatus','$occupation','$familyHead','$familyMembers','$archive','$contactNo','$registrationStatus')";
         mysqli_query($conn, $command);
         $residentID = mysqli_insert_id($conn);
         insertLogs("Added a resident with ID: $residentID");
@@ -214,20 +222,25 @@ if(isset($_POST['add_resident_button'])){
                     VALUES ('@$userName','$residentID','$password','$userType','$accountStatus')" ;
         mysqli_query($conn, $command);
         mysqli_close($conn);
-
-        CompressImage($residentID);
    }
 }
 if(isset($_POST["change_image_button"])){
     $conn = openCon();
     $id = $_GET['id'];
-    $image = $_FILES["change_image_input"]["tmp_name"];
-    $imageContent = addslashes(file_get_contents($image));
-    $command = "UPDATE `tbl_residents` SET `image`='$imageContent' WHERE `residentID` = '$id'";
+    $oldImageName = $_POST['oldImage'];
+    $profilePicture = replaceImage($oldImageName,$_FILES['change_image_input'], "../../Upload-img/");
+    if($profilePicture['saved']){
+        $imageName = $profilePicture['result'];
+    }else{
+        //if there is an error show it
+        $error = $profilePicture['result'];
+        header("Location: ?error=$error");
+        exit();
+    }
+    $command = "UPDATE `tbl_residents` SET `image`='$imageName' WHERE `residentID` = '$id'";
     mysqli_query($conn, $command);
     mysqli_close($conn);
     insertLogs("Updated a profile picture of resident with ID: $id");
-    CompressImage($id);
 }
 
 if(isset($_POST['submit_csv'])){
@@ -284,39 +297,6 @@ if(isset($_POST['submit_csv'])){
     }
 }
 
-
-function CompressImage($residentID){
-    $conn = openCon();
-    $command = "SELECT residentID, image FROM tbl_residents where residentID = $residentID";
-    $result = mysqli_query($conn, $command);
-
-    // Set the maximum image size (in bytes)
-    $max_image_size = 50000; // 50 KB in bytes
-
-    // Compress the images and update the records
-    $quality = 20; // Set the starting compression quality (0-100)
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Create a GD image from the blob data
-        $source = imagecreatefromstring($row['image']);
-
-        // Compress the image
-        do {
-            ob_start();
-            imagejpeg($source, null, $quality);
-            $compressedImage = ob_get_clean();
-            $quality -= 5; // Decrease the quality value by 5 for each iteration
-        } while (strlen($compressedImage) > $max_image_size && $quality >= 5);
-
-        // Update the record with the compressed image
-        $command = "UPDATE tbl_residents SET image = ? WHERE residentID = ?";
-        $stmt = mysqli_prepare($conn, $command);
-        mysqli_stmt_bind_param($stmt, "si", $compressedImage, $residentID);
-        mysqli_stmt_execute($stmt);
-    }
-
-    // Close the database connection
-    mysqli_close($conn);
-}
 function checkExistingResidents($userName){
     $conn = openCon();
     $command = "SELECT * from tbl_userAccounts WHERE `userName` = '$userName'";

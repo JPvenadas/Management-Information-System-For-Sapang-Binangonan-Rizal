@@ -68,7 +68,7 @@ if($_SESSION['userType'] == "Administrator" or $_SESSION['residentID'] == $_GET[
             <div class="section-title">Personal Information</div>
             <?php if($resident['registrationStatus'] == "Unverified"){
             ?>
-            <a href="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($resident['residenceProof']); ?>"
+            <a href="../../Upload-img/<?php echo $resident['residenceProof']?>"
                 data-lightbox="residenceProof" data-title="Residence proof">
                 <button class="edit-button">View the Proof of Residence</button>
             </a>

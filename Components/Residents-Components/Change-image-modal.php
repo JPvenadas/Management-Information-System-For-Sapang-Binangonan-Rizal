@@ -9,6 +9,7 @@
             <label for="change_image">
                 <img class="image-preview" src="../../Images/upload_img.png" alt="">
             </label>
+            <input type="hidden" name="oldImage" value="<?php echo $resident['image']?>">
             <input accept="image/*" required id="change_image" class="change-image-input" name="change_image_input" type="file">
         </div>
         <div>

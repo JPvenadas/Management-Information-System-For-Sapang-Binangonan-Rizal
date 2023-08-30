@@ -1,6 +1,7 @@
 <?php
 require "db_conn.php";
 require "insertLogs.php";
+require "upload-image.php";
 
 /*a function that you can call if you want to retain the inputs made by the user.
 so that if they click the previous button. the inputs will still be saved*/
@@ -59,59 +60,32 @@ if(isset($_POST['next3'])){
     $_SESSION['registration-familyMembers'] = $_POST['familyMembers'];
 }
 if(isset($_POST['next4'])){
-    //save the profile picture
-    $profilePicture = saveImage($_FILES['profilePicture']);
-    if($profilePicture['saved']){
-        $_SESSION['registration-profilePicture'] = $profilePicture['result'];
-    }else{
-        //if there is an error show it
-        $error = $profilePicture['result'];
-        header("Location: ?step=4&error=$error");
-        exit();
+    if(!isset($_SESSION['registration-profilePicture']) and !isset($_SESSION['registration-residenceProof'])){
+        //save the profile picture
+        $profilePicture = saveImage($_FILES['profilePicture'], "../../Upload-img/");
+        if($profilePicture['saved']){
+            $_SESSION['registration-profilePicture'] = $profilePicture['result'];
+        }else{
+            //if there is an error show it
+            $error = $profilePicture['result'];
+            header("Location: ?step=4&error=$error");
+            exit();
+        }
+        //save the residence proof
+        $residenceProof = saveImage($_FILES['residenceProof'], "../../Upload-img/");
+        if($residenceProof['saved']){
+            $_SESSION['registration-residenceProof'] = $residenceProof['result'];
+        }else{
+            //if there is an error show it
+            $error = $residenceProof['result'];
+            header("Location: ?step=4&error=$error");
+            exit();
+        }
     }
-    //save the residence proof
-    $residenceProof = saveImage($_FILES['residenceProof']);
-    if($residenceProof['saved']){
-        $_SESSION['registration-residenceProof'] = $residenceProof['result'];
-    }else{
-         //if there is an error show it
-        $error = $residenceProof['result'];
-        header("Location: ?step=4&error=$error");
-        exit();
-    }
-    
     //save the mobile number
     $_SESSION['registration-mobileNumber'] = $_POST['mobileNumber'];
 }
-function saveImage($file) {
-    $uploadDir = '../../Upload-img/';  // Directory to upload images
-    $uniqueName = uniqid() . '_' . basename($file['name']); // Generate a unique name for the image
 
-    $targetPath = $uploadDir . $uniqueName; // Path to save the image
-
-    $response = array(); // Initialize the response array
-
-    // Check if the file is an image
-    $imageFileType = strtolower(pathinfo($targetPath, PATHINFO_EXTENSION));
-    $allowedTypes = array('jpg', 'jpeg', 'png', 'gif');
-    
-    if (!in_array($imageFileType, $allowedTypes)) {
-        $response['saved'] = false;
-        $response['result'] = "Invalid image file type.";
-        return $response;
-    }
-
-    // Move the uploaded file to the target path
-    if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-        $response['saved'] = true;
-        $response['result'] = $uniqueName;
-    } else {
-        $response['saved'] = false;
-        $response['result'] = "Error saving image.";
-    }
-    
-    return $response; // Return the response array
-}
 if(isset($_POST['signup'])){
     $conn = openCon();
     $firstName = validate($_SESSION['registration-firstName']);
@@ -139,6 +113,9 @@ if(isset($_POST['signup'])){
     VALUES ('$firstName','$middleName','$lastName','$extension','$birthDate','$profilePicture','$purok','$address','$voterStatus','$sex','$maritalStatus','$occupation','$familyHead','$familyMembers','$archive','$mobileNumber','$residenceProof', '$registrationStatus')";
     mysqli_query($conn, $command);
     $residentID =  mysqli_insert_id($conn);
+    mysqli_close($conn);
+
+    $conn = openCon();
     //user account registration
     $firstName = validate($_SESSION['registration-firstName']);
     $middleName = validate($_SESSION['registration-middleName']);

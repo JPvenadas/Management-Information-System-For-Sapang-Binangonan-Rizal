@@ -1,0 +1,88 @@
+/* ************************** inputs
+ 
+1.  input-container (simple input with label)
+
+    ::how to use:
+    <div class="input-container">
+        <label for=""></label>
+        <input class="input">
+    </div>
+
+- input-container-flex-2 (two inputs with each label. side by side input)
+
+    ::how to use:
+    <div class="input-container-flex-2">
+        <div class="left">
+            <label for=""></label>
+            <input class="input">
+        </div>
+        <div class="right">
+            <label for=""></label>
+            <input class="input">
+        </div>
+    </div>
+
+- input-container-with-button (single input with a button for browse or upload)
+
+    ::how to use:
+    <div class="input-container">
+        <label for=""></label>
+        <div class="input-with-button">
+            <input class="input" readonly type="text">
+            <input hidden type="file">
+            <label class="input-button" for="">
+                <p>Upload</p>
+            </label>
+        </div>
+    </div>
+*/
+.input-container, .input-container-flex-2 div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.input-container-flex-2{
+    display: flex;
+    gap: 10px;
+}
+.input-container-flex-2 div{
+    flex: 1;
+    flex-basis: 50%;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 80%;
+}
+label{
+    font-size: 12px;
+    color: var(--text-primary-light);
+}
+.input{
+    width: 100%;
+    padding: 15px 20px;
+    background: #F4F4F4;
+    color: var(--text-primary-light)
+}
+.input:focus{
+    background: #d5e8ed;
+}
+.input-with-button{
+    display: flex;
+}
+.input-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 6%);
+    width: 120px;
+    height: 43px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+.input-button:hover{
+    background: #cfcfcf;
+}

@@ -36,7 +36,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             if ($row['userName'] === $uname && password_verify($pass, $row['password'])) {
             	$_SESSION['username'] = $row['userName'];
 				$_SESSION['userType'] = $row['userType'];
-				$_SESSION['image'] = $row['image'];
+				$_SESSION['imageName'] = $row['image'];
 				$_SESSION['firstName'] = $row['firstName'];
 				$_SESSION['middleName'] = $row['middleName'];
 				$_SESSION['lastName'] = $row['lastName'];

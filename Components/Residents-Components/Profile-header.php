@@ -17,14 +17,14 @@ function solveAge($birthDate){
     $residentID = $resident['residentID'];
     $age = solveAge($resident['birthDate']);
     $purok = $resident['purok'];
-    $image = $resident['image']
+    $image = $resident['image'];
 
 ?>
 <div class="resident-profile-header">
     <div class="resident-profile-image">
-        <a href="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($image); ?>" data-lightbox="profile" data-title="<?php echo "$firstName $lastName profile" ?>">
+        <a href="../../Upload-img/<?php echo $image?>" data-lightbox="profile" data-title="<?php echo "$firstName $lastName profile" ?>">
             <img class="resident-profile-image-preview"
-                src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($image); ?>" alt="">
+            src="../../Upload-img/<?php echo $image?>" alt="">
         </a>
         <div onclick="openChangeImageModal()" class="resident-upload-button">
             <ion-icon name="arrow-up-circle"></ion-icon>

@@ -11,18 +11,17 @@
                 will automatically process the registration upon submission. To avoid any errors, please ensure that the
                 CSV file contains the appropriate fields. In case you don't have the required format, you can easily
                 obtain it by clicking on the "Export CSV Format" button.</div>
-            <div class="input-container">
-                <input style="width: 380px" required placeholder="Upload a CSV file"
+            <div class="input-with-button">
+                <input required style="width: 380px" required placeholder="Upload a CSV file"
                     name="text" id="csv-image-text" class="input" readonly type="text">
                 <input required accept=".csv" id="csv-image" name="csvFile" hidden type="file">
-                <input type="hidden" name="blank_profile" value="<?php echo "../../Images/ProfileBlank.webp"?>">
                 <label class="input-button" for="csv-image">
                     <p>Upload</p>
                 </label>
             </div>
         </div>
         <div class="submit-button-container">
-            <button type="submit" class="add-resident-button" name="submit_csv" type="submit">
+            <button onclick="return confirmSubmit()" type="submit" class="add-resident-button" name="submit_csv" type="submit">
                 <ion-icon name="add-sharp"></ion-icon>
                 <p>Submit CSV</p>
             </button>
@@ -31,6 +30,10 @@
 </div>
 <script>
 let csvModal = document.querySelector('#csv-modal')
+
+function confirmSubmit() {
+    return confirm("All records inside the CSV file will be automatically imported to the database. Are you sure you want to Proceed?", 'Confirm Submission');
+}
 
 function openCSVModal() {
     csvModal.style.display = "flex";

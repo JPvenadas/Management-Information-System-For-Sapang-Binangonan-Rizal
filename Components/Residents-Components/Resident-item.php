@@ -13,7 +13,7 @@ function generateResidentItem($resident, $text){
     <div class="resident-info-container">
         <div class="resident-image-container">
             <img loading="lazy" class="resident-image"
-                src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($resident['image']); ?>" alt="">
+                src="../../Upload-img/<?php echo $resident['image']?>" alt="">
         </div>
         <div class="resident-info">
             <p class="resident-fullname"><?php echo $resident['fullName']?></p>
