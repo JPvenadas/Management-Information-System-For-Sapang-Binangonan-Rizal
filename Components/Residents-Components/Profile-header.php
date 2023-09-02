@@ -44,14 +44,14 @@ function solveAge($birthDate){
             ?>
             <form method="post" action="../../Pages/Residents/Residents.php" class="resident-profile-archive-button">
                 <input type="hidden" name="residentID" value="<?php echo $resident['residentID']?>">
-                <button type="submit" name="reject" class="archive-resident-button">
+                <button type="submit" name="reject" class="opposite-button">
                     <ion-icon name="person-remove"></ion-icon>
                     <p>Reject</p>
                 </button>
             </form>
             <form method="post" action="../../Pages/Residents/Residents.php" class="resident-profile-archive-button">
                 <input type="hidden" name="residentID" value="<?php echo $resident['residentID']?>">
-                <button type="submit" name="confirm" class="blue-button">
+                <button type="submit" name="confirm" class="main-button">
                     <ion-icon name="checkmark-circle"></ion-icon>
                     <p>Confirm Registration</p>
                 </button>
@@ -62,7 +62,7 @@ function solveAge($birthDate){
                 if($_SESSION['userType'] != "Resident"){
             ?>
             <div class="resident-profile-archive-button">
-                <button onclick="openArchiveModal()" class="archive-resident-button">
+                <button onclick="openArchiveModal()" class="opposite-button">
                     <ion-icon name="archive"></ion-icon>
                     <p>Archive</p>
                 </button>

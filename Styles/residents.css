@@ -22,41 +22,16 @@ body{
    justify-content: space-between;
    margin: 30px 0 30px 0;
 }
-.searchbar-residents{
-    padding: 12px 30px;
+.searchbar{
     font-size: 14px;
-    color: var(--text-primary-light);
     max-width: 380px;
-    border-radius: 2px;
-    width: calc(50vw - 300px);
+    width: calc(50vw - 300px) !important;
     min-width: 280px;
     transition: .2s ease;
-    background: rgb(245, 245, 245)
-}
-.searchbar-residents:focus{
-    background: #d5e8ed;
-}
-::placeholder{
-    color: #767677;
 }
 .search-button-container{
     display: flex;
     gap: 10px
-}
-.search-button-residents{
-    width: 60px;
-    height: 45px;
-    border-radius: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    transition: .2s ease;
-    cursor: pointer;
-}
-.search-button-residents:hover{
-    background: #c4d9ee;
-    transition: .4s ease;
 }
 .resident-items-container{
     display: flex;
@@ -125,50 +100,8 @@ body{
 }
 
 /******************************** modal */
-
-.modal-background-blur{
-    position: fixed;
-    z-index: 10;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.52);
-    left: 0;
-    top: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    animation: spawn .4s ease forwards;
-    transform: scale(.98);
-}
-.scroll{
-    width: 700px;
-    padding: 20px 0;
-    height: 100vh;
-    overflow-y: scroll;
-    overflow-x:  hidden;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-}
-.scroll::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
-.modal-content-container{
-    max-width: 700px;
-    width: 100%;
-    padding: 20px 0 50px 0;
-    background: white;
-    border-radius: 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    gap: 20px;
-}
 .modal-header-container{
-    width: 80%;
-    padding: 20px 0 0 0;
+    width: 100%;
     display: flex;
     gap: 35px
 }
@@ -226,48 +159,11 @@ body{
     border-radius: 100%;
     cursor: pointer;
 }
-.modal-instructions-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-}
-.modal-title{
-    font-weight: 700;
-    font-size: 24px;
-    color: #002C4B;
-}
-.modal-instructions{
-    font-weight: 700;
-    font-size: 12px;
-    color: #696767;
-}
 
 .resident-input option:not(:checked) {
     color: #A0AAB1;
 }
-.submit-button-container{
-    width: 80%;
-    display: flex;
-    justify-content: flex-end;
-}
-.label{
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12.3104px;
-    color: #195FA0;
-    width: 70%;
-}
-.modal-close-button{
-    position: absolute;
-    right: 30px;
-    top: 30px;
-    background: white;
-    cursor: pointer;
-}
-.modal-close-button ion-icon{
-    font-size: 15px;
-}
+
 .nav-list{
     display: flex;
     gap: 20px;
@@ -354,14 +250,7 @@ body{
     width: 100%;
 }
 
-/* csv modal */ 
-.modal-content{
-    max-width: 500px;
-    width: 80%;
-    padding: 30px 0 10px 0;
-    display: flex;
-    flex-direction: column;
-}
+
 /****************** error container */
 .error-container, .notif-container{
     width: 100vw;
@@ -410,10 +299,6 @@ body{
         display: none;
     }
 }
-@keyframes spawn{
-    from{opacity: 0; transform: scale(.98);}
-    to{opacity: 1; transform: scale(1);}
-}
 @keyframes floating {
     0% {
       transform: translateY(0%);
@@ -447,7 +332,7 @@ body{
     .action-text{
         display: none;
     }
-    .searchbar-residents{
+    .searchbar{
         width: calc(100% - 80px);
         max-width: none;
         min-width: none;
@@ -519,7 +404,7 @@ body{
         border-radius: 4px;
         margin: 20px 0 40px 0;
     }
-    .searchbar-residents{
+    .searchbar{
         border-radius: 4px;
         flex: 1;
         height: 40px;
@@ -531,7 +416,7 @@ body{
     .modal-background-blur{
         padding: 0 10px;
     }
-    .search-button-residents{
+    .search-button{
         border-radius: 4px;
         height: 40px;
     }

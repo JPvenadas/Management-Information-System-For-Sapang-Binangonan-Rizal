@@ -24,13 +24,7 @@ function addsearchFilter(){
         return "";
     }
 }
-// this will run if the search button is clicked
-if(isset($_POST['search_button_residents'])){
-    $search = $_POST['search_input_residents'];
-    $filter = $_POST['search_filter'];
-    header("Location: ../Pages/Residents/Residents.php?filter=$filter&search=$search");
-	exit();
-}
+
 // get the lists of the residents
 function getResidents(){
     $conn = openCon();
@@ -264,7 +258,7 @@ if(isset($_POST['submit_csv'])){
                 // Insert data into the table
                
                 $conn = openCon();
-                $image = addslashes(file_get_contents("../../Images/profileBlank.png"));
+                $image = 'profileBlank.png';
                 $command = "INSERT INTO `tbl_residents`(`firstName`, `middleName`, `lastName`, `extension`, `birthDate`, `purok`, `exactAddress`, `voterStatus`, `sex`, `maritalStatus`, `occupation`, `familyHead`, `familyMembers`, `contactNo`, `registrationStatus`, `archive`, `image`) 
                             VALUES ('{$row[0]}','{$row[1]}','{$row[2]}','{$row[3]}','{$row[4]}','{$row[5]}','{$row[6]}','{$row[7]}','{$row[8]}','{$row[9]}','{$row[10]}','{$row[11]}','{$row[13]}','{$row[12]}','Verified', 'false', '$image')";
                 $userName = "{$row[0]}{$row[1]}{$row[2]}{$row[3]}";

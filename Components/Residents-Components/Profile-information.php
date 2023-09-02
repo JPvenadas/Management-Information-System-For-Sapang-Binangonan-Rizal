@@ -42,6 +42,31 @@ function enableEditing() {
         inputs[i].disabled = false;
         enableEditButton.style.display = 'none'
     }
+}
+function cancelEditing() {
+    // Get the elements
+    let inputs = document.getElementsByClassName("personal-information-value");
+    let enableEditButton = document.querySelector(".edit-button");
+    let cancelButton = document.querySelector(".cancel-editing");
+    let saveButton = document.querySelector(".save-editing");
 
+    // Hide the cancel and save buttons
+    cancelButton.style.display = "none";
+    saveButton.style.display = "none";
+
+    // Loop to disable inputs and revert their values
+    for (var i = 0; i < inputs.length; i++) {
+        // Disable the inputs
+        inputs[i].disabled = true;
+
+        // Get the initial value from the input's data attribute
+        let initialValue = inputs[i].getAttribute("data-initial-value");
+        
+        // Revert the input value to the initial value
+        inputs[i].value = initialValue;
+    }
+
+    // Show the edit button
+    enableEditButton.style.display = "flex";
 }
 </script>

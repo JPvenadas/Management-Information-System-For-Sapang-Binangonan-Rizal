@@ -1,6 +1,6 @@
 <div class="action-controls-container">
     <div class="add-button-container">
-        <button onclick="openAddModal()" class="add-employee-button">
+        <button onclick="openAddModal()" class="main-button">
             <ion-icon name="add-sharp"></ion-icon>
             <p>Assign Role</p>
         </button>

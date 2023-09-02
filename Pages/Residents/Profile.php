@@ -24,8 +24,9 @@ if($_SESSION['userType'] == "Administrator" or $_SESSION['residentID'] == $_GET[
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap"
         rel="stylesheet">
 
-    <!-- color coding -->
+    <!-- color coding and utilities -->
     <link rel="stylesheet" type="text/css" href="../../Styles/ColorCoding.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Utilities.css">
     <!-- custom styles -->
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Profile.css">

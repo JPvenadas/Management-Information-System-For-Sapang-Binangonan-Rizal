@@ -24,6 +24,7 @@ if (isset($_SESSION['userType']) && isset($_SESSION['username']) && $_SESSION['u
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../Styles/ColorCoding.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Navbar.css">
+    <link rel="stylesheet" type="text/css" href="../../Styles/Utilities.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Employees.css">
     <link rel="stylesheet" type="text/css" href="../../Styles/Tab-title.css">
     <!-- a script to prevent the "confirm resubmission" alert -->

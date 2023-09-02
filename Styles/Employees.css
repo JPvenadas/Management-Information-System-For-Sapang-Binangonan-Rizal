@@ -12,7 +12,7 @@ body{
     background: white;
 }
 .employee-section-content{
-   padding: 0 50px 0 50px;
+   padding: 0 50px 0 40px;
    width: 100%;
    margin-left: 300px;
 }
@@ -21,62 +21,10 @@ body{
     justify-content: space-between;
     margin: 30px 0 30px 0;
  }
-.add-employee-button{
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     padding: 8px 16px;
-     gap: 10px;
-     background: #195FA0;
-     border-radius: 5px;
- }
- .add-employee-button p, .add-employee-button ion-icon {
-     font-weight: 700;
-     font-size: 12px;
-     color: white
- }
- .add-employee-button ion-icon{
-     font-size: 24px !important;
- }
- .searchbar-employees{
-    padding: 12px 30px;
-    font-size: 14px;
-    color: #002C4B;
-    width: 380px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
-    border-radius: 10px;
-    transition: .4s ease;
- }
- ::placeholder{
-    color: #A0AAB1;
-}
- .searchbar-employees:hover, .searchbar-employees:focus{
-     background: rgb(245, 245, 245)
- }
- .search-button-container{
-     display: flex;
-     gap: 10px
- }
- .search-button-employees{
-     width: 60px;
-     height: 40px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-shrink: 0;
-     border-radius: 10px;
-     transition: .4s ease;
-     
- }
- .search-button-employees:hover{
-     background: #c4d9ee;
-     transition: .4s ease;
- }
 .employee-items-container{
     display: flex;
     flex-direction: column;
 }
-
 .employee-item-record{
     width: 100%;
     display: flex;
