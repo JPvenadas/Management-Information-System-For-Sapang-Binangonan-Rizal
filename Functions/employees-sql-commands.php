@@ -1,8 +1,14 @@
 <?php
-require "db_conn.php";
-require "insertLogs.php";
+//this file contains all the backend functions to run the "Assigned role" page
 
-// function to get the employees list and display it on the screen
+//file containing the connection config for mysql 
+require "db_conn.php";
+//file containing functions to create logs
+require "insertLogs.php";
+//file containing functions to upload images
+require "upload-image.php";
+
+// function to get the employees list
 function getEmployees(){
     $conn = openCon();
     $command =  "SELECT CONCAT(r.firstName, ' ', r.middleName, ' ', r.lastName) as fullName, e.employeeID, r.image, r.residentID, `position`, `committee`,schedule, `termStart`, `termEnd`, `termStatus` 
@@ -25,12 +31,7 @@ function getEmployees(){
      return $employees;
 }
 
-//function to redirect with the new link with search parameter, if the search button is clicked
-if(isset($_POST["search_button_employees"])){
-   $searchInput = $_POST["search_input_employees"];
-    header("Location: ../Pages/Employees/Employees.php?search=$searchInput");
-}
-
+// function to get all the residents
 function getResidents(){
     $conn = openCon();
     $command = "SELECT `residentID`, CONCAT(`firstName`,' ',`middleName`,' ',`lastName`) as 'fullName' from tbl_residents where `archive` = 'false' and `registrationStatus` = 'Verified'";
@@ -40,6 +41,8 @@ function getResidents(){
     mysqli_close($conn);
     return $residents;
 }
+
+// function to get all available positions
 function getPositions(){
     $conn = openCon();
     $command = "SELECT * FROM `tbl_positions` WHERE `archive` = 'false'";
@@ -49,6 +52,7 @@ function getPositions(){
     mysqli_close($conn);
     return $positions;
 }
+//function to get all available committees
 function getCommittees(){
     $conn = openCon();
     $command = "SELECT * FROM `tbl_committee` WHERE `archive` = 'false'";
@@ -58,6 +62,7 @@ function getCommittees(){
     mysqli_close($conn);
     return $committee;
 }
+// function to check if the resident already have an assigned role
 function existingResidents(){
     $conn = openCon();
     $residentID = $_POST['residentID'];
@@ -93,6 +98,7 @@ function existingRole(){
         return true;
     }
 }
+// this will run if the user add an employee
 if(isset($_POST['add_employee'])){
     if(existingResidents()){
         if(existingRole()){
@@ -104,10 +110,20 @@ if(isset($_POST['add_employee'])){
             $schedule = $_POST['schedule'];
             $termend = $_POST['termend'];
             $termStatus = 'Active';
-            $signiture = $_FILES["signiture"]["tmp_name"];
-            $signitureContent = addslashes(file_get_contents($signiture));
+            
+            //save the profile picture
+            $eSigniture = saveImage($_FILES['signiture'], "../../Upload-img/");
+            if($eSigniture['saved']){
+                $imageName = $eSigniture['result'];
+            }else{
+                //if there is an error show it
+                $error = $eSigniture['result'];
+                header("Location: ../../Pages/Employees/Employees.php?error=$error");
+                exit();
+            }
+            
             $command = "INSERT INTO tbl_employees (`residentID`, `position`, `committee`, `termstart`, `termend`, `termStatus`, schedule,`Signiture`, `archive`) 
-                                        VALUES ('$residentID','$position', '$committee','$termstart','$termend','$termStatus','$schedule','$signitureContent', 'false')";
+                                        VALUES ('$residentID','$position', '$committee','$termstart','$termend','$termStatus','$schedule','$imageName', 'false')";
             mysqli_query($conn, $command);
             $addedemployeeID = mysqli_insert_id($conn);
             mysqli_close($conn);

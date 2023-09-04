@@ -89,9 +89,10 @@ label{
 
 /* ************************** buttons
 
-1. main-button (blue colored button with icon)
-2. opposite-button (white colored button with icon)
-3. search-button (search button only icon no text)
+1. main-button (blue colored button, with icon)
+2. opposite-button (white colored button, with icon)
+3. search-button (search button only icon, no text)
+4. floating-button (circle button floating. with only icon)
 */
 .main-button, .opposite-button{
     padding: 0px 25px;
@@ -112,11 +113,11 @@ label{
     border: .5px solid rgb(195, 195, 195);
 }
 .main-button{
-    background: #195FA0;
+    background: var(--color-primary);
     color: white;
 }
 .main-button:hover{
-    background: #14497a;
+    background: var(--color-primary-darker);
 }
 .opposite-button:hover{
     background: rgb(228, 228, 228);
@@ -136,7 +137,42 @@ label{
     background: #c4d9ee;
     transition: .4s ease;
 }
-
+.floating-button{
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    animation: 3s floating infinite;
+}
+.floating-button .circle{
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0px 4px 30px 20px rgba(0, 0, 0, 0.2);
+    transition: .3s ease;
+    cursor: pointer;
+}
+.floating-button .circle:hover, .add-buttons button:hover{
+    background: var(--color-primary-darker);
+}
+.circle ion-icon{
+    font-size: 24px;
+}
+@keyframes floating {
+    0% {
+      transform: translateY(0%);
+    }
+    50% {
+      transform: translateY(-10%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
 /* **************************** modal */
 .modal-blur{
     position: fixed;
@@ -225,4 +261,175 @@ label{
 @keyframes spawn{
     from{opacity: 0; transform: scale(.98);}
     to{opacity: 1; transform: scale(1);}
+}
+
+/* ******************************** error and notifications */
+.error-container, .notif-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 80px;
+    z-index: 8;
+}
+.error{
+    padding: 10px 20px;
+    width: 500px;
+    text-align: center;
+    background: rgba(62, 62, 62, 0.685);
+    color: rgb(255, 255, 255);
+    animation: fade forwards 3s;
+    max-width: 80%;
+}
+.filter-select-container{
+    display: none;
+}
+.notif{
+    padding: 10px 20px;
+    width: 500px;
+    text-align: center;
+    background: rgba(7, 109, 212, 0.685);
+    color: rgb(255, 255, 255);
+    animation: fade forwards 3s;
+}
+@keyframes fade{
+    0%{
+        opacity: 1;
+        display: block;
+    }
+    80%{
+        opacity: 1;
+        display: block
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+/******************************** list item */
+
+.list-items-container{
+    display: flex;
+    flex-direction: column;
+}
+.list-item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid #EAE9E9;
+    background: rgb(255, 255, 255);
+    padding: 0 20px;
+    align-items: center;
+    transition: .3s ease;
+}
+.list-item:hover{
+    background: rgb(240, 240, 240);
+}
+.list-item .left{
+    display: flex;
+    height: 100%;
+    gap: 22px;
+}
+.list-item-image{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list-item-image img{
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+}
+.list-item-info{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+.list-item-info h4{
+    font-weight: 700;
+    font-size: 14px;
+    color: #2E2E2E;
+}
+.list-item-info p{
+    font-weight: 400;
+    font-size: 10px;
+    color: #2E2E2E
+}
+.list-item .right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list-item .right p{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 19px;
+    color: #2E2E2E;
+}
+
+/* ****************************** others */
+.searchbar{
+    font-size: 14px;
+    max-width: 380px;
+    width: calc(50vw - 300px) !important;
+    min-width: 280px;
+    transition: .2s ease;
+}
+
+@media (max-width: 700px){
+    .list-item .right{
+        display: none;
+    }
+    .searchbar{
+        width: calc(100% - 80px);
+        max-width: none;
+        min-width: none;
+    }
+    .floating-button{
+        right: 40px;
+        bottom: 50px;
+    }
+    .floating-button .circle{
+        width: 50px;
+        height: 50px;
+    }
+    .circle ion-icon{
+        font-size: 20px;
+    }
+    .modal-scroll{
+        width: 100%;
+    }
+    .modal-content-container{
+        margin: 20px 0 40px 0;
+    }
+    .searchbar{
+        flex: 1;
+        height: 40px;
+        width: auto;
+        min-width: 0;
+        box-shadow: none;
+        background: #ececec;
+    }
+    .modal-blur{
+        padding: 0 10px;
+    }
+    .search-button{
+        height: 40px;
+    }
+    .input-button{
+        min-width: 80px;
+    }
+    .modal-content{
+        gap: 15px;
+    }
 }

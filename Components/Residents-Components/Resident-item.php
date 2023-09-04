@@ -9,19 +9,18 @@ function generateResidentItem($resident, $text){
 ?>
 <form action="../../Functions/residents-sql-commands.php" method="post">
 <input name="residentID" type="hidden" value="<?php echo $resident['residentID']?>">
-<button type="submit" name="view_resident_button" class="resident-item-record">
-    <div class="resident-info-container">
-        <div class="resident-image-container">
-            <img loading="lazy" class="resident-image"
-                src="../../Upload-img/<?php echo $resident['image']?>" alt="">
+<button type="submit" name="view_resident_button" class="list-item">
+    <div class="left">
+        <div class="list-item-image">
+            <img loading="lazy" src="../../Upload-img/<?php echo $resident['image']?>" alt="">
         </div>
-        <div class="resident-info">
-            <p class="resident-fullname"><?php echo $resident['fullName']?></p>
-            <p class="resident-age"><?php echo solveAge($resident['birthDate'])?></p>
-            <p class="resident-purok"><?php echo $resident['purok']?></p>
+        <div class="list-item-info">
+            <h4><?php echo $resident['fullName']?></h4>
+            <p><?php echo solveAge($resident['birthDate'])?></p>
+            <p><?php echo $resident['purok']?></p>
         </div>
     </div>
-    <div class="action-text">
+    <div class="right">
         <p><?php echo $text?></p>
     </div>
 </button>

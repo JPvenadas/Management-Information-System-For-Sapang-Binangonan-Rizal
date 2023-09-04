@@ -1,4 +1,4 @@
-<div class="add-button-container">
+<div class="floating-button">
     <div class="add-buttons">
         <button onclick="openAddResidentModal()">Add a Resident</button>
         <button onclick="openCSVModal()" type="submit">Bulk Registration via CSV</button>
