@@ -9,7 +9,7 @@
                 <h2 class="logo-sub">Management Information System</h2>
             </div>
         </div>
-        <nav>
+        <nav class="sidebar">
             <ul>
                 <li>
                     <a href="?">Home</a>
@@ -33,5 +33,29 @@
                 Sign in
             </button>
         </div>
+         <div class="ham-menu">
+             <ion-icon name="menu"></ion-icon>
+         </div>
     </div>
 </div>
+<script>
+    let sidebar = document.querySelector('.sidebar');
+    let menu = document.querySelector('.ham-menu');
+    let navStatus = false;
+    let outside =document.querySelector('body');
+
+    menu.addEventListener('click', ()=>{
+      navStatus = !navStatus;
+      shownavbar();
+    })
+
+    function shownavbar(){
+      if(navStatus === false){
+        sidebar.style.right = "-100%";
+        outside.style.overflow = "auto";
+      }else{
+        sidebar.style.right = "0";
+        outside.style.overflow = "hidden";
+      }
+    }
+</script>

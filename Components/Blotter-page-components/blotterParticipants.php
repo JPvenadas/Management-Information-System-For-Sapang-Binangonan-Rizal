@@ -19,7 +19,7 @@
                 generateResidentItem($defendant, 'Defendant');
             ?>
         </div>
-        <div onclick="openResidentModal('defender')" class="change-button">
+        <div onclick="openResidentModal('defendant')" class="change-button">
             <ion-icon title="Change" name="ellipsis-horizontal"></ion-icon>
         </div>
     </div>

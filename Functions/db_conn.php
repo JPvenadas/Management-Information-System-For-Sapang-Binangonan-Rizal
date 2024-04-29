@@ -1,7 +1,7 @@
 <?php
 function openCon(){
 
-$sname= "localhost";
+$sname= "localhost:3307";
 $unmae= "root";
 $password = "";
 

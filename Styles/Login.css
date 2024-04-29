@@ -176,6 +176,13 @@ button, input, textarea{
         background-position: 100% 0px;
         transform: scale(0.97);
     }
+    .ham-menu{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        color: var(--login-text-secondary);
+        font-size: 25px;
+    }
 
  /* ******************* main-content */
  main{
@@ -266,12 +273,12 @@ button, input, textarea{
      }
           /* ******************** feature-container */
         .feature-container{
-            display: grid;
-            grid-template-columns: repeat(4, calc(25% - 7px));
+            display: flex;
+            flex-flow: row wrap;
             gap: 20px;
         }
         .feature{
-            width: 100%;
+            width: 250px;
             display: flex;
             gap: 30px;
             border-radius: 10px;
@@ -320,15 +327,15 @@ button, input, textarea{
         margin-bottom: 40px;
     }
     .events-container{
-        display: grid;
-        grid-template-columns: repeat(4, calc(25% - 18px));
+        display: flex;
+        flex-flow: row wrap;flex-flow: row wrap;
         gap: 25px;
         width: 100%;
     }
     .event{
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 250px;
         background: rgb(255, 255, 255);
         transition: .3s ease;
     }
@@ -651,6 +658,117 @@ input:focus, textarea:focus{
 .background-white{
     background: white;
     border: 1px rgb(215, 215, 215) solid;
+}
+@media (max-width: 700px){
+    .section-2 p{
+        width: 100%;
+    }
+    .section-1{
+        flex-direction: column;
+    }
+    .section-1 .left{
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding-top: 100px;
+    }
+    .section-1 .left h3{
+        width: 100%;
+        padding: 0 20px;
+        font-size: 40px;
+        text-align: center;
+    }
+    .section-1 .left p{
+        width: 100%;
+        padding: 0 20px;
+        text-align: center;
+    }
+    .login-background{
+        width:800px;
+        height: 700px;
+        top: -1250px;
+        left: -300px;
+    }
+    .section-1 .right img{
+        top: -842px;
+        width: 400px;
+        left: -100px;
+    }
+    .modal-content{
+        width: 95%;
+    }
+    .login-form{
+        width: 90%;
+    }
+    .feature, .events-container a, .event{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer-container{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        gap: 20px;
+    }
+    .footer-container .right{
+        align-items: center;
+        gap: 20px;
+    }
+    .footer-container .left{
+        align-items: center;
+    }
+    .footer-container .middle{
+       display: none;
+    }
+    .bar{
+        height: 65px;
+    }
+    .nav-container{
+        padding: 0px 20px;
+    }
+    .nav-container .navbar-button-container{
+        display: none;
+    }
+    .ham-menu{
+        display: flex;
+        cursor: pointer;
+    }
+    nav{
+        position: absolute;
+        top: 65px;
+        right: -100%;
+        width: 220px;
+        height: 100vh;
+        z-index: 100;
+        background: white;
+        align-items: flex-start;
+        transition: .5s ease;
+    }
+    nav ul{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+
+    }
+    .section-2 *{
+        text-align: center;
+    }
+}
+@media (max-height: 700px){
+    .login-background{
+        top: -1150px;
+    }
+    .section-1 .right img {
+        top: -662px;
+        width: 300px;
+        left: -70px;
+    }
 }
 
 
