@@ -26,14 +26,33 @@
     contacts.map((contact)=>{
         let name = contact.Fullname;
         let number = contact.contactNo;
-        let message = '<?php echo $_POST['message']?>';
+        let messageText = '<?php echo $_POST['message']?>';
 
-        async function sendMessage(){
-        const response = await fetch(`https://sms.teamssprogram.com/api/send?key=e171e8bfec664d8bc70118cb2d5c1085415d24bc&phone=+639${number}&message=${message}&device=280&sim=2`)
-        const data = await response.json();
-        console.log(data);
+       const message = {
+           secret: "14162e3a4943c8b2c4de80ef0b97f3808ecd42b7",
+           mode: "devices",
+           device: "00000000-0000-0000-099e-e6613f8b3462",
+           sim: 2,
+           phone: `+639${number}`,
+           message: messageText,
+       };
+
+       async function sendSMS() {
+          const queryParams = new URLSearchParams(message);
+          const apiUrl = `https://sms.teamssprogram.com/api/send/sms?${queryParams.toString()}`;
+
+          try {
+              const response = await fetch(apiUrl);
+              if (!response.ok) {
+                   throw new Error(`HTTP error! Status: ${response.status}`);
+               }
+            const result = await response.json();
+            console.log(result);
+          } catch (error) {
+             console.error("Error:", error);
+          }
        }
-       sendMessage();
+       sendSMS();
     })
     
    <?php } ?>

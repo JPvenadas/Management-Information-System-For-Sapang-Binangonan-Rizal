@@ -74,17 +74,34 @@ var latestHearing = <?php print_r($blotter['latestHearing']); ?>;
 function notify() {
     contacts.map((contact) => {
 
-        let message =
+        let messageText =
             `Dear Concerned Parties, This is to inform you that there has been a conflict recorded in the Barangay Blotter involving the individuals concerned. In order to find a resolution and settle the matter amicably, we invite all parties involved to come to the Barangay Hall for a meeting.The meeting will be held on ${latestHearing} at the Barangay Hall. We urge all parties involved to attend this meeting in order to discuss and resolve the issue in a peaceful and constructive manner. This is an opportunity for all parties to express their concerns and find a mutually agreeable solution.`;
 
-        async function sendMessage() {
-            const response = await fetch(
-                `https://sms.teamssprogram.com/api/send?key=e171e8bfec664d8bc70118cb2d5c1085415d24bc&phone=+639${contact}&message=${message}&device=280&sim=2`
-                )
-            const data = await response.json();
-            console.log(data);
-        }
-        sendMessage();
+       const message = {
+           secret: "14162e3a4943c8b2c4de80ef0b97f3808ecd42b7",
+           mode: "devices",
+          device: "00000000-0000-0000-099e-e6613f8b3462",
+           sim: 2,
+           phone: `+639${contact}`,
+           message: messageText,
+       };
+
+       async function sendSMS() {
+           const queryParams = new URLSearchParams(message);
+            const apiUrl = `https://sms.teamssprogram.com/api/send/sms?${queryParams.toString()}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                     throw new Error(`HTTP error! Status: ${response.status}`);
+                 }
+              const result = await response.json();
+              console.log(result);
+            } catch (error) {
+               console.error("Error:", error);
+            }
+       }
+       sendSMS();
     })
 
     // Create the paragraph element

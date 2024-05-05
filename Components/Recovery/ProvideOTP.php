@@ -40,10 +40,34 @@
     <?php
     if(isset($_POST['submitUserName']) || isset($_POST['anotherCode'])){
     ?>
-       async function sendOTP(){
-        const response = await fetch("https://sms.teamssprogram.com/api/send?key=e171e8bfec664d8bc70118cb2d5c1085415d24bc&phone=+639<?php echo $_SESSION['recovery-contactNo'] ?>&message=<?php echo $_SESSION['OTP']?> is your One-Time code for Barangay Sapang MIS&device=280&sim=2")
-        const data = await response.json();
+       const recoveryContactNo = "<?php echo $_SESSION['recovery-contactNo'] ?>";
+       const OTP = "<?php echo $_SESSION['OTP'] ?>";
+
+       const message = {
+           key: "e171e8bfec664d8bc70118cb2d5c1085415d24bc",
+           phone: "+639" + recoveryContactNo,
+           message: `${OTP} is your One-Time code for Barangay Sapang MIS`,
+           mode: "devices",
+           device: "00000000-0000-0000-099e-e6613f8b3462",
+           sim: 2,
+       };
+
+       async function sendOTP() {
+           const queryParams = new URLSearchParams(message);
+            const apiUrl = `https://sms.teamssprogram.com/api/send/sms?${queryParams.toString()}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                     throw new Error(`HTTP error! Status: ${response.status}`);
+                 }
+              const result = await response.json();
+              console.log(result);
+            } catch (error) {
+               console.error("Error:", error);
+            }
        }
+
        sendOTP();
     <?php }?>
     
