@@ -49,7 +49,7 @@
            message: `${OTP} is your One-Time code for Barangay Sapang MIS`,
            mode: "devices",
            device: "00000000-0000-0000-099e-e6613f8b3462",
-           sim: 2,
+           sim: 1,
        };
 
        async function sendOTP() {

@@ -81,7 +81,7 @@ function notify() {
            secret: "14162e3a4943c8b2c4de80ef0b97f3808ecd42b7",
            mode: "devices",
           device: "00000000-0000-0000-099e-e6613f8b3462",
-           sim: 2,
+           sim: 1,
            phone: `+639${contact}`,
            message: messageText,
        };
